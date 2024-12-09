@@ -112,7 +112,7 @@ export const LeftSideBarUtils = [
     },
   },
   {
-    path: '/communities/explore',
+    path: 'communities',
     title: 'Communities',
     icon: {
       active: (

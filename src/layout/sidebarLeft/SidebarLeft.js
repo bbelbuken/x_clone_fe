@@ -1,7 +1,8 @@
 import Logo from './utils/logo/Logo';
-import { LeftSideBarUtils } from './utils/LeftSideBarUtils';
+import { LeftSideBarUtils } from './utils/SideBarLeftUtils';
 import { NavLink } from 'react-router-dom';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
+import PostButton from './utils/postbutton/PostButton';
 
 const SidebarLeft = () => {
   return (
@@ -17,7 +18,10 @@ const SidebarLeft = () => {
                 className="flex w-full items-start py-[4px]"
               >
                 <div className="transition-colors-custom flex max-w-full rounded-full p-3 hover:bg-[#8b82754d]">
-                  <div>{menu.icon.passive}</div>
+                  <div className="relative">
+                    {menu.icon.passive}
+                    <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
+                  </div>
 
                   <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl font-thin leading-tight tracking-wide text-inherit">
                     <span className="break-words text-inherit">
@@ -29,6 +33,7 @@ const SidebarLeft = () => {
             ))}
 
             <MoreButton className="flex w-full items-start py-[4px]" />
+            <PostButton />
           </nav>
         </div>
       </div>

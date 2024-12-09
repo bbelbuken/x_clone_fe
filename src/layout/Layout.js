@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
-import SidebarLeft from './sidebarLeft/SidebarLeft';
-import SidebarRight from './sidebarRight/SidebarRight';
+import SideBarLeft from './sidebarLeft/SideBarLeft';
+import SideBarRight from './sidebarRight/SideBarRight';
 
 const Layout = () => {
   return (
     <div className="mx-auto flex w-[1265px]">
-      <SidebarLeft />
+      <SideBarLeft />
       <main className="flex flex-1 gap-[30px]">
         <div className="max-w-[600px] flex-1 gap-[30px] border-x border-x-[#2f3336]">
           <Outlet />
         </div>
-        <SidebarRight />
+        <SideBarRight />
       </main>
     </div>
   );
