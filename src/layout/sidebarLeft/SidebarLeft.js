@@ -6,7 +6,7 @@ import PostButton from './utils/postbutton/PostButton';
 
 const SidebarLeft = () => {
   return (
-    <header className="flex min-h-screen w-[275px] px-2">
+    <header className="flex min-h-screen w-[275px] px-2 font-arial">
       <div className="h-full w-full items-stretch">
         <Logo />
         <div className="mb-1 mt-0.5">
@@ -24,9 +24,7 @@ const SidebarLeft = () => {
                   </div>
 
                   <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl font-thin leading-tight tracking-wide text-inherit">
-                    <span className="break-words text-inherit">
-                      {menu.title}
-                    </span>
+                    <h2 className="break-words text-inherit">{menu.title}</h2>
                   </div>
                 </div>
               </NavLink>

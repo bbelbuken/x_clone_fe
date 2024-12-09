@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-arial bg-black text-white;
+  @apply bg-black font-arial text-white;
 }
 
 @layer utilities {
