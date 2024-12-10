@@ -5,7 +5,7 @@ const Logo = () => {
     <div className="py-0.5">
       <Link
         to="home"
-        className="transition-colors-custom flex h-[52px] w-[52px] items-center justify-center rounded-full hover:bg-[#65696b65]"
+        className="transition-colors-custom flex h-[52px] w-[52px] items-center justify-center rounded-full hover:bg-[#e7e9ea1a]"
       >
         <svg
           viewBox="0 0 24 24"

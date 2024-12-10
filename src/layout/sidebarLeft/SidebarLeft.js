@@ -17,7 +17,7 @@ const SidebarLeft = () => {
                 to={`${menu.path}`}
                 className="flex w-full items-start py-[4px]"
               >
-                <div className="transition-colors-custom flex max-w-full rounded-full p-3 hover:bg-[#8b82754d]">
+                <div className="transition-colors-custom flex max-w-full rounded-full p-3 hover:bg-[#e7e9ea1a]">
                   <div className="relative">
                     {menu.icon.passive}
                     <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
