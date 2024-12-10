@@ -41,7 +41,7 @@ const SearchBar = () => {
 
               <button
                 type="button"
-                className={`${isActive ? '' : 'hidden'} mr-3 min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#f91880] outline-none transition-colors`}
+                className={`${input && isActive ? '' : 'hidden'} mr-3 min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#f91880] outline-none transition-colors`}
                 onMouseDown={() => setInput('')} // mousedown event happens before blur
               >
                 <div className="flex grow items-center justify-center font-bold">

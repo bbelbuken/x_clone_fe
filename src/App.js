@@ -1,4 +1,4 @@
-import routes from 'routes/routes';
+import { routes } from 'routes/routes';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
