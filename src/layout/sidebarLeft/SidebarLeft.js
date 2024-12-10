@@ -20,7 +20,9 @@ const SidebarLeft = () => {
                 <div className="transition-colors-custom flex max-w-full rounded-full p-3 hover:bg-[#e7e9ea1a]">
                   <div className="relative">
                     {menu.icon.passive}
-                    <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
+                    {menu.notification && (
+                      <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
+                    )}
                   </div>
 
                   <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl font-thin leading-tight tracking-wide text-inherit">

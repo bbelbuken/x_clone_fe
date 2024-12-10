@@ -2,6 +2,7 @@ export const LeftSideBarUtils = [
   {
     path: 'home',
     title: 'Home',
+    notification: true,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -18,6 +19,7 @@ export const LeftSideBarUtils = [
   {
     path: 'explore',
     title: 'Explore',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -34,6 +36,7 @@ export const LeftSideBarUtils = [
   {
     path: 'notifications',
     title: 'Notifications',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -50,6 +53,7 @@ export const LeftSideBarUtils = [
   {
     path: 'messages',
     title: 'Messages',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -66,6 +70,7 @@ export const LeftSideBarUtils = [
   {
     path: 'lists',
     title: 'Lists',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -82,6 +87,7 @@ export const LeftSideBarUtils = [
   {
     path: 'bookmarks',
     title: 'Bookmarks',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -98,6 +104,7 @@ export const LeftSideBarUtils = [
   {
     path: 'jobs',
     title: 'Jobs',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -114,6 +121,7 @@ export const LeftSideBarUtils = [
   {
     path: 'communities',
     title: 'Communities',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -130,6 +138,7 @@ export const LeftSideBarUtils = [
   {
     path: 'i/premium_sign_up',
     title: 'Premium',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
@@ -146,6 +155,7 @@ export const LeftSideBarUtils = [
   {
     path: 'profile',
     title: 'Profile',
+    notification: false,
     icon: {
       active: (
         <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
