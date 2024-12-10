@@ -26,7 +26,7 @@ export const Trending = [
     path: 'explore',
     content: (
       <div className="block h-[82px] w-[348px]">
-        <div className="flex flex-col px-4 py-3 transition-colors">
+        <div className="flex flex-col px-4 py-3 transition-colors hover:bg-[#ffffff09]">
           <div className="flex shrink flex-row items-baseline">
             <div className="min-w-0 break-words text-[13px] font-light leading-4 tracking-normal text-[#71767b]">
               <span>Trending in Turkey</span>
@@ -46,7 +46,7 @@ export const Trending = [
     path: 'explore',
     content: (
       <div className="block h-[82px] w-[348px]">
-        <div className="flex flex-col px-4 py-3 transition-colors">
+        <div className="flex flex-col px-4 py-3 transition-colors hover:bg-[#ffffff09]">
           <div className="flex shrink flex-row items-baseline">
             <div className="min-w-0 break-words text-[13px] font-light leading-4 tracking-normal text-[#71767b]">
               <span>Trending in Turkey</span>
@@ -66,7 +66,7 @@ export const Trending = [
     path: 'explore',
     content: (
       <div className="block h-[82px] w-[348px]">
-        <div className="flex flex-col px-4 py-3 transition-colors">
+        <div className="flex flex-col px-4 py-3 transition-colors hover:bg-[#ffffff09]">
           <div className="flex shrink flex-row items-baseline">
             <div className="min-w-0 break-words text-[13px] font-light leading-4 tracking-normal text-[#71767b]">
               <span>Trending in Turkey</span>
@@ -85,7 +85,7 @@ export const Trending = [
   {
     path: 'explore',
     content: (
-      <div className="block h-[52px] w-[348px] p-4 transition-colors">
+      <div className="block h-[52px] w-[348px] p-4 transition-colors hover:bg-[#ffffff09]">
         <div className="min-w-0 break-words text-[15px] font-light leading-5 text-[#f91880]">
           <span>Show more</span>
         </div>

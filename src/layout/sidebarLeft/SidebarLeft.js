@@ -2,7 +2,7 @@ import Logo from './utils/logo/Logo';
 import { LeftSideBarUtils } from './utils/SideBarLeftUtils';
 import { NavLink } from 'react-router-dom';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
-import PostButton from './utils/postbutton/PostButton';
+import Button from 'components/buttons/Button';
 
 const SidebarLeft = () => {
   return (
@@ -30,8 +30,16 @@ const SidebarLeft = () => {
               </NavLink>
             ))}
 
-            <MoreButton className="flex w-full items-start py-[4px]" />
-            <PostButton />
+            <MoreButton />
+            <div className="my-[22px] w-[90%]">
+              <Button
+                className={'text-black'}
+                size={'large'}
+                to={'compose/post'}
+              >
+                Post
+              </Button>
+            </div>
           </nav>
         </div>
       </div>

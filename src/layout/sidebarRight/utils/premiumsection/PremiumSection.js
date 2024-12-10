@@ -1,5 +1,5 @@
+import Button from 'components/buttons/Button';
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const PremiumSection = () => {
   return (
@@ -13,13 +13,13 @@ const PremiumSection = () => {
           revenue.
         </p>
       </div>
-      <Link className="transition-colors-custom mt-[1px] flex min-h-9 min-w-9 items-center justify-center rounded-full bg-[#f91880] px-4 outline-none hover:bg-[#e01673]">
-        <div className="flex min-w-0 grow items-center justify-center break-words text-center text-[15px] font-bold leading-5">
-          <p className="break-word mb-0.5 min-w-0 max-w-full overflow-hidden whitespace-nowrap text-center text-[15px] leading-8 tracking-[0.010em]">
-            Subscribe
-          </p>
-        </div>
-      </Link>
+
+      <Button
+        className={'mt-[1px] bg-[#f91880] hover:bg-[#e01673]'}
+        to={'i/premium_sign_up'}
+      >
+        Subscribe
+      </Button>
     </aside>
   );
 };
