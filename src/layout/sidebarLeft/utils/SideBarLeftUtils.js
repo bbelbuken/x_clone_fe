@@ -1,3 +1,7 @@
+import { store } from 'store/store';
+
+const currentUsername = store.getState()?.accounts?.currentAccount?.username;
+
 export const LeftSideBarUtils = [
   {
     path: 'home',
@@ -153,7 +157,7 @@ export const LeftSideBarUtils = [
     },
   },
   {
-    path: 'profile',
+    path: `${currentUsername}`,
     title: 'Profile',
     notification: false,
     icon: {

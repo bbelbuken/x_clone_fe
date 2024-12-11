@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Button = ({ size, children, className, to }) => {
+const Button = ({ size = 'normal', children, className, to = null }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -23,6 +23,10 @@ const Button = ({ size, children, className, to }) => {
           'min-h-[52px] min-w-[52px] w-full  text-[17px] leading-5 px-[32px]':
             size === 'large',
         },
+        {
+          'min-h-[65px] min-w-[52px] w-full  text-[17px] leading-5 px-3':
+            size === 'account',
+        },
         className,
       ),
       onClick: handleClick,
@@ -33,14 +37,8 @@ const Button = ({ size, children, className, to }) => {
 
 Button.propTypes = {
   size: PropTypes.oneOf(['normal', 'large']),
-  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   to: PropTypes.string,
-};
-
-Button.defaultProps = {
-  size: 'normal',
-  to: null,
 };
 
 export default Button;

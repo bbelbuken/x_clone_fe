@@ -3,6 +3,7 @@ import { LeftSideBarUtils } from './utils/SideBarLeftUtils';
 import { NavLink } from 'react-router-dom';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
 import Button from 'components/buttons/Button';
+import AccountButton from './accountbutton/AccountButton';
 
 const SidebarLeft = () => {
   return (
@@ -45,14 +46,7 @@ const SidebarLeft = () => {
           </div>
         </div>
 
-        <div className="mt-3 rounded-full">
-          <div className="">
-            <Button
-              size={'large'}
-              className={'bg-transparent hover:bg-[#e7e9ea1a]'}
-            />
-          </div>
-        </div>
+        <AccountButton />
       </div>
     </header>
   );
