@@ -36,7 +36,7 @@ const Button = ({ size = 'normal', children, className, to = null }) => {
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['normal', 'large']),
+  size: PropTypes.oneOf(['normal', 'large', 'account']),
   className: PropTypes.string,
   to: PropTypes.string,
 };

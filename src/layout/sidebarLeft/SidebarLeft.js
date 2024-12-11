@@ -3,7 +3,7 @@ import { LeftSideBarUtils } from './utils/SideBarLeftUtils';
 import { NavLink } from 'react-router-dom';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
 import Button from 'components/buttons/Button';
-import AccountButton from './accountbutton/AccountButton';
+import AccountButton from './utils/accountbutton/AccountButton';
 
 const SidebarLeft = () => {
   return (
