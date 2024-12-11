@@ -19,7 +19,7 @@ const MoreButton = () => {
       </PopoverButton>
       <PopoverPanel
         className={
-          'shadow-morebox absolute -bottom-1 left-0 box-border flex h-auto w-[318px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black transition-colors'
+          'absolute -bottom-1 left-0 box-border flex h-auto w-[318px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black shadow-morebox transition-colors'
         }
       >
         <button className="box-border flex h-full w-full items-center justify-start">
