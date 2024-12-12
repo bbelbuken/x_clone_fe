@@ -8,7 +8,22 @@ const initialState = {
     avatar:
       'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
   },
-  accounts: [],
+  accounts: [
+    {
+      id: 1,
+      username: 'bbelbuken',
+      fullname: 'Batuhan',
+      avatar:
+        'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
+    },
+    {
+      id: 2,
+      username: 'shadowpriest_99',
+      fullname: 'ShAd0W_PriEsT',
+      avatar:
+        'https://imgcdn.stablediffusionweb.com/2024/2/26/8699803e-dc60-48e0-a499-e60bb25764dc.jpg',
+    },
+  ],
 };
 
 const authenticationSlice = createSlice({
@@ -31,8 +46,6 @@ const authenticationSlice = createSlice({
     },
   },
 });
-
-export const selectCurrentAccount = (state) => state.accounts.currentAccount;
 
 export const { addAccount, removeAccount, setCurrentAccount } =
   authenticationSlice.actions;

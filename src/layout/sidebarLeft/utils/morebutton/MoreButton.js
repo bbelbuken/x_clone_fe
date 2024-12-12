@@ -70,7 +70,7 @@ const MoreButton = () => {
           </div>
         </button>
 
-        <button className="over flex h-full w-full items-center justify-start py-0.5">
+        <button className="over flex h-auto w-full items-center justify-start">
           <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
             <div>
               <svg viewBox="0 0 24 24" fill="white" width={24} height={24}>
