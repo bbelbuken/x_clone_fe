@@ -28,7 +28,7 @@ const PanelItems = () => {
           </ol>
           <div className="relative flex items-center justify-center px-4 py-0.5 hover:bg-[#e7e9ea1a]">
             <OtherAccountLists />
-            <div className="font-sm absolute right-[23px] box-content grid h-5 min-w-5 place-content-center rounded-full bg-[#f91880] font-bold">
+            <div className="font-sm absolute right-[22px] box-content grid h-5 min-w-5 place-content-center rounded-full bg-[#f91880] font-bold">
               <span>1</span>
             </div>
           </div>

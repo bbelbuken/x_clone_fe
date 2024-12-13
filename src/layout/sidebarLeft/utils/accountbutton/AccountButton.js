@@ -20,6 +20,7 @@ const AccountButton = () => {
           <div className="flex items-center justify-center">
             <ThreeDotSVG />
           </div>
+          <div className="absolute right-[13px] top-[5px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
         </div>
       </PopoverButton>
       <PopoverPanel

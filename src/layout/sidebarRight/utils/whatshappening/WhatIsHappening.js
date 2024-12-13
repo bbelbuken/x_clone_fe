@@ -16,7 +16,7 @@ const WhatIsHappening = () => {
               {item.content}
             </Link>
 
-            <div className="absolute right-0 top-[6px] inline-flex h-[34.75px] w-[34.75px] rounded-full text-[#71767b] transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
+            <div className="absolute right-2 top-[6px] flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full text-[#71767b] transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
               <button className="flex items-center justify-center">
                 <ThreeDotSVG />
               </button>
