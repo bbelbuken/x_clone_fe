@@ -1,10 +1,10 @@
 import React from 'react';
-import { useCurrentAccount } from 'hooks/useCurrentAccount';
+import { useCurrentAccount } from 'hooks/useAccounts';
 
-const ButtonItems = () => {
+const ButtonItems = ({ gap }) => {
   const currentAccount = useCurrentAccount();
   return (
-    <div className="flex h-auto w-full items-center justify-start gap-3">
+    <div className={`flex h-auto w-full items-center justify-start gap-${gap}`}>
       <img
         src={currentAccount.avatar}
         alt="Avatar"
