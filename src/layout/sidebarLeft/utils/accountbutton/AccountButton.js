@@ -10,7 +10,7 @@ const AccountButton = () => {
       <PopoverButton className={'relative w-full'}>
         <div
           className={
-            'mb-3 flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden break-words rounded-full bg-transparent px-3 text-[17px] font-bold leading-5 outline-none transition-colors hover:bg-[#e7e9ea1a] active:bg-white'
+            'mb-3 flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden break-words rounded-full bg-transparent px-3 text-[17px] font-bold leading-5 transition-colors active:bg-white'
           }
         >
           <ButtonItems gap={3} />
@@ -25,9 +25,8 @@ const AccountButton = () => {
       </PopoverButton>
       <PopoverPanel
         className={
-          'absolute bottom-[88px] left-0 box-border flex h-auto w-[300px] flex-col items-center justify-center rounded-2xl bg-black shadow-morebox transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0'
+          'absolute bottom-[88px] left-0 box-border flex h-auto w-[300px] flex-col items-center justify-center rounded-2xl bg-black shadow-morebox transition-colors'
         }
-        transition
       >
         <PanelItems />
       </PopoverPanel>
