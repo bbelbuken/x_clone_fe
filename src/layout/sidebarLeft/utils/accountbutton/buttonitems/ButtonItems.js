@@ -10,7 +10,7 @@ const ButtonItems = ({ gap }) => {
         alt="Avatar"
         className="h-10 w-10 rounded-full"
       ></img>
-      <div className="flex flex-col items-start justify-center py-2">
+      <div className="ml-1 flex flex-col items-start justify-center">
         <p className="break-words text-[15px] font-bold">
           {currentAccount.fullname}
         </p>

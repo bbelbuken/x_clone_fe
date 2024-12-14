@@ -23,6 +23,13 @@ const initialState = {
       avatar:
         'https://imgcdn.stablediffusionweb.com/2024/2/26/8699803e-dc60-48e0-a499-e60bb25764dc.jpg',
     },
+    {
+      id: 3,
+      username: 'pitbull',
+      fullname: 'Mr.Worldwide',
+      avatar:
+        'https://s.yimg.com/os/en-SG/homerun/the_hive_asia_947/f2a87fc834c419f4e76b7a052d54ec73',
+    },
   ],
 };
 

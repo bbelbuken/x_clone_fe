@@ -13,7 +13,7 @@ const AccountButton = () => {
             'mb-3 flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden break-words rounded-full bg-transparent px-3 text-[17px] font-bold leading-5 outline-none transition-colors hover:bg-[#e7e9ea1a] active:bg-white'
           }
         >
-          <ButtonItems gap={3} />
+          <ButtonItems gap={2} />
         </div>
 
         <div className="absolute -right-1 top-[15px] inline-flex h-[34.75px] w-[34.75px] rounded-full transition-colors">

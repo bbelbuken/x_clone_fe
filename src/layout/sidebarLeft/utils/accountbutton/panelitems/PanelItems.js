@@ -11,10 +11,10 @@ const PanelItems = () => {
   return (
     <div className="flex flex-1 flex-col justify-center self-stretch overflow-visible py-3 text-sm font-bold">
       {accounts.length > 1 && (
-        <div>
+        <>
           <ol className="px-4 pt-0.5">
             <li className="relative">
-              <CurrentAccountItems gap={2} />
+              <CurrentAccountItems gap={1} />
               <svg
                 viewBox="0 0 24 24"
                 className="absolute right-2 top-5"
@@ -26,14 +26,11 @@ const PanelItems = () => {
               </svg>
             </li>
           </ol>
-          <div className="relative flex items-center justify-center px-4 py-0.5 hover:bg-[#e7e9ea1a]">
-            <OtherAccountLists />
-            <div className="font-sm absolute right-[22px] box-content grid h-5 min-w-5 place-content-center rounded-full bg-[#f91880] font-bold">
-              <span>1</span>
-            </div>
-          </div>
+
+          <OtherAccountLists />
+
           <div className="my-3 h-[1px] bg-[#2f3336]"></div>
-        </div>
+        </>
       )}
       <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
         Add an existing account
