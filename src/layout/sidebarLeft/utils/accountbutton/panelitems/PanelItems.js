@@ -17,7 +17,7 @@ const PanelItems = () => {
               <CurrentAccountItems gap={1} />
               <svg
                 viewBox="0 0 24 24"
-                className="absolute right-2 top-5"
+                className="absolute right-2 top-3"
                 width={18.75}
                 height={18.75}
                 fill="#00ba7c"
