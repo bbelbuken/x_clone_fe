@@ -5,7 +5,7 @@ import WhatIsHappening from './utils/whatshappening/WhatIsHappening';
 
 const SideBarRight = () => {
   return (
-    <div className="my-[5px] flex w-[350px] flex-col items-stretch overflow-hidden">
+    <div className="my-[5px] flex w-[350px] flex-col items-stretch overflow-visible">
       <div className="item flex h-full min-h-[1114.2px] flex-col">
         <SearchBar />
 
