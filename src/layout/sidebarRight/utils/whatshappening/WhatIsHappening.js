@@ -23,6 +23,14 @@ const WhatIsHappening = () => {
             </div>
           </div>
         ))}
+
+        <Link to={'explore'}>
+          <div className="block h-[52px] w-[348px] p-4 transition-colors hover:bg-[#ffffff09]">
+            <div className="min-w-0 break-words text-[15px] font-light leading-4 text-[#f91880]">
+              <span>Show more</span>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
