@@ -2,11 +2,13 @@ import React from 'react';
 import { Trending } from './trending/Trending';
 import { Link } from 'react-router-dom';
 import ThreeDotSVG from 'components/svgs/ThreeDotSVG';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
+import PanelSettings from './panelsettings/PanelSettings';
 
 const WhatIsHappening = () => {
   return (
     <div className="block outline-none">
-      <div className="flex min-w-0 max-w-full flex-col justify-between self-center overflow-hidden break-words px-4 py-3 text-xl font-bold leading-6 tracking-wide outline-none">
+      <div className="flex min-w-0 max-w-full flex-col justify-between self-center break-words px-4 py-3 text-xl font-bold leading-6 tracking-wide outline-none">
         <h2 className="">What's happening</h2>
       </div>
       <div>
@@ -16,11 +18,16 @@ const WhatIsHappening = () => {
               {item.content}
             </Link>
 
-            <div className="absolute right-2 top-[6px] flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full text-[#71767b] transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
-              <button className="flex items-center justify-center">
-                <ThreeDotSVG />
-              </button>
-            </div>
+            <Popover>
+              <PopoverButton className="absolute right-2 top-[6px] flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full text-[#71767b] transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
+                <button className="flex items-center justify-center">
+                  <ThreeDotSVG />
+                </button>
+              </PopoverButton>
+              <PopoverPanel>
+                <PanelSettings className={'relative'} />
+              </PopoverPanel>
+            </Popover>
           </div>
         ))}
 

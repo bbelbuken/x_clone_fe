@@ -4,7 +4,7 @@ import { numberFormat } from 'utils/formatter/formatter';
 export const Trending = trendingData.slice(0, 4).map((item, index) => {
   if (item.isPromoted) {
     return {
-      path: 'item.path',
+      path: item.path,
       content: (
         <div className="h-[90px] w-[348px] hover:bg-[#ffffff09]">
           <div className="relative flex grow flex-col px-4 py-3 outline-none transition-colors">
@@ -29,7 +29,7 @@ export const Trending = trendingData.slice(0, 4).map((item, index) => {
   }
 
   return {
-    path: 'item.path',
+    path: item.path,
     content: (
       <div className="block h-[82px] w-[348px]">
         <div className="flex flex-col px-4 py-3 transition-colors hover:bg-[#ffffff09]">
