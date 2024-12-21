@@ -32,6 +32,6 @@ export const PanelData = [
   {
     title: 'Dont want to see this ad',
     isAd: true,
-    isRenderNeeded: true,
+    isRenderNeeded: false,
   },
 ];

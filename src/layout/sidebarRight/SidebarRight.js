@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './utils/searchbar/SearchBar';
 import PremiumSection from './utils/premiumsection/PremiumSection';
 import WhatIsHappening from './utils/whatshappening/WhatIsHappening';
+import WhoToFollow from './utils/whotofollow/WhoToFollow';
 
 const SideBarRight = () => {
   return (
@@ -14,6 +15,9 @@ const SideBarRight = () => {
         </div>
         <div className="mb-4 flex h-[438px] w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
           <WhatIsHappening />
+        </div>
+        <div className="mb-4 flex h-auto w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
+          <WhoToFollow />
         </div>
       </div>
     </div>
