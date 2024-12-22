@@ -33,8 +33,8 @@ const initialState = {
   ],
 };
 
-const authenticationSlice = createSlice({
-  name: 'authentication',
+const accountSlice = createSlice({
+  name: 'account',
   initialState,
   reducers: {
     addAccount: (state, action) => {
@@ -55,6 +55,6 @@ const authenticationSlice = createSlice({
 });
 
 export const { addAccount, removeAccount, setCurrentAccount } =
-  authenticationSlice.actions;
+  accountSlice.actions;
 
-export default authenticationSlice.reducer;
+export default accountSlice.reducer;

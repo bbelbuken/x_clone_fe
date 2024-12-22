@@ -24,7 +24,7 @@ export const routes = [
       { path: 'jobs', element: <Jobs /> },
       { path: 'communities', element: <Communities /> },
       { path: 'premium', element: <Premium /> },
-      { path: 'profile', element: <Profile /> },
+      { path: ':username', element: <Profile /> },
     ],
   },
 ];
