@@ -2,6 +2,7 @@ import React from 'react';
 import { FooterData } from './footerdata/FooterData';
 import { Link } from 'react-router-dom';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
+import { MoreButtonData } from './morebuttondata/MoreButtonData';
 
 export const Footer = () => {
   const date = new Date();
@@ -29,9 +30,21 @@ export const Footer = () => {
             </svg>
           </div>
         </PopoverButton>
-        <PopoverPanel></PopoverPanel>
+        <PopoverPanel>
+          <div className="max-h-[calc(-347.2px + 100vh)] absolute -right-3 top-[5px] flex max-w-[calc(384px)] flex-col overflow-y-auto rounded-xl bg-black shadow-morebox">
+            {MoreButtonData.map((item, index) => (
+              <Link
+                key={index}
+                to={item.path}
+                className="z-10 flex w-full min-w-0 flex-1 cursor-pointer whitespace-nowrap break-words px-4 py-[14px] text-[15px] font-bold leading-4 tracking-[0.010em] text-[#e7e9ea] transition-all hover:bg-[#16181c]"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </PopoverPanel>
       </Popover>
-      <div className="absolute left-4 top-11 flex items-center justify-center text-[13px] leading-3 tracking-[0.025em] text-[#71767b]">
+      <div className="absolute left-4 top-11 z-0 flex items-center justify-center text-[13px] leading-3 tracking-[0.025em] text-[#71767b]">
         <span>&copy; {year} X Corp</span>
       </div>
     </nav>
