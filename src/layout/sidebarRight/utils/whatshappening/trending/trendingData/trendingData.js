@@ -2,7 +2,8 @@ export const trendingData = [
   {
     path: 'explore',
     title: '#DevlerLigi',
-    content: "Heyecan tabii spor'la TV+'ta!",
+    content:
+      "Heyecan tabii spor'la TV+'ta! 🏀 saat 20:00'da başlayacak olan Devler Ligi'ni!",
     promotedBy: 'Promoted by TV+',
     isPromoted: true,
   },

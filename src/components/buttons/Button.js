@@ -27,6 +27,9 @@ const Button = ({ size = 'normal', children, className, to = null }) => {
           'min-h-[65px] min-w-[52px] w-full  text-[17px] leading-5 px-3':
             size === 'account',
         },
+        {
+          'w-[78px] h-[32px] text-[14px] ': size === 'follow',
+        },
         className,
       ),
       onClick: handleClick,
