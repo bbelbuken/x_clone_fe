@@ -3,6 +3,7 @@ import SearchBar from './utils/searchbar/SearchBar';
 import PremiumSection from './utils/premiumsection/PremiumSection';
 import WhatIsHappening from './utils/whatshappening/WhatIsHappening';
 import WhoToFollow from './utils/whotofollow/WhoToFollow';
+import { Footer } from './utils/footer/Footer';
 
 const SideBarRight = () => {
   return (
@@ -16,9 +17,10 @@ const SideBarRight = () => {
         <div className="mb-4 flex h-auto w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
           <WhatIsHappening />
         </div>
-        <div className="mb-4 flex h-auto w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
+        <div className="mb-4 flex h-[297px] w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
           <WhoToFollow />
         </div>
+        <Footer />
       </div>
     </div>
   );

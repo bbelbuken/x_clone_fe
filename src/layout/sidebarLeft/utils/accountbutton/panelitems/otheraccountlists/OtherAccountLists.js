@@ -38,7 +38,7 @@ const OtherAccountLists = () => {
               </p>
               <div className="text-[15px] font-light leading-[1.5em] tracking-[0.045em] text-[#71767b]">
                 <div className="flex items-center justify-center">
-                  <p className="mr-[1px] text-[12px]">@</p>
+                  <p className="text-[12px]">@</p>
                   {account.username}
                 </div>
               </div>

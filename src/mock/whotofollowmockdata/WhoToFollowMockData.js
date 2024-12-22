@@ -5,6 +5,7 @@ export const WhoToFollowMockData = [
     fullname: 'DeRBeDeR',
     avatar:
       'https://i.ytimg.com/vi/XLnr3EE2t_s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB39soqFGQsufSUNMRg074zeiLulA',
+    verified: false,
   },
   {
     id: 5,
@@ -12,6 +13,7 @@ export const WhoToFollowMockData = [
     fullname: 'Node.js',
     avatar:
       'https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_normal.jpg',
+    verified: true,
   },
   {
     id: 6,
@@ -19,5 +21,6 @@ export const WhoToFollowMockData = [
     fullname: 'Dr.Applebrain',
     avatar:
       'https://pbs.twimg.com/profile_images/1658233760838569985/OsRPTc1Q_200x200.png ',
+    verified: false,
   },
 ];
