@@ -43,10 +43,7 @@ const WhoToFollow = () => {
                 </div>
               </li>
             </Link>
-            <Button
-              className={'absolute right-4 top-4 text-black'}
-              size="follow"
-            >
+            <Button className={'absolute right-4 top-4 text-black'}>
               Follow
             </Button>
           </div>

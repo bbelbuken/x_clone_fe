@@ -9,6 +9,7 @@ import Jobs from 'pages/Jobs';
 import Communities from 'pages/Communities';
 import Premium from 'pages/Premium';
 import Profile from 'pages/Profile';
+import PostModal from 'features/modal/components/PostModal';
 
 export const routes = [
   {
@@ -25,6 +26,7 @@ export const routes = [
       { path: 'communities', element: <Communities /> },
       { path: 'premium', element: <Premium /> },
       { path: ':username', element: <Profile /> },
+      { path: 'compose/post' },
     ],
   },
 ];

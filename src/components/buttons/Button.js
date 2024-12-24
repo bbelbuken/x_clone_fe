@@ -3,10 +3,17 @@ import PropTypes from 'prop-types';
 import { createElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Button = ({ size = 'normal', children, className, to = null }) => {
+const Button = ({
+  size = 'normal',
+  children,
+  className,
+  to = null,
+  onClick,
+}) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    if (onClick) onClick(e);
     if (to) navigate(to);
   };
 

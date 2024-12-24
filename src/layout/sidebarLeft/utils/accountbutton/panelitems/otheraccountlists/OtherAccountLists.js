@@ -18,7 +18,7 @@ const OtherAccountLists = () => {
     <div className="relative flex flex-col items-center justify-center py-0.5">
       {otherAccounts.map((account, key) => (
         <button
-          className="w-full px-4 hover:bg-[#e7e9ea1a]"
+          className="w-full px-4 hover:bg-[#c4c4c41a]"
           type="button"
           onClick={() => handleCurrentAccount(account)}
           key={key}

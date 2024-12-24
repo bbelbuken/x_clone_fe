@@ -3,8 +3,16 @@ import Menu from './utils/menu/Menu';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
 import Button from 'components/buttons/Button';
 import AccountButton from './utils/accountbutton/AccountButton';
+import { useDispatch } from 'react-redux';
+import { openModal } from 'features/modal/modalSlice';
 
 const SidebarLeft = () => {
+  const dispatch = useDispatch();
+
+  const setModal = (data) => {
+    dispatch(openModal(data));
+  };
+
   return (
     <header className="flex h-screen w-[275px] px-2 font-arial">
       <div className="flex h-full w-full flex-auto flex-col items-stretch justify-between">
@@ -18,7 +26,7 @@ const SidebarLeft = () => {
                 <Button
                   className={'text-black'}
                   size={'large'}
-                  to={'compose/post'}
+                  onClick={() => setModal('post')}
                 >
                   Post
                 </Button>

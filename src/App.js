@@ -1,5 +1,6 @@
 import { routes } from 'routes/routes';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import ModalManager from 'features/modal/ModalManager';
 
 function App() {
   return (
