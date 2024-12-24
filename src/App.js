@@ -1,8 +1,8 @@
-import { routes } from 'routes/routes';
+import { MyRoutes } from 'routes/routes';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import ModalManager from 'features/modal/ModalManager';
 
 function App() {
+  const routes = MyRoutes();
   return (
     <Routes>
       <Route path="/" element={<Navigate to={'/home'} />} />
