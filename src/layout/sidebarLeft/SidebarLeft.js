@@ -3,14 +3,16 @@ import Menu from './utils/menu/Menu';
 import MoreButton from 'layout/sidebarLeft/utils/morebutton/MoreButton';
 import Button from 'components/buttons/Button';
 import AccountButton from './utils/accountbutton/AccountButton';
-import { useDispatch } from 'react-redux';
-import { openModal } from 'features/modal/modalSlice';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SidebarLeft = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const setModal = (data) => {
-    dispatch(openModal(data));
+  const openPostModal = () => {
+    const previousRoute = location.pathname;
+    localStorage.setItem('previousRoute', previousRoute);
+    navigate('compose/post');
   };
 
   return (
@@ -26,7 +28,7 @@ const SidebarLeft = () => {
                 <Button
                   className={'text-black'}
                   size={'large'}
-                  onClick={() => setModal('post')}
+                  onClick={openPostModal}
                 >
                   Post
                 </Button>

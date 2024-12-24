@@ -8,8 +8,10 @@ const PostModal = ({ handleClose }) => {
         <button
           type="button"
           className="h-16 w-16 bg-red-700"
-          onClick={handleClose}
-        ></button>
+          onClick={() => handleClose()}
+        >
+          Close
+        </button>
       </div>
     </div>
   );

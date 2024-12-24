@@ -26,7 +26,7 @@ export const routes = [
       { path: 'communities', element: <Communities /> },
       { path: 'premium', element: <Premium /> },
       { path: ':username', element: <Profile /> },
-      { path: 'compose/post' },
+      { path: 'compose/post', element: <PostModal /> },
     ],
   },
 ];
