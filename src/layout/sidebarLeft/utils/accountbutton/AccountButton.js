@@ -6,7 +6,7 @@ import ButtonItems from './buttonitems/ButtonItems';
 
 const AccountButton = () => {
   return (
-    <Popover className={'relative'}>
+    <Popover className={'relative z-20'}>
       <PopoverButton className={'relative w-full'}>
         <div
           className={
