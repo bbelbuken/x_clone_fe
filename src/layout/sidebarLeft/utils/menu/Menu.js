@@ -73,6 +73,28 @@ export const Menu = () => {
       },
     },
     {
+      path: 'i/grok',
+      title: 'Grok',
+      notification: false,
+      icon: {
+        active: (
+          <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
+            <path
+              clip-rule="evenodd"
+              d="M6 2h12c2.21 0 4 1.79 4 4v12c0 2.21-1.79 4-4 4H6c-2.21 0-4-1.79-4-4V6c0-2.21 1.79-4 4-4zm.643 15.8l8.109-11.58h2.515L9.158 17.8H6.643z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        ),
+        passive: (
+          <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
+            <path d="M18 4.1H6c-1.05 0-1.9.85-1.9 1.9v12c0 1.05.85 1.9 1.9 1.9h12c1.05 0 1.9-.85 1.9-1.9V6c0-1.05-.85-1.9-1.9-1.9zM6 2h12c2.21 0 4 1.79 4 4v12c0 2.21-1.79 4-4 4H6c-2.21 0-4-1.79-4-4V6c0-2.21 1.79-4 4-4z"></path>
+            <path d="M6.68 17.8l8.108-11.58h2.532L9.21 17.8H6.68z"></path>
+          </svg>
+        ),
+      },
+    },
+    {
       path: 'lists',
       title: 'Lists',
       notification: false,
@@ -153,6 +175,23 @@ export const Menu = () => {
         passive: (
           <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+          </svg>
+        ),
+      },
+    },
+    {
+      path: 'i/organizations',
+      title: 'Verified Orgs',
+      notification: false,
+      icon: {
+        active: (
+          <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
+            <path d="M7.323 2h11.443l-3 5h6.648L6.586 22.83 7.847 14H2.523l4.8-12zm1.354 2l-3.2 8h4.676l-.739 5.17L17.586 9h-5.352l3-5H8.677z"></path>
+          </svg>
+        ),
+        passive: (
+          <svg viewBox="0 0 24 24" fill="white" width={26.25} height={26.25}>
+            <path d="M7.323 2h11.443l-3 5h6.648L6.586 22.83 7.847 14H2.523l4.8-12zm1.354 2l-3.2 8h4.676l-.739 5.17L17.586 9h-5.352l3-5H8.677z"></path>
           </svg>
         ),
       },

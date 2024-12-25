@@ -4,11 +4,11 @@ import { useCurrentAccount } from 'hooks/useAccounts';
 const ButtonItems = ({ gap }) => {
   const currentAccount = useCurrentAccount();
   return (
-    <div className={`flex h-auto w-full items-center justify-start gap-${gap}`}>
+    <div className={`items-starts flex h-auto w-full justify-start gap-${gap}`}>
       <img
         src={currentAccount.avatar}
         alt="Avatar"
-        className="h-10 w-10 rounded-full"
+        className="mt-[1px] h-10 w-10 rounded-full"
       ></img>
       <div className="ml-1 flex flex-col items-start justify-center">
         <p className="break-words text-[15px] font-bold">

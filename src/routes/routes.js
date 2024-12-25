@@ -1,4 +1,4 @@
-import Home from '../pages/Home';
+import Home from '../pages/home/Home';
 import Explore from '../pages/Explore';
 import Notifications from '../pages/Notifications';
 import Messages from 'pages/Messages';
