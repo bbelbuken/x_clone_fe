@@ -6,6 +6,7 @@
       "react-redux",
       "@reduxjs/toolkit",
       "@reduxjs/toolkit/query"
+      "date-fns"
     ]
   },
   "compilerOptions": {

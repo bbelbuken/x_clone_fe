@@ -1,4 +1,5 @@
 import HomeNav from './homenav/HomeNav';
+import SendPost from './sendtweet/SendPost';
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
           <HomeNav />
         </div>
       </nav>
+      <SendPost />
     </main>
   );
 };

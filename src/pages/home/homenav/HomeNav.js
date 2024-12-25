@@ -11,10 +11,10 @@ const HomeNav = () => {
         <Link
           className="flex h-[53px] min-w-14 grow cursor-pointer items-center justify-center px-4 transition-colors hover:bg-[#e7e9ea1a]"
           onClick={() => setActiveTitle(item.title)}
+          key={index}
         >
           <div className="relative flex h-full min-w-0 items-center justify-center break-words py-4 text-[15px] font-bold leading-5">
             <span
-              key={index}
               className={
                 activeTitle === item.title ? 'text-[#e7e9ea]' : 'text-[#71767b]'
               }
