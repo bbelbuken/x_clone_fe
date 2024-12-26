@@ -21,7 +21,7 @@ const Button = ({
     'button',
     {
       className: classNames(
-        'bg-[#eff3f4] flex justify-center items-center hover:bg-[#d7dbdc] rounded-full transition-colors font-bold overflow-hidden break-words',
+        ' flex justify-center items-center hover:bg-[#d7dbdc] rounded-full transition-colors font-bold overflow-hidden break-words',
         {
           'min-h-9 min-w-9 text-[15px] tracking-[0.020em] px-4':
             size === 'normal',
