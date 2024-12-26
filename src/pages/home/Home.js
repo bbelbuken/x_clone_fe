@@ -1,5 +1,5 @@
 import HomeNav from './homenav/HomeNav';
-import SendPost from './sendtweet/SendPost';
+import SendPost from './sendpost/SendPost';
 
 const Home = () => {
   return (

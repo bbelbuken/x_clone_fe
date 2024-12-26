@@ -5,7 +5,7 @@
       "redux",
       "react-redux",
       "@reduxjs/toolkit",
-      "@reduxjs/toolkit/query"
+      "@reduxjs/toolkit/query",
       "date-fns"
     ]
   },
