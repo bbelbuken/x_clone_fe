@@ -7,6 +7,7 @@ const initialState = {
     fullname: 'Batuhan',
     avatar:
       'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
+    verified: false,
   },
   accounts: [
     {
@@ -15,6 +16,7 @@ const initialState = {
       fullname: 'Batuhan',
       avatar:
         'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
+      verified: false,
     },
     {
       id: 2,
@@ -22,6 +24,7 @@ const initialState = {
       fullname: 'ShAd0W_PriEsT',
       avatar:
         'https://imgcdn.stablediffusionweb.com/2024/2/26/8699803e-dc60-48e0-a499-e60bb25764dc.jpg',
+      verified: false,
     },
     {
       id: 3,
@@ -29,6 +32,7 @@ const initialState = {
       fullname: 'Nathie',
       avatar:
         'https://pbs.twimg.com/profile_images/1567608510497652736/TvoiS4g6_200x200.jpg',
+      verified: false,
     },
     {
       id: 4,

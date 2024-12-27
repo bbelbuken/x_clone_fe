@@ -6,13 +6,14 @@ import { useAccounts } from 'hooks/useAccounts';
 const Post = ({ post, postId }) => {
   const allAccounts = useAccounts();
   const account = allAccounts.find((account) => account.id === postId);
+  const hasReposted = () => post.reactions.reposts.repost > 0;
 
   return (
     <div className="border-b border-b-[#2f3336]" key={post.id}>
       <article className="flex shrink grow cursor-pointer flex-col px-4">
-        <RepostedBy account={account} />
+        {hasReposted() && <RepostedBy account={account} />}
 
-        <div className="flex">
+        <div className={`flex ${hasReposted() ? 'mt-[1px]' : 'mt-[11px]'}`}>
           <AccountIMG account={account} />
           <Content
             content={post.content}

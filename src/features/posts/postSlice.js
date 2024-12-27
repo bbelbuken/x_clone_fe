@@ -25,7 +25,7 @@ const initialState = [
     reactions: {
       replies: 0,
       reposts: {
-        repost: 0,
+        repost: 1,
         quote: 0,
       },
       likes: 0,
@@ -39,7 +39,7 @@ const initialState = [
     reactions: {
       replies: 0,
       reposts: {
-        repost: 0,
+        repost: 1,
         quote: 0,
       },
       likes: 0,
@@ -49,11 +49,11 @@ const initialState = [
   {
     id: 4,
     content: 'This is my second Post',
-    date: sub(new Date(), { minutes: 20 }).toISOString(),
+    date: sub(new Date(), { minutes: 30 }).toISOString(),
     reactions: {
       replies: 0,
       reposts: {
-        repost: 0,
+        repost: 1,
         quote: 0,
       },
       likes: 0,
@@ -63,11 +63,11 @@ const initialState = [
   {
     id: 5,
     content: 'This is my first Post',
-    date: sub(new Date(), { minutes: 15 }).toISOString(),
+    date: sub(new Date(), { minutes: 62 }).toISOString(),
     reactions: {
       replies: 0,
       reposts: {
-        repost: 0,
+        repost: 1,
         quote: 0,
       },
       likes: 0,
@@ -77,11 +77,11 @@ const initialState = [
   {
     id: 6,
     content: 'This is my second Post',
-    date: sub(new Date(), { minutes: 20 }).toISOString(),
+    date: sub(new Date(), { minutes: 120 }).toISOString(),
     reactions: {
       replies: 0,
       reposts: {
-        repost: 0,
+        repost: 1,
         quote: 0,
       },
       likes: 0,
