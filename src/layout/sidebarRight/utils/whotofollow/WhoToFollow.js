@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { WhoToFollowMockData } from 'mock/whotofollowmockdata/WhoToFollowMockData';
+import { useAccounts } from 'hooks/useAccounts';
 import Button from 'components/buttons/Button';
 import VerifiedSVG from 'components/svgs/VerifiedSVG';
 
 const WhoToFollow = () => {
+  const accounts = useAccounts();
   return (
     <div className="block outline-none">
       <div className="flex min-w-0 max-w-full flex-col justify-between self-center break-words px-4 py-3 text-xl font-bold leading-6 tracking-[0.015em] outline-none">
@@ -11,7 +12,7 @@ const WhoToFollow = () => {
       </div>
 
       <ul>
-        {WhoToFollowMockData.map((user, index) => (
+        {accounts.slice(3).map((user, index) => (
           <div className="relative" key={index}>
             <Link
               to={user.username}

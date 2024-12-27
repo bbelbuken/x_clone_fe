@@ -25,10 +25,34 @@ const initialState = {
     },
     {
       id: 3,
-      username: 'pitbull',
-      fullname: 'Mr.Worldwide',
+      username: 'NathieVR',
+      fullname: 'Nathie',
       avatar:
-        'https://s.yimg.com/os/en-SG/homerun/the_hive_asia_947/f2a87fc834c419f4e76b7a052d54ec73',
+        'https://pbs.twimg.com/profile_images/1567608510497652736/TvoiS4g6_200x200.jpg',
+    },
+    {
+      id: 4,
+      username: 'LiveDigitalArt',
+      fullname: 'Digital Art',
+      avatar:
+        'https://pbs.twimg.com/profile_images/857849907624820740/8ewzDDjp_200x200.jpg',
+      verified: true,
+    },
+    {
+      id: 5,
+      username: 'nodejs',
+      fullname: 'Node.js',
+      avatar:
+        'https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_normal.jpg',
+      verified: true,
+    },
+    {
+      id: 6,
+      username: 'drapplebrain',
+      fullname: 'Dr.Applebrain',
+      avatar:
+        'https://pbs.twimg.com/profile_images/1658233760838569985/OsRPTc1Q_200x200.png ',
+      verified: false,
     },
   ],
 };

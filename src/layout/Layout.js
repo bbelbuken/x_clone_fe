@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import SideBarLeft from './sidebarLeft/SidebarLeft';
 import SideBarRight from './sidebarRight/SideBarRight';
-import ModalManager from 'features/modal/ModalManager';
+import ModalManager from 'features/modals/ModalManager';
 
 const Layout = () => {
   const location = useLocation();

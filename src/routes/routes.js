@@ -9,7 +9,7 @@ import Jobs from 'pages/Jobs';
 import Communities from 'pages/Communities';
 import Premium from 'pages/Premium';
 import Profile from 'pages/Profile';
-import PostModal from 'features/modal/components/PostModal';
+import PostModal from 'features/modals/components/PostModal';
 import { useNavigate } from 'react-router-dom';
 
 export const MyRoutes = () => {

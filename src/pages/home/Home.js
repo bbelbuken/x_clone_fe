@@ -1,5 +1,6 @@
 import HomeNav from './homenav/HomeNav';
 import SendPost from './sendpost/SendPost';
+import PostList from './feed/PostList';
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         </div>
       </nav>
       <SendPost />
+      <PostList />
     </main>
   );
 };

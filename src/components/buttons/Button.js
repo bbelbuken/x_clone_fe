@@ -46,7 +46,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['normal', 'large', 'account']),
+  size: PropTypes.oneOf(['normal', 'large', 'account', 'follow']),
   className: PropTypes.string,
   to: PropTypes.string,
 };

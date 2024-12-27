@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCurrentAccount, useAccounts } from 'hooks/useAccounts';
 import { useDispatch } from 'react-redux';
-import { setCurrentAccount } from 'features/account/accountSlice';
+import { setCurrentAccount } from 'features/accounts/accountSlice';
 
 const OtherAccountLists = () => {
   const dispatch = useDispatch();
