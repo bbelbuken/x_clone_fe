@@ -10,9 +10,9 @@ const RepostedBy = ({ account }) => {
       </div>
       <Link
         to={`/${account.username}`}
-        className="flex flex-1 items-center justify-start text-[13px] font-bold text-[#71767b] hover:underline"
+        className="flex flex-1 items-center justify-start text-[13px] font-bold text-[#71767b]"
       >
-        <span>{account.username} reposted</span>
+        <span className="hover:underline">{account.username} reposted</span>
       </Link>
     </div>
   );
