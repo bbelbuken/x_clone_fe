@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useCurrentAccount } from 'hooks/useAccounts';
 
 export const Menu = () => {
+  const location = useLocation();
   const currentAccount = useCurrentAccount();
+
   const menuItems = [
     {
       path: 'home',
@@ -220,18 +222,24 @@ export const Menu = () => {
       {menuItems.map((menu, index) => (
         <NavLink
           key={index}
-          to={`${menu.path}`}
+          to={`/${menu.path}`}
           className="flex w-full flex-grow items-start py-[4px]"
         >
           <div className="transition-colors-custom flex h-auto max-w-full flex-grow items-center justify-start rounded-full p-3 hover:bg-[#e7e9ea1a]">
             <div className="relative h-auto">
-              {menu.icon.passive}
+              {`/${menu.path}` === location.pathname
+                ? menu.icon.active
+                : menu.icon.passive}
               {menu.notification && (
                 <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#f91880]"></div>
               )}
             </div>
             <div className="ml-5 mr-4 h-auto min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl font-thin leading-tight tracking-wide text-inherit">
-              <h2 className="break-words text-inherit">{menu.title}</h2>
+              <h2
+                className={`break-words text-inherit ${`/${menu.path}` === location.pathname ? 'font-bold' : 'font-normal'}`}
+              >
+                {menu.title}
+              </h2>
             </div>
           </div>
         </NavLink>
