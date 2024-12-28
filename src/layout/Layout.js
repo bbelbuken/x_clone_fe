@@ -16,14 +16,16 @@ const Layout = () => {
       )}
 
       <div className={`mx-auto flex w-[1265px]`}>
-        <div className="sticky">
+        <div className="sticky top-0 self-start">
           <SideBarLeft />
         </div>
         <main className="mx-auto flex flex-1 gap-[30px]">
           <div className="relative flex max-w-[600px] flex-1 gap-[30px] border-x border-x-[#2f3336]">
             <Outlet />
           </div>
-          <SideBarRight />
+          <div className="sticky top-0 self-start">
+            <SideBarRight />
+          </div>
         </main>
       </div>
     </>
