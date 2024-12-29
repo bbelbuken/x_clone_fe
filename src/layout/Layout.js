@@ -16,7 +16,7 @@ const Layout = () => {
       )}
 
       <div className={`mx-auto flex w-[1265px]`}>
-        <div className="sticky top-0 self-start">
+        <div className="sticky top-0 z-10 self-start">
           <SideBarLeft />
         </div>
         <main className="mx-auto flex flex-1 gap-[30px]">

@@ -7,7 +7,7 @@ const VideoMedia = ({ postVideo }) => {
   };
 
   return (
-    <div className="mt-3 h-full w-full rounded-2xl">
+    <div className="h-full w-full">
       <Link className={'block'}>
         <iframe
           title="youtube"
