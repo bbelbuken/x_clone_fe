@@ -26,7 +26,7 @@ const UserNav = ({ account, postDate }) => {
           <TimeAgo postDate={postDate} />
         </div>
       </div>
-      <More />
+      <More account={account} />
     </div>
   );
 };
