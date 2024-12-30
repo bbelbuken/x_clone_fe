@@ -10,7 +10,7 @@ const Post = ({ post, postId }) => {
 
   return (
     <div
-      className="transition-colors-feed hover:shadow-feedbox border-b border-b-[#2f3336] hover:bg-[#ffffff08]"
+      className="transition-colors-feed border-b border-b-[#2f3336] hover:bg-[#ffffff08] hover:shadow-feedbox"
       key={post.id}
     >
       <article className="flex shrink grow cursor-pointer flex-col px-4">
@@ -24,6 +24,10 @@ const Post = ({ post, postId }) => {
             postDate={post.date}
             postIMG={post.media.image}
             postVideo={post.media.video}
+            postReply={post.reactions.replies}
+            postReposts={post.reactions.reposts}
+            postLike={post.reactions.likes}
+            postView={post.reactions.views}
           />
         </div>
       </article>

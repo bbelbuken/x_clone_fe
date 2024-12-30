@@ -4,8 +4,7 @@ import { sub } from 'date-fns';
 const initialState = [
   {
     id: 1,
-    content:
-      'Is that time of the year!! Unity is having a New year sale and we are part of it🎁Dragons, wolves, horses! #unity3d https://t.co/8plqx57HKc #gamedev #indiedev',
+    content: 'What was the first thing you remember coding?',
     date: sub(new Date(), { minutes: 5 }).toISOString(),
     media: {
       image: 'https://avatars.githubusercontent.com/u/150858220?v=4',

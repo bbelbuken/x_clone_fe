@@ -1,9 +1,8 @@
 import ImgMedia from './imgMedia/ImgMedia';
 import VideoMedia from './videoMedia/VideoMedia';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Media = ({ postIMG, postVideo }) => {
-  const containerRef = useRef();
   const [mediaSize, setMediaSize] = useState({ width: null, height: null });
 
   useEffect(() => {
@@ -42,7 +41,6 @@ const Media = ({ postIMG, postVideo }) => {
 
   return (
     <div
-      ref={containerRef}
       style={{ width: mediaSize.width, height: mediaSize.height }}
       className={`${postIMG || postVideo ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : ''}`}
     >
