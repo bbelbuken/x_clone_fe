@@ -16,6 +16,7 @@ const ReactionData = ({
     Like: typeof postLike === 'number' ? postLike : 0,
     View: typeof postView === 'number' ? postView : 0,
   };
+
   const data = [
     {
       title: 'Reply',
@@ -73,6 +74,7 @@ const ReactionData = ({
       ),
     },
   ];
+
   return (
     <div className="relative mr-[49px] flex flex-1 items-center justify-start">
       {data.map((data, index) => (
