@@ -4,8 +4,11 @@ import PostNavData from './postnavdata/PostNavData';
 import Button from 'components/buttons/Button';
 import Form from './form/Form';
 import WhoCanReply from './whocanreply/WhoCanReply';
+import { useDispatch } from 'react-redux';
+import { addPost } from 'features/posts/postSlice';
 
 const SendPost = () => {
+  const dispatch = useDispatch();
   const [tweet, setTweet] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const currentAccount = useCurrentAccount();
@@ -14,6 +17,14 @@ const SendPost = () => {
     setIsClicked(true);
   };
 
+  const handlePost = () => {
+    if (tweet.trim()) {
+      dispatch(addPost(tweet, currentAccount.id)); // No need to handle post structure manually
+      console.log(currentAccount.id);
+
+      setTweet(''); // Clear input after dispatch
+    }
+  };
   return (
     <div
       className="relative flex border-b border-b-[#2f3336] px-4 pb-2 pt-1"
@@ -49,7 +60,7 @@ const SendPost = () => {
       <Button
         size="normal"
         className={`absolute bottom-[10px] right-4 px-[16.5px] py-[7px] text-[14.5px] text-black ${tweet ? 'bg-[#eff3f4]' : 'pointer-events-none bg-[#787a7a]'}`}
-        onClick={''}
+        onClick={handlePost}
       >
         <span>Post</span>
       </Button>

@@ -5,7 +5,7 @@ import { useAccounts } from 'hooks/useAccounts';
 
 const Post = ({ post, postId }) => {
   const allAccounts = useAccounts();
-  const account = allAccounts.find((account) => account.id === postId);
+  const account = allAccounts.find((account) => account.id === post.userId);
   const hasReposted = () => post.reactions.reposts.repost > 0;
 
   return (
@@ -20,6 +20,7 @@ const Post = ({ post, postId }) => {
           <AccountIMG account={account} />
           <Content
             account={account}
+            postId={post.id}
             postContent={post.content}
             postDate={post.date}
             postIMG={post.media.image}

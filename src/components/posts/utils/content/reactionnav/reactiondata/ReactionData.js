@@ -1,11 +1,21 @@
-const ReactionData = ({ postReply, postReposts, postLike, postView }) => {
+import { useDispatch } from 'react-redux';
+import { addReaction } from 'features/posts/postSlice';
+
+const ReactionData = ({
+  postReply,
+  postReposts,
+  postLike,
+  postView,
+  postId,
+}) => {
+  const dispatch = useDispatch();
+
   const titleProp = {
     Reply: typeof postReply === 'number' ? postReply : 0,
     Repost: typeof postReposts === 'number' ? postReposts : 0,
     Like: typeof postLike === 'number' ? postLike : 0,
     View: typeof postView === 'number' ? postView : 0,
   };
-
   const data = [
     {
       title: 'Reply',
@@ -73,6 +83,11 @@ const ReactionData = ({ postReply, postReposts, postLike, postView }) => {
         >
           <button
             className={`absolute flex min-h-5 items-center text-[14px] text-[#71767b] ${data.title === 'Repost' ? 'hover:text-[#00ba7c]' : data.title === 'Like' ? 'hover:text-[#f91881]' : 'hover:text-[#1d9bf0]'}`}
+            onClick={() =>
+              dispatch(
+                addReaction({ postId, reaction: data.title.toLowerCase() }),
+              )
+            }
           >
             <div className="flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]">
               {data.svg}

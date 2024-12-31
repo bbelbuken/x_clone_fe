@@ -5,6 +5,7 @@ import ReactionNav from './reactionnav/ReactionNav';
 
 const Content = ({
   account,
+  postId,
   postContent,
   postDate,
   postIMG,
@@ -24,6 +25,7 @@ const Content = ({
         postReposts={postReposts}
         postLike={postLike}
         postView={postView}
+        postId={postId}
       />
     </div>
   );
