@@ -85,11 +85,12 @@ const ReactionData = ({
         >
           <button
             className={`absolute flex min-h-5 items-center text-[14px] text-[#71767b] ${data.title === 'Repost' ? 'hover:text-[#00ba7c]' : data.title === 'Like' ? 'hover:text-[#f91881]' : 'hover:text-[#1d9bf0]'}`}
-            onClick={() =>
+            onClick={(e) => {
+              e.preventDefault();
               dispatch(
                 addReaction({ postId, reaction: data.title.toLowerCase() }),
-              )
-            }
+              );
+            }}
           >
             <div className="flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]">
               {data.svg}

@@ -1,6 +1,12 @@
-import React from 'react';
+import { useRef, useState } from 'react';
 
-const PostNavData = () => {
+const PostNavData = ({ onImageSelect }) => {
+  const fileInputRef = useRef(null);
+
+  const handleFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const navdata = [
     {
       title: 'Media',
@@ -60,21 +66,36 @@ const PostNavData = () => {
       ),
     },
   ];
+
   return (
     <div className="left-0 flex h-full flex-1 items-center justify-start">
       {navdata.map((item, index) => (
         <button
-          className="roundedtransition-colors flex min-h-9 min-w-9 items-center justify-center rounded-full hover:bg-[#f918801a]"
+          className="flex min-h-9 min-w-9 items-center justify-center rounded-full transition-colors hover:bg-[#f918801a]"
           key={index}
           title={item.title}
+          onClick={item.title === 'Media' ? handleFileClick : undefined}
         >
           <div className="flex min-w-0 grow items-center justify-center break-words text-[15px] font-bold leading-5 text-[#f91880]">
             {item.icon}
           </div>
         </button>
       ))}
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        onChange={(e) => {
+          const file = e.target.files[0];
+          if (file) {
+            console.log('Selected file:', file);
+            onImageSelect(file);
+          }
+        }}
+      />
     </div>
   );
 };
-
 export default PostNavData;

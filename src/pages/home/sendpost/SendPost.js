@@ -8,23 +8,29 @@ import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
 
 const SendPost = () => {
-  const dispatch = useDispatch();
   const [tweet, setTweet] = useState('');
+  const [image, setImage] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const currentAccount = useCurrentAccount();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     setIsClicked(true);
   };
 
+  const handleImageSelect = (img) => {
+    setImage(img);
+  };
+
   const handlePost = () => {
     if (tweet.trim()) {
-      dispatch(addPost(tweet, currentAccount.id)); // No need to handle post structure manually
+      dispatch(addPost(tweet, currentAccount.id));
       console.log(currentAccount.id);
 
-      setTweet(''); // Clear input after dispatch
+      setTweet('');
     }
   };
+
   return (
     <div
       className="relative flex border-b border-b-[#2f3336] px-4 pb-2 pt-1"
@@ -42,7 +48,7 @@ const SendPost = () => {
       </div>
 
       <div className="static mt-[6px] flex grow basis-0 flex-col">
-        <Form tweet={tweet} setTweet={setTweet} />
+        <Form tweet={tweet} setTweet={setTweet} image={image} />
         {isClicked && (
           <div className="sticky -bottom-[1px] top-0 -ml-2 mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336]">
             <WhoCanReply />
@@ -52,7 +58,7 @@ const SendPost = () => {
           className={`flex min-h-10 w-full items-center justify-center ${isClicked ? 'mt-2' : 'mt-5'}`}
         >
           <nav className="-ml-2 mr-1 flex h-full w-full items-center justify-center">
-            <PostNavData />
+            <PostNavData onImageSelect={handleImageSelect} />
           </nav>
         </div>
       </div>

@@ -18,7 +18,10 @@ const ReactionNav = ({
       />
 
       <div className="relative flex min-h-5 items-center text-[14px] text-[#71767b]">
-        <button className="absolute right-[22px] flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
+        <button
+          className="absolute right-[22px] flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]"
+          onClick={(e) => e.preventDefault()}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -29,7 +32,10 @@ const ReactionNav = ({
             s
           </svg>
         </button>
-        <button className="absolute -right-2 flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]">
+        <button
+          className="absolute -right-2 flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf022] hover:text-[#1d9bf0]"
+          onClick={(e) => e.preventDefault()}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"

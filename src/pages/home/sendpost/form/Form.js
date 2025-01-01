@@ -1,4 +1,4 @@
-const Form = ({ tweet, setTweet }) => {
+const Form = ({ tweet, setTweet, image }) => {
   const handleInputChange = (e) => {
     setTweet(e.target.value);
     autoResize(e.target);
