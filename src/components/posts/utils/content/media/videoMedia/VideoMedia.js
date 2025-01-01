@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 const VideoMedia = ({ postVideo }) => {
   const getYoutubeEmbedUrl = (url) => {
     const videoId = url.split('v=')[1];
@@ -8,7 +6,7 @@ const VideoMedia = ({ postVideo }) => {
 
   return (
     <div className="h-full w-full">
-      <Link className={'block'}>
+      <div className={'block'}>
         <iframe
           title="youtube"
           width="515"
@@ -18,7 +16,7 @@ const VideoMedia = ({ postVideo }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
-      </Link>
+      </div>
     </div>
   );
 };

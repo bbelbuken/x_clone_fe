@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const RepostedBy = ({ account }) => {
+  const navigate = useNavigate();
+  const handleImageClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(`/${account.username}`);
+  };
+
   return (
     <div className="mt-[7px] flex grow items-center justify-center gap-2">
       <div className="justify-centers flex basis-10 -translate-y-[1px] items-center justify-end">
@@ -9,9 +16,9 @@ const RepostedBy = ({ account }) => {
         </svg>
       </div>
       <div className="flex flex-1 items-center justify-start text-[13px] font-bold text-[#71767b]">
-        <Link to={`/${account.username}`} className="">
+        <div onClick={handleImageClick} className="">
           <span className="hover:underline">{account.username} reposted</span>
-        </Link>
+        </div>
       </div>
     </div>
   );

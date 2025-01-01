@@ -11,6 +11,7 @@ import Premium from 'pages/Premium';
 import Profile from 'pages/Profile';
 import PostModal from 'features/modals/components/PostModal';
 import { useNavigate } from 'react-router-dom';
+import PostStatus from 'components/posts/postStatus/PostStatus';
 
 export const MyRoutes = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export const MyRoutes = () => {
         { path: 'communities', element: <Communities /> },
         { path: 'premium', element: <Premium /> },
         { path: ':username', element: <Profile /> },
+        { path: `:username/status/:postId`, element: <PostStatus /> },
         {
           path: 'compose/post',
           element: <PostModal handleClose={handleClose} />,
