@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import SendPost from 'pages/home/sendpost/SendPost';
 
 const PostModal = ({ handleClose }) => {
   const modalRef = useRef();
@@ -50,6 +51,9 @@ const PostModal = ({ handleClose }) => {
             </span>
           </button>
         </div>
+      </div>
+      <div className="w-full">
+        <SendPost modalRef={modalRef} />
       </div>
     </div>
   );

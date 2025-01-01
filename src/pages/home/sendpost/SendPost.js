@@ -7,7 +7,7 @@ import WhoCanReply from './whocanreply/WhoCanReply';
 import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
 
-const SendPost = () => {
+const SendPost = ({ modalRef }) => {
   const [tweet, setTweet] = useState('');
   const [image, setImage] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -37,7 +37,9 @@ const SendPost = () => {
       onClick={handleClick}
       onFocus={handleClick}
     >
-      <div className="mr-2 grow-0 basis-10 pt-3">
+      <div
+        className={`mr-2 grow-0 basis-10 pt-3 ${modalRef ? 'max-h-10' : ''}`}
+      >
         <img
           src={currentAccount.avatar}
           alt="user_avatar"
@@ -48,7 +50,12 @@ const SendPost = () => {
       </div>
 
       <div className="static mt-[6px] flex grow basis-0 flex-col">
-        <Form tweet={tweet} setTweet={setTweet} image={image} />
+        <Form
+          tweet={tweet}
+          setTweet={setTweet}
+          image={image}
+          modalRef={modalRef}
+        />
         {isClicked && (
           <div className="sticky -bottom-[1px] top-0 -ml-2 mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336]">
             <WhoCanReply />

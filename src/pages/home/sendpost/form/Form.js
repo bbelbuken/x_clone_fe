@@ -1,4 +1,4 @@
-const Form = ({ tweet, setTweet, image }) => {
+const Form = ({ tweet, setTweet, image, modalRef }) => {
   const handleInputChange = (e) => {
     setTweet(e.target.value);
     autoResize(e.target);
@@ -19,7 +19,7 @@ const Form = ({ tweet, setTweet, image }) => {
           placeholder="What is happening?!"
           value={tweet}
           onChange={handleInputChange}
-          rows={1}
+          rows={`${modalRef ? 4 : 1}`}
           className="max-h-[720px] min-h-6 w-full resize-none overflow-hidden border-none bg-transparent bg-none px-0.5 leading-6 placeholder-[#71767B] outline-none"
         />
       </label>

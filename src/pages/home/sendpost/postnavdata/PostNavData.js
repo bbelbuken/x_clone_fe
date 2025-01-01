@@ -85,12 +85,11 @@ const PostNavData = ({ onImageSelect }) => {
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*"
+        accept="image/*, audio/*, video/*"
         style={{ display: 'none' }}
         onChange={(e) => {
           const file = e.target.files[0];
           if (file) {
-            console.log('Selected file:', file);
             onImageSelect(file);
           }
         }}
