@@ -94,7 +94,7 @@ const ReactionData = ({
             <div className="flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]">
               {data.svg}
             </div>
-            <span className="-translate-x-[1px] -translate-y-[1px] font-sans">
+            <span className="font-ariel -translate-x-[3px] translate-y-[1px] text-[13px] tracking-wide">
               {titleProp[data.title]}
             </span>
           </button>
