@@ -7,10 +7,12 @@ import ButtonItems from './buttonitems/ButtonItems';
 const AccountButton = () => {
   return (
     <Popover className={'relative z-20'}>
-      <PopoverButton className={'relative w-full'}>
+      <PopoverButton
+        className={'relative mb-3 w-full rounded-full hover:bg-[#e7e9ea1a]'}
+      >
         <div
           className={
-            'mb-3 flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden break-words rounded-full bg-transparent px-3 text-[17px] font-bold leading-5 outline-none transition-colors hover:bg-[#e7e9ea1a] active:bg-white'
+            'flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden break-words bg-transparent px-3 text-[17px] font-bold leading-5 outline-none transition-colors active:bg-white'
           }
         >
           <ButtonItems gap={2} />
