@@ -10,6 +10,7 @@ import { addPost } from 'features/posts/postSlice';
 const SendPost = ({ modalRef, handleClose }) => {
   const [tweet, setTweet] = useState('');
   const [media, setMedia] = useState('');
+  const [mediaType, setMediaType] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const currentAccount = useCurrentAccount();
   const dispatch = useDispatch();
@@ -22,10 +23,15 @@ const SendPost = ({ modalRef, handleClose }) => {
     setMedia(file);
   };
 
+  const handleMediaType = (type) => {
+    setMediaType(type);
+  };
+
   const handlePost = () => {
     tweet.trim();
-    dispatch(addPost(tweet, currentAccount.id));
+    dispatch(addPost(tweet, currentAccount.id, media, mediaType));
     setTweet('');
+    setMedia('');
 
     if (modalRef) {
       handleClose();
@@ -56,6 +62,7 @@ const SendPost = ({ modalRef, handleClose }) => {
           setTweet={setTweet}
           media={media}
           modalRef={modalRef}
+          handleMediaType={handleMediaType}
         />
         {isClicked || modalRef ? (
           <div

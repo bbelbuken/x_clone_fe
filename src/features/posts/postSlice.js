@@ -128,17 +128,20 @@ const postSlice = createSlice({
       reducer(state, action) {
         state.push(action.payload);
       },
-      prepare(content, userId) {
+      prepare(content, userId, media, mediaType) {
+        const mediaFile = media
+          ? {
+              image: mediaType === 'image' ? URL.createObjectURL(media) : '',
+              video: mediaType === 'video' ? URL.createObjectURL(media) : '',
+            }
+          : { image: '', video: '' };
         return {
           payload: {
             id: nanoid(),
             content,
             date: new Date().toISOString(),
             userId,
-            media: {
-              image: '',
-              video: '',
-            },
+            media: mediaFile,
             reactions: {
               reply: 0,
               reposts: {

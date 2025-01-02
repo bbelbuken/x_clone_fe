@@ -1,7 +1,6 @@
-import { set } from 'date-fns';
 import { useState, useEffect } from 'react';
 
-const Form = ({ tweet, setTweet, media, modalRef }) => {
+const Form = ({ tweet, setTweet, media, modalRef, handleMediaType }) => {
   const [mediaSize, setMediaSize] = useState({ width: null, height: null });
   const [mediaType, setMediaType] = useState(null);
 
@@ -11,11 +10,12 @@ const Form = ({ tweet, setTweet, media, modalRef }) => {
     console.log(media);
 
     if (media) {
-      const mediaExtension = media.name?.split('.').pop()?.toLowerCase();
+      const mediaExtension = media?.name?.split('.').pop()?.toLowerCase();
 
       //IMG
       if (['jpeg', 'jpg', 'png', 'webp'].includes(mediaExtension)) {
         setMediaType('image');
+        handleMediaType('image');
         mediaElement = new Image();
         mediaElement.src = URL.createObjectURL(media);
         mediaElement.onload = () => {
@@ -25,9 +25,11 @@ const Form = ({ tweet, setTweet, media, modalRef }) => {
           });
         };
       }
+
       //VIDEO
       else if (['mp4', 'mov'].includes(mediaExtension)) {
         setMediaType('video');
+        handleMediaType('video');
         mediaElement = document.createElement('video');
         mediaElement.src = URL.createObjectURL(media);
         mediaElement.onloadedmetadata = () => {
