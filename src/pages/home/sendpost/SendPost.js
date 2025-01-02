@@ -7,7 +7,7 @@ import WhoCanReply from './whocanreply/WhoCanReply';
 import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
 
-const SendPost = ({ modalRef }) => {
+const SendPost = ({ modalRef, handleClose }) => {
   const [tweet, setTweet] = useState('');
   const [image, setImage] = useState('');
   const [isClicked, setIsClicked] = useState(false);
@@ -28,6 +28,7 @@ const SendPost = ({ modalRef }) => {
       console.log(currentAccount.id);
 
       setTweet('');
+      handleClose();
     }
   };
 

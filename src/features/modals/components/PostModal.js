@@ -53,7 +53,7 @@ const PostModal = ({ handleClose }) => {
         </div>
       </div>
       <div className="w-full">
-        <SendPost modalRef={modalRef} />
+        <SendPost modalRef={modalRef} handleClose={handleClose} />
       </div>
     </div>
   );
