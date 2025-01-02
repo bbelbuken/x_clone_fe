@@ -13,6 +13,7 @@ const Form = ({ tweet, setTweet, image, modalRef }) => {
     <form className="relative flex w-full min-w-0 flex-1 items-center justify-start bg-none pt-3 text-[20px] font-normal tracking-[0.010em]">
       <label htmlFor="newPost" className="w-full">
         <textarea
+          autoFocus={modalRef ? true : false}
           type="text"
           id="newPost"
           name="newPost"

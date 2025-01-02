@@ -56,15 +56,19 @@ const SendPost = ({ modalRef }) => {
           image={image}
           modalRef={modalRef}
         />
-        {isClicked && (
-          <div className="sticky -bottom-[1px] top-0 -ml-2 mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336]">
+        {isClicked || modalRef ? (
+          <div
+            className={`sticky -bottom-[1px] top-0 mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336] ${modalRef ? '-ml-14 w-[570px]' : '-ml-2'}`}
+          >
             <WhoCanReply />
           </div>
-        )}
+        ) : null}
         <div
           className={`flex min-h-10 w-full items-center justify-center ${isClicked ? 'mt-2' : 'mt-5'}`}
         >
-          <nav className="-ml-2 mr-1 flex h-full w-full items-center justify-center">
+          <nav
+            className={`mr-1 flex h-full w-full items-center justify-center ${modalRef ? '-ml-[105px]' : '-ml-2'}`}
+          >
             <PostNavData onImageSelect={handleImageSelect} />
           </nav>
         </div>
