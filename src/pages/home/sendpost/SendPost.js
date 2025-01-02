@@ -9,7 +9,7 @@ import { addPost } from 'features/posts/postSlice';
 
 const SendPost = ({ modalRef, handleClose }) => {
   const [tweet, setTweet] = useState('');
-  const [image, setImage] = useState('');
+  const [media, setMedia] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const currentAccount = useCurrentAccount();
   const dispatch = useDispatch();
@@ -18,16 +18,16 @@ const SendPost = ({ modalRef, handleClose }) => {
     setIsClicked(true);
   };
 
-  const handleImageSelect = (img) => {
-    setImage(img);
+  const handleMediaSelect = (file) => {
+    setMedia(file);
   };
 
   const handlePost = () => {
-    if (tweet.trim()) {
-      dispatch(addPost(tweet, currentAccount.id));
-      console.log(currentAccount.id);
+    tweet.trim();
+    dispatch(addPost(tweet, currentAccount.id));
+    setTweet('');
 
-      setTweet('');
+    if (modalRef) {
       handleClose();
     }
   };
@@ -54,7 +54,7 @@ const SendPost = ({ modalRef, handleClose }) => {
         <Form
           tweet={tweet}
           setTweet={setTweet}
-          image={image}
+          media={media}
           modalRef={modalRef}
         />
         {isClicked || modalRef ? (
@@ -70,7 +70,7 @@ const SendPost = ({ modalRef, handleClose }) => {
           <nav
             className={`mr-1 flex h-full w-full items-center justify-center ${modalRef ? '-ml-[105px]' : '-ml-2'}`}
           >
-            <PostNavData onImageSelect={handleImageSelect} />
+            <PostNavData handleMediaSelect={handleMediaSelect} />
           </nav>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
-const PostNavData = ({ onImageSelect }) => {
+const PostNavData = ({ handleMediaSelect }) => {
   const fileInputRef = useRef(null);
 
   const handleFileClick = () => {
@@ -85,12 +85,12 @@ const PostNavData = ({ onImageSelect }) => {
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*, audio/*, video/*"
+        accept="image/jpeg, image/png, image/gif, image/webp, video/mp4, video/quicktime"
         style={{ display: 'none' }}
         onChange={(e) => {
           const file = e.target.files[0];
           if (file) {
-            onImageSelect(file);
+            handleMediaSelect(file);
           }
         }}
       />
