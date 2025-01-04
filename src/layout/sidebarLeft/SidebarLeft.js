@@ -15,6 +15,11 @@ const SidebarLeft = () => {
     navigate('compose/post');
   };
 
+  const handleSaveLocation = () => {
+    const previousRouteProfile = location.pathname;
+    localStorage.setItem('previousRouteProfile', previousRouteProfile);
+  };
+
   return (
     <header className="flex h-screen w-[275px] px-2 font-arial">
       <div className="flex h-full w-full flex-auto flex-col items-stretch justify-between">
@@ -22,7 +27,7 @@ const SidebarLeft = () => {
           <Logo />
           <div className="mb-1 mt-0.5 flex flex-shrink flex-grow flex-col">
             <nav className="flex h-auto flex-shrink flex-grow flex-col">
-              <Menu />
+              <Menu handleSaveLocation={handleSaveLocation} />
               <MoreButton />
               <div className="my-[22px] w-[90%]">
                 <Button

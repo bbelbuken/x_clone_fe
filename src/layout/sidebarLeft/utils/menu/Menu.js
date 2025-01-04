@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useCurrentAccount } from 'hooks/useAccounts';
 
-export const Menu = () => {
+export const Menu = ({ handleSaveLocation }) => {
   const location = useLocation();
   const currentAccount = useCurrentAccount();
 
@@ -225,7 +225,10 @@ export const Menu = () => {
           to={`/${menu.path}`}
           className="flex w-full flex-grow items-start py-[4px]"
         >
-          <div className="transition-colors-custom flex h-auto max-w-full items-center justify-start rounded-full p-3 hover:bg-[#e7e9ea1a]">
+          <div
+            className="transition-colors-custom flex h-auto max-w-full items-center justify-start rounded-full p-3 hover:bg-[#e7e9ea1a]"
+            onClick={handleSaveLocation}
+          >
             <div className="relative h-auto">
               {`/${menu.path}` === location.pathname
                 ? menu.icon.active
