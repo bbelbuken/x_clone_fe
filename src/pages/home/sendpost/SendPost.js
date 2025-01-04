@@ -84,7 +84,7 @@ const SendPost = ({ modalRef, handleClose }) => {
 
       <Button
         size="normal"
-        className={`absolute bottom-[10px] right-4 px-[16.5px] py-[7px] text-[14.5px] text-black ${tweet ? 'bg-[#eff3f4]' : 'pointer-events-none bg-[#787a7a]'}`}
+        className={`absolute bottom-[10px] right-4 px-[16.5px] py-[7px] text-[14.5px] text-black ${tweet || media ? 'bg-[#eff3f4]' : 'pointer-events-none bg-[#787a7a]'}`}
         onClick={handlePost}
       >
         <span>Post</span>

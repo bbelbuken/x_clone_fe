@@ -7,7 +7,6 @@ const Form = ({ tweet, setTweet, media, modalRef, handleMediaType }) => {
   useEffect(() => {
     const resetMediaSize = () => setMediaSize({ width: null, height: null });
     let mediaElement;
-    console.log(media);
 
     if (media) {
       const mediaExtension = media?.name?.split('.').pop()?.toLowerCase();
