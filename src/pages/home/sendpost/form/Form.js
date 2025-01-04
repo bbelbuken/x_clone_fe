@@ -49,7 +49,7 @@ const Form = ({ tweet, setTweet, media, modalRef, handleMediaType }) => {
       }
       resetMediaSize();
     };
-  }, [media]);
+  }, [media, handleMediaType]);
 
   const handleInputChange = (e) => {
     setTweet(e.target.value);
@@ -79,18 +79,34 @@ const Form = ({ tweet, setTweet, media, modalRef, handleMediaType }) => {
 
       {media && (
         <div
-          style={{ width: mediaSize.width, height: mediaSize.height }}
-          className="transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat"
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxWidth: mediaSize.width,
+            maxHeight: mediaSize.height,
+          }}
+          className="transition-colors-feed max-h-auto mt-3 max-w-full overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat"
         >
           {mediaType === 'image' && (
             <img
               src={URL.createObjectURL(media)}
               alt="Selected media"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+              }}
             />
           )}
           {mediaType === 'video' && (
-            <video controls style={{ width: '100%', height: '100%' }}>
+            <video
+              controls
+              style={{
+                maxHeight: '100%',
+                maxWidth: '100%',
+                objectFit: 'contain',
+              }}
+            >
               <source
                 src={URL.createObjectURL(media)}
                 type={`video/${media.name.split('.').pop()}`}

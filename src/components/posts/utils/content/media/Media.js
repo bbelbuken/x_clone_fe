@@ -41,11 +41,26 @@ const Media = ({ postIMG, postVideo }) => {
 
   return (
     <div
-      style={{ width: mediaSize.width, height: mediaSize.height }}
+      style={{
+        width: '100%',
+        height: 'auto',
+        maxWidth: mediaSize.width,
+        maxHeight: mediaSize.height,
+      }}
       className={`${postIMG || postVideo ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : ''}`}
     >
-      {postIMG && <ImgMedia postIMG={postIMG} />}
-      {postVideo && <VideoMedia postVideo={postVideo} />}
+      {postIMG && (
+        <ImgMedia
+          postIMG={postIMG}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      )}
+      {postVideo && (
+        <VideoMedia
+          postVideo={postVideo}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      )}
     </div>
   );
 };
