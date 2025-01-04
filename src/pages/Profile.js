@@ -1,8 +1,10 @@
 import { useAccounts } from 'hooks/useAccounts';
 import { useParams } from 'react-router-dom';
+import usePostCountByUser from 'hooks/usePostCountByUser';
 
 const Profile = () => {
   const { username } = useParams();
+  const postCount = usePostCountByUser();
   const accounts = useAccounts();
   const account = accounts.find((account) => account.username === username);
 
@@ -17,7 +19,10 @@ const Profile = () => {
           </button>
         </div>
 
-        <div>{account.fullname}</div>
+        <div className="flex flex-col items-start justify-center">
+          <div>{account.fullname}</div>
+          <div>{postCount[account.id]}</div>
+        </div>
       </div>
     </div>
   );
