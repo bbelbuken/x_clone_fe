@@ -1,13 +1,7 @@
-import { useAccounts } from 'hooks/useAccounts';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import usePostCountByUser from 'hooks/usePostCountByUser';
+import { useNavigate } from 'react-router-dom';
 
-const Profile = () => {
-  const { username } = useParams();
+const GoBack = ({ account, postCount }) => {
   const navigate = useNavigate();
-  const postCount = usePostCountByUser();
-  const accounts = useAccounts();
-  const account = accounts.find((account) => account.username === username);
 
   const handleGetLocation = () => {
     const previousRoute = localStorage.getItem('previousRouteProfile');
@@ -33,7 +27,7 @@ const Profile = () => {
           </button>
         </div>
 
-        <div className="flex h-full flex-col items-start justify-center">
+        <div className="mb-[1px] flex h-full flex-col items-start justify-center">
           <h2 className="min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words py-0.5 text-xl font-bold leading-7 text-[#e7e9ea]">
             {account.fullname}
           </h2>
@@ -46,4 +40,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default GoBack;

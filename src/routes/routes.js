@@ -8,7 +8,7 @@ import Lists from 'pages/Lists';
 import Jobs from 'pages/Jobs';
 import Communities from 'pages/Communities';
 import Premium from 'pages/Premium';
-import Profile from 'pages/Profile';
+import Profile from 'pages/profile/Profile';
 import PostModal from 'features/modals/components/PostModal';
 import { useNavigate } from 'react-router-dom';
 import PostStatus from 'components/posts/postStatus/PostStatus';
