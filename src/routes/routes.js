@@ -1,35 +1,27 @@
+import { useLocation } from 'react-router-dom';
+import Layout from '../layout/Layout';
 import Home from '../pages/home/Home';
 import Explore from '../pages/explore/Explore';
+import Profile from '../pages/profile/Profile';
+import HeaderPhotoModal from 'features/modals/components/HeaderPhotoModal';
 import Notifications from '../pages/notifications/Notifications';
 import Messages from 'pages/messages/Messages';
-import Layout from '../layout/Layout';
 import Bookmarks from 'pages/bookmarks/Bookmarks';
 import Lists from 'pages/lists/Lists';
 import Jobs from 'pages/jobs/Jobs';
 import Communities from 'pages/communities/Communities';
 import Premium from 'pages/premium/Premium';
-import Profile from 'pages/profile/Profile';
-import PostModal from 'features/modals/components/PostModal';
-import { useNavigate } from 'react-router-dom';
 import PostStatus from 'components/posts/postStatus/PostStatus';
-import HeaderPhotoModal from 'features/modals/components/HeaderPhotoModal';
+import PostModal from 'features/modals/components/PostModal';
 
 export const MyRoutes = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state;
 
-  const handleClose = () => {
-    const previousRoute = localStorage.getItem('previousRoute');
-    if (previousRoute) {
-      navigate(previousRoute);
-    } else {
-      navigate('/home');
-    }
-  };
-
-  const routesData = [
+  const routes = [
     {
       path: '/',
-      component: <Layout />,
+      element: <Layout />,
       children: [
         { path: 'home', element: <Home /> },
         { path: 'explore', element: <Explore /> },
@@ -41,17 +33,21 @@ export const MyRoutes = () => {
         { path: 'communities', element: <Communities /> },
         { path: 'premium', element: <Premium /> },
         { path: ':username', element: <Profile /> },
-        { path: `:username/status/:postId`, element: <PostStatus /> },
+        { path: ':username/status/:postId', element: <PostStatus /> },
         {
           path: 'compose/post',
-          element: <PostModal handleClose={handleClose} />,
-        },
-        {
-          path: ':username/header_photo',
-          element: <HeaderPhotoModal handleClose={handleClose} />,
+          element: <PostModal />,
         },
       ],
     },
   ];
-  return routesData;
+
+  const modalRoutes = [
+    {
+      path: '/:username/header_photo',
+      element: <HeaderPhotoModal />,
+    },
+  ];
+
+  return { routes, modalRoutes, state };
 };
