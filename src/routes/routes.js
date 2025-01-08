@@ -12,6 +12,7 @@ import Profile from 'pages/profile/Profile';
 import PostModal from 'features/modals/components/PostModal';
 import { useNavigate } from 'react-router-dom';
 import PostStatus from 'components/posts/postStatus/PostStatus';
+import HeaderPhotoModal from 'features/modals/components/HeaderPhotoModal';
 
 export const MyRoutes = () => {
   const navigate = useNavigate();
@@ -44,6 +45,10 @@ export const MyRoutes = () => {
         {
           path: 'compose/post',
           element: <PostModal handleClose={handleClose} />,
+        },
+        {
+          path: ':username/header_photo',
+          element: <HeaderPhotoModal handleClose={handleClose} />,
         },
       ],
     },
