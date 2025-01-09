@@ -9,10 +9,11 @@ const SidebarLeft = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const openPostModal = () => {
+  const openPostModal = (e) => {
+    e.preventDefault();
     const previousRoute = location.pathname;
     localStorage.setItem('previousRoute', previousRoute);
-    navigate('compose/post');
+    navigate('compose/post', { state: { background: location } });
   };
 
   const handleSaveLocation = () => {

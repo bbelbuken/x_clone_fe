@@ -34,10 +34,6 @@ export const MyRoutes = () => {
         { path: 'premium', element: <Premium /> },
         { path: ':username', element: <Profile /> },
         { path: ':username/status/:postId', element: <PostStatus /> },
-        {
-          path: 'compose/post',
-          element: <PostModal />,
-        },
       ],
     },
   ];
@@ -46,6 +42,10 @@ export const MyRoutes = () => {
     {
       path: '/:username/header_photo',
       element: <HeaderPhotoModal />,
+    },
+    {
+      path: 'compose/post',
+      element: <PostModal />,
     },
   ];
 
