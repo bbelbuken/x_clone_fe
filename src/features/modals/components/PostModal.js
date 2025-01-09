@@ -19,12 +19,12 @@ const PostModal = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
       onClick={handleClickOutside}
     >
       <div
         ref={modalRef}
-        className="absolute left-[56px] top-[5%] z-50 mx-auto flex max-h-[90vh] w-full min-w-[600px] max-w-[80vw] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
+        className="absolute left-[339px] top-[5%] z-50 mx-auto flex max-h-[90vh] w-full min-w-[600px] max-w-[40vw] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
       >
         <div className="sticky top-0 mx-auto flex h-[53px] w-full items-center justify-center px-4">
           <div className="flex min-h-8 min-w-[56px] items-center justify-start">

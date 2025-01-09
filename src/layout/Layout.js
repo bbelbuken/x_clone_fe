@@ -6,19 +6,12 @@ import ModalManager from 'features/modals/ModalManager';
 const Layout = () => {
   const location = useLocation();
 
-  const isPostModalLocation = location.pathname === '/compose/post';
-
   return (
     <>
       <ModalManager />
-      {isPostModalLocation && (
-        <div className="screen-full fixed inset-0 z-10 min-h-screen w-full bg-[#4a5c687c]"></div>
-      )}
 
-      <div className={`mx-auto flex w-[1265px]`}>
-        <div
-          className={`sticky top-0 z-10 self-start ${isPostModalLocation ? 'pointer-events-none' : ''}`}
-        >
+      <div className="mx-auto flex w-[1265px]">
+        <div className="sticky top-0 z-10 self-start">
           <SideBarLeft />
         </div>
         <main className="mx-auto flex flex-1 gap-[30px]">
