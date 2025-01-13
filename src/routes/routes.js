@@ -13,6 +13,7 @@ import Communities from 'pages/communities/Communities';
 import Premium from 'pages/premium/Premium';
 import PostStatus from 'components/posts/postStatus/PostStatus';
 import PostModal from 'features/modals/components/PostModal';
+import PhotoModal from 'features/modals/components/PhotoModal';
 
 export const MyRoutes = () => {
   const location = useLocation();
@@ -46,6 +47,10 @@ export const MyRoutes = () => {
     {
       path: 'compose/post',
       element: <PostModal />,
+    },
+    {
+      path: '/:username/photo',
+      element: <PhotoModal />,
     },
   ];
 
