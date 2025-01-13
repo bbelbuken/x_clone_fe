@@ -37,6 +37,10 @@ const Button = ({
         {
           'w-[78px] h-[32px] text-[14px] ': size === 'follow',
         },
+        {
+          'min-h-9 min-w-[104px] px-3 text-[15px]  border border-[#536471] pb-0.5 font-bold transition-colors hover:bg-[#eff3f41a]':
+            size === 'profile-follow',
+        },
         className,
       ),
       onClick: handleClick,
