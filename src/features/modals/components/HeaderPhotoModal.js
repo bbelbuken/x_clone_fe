@@ -21,26 +21,29 @@ const HeaderPhotoModal = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-[0.93]"
       onClick={handleClickOutside}
     >
-      <div className="flex">
-        <div className="flex min-h-8 min-w-[56px] items-center justify-start">
+      <div className="flex flex-col">
+        <div className="flex items-center justify-start">
           <button
             type="button"
+            aria-label="Close"
+            title="Close"
             onClick={handleClose}
-            className="ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full outline-none transition-colors hover:bg-[#eff3f41a]"
+            className="absolute left-5 top-3 ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full bg-black bg-opacity-70 outline-none transition-colors hover:bg-[#1a1a1abf]"
           >
             <svg viewBox="0 0 24 24" fill="#eff3f4" width={20} height={20}>
               <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
             </svg>
           </button>
         </div>
+
         <img
           ref={modalRef}
           src={account.header_photo}
           alt="Header Fullscreen"
-          className="max-h-[90vh] max-w-[90vw] object-contain"
+          className="h-screen max-h-[436px] w-screen object-cover"
         />
       </div>
     </div>
