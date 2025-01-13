@@ -16,7 +16,7 @@ const GoBack = ({ account, postCount }) => {
   };
 
   return (
-    <div className="sticky top-0 h-[53px] w-full cursor-pointer bg-black/65 px-4 backdrop-blur-md">
+    <div className="sticky top-0 z-50 h-[53px] w-full cursor-pointer bg-black/65 px-4 backdrop-blur-md">
       <div className="flex h-full items-center justify-start">
         <div className="flex min-h-8 min-w-14 items-stretch justify-start">
           <button

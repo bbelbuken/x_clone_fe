@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeFollower } from 'features/accounts/accountSlice';
 import { closeModal } from 'features/modals/modalSlice';
-import { useParams } from 'react-router-dom';
 import { useRef } from 'react';
 import Button from 'components/buttons/Button';
 
 const UnfollowModal = () => {
   const modalRef = useRef();
   const dispatch = useDispatch();
-  const { account } = useParams();
+  const { account } = useSelector((state) => state.modals.props);
 
   const handleUnfollow = () => {
     dispatch(removeFollower(account.id));
@@ -32,7 +31,7 @@ const UnfollowModal = () => {
         className="mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"
       >
         <h1 className="mb-2 min-w-0 break-words text-left text-xl font-bold">
-          Unfollow @{account}
+          Unfollow @{account.username}
         </h1>
 
         <p className="w-full min-w-0 break-words text-left text-[15px] font-normal leading-5 text-[#71767b]">
