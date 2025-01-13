@@ -7,7 +7,6 @@ module.exports = {
         arial: ['Arial', 'sans-serif'],
         helvetica: ['"Helvetica Neue"', 'Arial', 'sans-serif'],
         twitter: [
-          'TwitterChirp',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -16,6 +15,11 @@ module.exports = {
           'Arial',
           'sans-serif',
         ],
+      },
+      fontWeight: {
+        'twitter-regular': '400',
+        'twitter-medium': '500',
+        'twitter-bold': '700',
       },
       boxShadow: {
         morebox:

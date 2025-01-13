@@ -5,6 +5,7 @@
 body {
   @apply bg-black font-arial text-white antialiased;
 }
+
 @layer utilities {
   .transition-colors-custom {
     transition-property: color, background-color, border-color,
