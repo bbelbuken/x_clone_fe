@@ -63,8 +63,9 @@ const initialState = {
       username: 'nodejs',
       fullname: 'Node.js',
       avatar:
-        'https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_normal.jpg',
-      header_photo: '',
+        'https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_200x200.jpg',
+      header_photo:
+        'https://pbs.twimg.com/profile_banners/91985735/1673458090/600x200',
       verified: true,
       followers: [],
       following: [],
@@ -101,10 +102,23 @@ const accountSlice = createSlice({
     setCurrentAccount: (state, action) => {
       state.currentAccount = action.payload;
     },
+    addFollower: (state, action) => {
+      state.currentAccount.following.push(action.payload);
+    },
+    removeFollower: (state, action) => {
+      state.currentAccount.following = state.currentAccount.following.filter(
+        (id) => id !== action.payload,
+      );
+    },
   },
 });
 
-export const { addAccount, removeAccount, setCurrentAccount } =
-  accountSlice.actions;
+export const {
+  addAccount,
+  removeAccount,
+  setCurrentAccount,
+  addFollower,
+  removeFollower,
+} = accountSlice.actions;
 
 export default accountSlice.reducer;
