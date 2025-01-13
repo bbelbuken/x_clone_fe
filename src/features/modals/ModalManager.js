@@ -1,6 +1,5 @@
 import { useModal } from 'hooks/useModal';
-import PostModal from './components/PostModal';
-import HeaderPhotoModal from './components/HeaderPhotoModal';
+import UnfollowModal from './components/UnfollowModal';
 
 const ModalManager = () => {
   const { isOpen, modalType } = useModal();
@@ -8,10 +7,8 @@ const ModalManager = () => {
   if (!isOpen) return null;
 
   switch (modalType) {
-    case 'post':
-      return <PostModal />;
-    case 'header-photo':
-      return <HeaderPhotoModal />;
+    case 'unfollow':
+      return <UnfollowModal />;
     default:
       return null;
   }

@@ -1,7 +1,8 @@
 import Button from 'components/buttons/Button';
 import { useCurrentAccount } from 'hooks/useAccounts';
-import { addFollower, removeFollower } from 'features/accounts/accountSlice';
+import { addFollower } from 'features/accounts/accountSlice';
 import { useDispatch } from 'react-redux';
+import { openModal } from 'features/modals/modalSlice';
 
 const ActionBars = ({ account }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const ActionBars = ({ account }) => {
 
   const handleFollow = () => {
     if (isFollowing) {
-      dispatch(removeFollower(account.id));
+      dispatch(openModal('unfollow'));
     } else {
       dispatch(addFollower(account.id));
     }
