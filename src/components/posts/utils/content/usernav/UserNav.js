@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import TimeAgo from './timeago/TimeAgo';
 import More from './more/More';
-import VerifiedSVG from 'components/svgs/VerifiedSVG';
+import VerifiedSVG from 'components/icons/VerifiedSVG';
 
 const UserNav = ({ account, postDate }) => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import VerifiedSVG from 'components/svgs/VerifiedSVG';
+import VerifiedSVG from 'components/icons/VerifiedSVG';
 
 const GoBack = ({ account, postCount }) => {
   const navigate = useNavigate();

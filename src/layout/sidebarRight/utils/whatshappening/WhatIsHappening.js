@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trending } from './trending/Trending';
 import { Link } from 'react-router-dom';
-import ThreeDotSVG from 'components/svgs/ThreeDotSVG';
+import ThreeDotSVG from 'components/icons/ThreeDotSVG';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import PanelSettings from './panelsettings/PanelSettings';
 

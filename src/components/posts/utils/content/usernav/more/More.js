@@ -1,5 +1,5 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
-import ThreeDotSVG from 'components/svgs/ThreeDotSVG';
+import ThreeDotSVG from 'components/icons/ThreeDotSVG';
 import PostPanelSettings from './postpanelsettings/PostPanelSettings';
 
 const More = ({ account }) => {

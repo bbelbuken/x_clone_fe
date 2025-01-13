@@ -1,6 +1,6 @@
-import VerifiedSVG from 'components/svgs/VerifiedSVG';
+import VerifiedSVG from 'components/icons/VerifiedSVG';
 
-const AccountInfo = ({ account }) => {
+const AccountName = ({ account }) => {
   const verified = account.verified;
 
   return (
@@ -20,4 +20,4 @@ const AccountInfo = ({ account }) => {
   );
 };
 
-export default AccountInfo;
+export default AccountName;

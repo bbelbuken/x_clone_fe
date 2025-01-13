@@ -1,6 +1,6 @@
 import React from 'react';
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
-import ThreeDotSVG from 'components/svgs/ThreeDotSVG';
+import ThreeDotSVG from 'components/icons/ThreeDotSVG';
 import PanelItems from './panelitems/PanelItems';
 import ButtonItems from './buttonitems/ButtonItems';
 

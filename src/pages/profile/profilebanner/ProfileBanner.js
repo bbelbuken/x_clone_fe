@@ -1,7 +1,9 @@
 import HeaderPhoto from './headerphoto/HeaderPhoto';
 import AccountAvatar from './accountavatar/AccountAvatar';
 import ActionBars from './actionbars/ActionBars';
-import AccountInfo from './accountinfo/AccountInfo';
+import AccountName from './accountname/AccountName';
+import AccountBio from './accountbio/AccountBio';
+
 const ProfileBanner = ({ account }) => {
   return (
     <div>
@@ -13,10 +15,10 @@ const ProfileBanner = ({ account }) => {
           <ActionBars account={account} />
         </div>
 
-        <AccountInfo account={account} />
+        <AccountName account={account} />
+        <AccountBio account={account} />
       </div>
     </div>
   );
 };
-
 export default ProfileBanner;

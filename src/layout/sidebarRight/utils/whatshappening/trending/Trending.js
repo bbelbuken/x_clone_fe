@@ -1,5 +1,5 @@
 import { trendingData } from './trendingData/trendingData';
-import { numberFormat } from 'utils/formatter/formatter';
+import { numberFormat } from 'utils/formatPostCount/FormatPostCount';
 
 export const Trending = trendingData.slice(0, 4).map((item, index) => {
   if (item.isPromoted) {

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAccounts } from 'hooks/useAccounts';
 import Button from 'components/buttons/Button';
-import VerifiedSVG from 'components/svgs/VerifiedSVG';
+import VerifiedSVG from 'components/icons/VerifiedSVG';
 
 const WhoToFollow = () => {
   const accounts = useAccounts();

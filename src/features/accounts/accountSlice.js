@@ -11,6 +11,10 @@ const initialState = {
     verified: false,
     followers: [],
     following: [],
+    bio: 'Hello, I am Batuhan. I am a software engineer.',
+    location: 'Istanbul, Turkey',
+    website: 'https://bbelbuken.com',
+    createdAt: '2024-01-01',
   },
   accounts: [
     {
@@ -24,6 +28,10 @@ const initialState = {
       verified: false,
       followers: [],
       following: [],
+      bio: 'Hello, I am Batuhan. I am a software engineer.',
+      location: 'Istanbul, Turkey',
+      website: 'https://bbelbuken.com',
+      createdAt: '2024-01-01',
     },
     {
       id: 2,
@@ -35,6 +43,10 @@ const initialState = {
       verified: false,
       followers: [],
       following: [],
+      bio: '',
+      location: '',
+      website: '',
+      createdAt: '',
     },
     {
       id: 3,
@@ -46,6 +58,10 @@ const initialState = {
       verified: false,
       followers: [],
       following: [],
+      bio: '',
+      location: '',
+      website: '',
+      createdAt: '',
     },
     {
       id: 4,
@@ -57,6 +73,10 @@ const initialState = {
       verified: true,
       followers: [],
       following: [],
+      bio: '',
+      location: '',
+      website: '',
+      createdAt: '',
     },
     {
       id: 5,
@@ -69,6 +89,10 @@ const initialState = {
       verified: true,
       followers: [],
       following: [],
+      bio: "The Node.js JavaScript Runtime. 🐢🚀 Need help with Node.js? We've got a repo for that: github.com/nodejs/help",
+      location: '✨🌍🌎🌏✨',
+      website: 'nodejs.org',
+      createdAt: '2009-11-27',
     },
     {
       id: 6,
@@ -80,6 +104,10 @@ const initialState = {
       verified: false,
       followers: [],
       following: [],
+      bio: '',
+      location: '',
+      website: '',
+      createdAt: '',
     },
   ],
 };
