@@ -13,7 +13,7 @@ const AccountAvatar = ({ account }) => {
 
   return (
     <div
-      className="z-20 -mt-[15%] mb-3 block h-auto w-[23%] min-w-12 rounded-full"
+      className="z-20 -mt-[14.9%] mb-3 block h-auto w-[23.5%] min-w-12 rounded-full"
       onClick={handleAvatarClick}
     >
       <img

@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
+import VerifiedSVG from 'components/svgs/VerifiedSVG';
 
 const GoBack = ({ account, postCount }) => {
   const navigate = useNavigate();
+  const verified = account.verified;
 
   const handleGetLocation = () => {
     const previousRoute = localStorage.getItem('previousRouteProfile');
@@ -27,11 +29,14 @@ const GoBack = ({ account, postCount }) => {
           </button>
         </div>
 
-        <div className="mb-[1px] flex h-full flex-col items-start justify-center">
-          <h2 className="min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words py-0.5 text-xl font-bold leading-7 text-[#e7e9ea]">
+        <div className="relative mb-[1px] flex h-full flex-col items-start justify-center">
+          <h2 className="flex min-w-0 max-w-full items-center justify-center overflow-hidden whitespace-nowrap break-words py-0.5 text-xl font-bold leading-7 tracking-[0.015em] text-[#e7e9ea]">
             {account.fullname}
+            <div className="ml-[1px]">
+              {verified && <VerifiedSVG width={20} height={20} />}
+            </div>
           </h2>
-          <div className="max-w-full whitespace-nowrap break-words text-[13px] font-normal leading-4 text-[#71767b]">
+          <div className="max-w-full whitespace-nowrap break-words pb-1 text-[13px] font-normal leading-3 text-[#71767b]">
             {`${postCount[account.id]} posts`}
           </div>
         </div>

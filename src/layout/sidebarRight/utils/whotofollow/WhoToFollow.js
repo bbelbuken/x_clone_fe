@@ -31,7 +31,9 @@ const WhoToFollow = () => {
                       <p className="whitespace-nowrap break-words text-[15px] font-bold leading-5 hover:underline">
                         {user.fullname}
                       </p>
-                      {user?.verified && <VerifiedSVG />}
+                      {user?.verified && (
+                        <VerifiedSVG width={18.75} height={18.75} />
+                      )}
                     </div>
 
                     <div className="text-[15px] font-light leading-[1.5em] tracking-[0.025em] text-[#71767b]">
