@@ -9,6 +9,8 @@ const initialState = {
       'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
     header_photo: '',
     verified: false,
+    followers: [],
+    following: [],
   },
   accounts: [
     {
@@ -20,6 +22,8 @@ const initialState = {
       header_photo:
         'https://img.freepik.com/free-photo/view-old-tree-lake-with-snow-covered-mountains-cloudy-day_181624-28954.jpg?t=st=1736119124~exp=1736122724~hmac=8a0bece1df53bc75bc7816d6b4cd07799a15c7b1e3d807a6a28844769b77e455&w=740',
       verified: false,
+      followers: [],
+      following: [],
     },
     {
       id: 2,
@@ -29,6 +33,8 @@ const initialState = {
         'https://imgcdn.stablediffusionweb.com/2024/2/26/8699803e-dc60-48e0-a499-e60bb25764dc.jpg',
       header_photo: '',
       verified: false,
+      followers: [],
+      following: [],
     },
     {
       id: 3,
@@ -38,6 +44,8 @@ const initialState = {
         'https://pbs.twimg.com/profile_images/1567608510497652736/TvoiS4g6_200x200.jpg',
       header_photo: '',
       verified: false,
+      followers: [],
+      following: [],
     },
     {
       id: 4,
@@ -47,6 +55,8 @@ const initialState = {
         'https://pbs.twimg.com/profile_images/857849907624820740/8ewzDDjp_200x200.jpg',
       header_photo: '',
       verified: true,
+      followers: [],
+      following: [],
     },
     {
       id: 5,
@@ -56,6 +66,8 @@ const initialState = {
         'https://pbs.twimg.com/profile_images/1262824892535373825/BiXDFDDp_normal.jpg',
       header_photo: '',
       verified: true,
+      followers: [],
+      following: [],
     },
     {
       id: 6,
@@ -65,6 +77,8 @@ const initialState = {
         'https://pbs.twimg.com/profile_images/1658233760838569985/OsRPTc1Q_200x200.png ',
       header_photo: '',
       verified: false,
+      followers: [],
+      following: [],
     },
   ],
 };

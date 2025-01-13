@@ -2,7 +2,8 @@ import Button from 'components/buttons/Button';
 import { useCurrentAccount } from 'hooks/useAccounts';
 
 const ActionBars = ({ account }) => {
-  const { currentAccount } = useCurrentAccount();
+  const currentAccount = useCurrentAccount();
+  const isFollowing = currentAccount.following.includes(account.id);
 
   const actionBars = [
     {
@@ -54,7 +55,7 @@ const ActionBars = ({ account }) => {
         size="profile-follow"
         className="mb-3 flex min-h-9 min-w-9 items-center justify-center"
       >
-        Following
+        {isFollowing ? 'Following' : 'Follow'}
       </Button>
     </div>
   );
