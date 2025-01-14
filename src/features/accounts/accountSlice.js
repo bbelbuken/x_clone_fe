@@ -132,11 +132,45 @@ const accountSlice = createSlice({
     },
     addFollower: (state, action) => {
       state.currentAccount.following.push(action.payload);
+
+      const accountIndex = state.accounts.findIndex(
+        (account) => account.id === state.currentAccount.id,
+      );
+      if (accountIndex !== -1) {
+        state.accounts[accountIndex].following.push(action.payload);
+      }
+
+      const followedAccountIndex = state.accounts.findIndex(
+        (account) => account.id === action.payload,
+      );
+      if (followedAccountIndex !== -1) {
+        state.accounts[followedAccountIndex].followers.push(
+          state.currentAccount.id,
+        );
+      }
     },
     removeFollower: (state, action) => {
       state.currentAccount.following = state.currentAccount.following.filter(
         (id) => id !== action.payload,
       );
+
+      const accountIndex = state.accounts.findIndex(
+        (account) => account.id === state.currentAccount.id,
+      );
+      if (accountIndex !== -1) {
+        state.accounts[accountIndex].following = state.accounts[
+          accountIndex
+        ].following.filter((id) => id !== action.payload);
+      }
+
+      const followedAccountIndex = state.accounts.findIndex(
+        (account) => account.id === action.payload,
+      );
+      if (followedAccountIndex !== -1) {
+        state.accounts[followedAccountIndex].followers = state.accounts[
+          followedAccountIndex
+        ].followers.filter((id) => id !== state.currentAccount.id);
+      }
     },
   },
 });
