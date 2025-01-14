@@ -9,6 +9,8 @@ const Button = ({
   className,
   to = null,
   onClick,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ const Button = ({
             size === 'account',
         },
         {
-          'w-[78px] h-[32px] text-[14px] ': size === 'follow',
+          'w-[78px] h-[32px] text-[14px]': size === 'follow',
         },
         {
           'min-h-9 px-3 text-[15px]  border border-[#536471] pb-0.5 font-bold transition-colors':
@@ -44,6 +46,8 @@ const Button = ({
         className,
       ),
       onClick: handleClick,
+      onMouseEnter,
+      onMouseLeave,
     },
     children,
   );
@@ -59,6 +63,8 @@ Button.propTypes = {
   ]),
   className: PropTypes.string,
   to: PropTypes.string,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
 };
 
 export default Button;

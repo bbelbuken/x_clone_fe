@@ -14,6 +14,7 @@ import Premium from 'pages/premium/Premium';
 import PostStatus from 'components/posts/postStatus/PostStatus';
 import PostModal from 'features/modals/components/PostModal';
 import PhotoModal from 'features/modals/components/PhotoModal';
+import EditProfileModal from 'features/modals/components/EditProfileModal';
 
 export const MyRoutes = () => {
   const location = useLocation();
@@ -51,6 +52,10 @@ export const MyRoutes = () => {
     {
       path: '/:username/photo',
       element: <PhotoModal />,
+    },
+    {
+      path: '/settings/profile',
+      element: <EditProfileModal />,
     },
   ];
 

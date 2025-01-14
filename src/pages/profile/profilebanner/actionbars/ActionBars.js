@@ -3,12 +3,17 @@ import { useCurrentAccount } from 'hooks/useAccounts';
 import { addFollower } from 'features/accounts/accountSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ActionBars = ({ account }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const currentAccount = useCurrentAccount();
   const isCurrentAccount = currentAccount.id === account.id;
   const isFollowing = currentAccount.following.includes(account.id);
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleFollow = () => {
     if (isFollowing) {
@@ -16,6 +21,13 @@ const ActionBars = ({ account }) => {
     } else {
       dispatch(addFollower(account.id));
     }
+  };
+
+  const editProfile = (e) => {
+    e.preventDefault();
+    navigate(`/settings/profile`, {
+      state: { background: location },
+    });
   };
 
   const actionBarItems = [
@@ -84,13 +96,17 @@ const ActionBars = ({ account }) => {
       )}
       <Button
         size="profile-follow"
-        className={`mb-3 flex min-h-9 min-w-9 items-center justify-center ${isCurrentAccount ? 'min-w-9 px-[17px]' : isFollowing ? 'min-w-[104px] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]' : 'min-w-[81px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]'}`}
-        onClick={handleFollow}
+        className={`mb-3 flex min-h-9 min-w-9 items-center justify-center ${isCurrentAccount ? 'min-w-9 px-[17px] hover:bg-[#eff3f41a]' : isFollowing ? 'min-w-[104px] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]' : 'min-w-[81px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]'}`}
+        onClick={isCurrentAccount ? editProfile : handleFollow}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
       >
         {isCurrentAccount
           ? 'Edit profile'
           : isFollowing
-            ? 'Following'
+            ? isHovering
+              ? 'Unfollow'
+              : 'Following'
             : 'Follow'}
       </Button>
     </div>
