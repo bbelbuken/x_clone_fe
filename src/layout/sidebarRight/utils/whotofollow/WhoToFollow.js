@@ -10,7 +10,7 @@ import { useState } from 'react';
 const WhoToFollow = () => {
   const accounts = useAccounts();
   const currentAccount = useCurrentAccount();
-  const [isHovering, setIsHovering] = useState(false);
+  const [hoverStates, setHoverStates] = useState({});
 
   const dispatch = useDispatch();
 
@@ -21,6 +21,14 @@ const WhoToFollow = () => {
     } else {
       dispatch(addFollower(account.id));
     }
+  };
+
+  const handleMouseEnter = (accountId) => {
+    setHoverStates((prev) => ({ ...prev, [accountId]: true }));
+  };
+
+  const handleMouseLeave = (accountId) => {
+    setHoverStates((prev) => ({ ...prev, [accountId]: false }));
   };
 
   return (
@@ -72,11 +80,11 @@ const WhoToFollow = () => {
                   : 'bg-[#eff3f4] text-black'
               }`}
               size="follow"
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
+              onMouseEnter={() => handleMouseEnter(account.id)}
+              onMouseLeave={() => handleMouseLeave(account.id)}
             >
               {currentAccount.following.includes(account.id)
-                ? isHovering
+                ? hoverStates[account.id]
                   ? 'Unfollow'
                   : 'Following'
                 : 'Follow'}
