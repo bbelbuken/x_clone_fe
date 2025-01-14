@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import usePostCountByUser from 'hooks/usePostCountByUser';
 import GoBack from './goback/GoBack';
 import ProfileBanner from './profilebanner/ProfileBanner';
+import ProfileNav from './profilenav/ProfileNav';
 
 const Profile = () => {
   const { username } = useParams();
@@ -15,6 +16,7 @@ const Profile = () => {
       <GoBack account={account} postCount={postCount} />
       <div className="mx-auto flex w-full grow flex-col">
         <ProfileBanner account={account} />
+        <ProfileNav account={account} />
       </div>
     </div>
   );
