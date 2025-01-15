@@ -5,6 +5,14 @@ import {
 } from 'components/icons/ProfileBioSVG';
 import { formatDate } from 'utils/formatDate/FormatDate';
 
+const ensureHttps = (url) => {
+  if (!url) return url;
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  return `https://${url}`;
+};
+
 const AccountBioIcons = ({ account }) => {
   return (
     <div className="mb-3">
@@ -19,7 +27,7 @@ const AccountBioIcons = ({ account }) => {
           <div className="flex items-center gap-1">
             <LinkIcon className="mt-[2px] h-[18.75px] w-[18.75px]" />
             <a
-              href={account.website}
+              href={ensureHttps(account.website)}
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary bio-link"
