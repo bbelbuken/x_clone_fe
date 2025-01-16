@@ -5,7 +5,8 @@ import usePostCountByUser from 'hooks/usePostCountByUser';
 import GoBack from './goback/GoBack';
 import ProfileBanner from './profilebanner/ProfileBanner';
 import ProfileNav from './profilenav/ProfileNav';
-import UserPostList from './userpostlist/UserPostList';
+import UserPostList from './profilenavfeed/UserPostList';
+import UserLikes from './profilenavfeed/UserLikes';
 
 const Profile = () => {
   const [activeTitle, setActiveTitle] = useState('Posts');
@@ -29,7 +30,7 @@ const Profile = () => {
         {activeTitle === 'Highlights' && <UserPostList account={account} />}
         {activeTitle === 'Articles' && <UserPostList account={account} />}
         {activeTitle === 'Media' && <UserPostList account={account} />}
-        {activeTitle === 'Likes' && <UserPostList account={account} />}
+        {activeTitle === 'Likes' && <UserLikes account={account} />}
       </div>
     </div>
   );
