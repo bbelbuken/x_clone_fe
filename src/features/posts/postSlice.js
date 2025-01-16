@@ -171,22 +171,23 @@ const postSlice = createSlice({
         if (!existingPost.reactions.likedBy.includes(userId)) {
           existingPost.reactions.likedBy.push(userId); // Add userId to likes
           existingPost.reactions.like++; // Increment like count
-
-          // Log plain JavaScript objects to inspect the changes
-          console.log(
-            'LikedBy:',
-            JSON.parse(JSON.stringify(existingPost.reactions.likedBy)),
-          );
-          console.log('Likes count:', existingPost.reactions.like);
-        } else {
-          console.log('User has already liked this post:', userId);
         }
-      } else {
-        console.log('Post not found:', postId);
+      }
+    },
+    removeLike(state, action) {
+      const { postId, userId } = action.payload;
+      const existingPost = state.find((post) => post.id === postId);
+
+      if (existingPost) {
+        const userIndex = existingPost.reactions.likedBy.indexOf(userId);
+        if (userIndex !== -1) {
+          existingPost.reactions.likedBy.splice(userIndex, 1);
+          existingPost.reactions.like--;
+        }
       }
     },
   },
 });
-export const { addPost, addLike } = postSlice.actions;
+export const { addPost, addLike, removeLike } = postSlice.actions;
 
 export default postSlice.reducer;

@@ -1,23 +1,9 @@
 import ReactionData from './reactiondata/ReactionData';
 
-const ReactionNav = ({
-  postReply,
-  postReposts,
-  postLike,
-  postView,
-  postId,
-  account,
-}) => {
+const ReactionNav = ({ postReactions, postId }) => {
   return (
     <div className="mt-3 flex max-w-[600px] items-center justify-between">
-      <ReactionData
-        postReply={postReply}
-        postReposts={postReposts}
-        postLike={postLike}
-        postView={postView}
-        postId={postId}
-        account={account}
-      />
+      <ReactionData postId={postId} postReactions={postReactions} />
 
       <div className="relative flex min-h-5 items-center text-[14px] text-[#71767b]">
         <button

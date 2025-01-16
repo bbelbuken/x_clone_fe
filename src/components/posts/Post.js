@@ -26,10 +26,7 @@ const Post = ({ post, postId }) => {
               postDate={post.date}
               postIMG={post.media.image}
               postVideo={post.media.video}
-              postReply={post.reactions.reply}
-              postReposts={post.reactions.reposts}
-              postLike={post.reactions.like}
-              postView={post.reactions.view}
+              postReactions={post.reactions}
             />
           </div>
         </article>

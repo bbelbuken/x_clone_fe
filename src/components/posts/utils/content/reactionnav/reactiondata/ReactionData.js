@@ -1,22 +1,37 @@
 import { useDispatch } from 'react-redux';
-import { addLike } from 'features/posts/postSlice';
+import { addLike, removeLike } from 'features/posts/postSlice';
 import { useCurrentAccount } from 'hooks/useAccounts';
 
-const ReactionData = ({
-  postReply,
-  postReposts,
-  postLike,
-  postView,
-  postId,
-}) => {
+const ReactionData = ({ postId, postReactions }) => {
   const dispatch = useDispatch();
   const currentAccount = useCurrentAccount();
 
   const titleProp = {
-    Reply: typeof postReply === 'number' ? postReply : 0,
-    Repost: typeof postReposts === 'number' ? postReposts : 0,
-    Like: typeof postLike === 'number' ? postLike : 0,
-    View: typeof postView === 'number' ? postView : 0,
+    Reply: typeof postReactions.reply === 'number' ? postReactions.reply : 0,
+    Repost:
+      typeof postReactions.reposts === 'number' ? postReactions.reposts : 0,
+    Like: typeof postReactions.like === 'number' ? postReactions.like : 0,
+    View: typeof postReactions.view === 'number' ? postReactions.view : 0,
+  };
+
+  const handleDispatch = (title) => {
+    switch (title) {
+      case 'Like':
+        const isLiked = postReactions.likedBy.includes(currentAccount.id);
+        if (isLiked) {
+          dispatch(removeLike({ postId, userId: currentAccount.id }));
+        } else {
+          dispatch(
+            addLike({
+              postId,
+              userId: currentAccount.id,
+            }),
+          );
+        }
+        break;
+      default:
+        break;
+    }
   };
 
   const data = [
@@ -89,12 +104,7 @@ const ReactionData = ({
             className={`absolute flex min-h-5 items-center text-[14px] text-[#71767b] ${data.title === 'Repost' ? 'hover:text-[#00ba7c]' : data.title === 'Like' ? 'hover:text-[#f91881]' : 'hover:text-[#1d9bf0]'}`}
             onClick={(e) => {
               e.preventDefault();
-              dispatch(
-                addLike({
-                  postId,
-                  userId: currentAccount.id,
-                }),
-              );
+              handleDispatch(data.title);
             }}
           >
             <div className="flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]">
