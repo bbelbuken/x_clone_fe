@@ -20,6 +20,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
   {
@@ -42,6 +43,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
   {
@@ -62,6 +64,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
   {
@@ -82,6 +85,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
   {
@@ -102,6 +106,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
   {
@@ -122,6 +127,7 @@ const initialState = [
       like: 0,
       likedBy: [],
       view: 0,
+      viewedBy: [],
     },
   },
 ];
@@ -157,6 +163,7 @@ const postSlice = createSlice({
               like: 0,
               likedBy: [],
               view: 0,
+              viewedBy: [],
             },
           },
         };
@@ -186,8 +193,19 @@ const postSlice = createSlice({
         }
       }
     },
+    incrementView(state, action) {
+      const { postId, userId } = action.payload;
+      const existingPost = state.find((post) => post.id === postId);
+      if (existingPost) {
+        if (!existingPost.reactions.viewedBy.includes(userId)) {
+          existingPost.reactions.viewedBy.push(userId);
+          existingPost.reactions.view++;
+        }
+      }
+    },
   },
 });
-export const { addPost, addLike, removeLike } = postSlice.actions;
+export const { addPost, addLike, removeLike, incrementView } =
+  postSlice.actions;
 
 export default postSlice.reducer;

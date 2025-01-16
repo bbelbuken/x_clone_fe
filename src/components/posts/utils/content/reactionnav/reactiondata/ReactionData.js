@@ -1,10 +1,14 @@
 import { useDispatch } from 'react-redux';
-import { addLike, removeLike } from 'features/posts/postSlice';
+import { addLike, removeLike, incrementView } from 'features/posts/postSlice';
 import { useCurrentAccount } from 'hooks/useAccounts';
-
+import { useEffect } from 'react';
 const ReactionData = ({ postId, postReactions }) => {
   const dispatch = useDispatch();
   const currentAccount = useCurrentAccount();
+
+  useEffect(() => {
+    dispatch(incrementView({ postId, userId: currentAccount.id }));
+  }, [dispatch, postId, currentAccount.id]);
 
   const titleProp = {
     Reply: typeof postReactions.reply === 'number' ? postReactions.reply : 0,
