@@ -26,6 +26,7 @@ const Content = ({
         postLike={postLike}
         postView={postView}
         postId={postId}
+        account={account}
       />
     </div>
   );

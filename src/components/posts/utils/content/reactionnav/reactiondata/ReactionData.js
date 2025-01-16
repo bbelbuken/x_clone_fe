@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { addReaction } from 'features/posts/postSlice';
+import { addLike } from 'features/posts/postSlice';
+import { useCurrentAccount } from 'hooks/useAccounts';
 
 const ReactionData = ({
   postReply,
@@ -9,6 +10,7 @@ const ReactionData = ({
   postId,
 }) => {
   const dispatch = useDispatch();
+  const currentAccount = useCurrentAccount();
 
   const titleProp = {
     Reply: typeof postReply === 'number' ? postReply : 0,
@@ -88,7 +90,10 @@ const ReactionData = ({
             onClick={(e) => {
               e.preventDefault();
               dispatch(
-                addReaction({ postId, reaction: data.title.toLowerCase() }),
+                addLike({
+                  postId,
+                  userId: currentAccount.id,
+                }),
               );
             }}
           >

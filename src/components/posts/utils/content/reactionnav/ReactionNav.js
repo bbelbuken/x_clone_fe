@@ -6,6 +6,7 @@ const ReactionNav = ({
   postLike,
   postView,
   postId,
+  account,
 }) => {
   return (
     <div className="mt-3 flex max-w-[600px] items-center justify-between">
@@ -15,6 +16,7 @@ const ReactionNav = ({
         postLike={postLike}
         postView={postView}
         postId={postId}
+        account={account}
       />
 
       <div className="relative flex min-h-5 items-center text-[14px] text-[#71767b]">

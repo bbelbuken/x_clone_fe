@@ -18,6 +18,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -39,6 +40,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -58,6 +60,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -77,6 +80,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -96,6 +100,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -115,6 +120,7 @@ const initialState = [
         quote: 0,
       },
       like: 0,
+      likedBy: [],
       view: 0,
     },
   },
@@ -149,28 +155,38 @@ const postSlice = createSlice({
                 quote: 0,
               },
               like: 0,
+              likedBy: [],
               view: 0,
             },
           },
         };
       },
     },
-    addReaction(state, action) {
-      const { postId, reaction } = action.payload;
+    addLike(state, action) {
+      const { postId, userId } = action.payload;
       const existingPost = state.find((post) => post.id === postId);
 
       if (existingPost) {
-        // If it's a nested reaction like 'reposts.repost', we need to handle it differently
-        if (reaction in existingPost.reactions) {
-          existingPost.reactions[reaction]++;
-        } else if (reaction in existingPost.reactions.reposts) {
-          existingPost.reactions.reposts[reaction]++;
+        // Check if the user has already liked the post
+        if (!existingPost.reactions.likedBy.includes(userId)) {
+          existingPost.reactions.likedBy.push(userId); // Add userId to likes
+          existingPost.reactions.like++; // Increment like count
+
+          // Log plain JavaScript objects to inspect the changes
+          console.log(
+            'LikedBy:',
+            JSON.parse(JSON.stringify(existingPost.reactions.likedBy)),
+          );
+          console.log('Likes count:', existingPost.reactions.like);
+        } else {
+          console.log('User has already liked this post:', userId);
         }
+      } else {
+        console.log('Post not found:', postId);
       }
     },
   },
 });
-
-export const { addPost, addReaction } = postSlice.actions;
+export const { addPost, addLike } = postSlice.actions;
 
 export default postSlice.reducer;

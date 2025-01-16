@@ -3,7 +3,10 @@ import { usePost } from 'hooks/usePost';
 
 const UserLikes = ({ account }) => {
   const allPosts = usePost();
-  const userLikes = allPosts.filter((post) => post.reactions.like > 0);
+  const userLikes = allPosts.filter(
+    (post) =>
+      post.reactions.like > 0 && post.reactions.likedBy.includes(account.id),
+  );
 
   return (
     <>
