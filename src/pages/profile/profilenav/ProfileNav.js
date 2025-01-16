@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCurrentAccount } from 'hooks/useAccounts';
 
-const ProfileNav = ({ account }) => {
+const ProfileNav = ({ account, activeTitle, setActiveTitle }) => {
   const currentAccount = useCurrentAccount();
   const activeAccount = account.id === currentAccount.id;
-  const [activeTitle, setActiveTitle] = useState('Posts');
   const ProfileNavItems = [
     { title: 'Posts', alwaysActive: true },
     { title: 'Replies', alwaysActive: true },
@@ -20,7 +18,7 @@ const ProfileNav = ({ account }) => {
   );
 
   return (
-    <div className="flex">
+    <div className="flex border-b border-b-[#2f3336]">
       {profileNav.map((item, index) => (
         <Link
           className="flex h-[53px] min-w-14 grow cursor-pointer items-center justify-center px-4 transition-colors hover:bg-[#e7e9ea1a]"
