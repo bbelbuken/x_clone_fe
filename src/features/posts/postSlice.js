@@ -4,7 +4,7 @@ import { sub } from 'date-fns';
 const initialState = [
   {
     id: 1,
-    content: 'What was the first thing you remember coding?',
+    content: 'Me when people still use Assembly',
     date: sub(new Date(), { minutes: 5 }).toISOString(),
     userId: 1,
     media: {
@@ -26,7 +26,7 @@ const initialState = [
   {
     id: 2,
     content:
-      'This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev',
+      'This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev',
     date: sub(new Date(), { minutes: 10 }).toISOString(),
     userId: 2,
     media: {
