@@ -177,7 +177,7 @@ const postSlice = createSlice({
         // Check if the user has already liked the post
         if (!existingPost.reactions.likedBy.includes(userId)) {
           existingPost.reactions.likedBy.push(userId); // Add userId to likes
-          existingPost.reactions.like++; // Increment like count
+          existingPost.reactions.like++; // Increment the like count
         }
       }
     },
