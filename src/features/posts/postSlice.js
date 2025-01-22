@@ -25,8 +25,7 @@ const initialState = [
   },
   {
     id: 2,
-    content:
-      'This is me after all the holiday feasts. #indiegame #survivalhorror #gamedev',
+    content: 'This is me after all the holiday feasts. #indiegame #gamedev',
     date: sub(new Date(), { minutes: 10 }).toISOString(),
     userId: 2,
     media: {
@@ -69,7 +68,7 @@ const initialState = [
   },
   {
     id: 4,
-    content: 'This is my second Post',
+    content: 'Konsol Oyun cildirdi',
     date: sub(new Date(), { minutes: 30 }).toISOString(),
     userId: 4,
     media: {
