@@ -68,7 +68,7 @@ const initialState = [
   },
   {
     id: 4,
-    content: 'Konsol Oyun cildirdi',
+    content: 'Konsol Oyun baba',
     date: sub(new Date(), { minutes: 30 }).toISOString(),
     userId: 4,
     media: {
@@ -89,7 +89,7 @@ const initialState = [
   },
   {
     id: 5,
-    content: 'This is my first Post',
+    content: 'Node v23.4 is out! ',
     date: sub(new Date(), { minutes: 62 }).toISOString(),
     userId: 5,
     media: {
@@ -110,11 +110,12 @@ const initialState = [
   },
   {
     id: 6,
-    content: 'This is my second Post',
+    content: 'my best christmas ever…',
     date: sub(new Date(), { minutes: 120 }).toISOString(),
     userId: 6,
     media: {
-      image: '',
+      image:
+        'https://pbs.twimg.com/media/GekVDMkbQAAdGiK?format=jpg&name=medium',
       video: '',
     },
     reactions: {
