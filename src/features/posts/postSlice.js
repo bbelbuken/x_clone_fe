@@ -205,6 +205,7 @@ const postSlice = createSlice({
     },
   },
 });
+
 export const { addPost, addLike, removeLike, incrementView } =
   postSlice.actions;
 
