@@ -32,7 +32,9 @@ const UserNav = ({ account, postDate }) => {
           <span className="-translate-y-1 px-1">.</span>
           <TimeAgo postDate={postDate} />
         </div>
+        
       </div>
+
       <More account={account} />
     </div>
   );
