@@ -6,6 +6,7 @@ import Profile from '../pages/profile/Profile';
 import HeaderPhotoModal from 'features/modals/components/HeaderPhotoModal';
 import Notifications from '../pages/notifications/Notifications';
 import Messages from 'pages/messages/Messages';
+import Grok from 'pages/grok/Grok';
 import Bookmarks from 'pages/bookmarks/Bookmarks';
 import Lists from 'pages/lists/Lists';
 import Jobs from 'pages/jobs/Jobs';
@@ -29,6 +30,7 @@ export const MyRoutes = () => {
         { path: 'explore', element: <Explore /> },
         { path: 'notifications', element: <Notifications /> },
         { path: 'messages', element: <Messages /> },
+        { path: 'i/grok', element: <Grok /> },
         { path: 'lists', element: <Lists /> },
         { path: 'bookmarks', element: <Bookmarks /> },
         { path: 'jobs', element: <Jobs /> },
