@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Welcome = () => {
-  return <div>Welcome</div>;
+  return (
+    <div className="h-full" onBlur>
+      <button>Welcome</button>
+    </div>
+  );
 };
 
 export default Welcome;
