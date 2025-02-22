@@ -16,12 +16,14 @@ import PostStatus from 'components/posts/postStatus/PostStatus';
 import PostModal from 'features/modals/components/PostModal';
 import PhotoModal from 'features/modals/components/PhotoModal';
 import EditProfileModal from 'features/modals/components/EditProfileModal';
+import Welcome from 'features/auth/Welcome';
 
 export const MyRoutes = () => {
   const location = useLocation();
   const state = location.state;
 
   const routes = [
+    { path: '/', element: <Welcome /> },
     {
       path: '/',
       element: <Layout />,
@@ -35,11 +37,11 @@ export const MyRoutes = () => {
         { path: 'bookmarks', element: <Bookmarks /> },
         { path: 'jobs', element: <Jobs /> },
         { path: 'communities', element: <Communities /> },
-        { path: 'premium', element: <Premium /> },
         { path: ':username', element: <Profile /> },
         { path: ':username/status/:postId', element: <PostStatus /> },
       ],
     },
+    { path: 'premium', element: <Premium /> },
   ];
 
   const modalRoutes = [
