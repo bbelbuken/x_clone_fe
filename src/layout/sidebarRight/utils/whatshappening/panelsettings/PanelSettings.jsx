@@ -2,7 +2,7 @@ import { PanelData } from './paneldata/PanelData';
 
 const PanelSettings = () => {
   return (
-    <div className="absolute right-4 top-[12px] z-10 flex w-auto max-w-[calc(384px)] flex-col rounded-xl bg-black shadow-morebox">
+    <div className="shadow-morebox absolute top-[12px] right-4 z-10 flex w-auto max-w-[calc(384px)] flex-col rounded-xl bg-black">
       {PanelData.map((item, index) => (
         <div className="transition-colors hover:bg-[#ffffff08]" key={index}>
           <div className="flex w-full cursor-pointer items-center justify-start px-[18px] py-3 outline-none">
@@ -18,7 +18,7 @@ const PanelSettings = () => {
             </div>
 
             <div className="flex items-center justify-center">
-              <span className="flex-1 text-nowrap break-words pl-3 text-[15px] font-bold leading-5">
+              <span className="flex-1 pl-3 text-[15px] leading-5 font-bold text-nowrap break-words">
                 {item.title}
               </span>
             </div>

@@ -22,11 +22,11 @@ const SidebarLeft = () => {
   };
 
   return (
-    <header className="flex h-screen w-[275px] px-2 font-arial">
+    <header className="font-arial flex h-screen w-[275px] px-2">
       <div className="flex h-full w-full flex-auto flex-col items-stretch justify-between">
         <div className="flex flex-col">
           <Logo />
-          <div className="mb-1 mt-0.5 flex flex-shrink flex-grow flex-col">
+          <div className="mt-0.5 mb-1 flex flex-shrink flex-grow flex-col">
             <nav className="flex h-auto flex-shrink flex-grow flex-col">
               <Menu handleSaveLocation={handleSaveLocation} />
               <MoreButton />
