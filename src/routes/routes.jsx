@@ -16,7 +16,7 @@ import PostStatus from 'components/posts/postStatus/PostStatus';
 import PostModal from 'features/modals/components/PostModal';
 import PhotoModal from 'features/modals/components/PhotoModal';
 import EditProfileModal from 'features/modals/components/EditProfileModal';
-import Welcome from 'features/auth/Welcome';
+import Welcome from 'features/auth/welcome/Welcome.jsx';
 
 export const MyRoutes = () => {
   const location = useLocation();
