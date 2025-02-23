@@ -20,8 +20,8 @@ export default defineConfig({
   server: {
     port: 3000,
     hmr: {
-      timeout: 30000, // 30 seconds (default is 10 seconds)
-      overlay: true, // shows errors on the browser overlay
+      timeout: 1000, // 30 seconds (default is 10 seconds)
+      overlay: false, // shows errors on the browser overlay
     },
   },
 });
