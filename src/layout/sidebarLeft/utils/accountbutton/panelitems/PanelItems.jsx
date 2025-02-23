@@ -17,7 +17,7 @@ const PanelItems = () => {
               <CurrentAccountItems gap={1} />
               <svg
                 viewBox="0 0 24 24"
-                className="absolute right-2 top-3"
+                className="absolute top-3 right-2"
                 width={18.75}
                 height={18.75}
                 fill="#00ba7c"
@@ -47,7 +47,7 @@ const PanelItems = () => {
         viewBox="0 0 24 24"
         width={24}
         height={15}
-        className="absolute -bottom-[10px] left-28 rotate-180 drop-shadow-morebox"
+        className="drop-shadow-morebox absolute -bottom-[10px] left-28 rotate-180"
       >
         <path d="M22 17H2L12 6l10 11z" fill="black"></path>
       </svg>

@@ -12,7 +12,7 @@ const Post = ({ post, postId }) => {
   return (
     <Link to={`/${account.username}/status/${postId}`}>
       <div
-        className="transition-colors-feed border-b border-b-[#2f3336] hover:bg-[#ffffff08] hover:shadow-feedbox"
+        className="transition-colors-feed hover:box-shadow-feedbox border-b border-b-[#2f3336] hover:bg-[#ffffff08]"
         key={post.id}
       >
         <article className="flex shrink grow cursor-pointer flex-col px-4">

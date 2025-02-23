@@ -1,10 +1,48 @@
 @import 'tailwindcss';
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/* Define your theme customizations using the @theme block */
+@theme {
+  --font-arial: 'Arial', sans-serif;
+  --font-helvetica: '"Helvetica Neue"', 'Arial', sans-serif;
+  --font-twitter:
+    '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica',
+    'Arial', sans-serif;
+
+  --font-weight-twitter-regular: 400;
+  --font-weight-twitter-medium: 500;
+  --font-weight-twitter-bold: 700;
+
+  --box-shadow-morebox:
+    rgba(255, 255, 255, 0.2) 0px 0px 15px,
+    rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+  --box-shadow-feedbox:
+    rgba(255, 255, 255, 0.1) 0px 0px 1px,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px;
+  --drop-shadow-morebox:
+    rgba(255, 255, 255, 0.2) 0px 0px 15px,
+    rgba(255, 255, 255, 0.15) 0px 0px 3px 1px;
+}
 
 body {
   @apply font-arial bg-black text-white antialiased;
+}
+
+@layer components {
+  .text-twitter {
+    font-family: var(--font-twitter);
+  }
+
+  .font-twitter-regular {
+    font-weight: var(--font-weight-twitter-regular);
+  }
+
+  .font-twitter-medium {
+    font-weight: var(--font-weight-twitter-medium);
+  }
+
+  .font-twitter-bold {
+    font-weight: var(--font-weight-twitter-bold);
+  }
 }
 
 @layer utilities {
@@ -27,5 +65,16 @@ body {
   }
   .bio-link:hover {
     text-decoration: underline;
+  }
+  .box-shadow-morebox {
+    box-shadow: var(--box-shadow-morebox);
+  }
+
+  .box-shadow-feedbox {
+    box-shadow: var(--box-shadow-feedbox);
+  }
+
+  .drop-shadow-morebox {
+    filter: drop-shadow(var(--drop-shadow-morebox));
   }
 }

@@ -9,14 +9,14 @@ const SearchBar = () => {
   return (
     <div className="relative overflow-visible">
       <div
-        className={`mb-4 flex h-11 rounded-full ${isActive ? 'border border-[#b43772] bg-black' : 'border border-[#202327]'} pb-3 pt-2`}
+        className={`mb-4 flex h-11 rounded-full ${isActive ? 'border border-[#b43772] bg-black' : 'border border-[#202327]'} pt-2 pb-3`}
       >
         <form
           className="z-20 flex items-center justify-center"
           onSubmit={(e) => e.preventDefault()}
         >
           <div className="ml-[6.5px] flex max-h-[42px] items-center justify-center">
-            <div className="ml-[6.5px] mt-1 flex items-center justify-center">
+            <div className="mt-1 ml-[6.5px] flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
                 fill={isActive ? '#f91880' : '#71767b'}
@@ -44,7 +44,7 @@ const SearchBar = () => {
                 {input && isActive && (
                   <button
                     type="button"
-                    className="mr-3 min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#f91880] outline-none transition-colors"
+                    className="mr-3 min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#f91880] transition-colors outline-none"
                     onMouseDown={(e) => {
                       e.preventDefault();
                       setInput('');
@@ -69,7 +69,7 @@ const SearchBar = () => {
       </div>
 
       {isActive && (
-        <div className="max-h-[calc(-53px + 80vh)] absolute left-0 right-0 top-11 z-10 box-border min-h-[100px] overflow-visible rounded-lg bg-black shadow-morebox">
+        <div className="max-h-[calc(-53px + 80vh)] box-shadow-morebox absolute top-11 right-0 left-0 z-10 box-border min-h-[100px] overflow-visible rounded-lg bg-black">
           <div className="p-3 pt-5">
             <p className="text-center text-[15px] leading-4 tracking-wide text-[#71767b]">
               Try searching for people, lists, or keywords

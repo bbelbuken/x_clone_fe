@@ -12,14 +12,14 @@ const MoreButton = () => {
             </svg>
           </div>
 
-          <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl text-inherit">
-            <span className="break-words text-xl text-inherit">More</span>
+          <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
+            <span className="text-xl break-words text-inherit">More</span>
           </div>
         </div>
       </PopoverButton>
       <PopoverPanel
         className={
-          'absolute -bottom-1 left-0 box-border flex h-auto w-[318px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black shadow-morebox transition-colors'
+          'box-shadow-morebox absolute -bottom-1 left-0 box-border flex h-auto w-[318px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black transition-colors'
         }
       >
         <button className="box-border flex h-full w-full items-center justify-start">
@@ -30,8 +30,8 @@ const MoreButton = () => {
               </svg>
             </div>
 
-            <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl text-inherit">
-              <span className="ml-0.5 break-words font-bold text-inherit">
+            <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
+              <span className="ml-0.5 font-bold break-words text-inherit">
                 Monetization
               </span>
             </div>
@@ -46,8 +46,8 @@ const MoreButton = () => {
               </svg>
             </div>
 
-            <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl text-inherit">
-              <span className="ml-0.5 break-words text-xl font-bold text-inherit">
+            <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
+              <span className="ml-0.5 text-xl font-bold break-words text-inherit">
                 Ads
               </span>
             </div>
@@ -62,8 +62,8 @@ const MoreButton = () => {
               </svg>
             </div>
 
-            <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl text-inherit">
-              <span className="ml-0.5 break-words text-xl font-bold text-inherit">
+            <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
+              <span className="ml-0.5 text-xl font-bold break-words text-inherit">
                 Create your Space
               </span>
             </div>
@@ -78,8 +78,8 @@ const MoreButton = () => {
               </svg>
             </div>
 
-            <div className="ml-5 mr-4 min-w-0 max-w-full overflow-hidden whitespace-nowrap break-words text-xl text-inherit">
-              <span className="ml-0.5 break-words text-xl font-bold text-inherit">
+            <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
+              <span className="ml-0.5 text-xl font-bold break-words text-inherit">
                 Settings and privacy
               </span>
             </div>
