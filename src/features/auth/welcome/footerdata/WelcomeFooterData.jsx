@@ -69,6 +69,6 @@ export const WelcomeFooterData = [
   },
   {
     path: 'settings/account/personalization',
-    title: 'Marketing',
+    title: 'Settings',
   },
 ];

@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 
 const Welcome = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+
   return (
     <main className="flex min-h-screen flex-auto flex-col">
       <div className="flex min-h-auto flex-auto">
         <div className="flex min-h-[45vh] flex-auto items-center justify-center p-0">
-          <TwitterSVG className="h-1/2 max-h-[380px] max-w-full p-6" />
+          <TwitterSVG className="mr-1 h-1/2 max-h-[428px] max-w-full p-6" />
         </div>
 
         <div className="item center flex min-w-[45vw] justify-center p-4">
@@ -29,11 +32,14 @@ const Welcome = () => {
             <Link
               key={index}
               to={item.path}
-              className="my-1 min-w-0 cursor-pointer pr-4 text-[13px] leading-4 font-normal tracking-[0.025em] break-words text-[#71767b] hover:underline"
+              className="my-1 min-w-0 cursor-pointer pr-[14.5px] text-[13px] leading-4 font-normal tracking-[0.025em] break-words text-[#71767b] hover:underline"
             >
               {item.title}
             </Link>
           ))}
+          <span className="my-1 min-w-0 cursor-pointer pr-4 text-[13px] leading-4 font-normal tracking-[0.025em] break-words text-[#71767b] hover:underline">
+            &copy; {year} X Corp
+          </span>
         </nav>
       </div>
     </main>
