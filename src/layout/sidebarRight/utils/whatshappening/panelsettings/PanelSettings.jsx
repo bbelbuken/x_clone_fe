@@ -2,7 +2,7 @@ import { PanelData } from './paneldata/PanelData';
 
 const PanelSettings = () => {
   return (
-    <div className="shadow-morebox absolute top-[12px] right-4 z-10 flex w-auto max-w-[calc(384px)] flex-col rounded-xl bg-black">
+    <div className="box-shadow-morebox absolute top-[12px] right-4 z-10 flex w-auto max-w-[calc(384px)] flex-col rounded-xl bg-black">
       {PanelData.map((item, index) => (
         <div className="transition-colors hover:bg-[#ffffff08]" key={index}>
           <div className="flex w-full cursor-pointer items-center justify-start px-[18px] py-3 outline-none">
