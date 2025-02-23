@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { MyRoutes } from 'routes/routes';
+import { MyRoutes } from './routes/routes.jsx';
 
 function App() {
   const location = useLocation();
