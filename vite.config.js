@@ -20,8 +20,16 @@ export default defineConfig({
   server: {
     port: 3000,
     hmr: {
-      timeout: 1000, // 30 seconds (default is 10 seconds)
+      timeout: 3000, // 30 seconds (default is 10 seconds)
       overlay: false, // shows errors on the browser overlay
+    },
+    watch: {
+      usePolling: true, // Enable polling in case your system is not detecting changes correctly
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'es2020', // Set target to modern JS for better performance
+      },
     },
   },
 });
