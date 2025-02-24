@@ -17,6 +17,7 @@ import PostModal from 'features/modals/components/PostModal';
 import PhotoModal from 'features/modals/components/PhotoModal';
 import EditProfileModal from 'features/modals/components/EditProfileModal';
 import Welcome from 'features/auth/welcome/Welcome.jsx';
+import CreateAccountModal from 'features/modals/components/CreateAccountModal';
 
 export const MyRoutes = () => {
   const location = useLocation();
@@ -60,6 +61,10 @@ export const MyRoutes = () => {
     {
       path: '/settings/profile',
       element: <EditProfileModal />,
+    },
+    {
+      path: '/i/flow/signup',
+      element: <CreateAccountModal />,
     },
   ];
 
