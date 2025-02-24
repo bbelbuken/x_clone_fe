@@ -2,6 +2,7 @@ import { TwitterSVG } from 'components/icons/TwitterSVG';
 import { Link } from 'react-router-dom';
 import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 import GoogleSignUp from './googlesignup/GoogleSignUp';
+import AppleSignUp from './applesignup/AppleSignUp';
 
 const Welcome = () => {
   const date = new Date();
@@ -28,12 +29,7 @@ const Welcome = () => {
 
             <div className="flex flex-col">
               <GoogleSignUp />
-
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+              <AppleSignUp />
             </div>
           </div>
         </div>
