@@ -5,7 +5,7 @@ import CreateAccount from './createaccount/CreateAccount';
 import Or from './or/Or';
 import LegalDisclaimer from './legaldisclaimer/LegalDisclaimer';
 import SignIn from './signin/SignIn';
-import Footer from './footer/footer';
+import WelcomeFooter from './footer/WelcomeFooter';
 
 const Welcome = () => {
   return (
@@ -38,7 +38,7 @@ const Welcome = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <WelcomeFooter />
     </main>
   );
 };

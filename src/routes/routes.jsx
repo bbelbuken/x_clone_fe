@@ -17,7 +17,7 @@ import PostModal from 'features/modals/components/PostModal';
 import PhotoModal from 'features/modals/components/PhotoModal';
 import EditProfileModal from 'features/modals/components/EditProfileModal';
 import Welcome from 'features/auth/welcome/Welcome.jsx';
-import CreateAccountModal from 'features/modals/components/CreateAccountModal';
+import CreateAccountModal from 'features/modals/components/createaccountmodal/CreateAccountModal';
 
 export const MyRoutes = () => {
   const location = useLocation();
