@@ -2,7 +2,7 @@ import Button from 'components/buttons/Button';
 
 const GoogleSignUp = () => {
   return (
-    <div className="mb-2 flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#fff]">
+    <div className="mb-[9px] flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#fff]">
       <Button
         size="signup"
         title="sign up with Google"
@@ -34,8 +34,8 @@ const GoogleSignUp = () => {
           ></path>
           <path fill="none" d="M0 0h48v48H0z"></path>
         </svg>
-        <span className="ml-2 text-sm font-medium text-black">
-          Sign Up With Google
+        <span className="ml-2 text-sm font-medium tracking-wider text-black">
+          Sign up with Google
         </span>
       </Button>
     </div>

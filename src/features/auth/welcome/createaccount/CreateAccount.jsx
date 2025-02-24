@@ -10,7 +10,7 @@ const CreateAccount = () => {
           'flex h-11 w-80 cursor-pointer items-center justify-center border-0 bg-[#1d9bf0] hover:bg-[#1a8cd8]'
         }
       >
-        <span className="ml-2 text-sm font-bold text-[#e7e9ea]">
+        <span className="ml-2 text-sm font-bold tracking-wider text-[#e7e9ea]">
           Create account
         </span>
       </Button>
