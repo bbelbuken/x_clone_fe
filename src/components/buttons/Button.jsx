@@ -41,7 +41,7 @@ const Button = ({
             size === 'follow',
         },
         {
-          'w-[300px] h-[40px] text-[14px] border-0': size === 'signup',
+          'w-[300px] h-[40px] text-[14px] border-0 ': size === 'signup',
         },
         {
           'min-h-9 px-3 text-[15px] border border-[#536471] pb-0.5 font-bold transition-colors':
