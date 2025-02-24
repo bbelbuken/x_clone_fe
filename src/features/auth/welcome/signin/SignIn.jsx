@@ -12,7 +12,9 @@ const SignIn = () => {
           title="sign in button"
           className="flex h-11 w-80 cursor-pointer items-center justify-center border-0 hover:bg-[#1d9bf01a]"
         >
-          <span className="ml-2 text-sm font-bold text-[#1d9bf0]">Sign In</span>
+          <span className="ml-2 text-[15px] font-bold tracking-wide text-[#1d9bf0]">
+            Sign In
+          </span>
         </Button>
       </div>
     </div>

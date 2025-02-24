@@ -22,7 +22,7 @@ const Welcome = () => {
         <div className="item center flex min-w-[45vw] items-center justify-center p-4">
           <div className="flex w-full max-w-[760px] min-w-[437px] flex-col p-5">
             <div className="my-12 flex min-w-0 text-[#e7e9ea]">
-              <span className="font-twitter font-twitter-bold mb-3 text-[72px] leading-[68px] tracking-[0.005em] break-words">
+              <span className="font-twitter font-twitter-bold mb-3 text-[72px] leading-[66px] tracking-[0.005em] break-words">
                 Happening now
               </span>
             </div>
