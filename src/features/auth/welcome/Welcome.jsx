@@ -1,17 +1,13 @@
 import { TwitterSVG } from 'components/icons/TwitterSVG';
-import { Link } from 'react-router-dom';
-import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 import GoogleSignUp from './googlesignup/GoogleSignUp';
 import AppleSignUp from './applesignup/AppleSignUp';
 import CreateAccount from './createaccount/CreateAccount';
 import Or from './or/Or';
 import LegalDisclaimer from './legaldisclaimer/LegalDisclaimer';
 import SignIn from './signin/SignIn';
+import Footer from './footer/footer';
 
 const Welcome = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-
   return (
     <main className="flex min-h-screen flex-auto flex-col">
       <div className="flex min-h-auto flex-auto">
@@ -42,23 +38,7 @@ const Welcome = () => {
           </div>
         </div>
       </div>
-
-      <div className="">
-        <nav className="flex flex-wrap justify-center px-4 py-3">
-          {WelcomeFooterData.map((item, index) => (
-            <Link
-              key={index}
-              to={item.path}
-              className="my-1 min-w-0 cursor-pointer pr-[14.5px] text-[13px] leading-4 font-normal tracking-[0.025em] break-words text-[#71767b] hover:underline"
-            >
-              {item.title}
-            </Link>
-          ))}
-          <span className="my-1 min-w-0 cursor-pointer pr-4 text-[13px] leading-4 font-normal tracking-[0.025em] break-words text-[#71767b] hover:underline">
-            &copy; {year} X Corp
-          </span>
-        </nav>
-      </div>
+      <Footer />
     </main>
   );
 };

@@ -1,4 +1,4 @@
-import { WelcomeFooterData } from '../footerdata/WelcomeFooterData';
+import { WelcomeFooterData } from '../footer/footerdata/WelcomeFooterData';
 import { Link } from 'react-router-dom';
 
 const LegalDisclaimer = () => {
