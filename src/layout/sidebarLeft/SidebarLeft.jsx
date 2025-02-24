@@ -32,7 +32,7 @@ const SidebarLeft = () => {
               <MoreButton />
               <div className="my-[22px] w-[90%]">
                 <Button
-                  className={'bg-[#eff3f4] text-black'}
+                  className={'cursor-pointer bg-[#eff3f4] text-black'}
                   size={'large'}
                   onClick={openPostModal}
                 >

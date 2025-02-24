@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 import GoogleSignUp from './googlesignup/GoogleSignUp';
 import AppleSignUp from './applesignup/AppleSignUp';
+import CreateAccount from './createaccount/CreateAccount';
 import Or from './or/Or';
 
 const Welcome = () => {
@@ -32,6 +33,7 @@ const Welcome = () => {
               <GoogleSignUp />
               <AppleSignUp />
               <Or />
+              <CreateAccount />
             </div>
           </div>
         </div>

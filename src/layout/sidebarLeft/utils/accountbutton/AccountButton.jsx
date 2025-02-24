@@ -8,7 +8,9 @@ const AccountButton = () => {
   return (
     <Popover className={'relative z-20'}>
       <PopoverButton
-        className={'relative mb-3 w-full rounded-full hover:bg-[#e7e9ea1a]'}
+        className={
+          'relative mb-3 w-full cursor-pointer rounded-full hover:bg-[#e7e9ea1a]'
+        }
       >
         <div
           className={
