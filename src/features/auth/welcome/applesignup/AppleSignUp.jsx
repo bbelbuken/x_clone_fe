@@ -5,7 +5,7 @@ const AppleSignUp = () => {
     <div className="flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#e7e9ea]">
       <Button
         size="signup"
-        title="Apple ile Oturum Açma Düğmesi"
+        title="sign up with Apple"
         className="flex h-11 w-80 cursor-pointer items-center justify-center border-0 hover:bg-[#d7dbdc]"
       >
         <svg viewBox="0 0 24 24" height={20} width={20} fill="black">

@@ -2,10 +2,10 @@ import Button from 'components/buttons/Button';
 
 const GoogleSignUp = () => {
   return (
-    <div className="mb-2 flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#e7e9ea]">
+    <div className="mb-2 flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#fff]">
       <Button
         size="signup"
-        title="Google ile Oturum Açma Düğmesi"
+        title="sign up with Google"
         className="flex h-11 w-80 cursor-pointer items-center justify-center border-0 hover:bg-[#d7dbdc] hover:bg-none"
       >
         <svg

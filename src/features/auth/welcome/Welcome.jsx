@@ -6,6 +6,7 @@ import AppleSignUp from './applesignup/AppleSignUp';
 import CreateAccount from './createaccount/CreateAccount';
 import Or from './or/Or';
 import LegalDisclaimer from './legaldisclaimer/LegalDisclaimer';
+import SignIn from './signin/SignIn';
 
 const Welcome = () => {
   const date = new Date();
@@ -21,13 +22,13 @@ const Welcome = () => {
         <div className="item center flex min-w-[45vw] items-center justify-center p-4">
           <div className="flex w-full max-w-[760px] min-w-[437px] flex-col p-5">
             <div className="my-12 flex min-w-0 text-[#e7e9ea]">
-              <span className="font-twitter font-twitter-bold text-[72px] leading-[77px] break-words">
+              <span className="font-twitter font-twitter-bold mb-3 text-[72px] leading-[68px] tracking-[0.005em] break-words">
                 Happening now
               </span>
             </div>
 
-            <div className="mb-8 min-w-0 text-3xl font-bold text-[#e7e9ea]">
-              <span>Join today.</span>
+            <div className="mb-8 min-w-0 text-3xl font-bold tracking-wide text-[#e7e9ea]">
+              <span className="font-bold">Join today.</span>
             </div>
 
             <div className="flex flex-col">
@@ -36,6 +37,7 @@ const Welcome = () => {
               <Or />
               <CreateAccount />
               <LegalDisclaimer />
+              <SignIn />
             </div>
           </div>
         </div>
