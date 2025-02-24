@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 import GoogleSignUp from './googlesignup/GoogleSignUp';
 import AppleSignUp from './applesignup/AppleSignUp';
+import Or from './or/Or';
 
 const Welcome = () => {
   const date = new Date();
@@ -15,7 +16,7 @@ const Welcome = () => {
           <TwitterSVG className="mr-1 h-1/2 max-h-[428px] max-w-full p-6" />
         </div>
 
-        <div className="item center flex min-w-[45vw] justify-center p-4">
+        <div className="item center flex min-w-[45vw] items-center justify-center p-4">
           <div className="flex w-full max-w-[760px] min-w-[437px] flex-col p-5">
             <div className="my-12 flex min-w-0 text-[#e7e9ea]">
               <span className="font-twitter font-twitter-bold text-[72px] leading-[77px] break-words">
@@ -30,6 +31,7 @@ const Welcome = () => {
             <div className="flex flex-col">
               <GoogleSignUp />
               <AppleSignUp />
+              <Or />
             </div>
           </div>
         </div>
