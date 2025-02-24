@@ -18,7 +18,7 @@ const OtherAccountLists = () => {
     <div className="relative flex flex-col items-center justify-center py-0.5">
       {otherAccounts.map((account, key) => (
         <button
-          className="w-full px-4 hover:bg-[#c4c4c41a]"
+          className="w-full cursor-pointer px-4 hover:bg-[#c4c4c41a]"
           type="button"
           onClick={() => handleCurrentAccount(account)}
           key={key}
@@ -33,10 +33,10 @@ const OtherAccountLists = () => {
               className="h-10 w-10 rounded-full"
             ></img>
             <div className="flex flex-col items-start justify-center py-2">
-              <p className="break-words text-[15px] font-bold">
+              <p className="text-[15px] font-bold break-words">
                 {account.fullname}
               </p>
-              <div className="text-[15px] font-light leading-[1.5em] tracking-[0.045em] text-[#71767b]">
+              <div className="text-[15px] leading-[1.5em] font-light tracking-[0.045em] text-[#71767b]">
                 <div className="flex items-center justify-center">
                   <p className="text-[12px]">@</p>
                   {account.username}

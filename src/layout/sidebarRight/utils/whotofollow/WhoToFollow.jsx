@@ -33,7 +33,7 @@ const WhoToFollow = () => {
 
   return (
     <div className="block outline-none">
-      <div className="flex min-w-0 max-w-full flex-col justify-between self-center break-words px-4 py-3 text-xl font-bold leading-6 tracking-[0.015em] outline-none">
+      <div className="flex max-w-full min-w-0 flex-col justify-between self-center px-4 py-3 text-xl leading-6 font-bold tracking-[0.015em] break-words outline-none">
         <h2 className="">Who to follow</h2>
       </div>
 
@@ -54,7 +54,7 @@ const WhoToFollow = () => {
                 <div className="flex max-w-full flex-shrink flex-grow items-center justify-between">
                   <div className="ml-1 flex flex-col items-start justify-center">
                     <div className="flex items-center justify-center gap-0.5">
-                      <p className="whitespace-nowrap break-words text-[15px] font-bold leading-5 hover:underline">
+                      <p className="text-[15px] leading-5 font-bold break-words whitespace-nowrap hover:underline">
                         {account.fullname}
                       </p>
                       {account?.verified && (
@@ -62,7 +62,7 @@ const WhoToFollow = () => {
                       )}
                     </div>
 
-                    <div className="text-[15px] font-light leading-[1.5em] tracking-[0.025em] text-[#71767b]">
+                    <div className="text-[15px] leading-[1.5em] font-light tracking-[0.025em] text-[#71767b]">
                       <div className="flex items-center justify-center">
                         <p className="text-[12px]">@</p>
                         {account.username}
@@ -74,7 +74,7 @@ const WhoToFollow = () => {
             </Link>
             <Button
               onClick={() => handleFollow(account)}
-              className={`absolute right-4 top-4 border-[#536471] ${
+              className={`absolute top-4 right-4 border-[#536471] ${
                 currentAccount.following.includes(account.id)
                   ? 'min-w-[104px] border border-[#536471] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]'
                   : 'bg-[#eff3f4] text-black'
@@ -96,7 +96,7 @@ const WhoToFollow = () => {
       <div>
         <Link to={'explore'}>
           <div className="block h-[52px] w-[348px] p-4 transition-colors hover:bg-[#ffffff09]">
-            <div className="min-w-0 break-words text-[15px] font-light leading-5 tracking-wide text-[#f91880]">
+            <div className="min-w-0 text-[15px] leading-5 font-light tracking-wide break-words text-[#f91880]">
               <span>Show more</span>
             </div>
           </div>

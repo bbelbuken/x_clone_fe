@@ -6,7 +6,7 @@ const GoogleSignUp = () => {
       <Button
         size="signup"
         title="Google ile Oturum Açma Düğmesi"
-        className="flex h-11 w-80 cursor-pointer items-center justify-center border-0 hover:bg-none"
+        className="flex h-11 w-80 cursor-pointer items-center justify-center border-0 hover:bg-[#d7dbdc] hover:bg-none"
       >
         <svg
           version="1.1"
