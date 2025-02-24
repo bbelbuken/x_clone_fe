@@ -5,6 +5,7 @@ import GoogleSignUp from './googlesignup/GoogleSignUp';
 import AppleSignUp from './applesignup/AppleSignUp';
 import CreateAccount from './createaccount/CreateAccount';
 import Or from './or/Or';
+import LegalDisclaimer from './legaldisclaimer/LegalDisclaimer';
 
 const Welcome = () => {
   const date = new Date();
@@ -34,6 +35,7 @@ const Welcome = () => {
               <AppleSignUp />
               <Or />
               <CreateAccount />
+              <LegalDisclaimer />
             </div>
           </div>
         </div>
