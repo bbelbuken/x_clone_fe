@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { WelcomeFooterData } from './footerdata/WelcomeFooterData';
 
-const Footer = () => {
+const WelcomeFooter = () => {
   const date = new Date();
   const year = date.getFullYear();
   return (
@@ -24,4 +24,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default WelcomeFooter;
