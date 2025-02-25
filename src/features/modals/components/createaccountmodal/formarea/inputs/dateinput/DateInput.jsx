@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { DayData } from './data/daydata/DayData';
 import Months from './months/Months';
 import Years from './years/Years';

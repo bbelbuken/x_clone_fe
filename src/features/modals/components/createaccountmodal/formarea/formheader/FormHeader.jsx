@@ -1,6 +1,6 @@
 import { TwitterSVG } from 'components/icons/TwitterSVG';
 
-const SignUpTopArea = ({ handleClose }) => {
+const FormHeader = ({ handleClose }) => {
   return (
     <div className="sticky top-0 mx-auto flex h-auto w-full flex-col items-start justify-center px-4">
       <div className="flex min-h-8 min-w-[56px] items-center justify-center">
@@ -25,4 +25,4 @@ const SignUpTopArea = ({ handleClose }) => {
   );
 };
 
-export default SignUpTopArea;
+export default FormHeader;
