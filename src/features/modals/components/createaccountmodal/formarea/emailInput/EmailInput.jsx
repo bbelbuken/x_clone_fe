@@ -1,9 +1,8 @@
 import { useRef, useState } from 'react';
 
-const EmailInput = () => {
+const EmailInput = ({ email, setEmail }) => {
   const inputRefEmail = useRef();
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
 
   return (
     <label
@@ -13,7 +12,7 @@ const EmailInput = () => {
       <div className="flex h-full justify-between">
         <div
           className={`absolute text-ellipsis transition-all ease-in-out select-none ${
-            isFocused || value
+            isFocused || email
               ? 'top-1 transform text-[13px] leading-4' // Moved position
               : 'top-[30%] transform text-[17px] leading-6' // Original position
           } ${
@@ -30,10 +29,11 @@ const EmailInput = () => {
         ref={inputRefEmail}
         type="email"
         id="email"
+        value={email}
         className="box-border w-full min-w-0 appearance-none bg-transparent pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         autoComplete="off"
       />
     </label>

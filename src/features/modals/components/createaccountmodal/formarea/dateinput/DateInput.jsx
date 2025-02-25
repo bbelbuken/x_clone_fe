@@ -4,16 +4,11 @@ import Months from './months/Months';
 import Years from './years/Years';
 import Days from './days/Days';
 
-const DateInput = () => {
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const [selectedDay, setSelectedDay] = useState('');
-
-  // Update days in the selected month
+const DateInput = ({ month, setMonth, day, setDay, year, setYear }) => {
   useEffect(() => {
-    const days = DayData(selectedYear, selectedMonth);
-    setSelectedDay(days);
-  }, [selectedYear, selectedMonth]);
+    const days = DayData(year, month);
+    setDay(days);
+  }, [year, month, setDay]);
 
   return (
     <div className="mt-5">
@@ -29,16 +24,9 @@ const DateInput = () => {
       </div>
 
       <div className="flex">
-        <Months
-          selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth}
-        />
-        <Days
-          selectedDay={selectedDay}
-          setSelectedDay={setSelectedDay}
-          selectedMonth={selectedMonth}
-        />
-        <Years selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
+        <Months month={month} setMonth={setMonth} />
+        <Days day={day} setDay={setDay} />
+        <Years year={year} setYear={setYear} />
       </div>
     </div>
   );

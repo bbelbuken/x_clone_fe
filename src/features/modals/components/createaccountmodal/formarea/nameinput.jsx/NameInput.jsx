@@ -1,28 +1,20 @@
 import { useRef, useState, useEffect } from 'react';
 
-const NameInput = () => {
+const NameInput = ({ name, setName }) => {
   const inputRef = useRef();
   const [isFocused, setIsFocused] = useState(true);
-  const [value, setValue] = useState('');
-  let [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
-  const handleCount = (e) => {
-    const inputLength = e.target.value.length;
-    if (inputLength <= 50) {
-      setCount(inputLength);
-    }
+  const handleInput = (e) => {
+    const inputValue = e.target.value.slice(0, 50); // Limit to 50 characters
+    setName(inputValue);
+    setCount(inputValue.length);
   };
 
-  const handleInput = (e) => {
-    if (e.target.value.length > 50) {
-      e.target.value = e.target.value.slice(0, 50);
-    }
-    setValue(e.target.value);
-  };
   return (
     <label
       htmlFor="name"
@@ -31,7 +23,7 @@ const NameInput = () => {
       <div className="flex h-full justify-between">
         <div
           className={`absolute text-ellipsis transition-all ease-in-out select-none ${
-            isFocused || value
+            isFocused || name
               ? 'top-1 transform text-[13px] leading-4' // Moved position
               : 'top-[30%] transform text-[17px] leading-6' // Original position
           } ${
@@ -55,10 +47,10 @@ const NameInput = () => {
         type="text"
         id="name"
         className="box-border w-full min-w-0 appearance-none bg-transparent pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
+        value={name} // Controlled input
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onChange={handleCount}
-        onInput={handleInput}
+        onChange={handleInput}
         autoComplete="off"
       />
     </label>
