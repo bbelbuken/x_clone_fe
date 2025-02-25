@@ -33,7 +33,7 @@ const CreateAccountModal = () => {
           handleNextSection={handleNextSection}
         />
       )}
-      \{step == 2 && <PasswordArea />}
+      \{step == 2 && <PasswordArea handleClose={handleClose} />}
     </div>
   );
 };

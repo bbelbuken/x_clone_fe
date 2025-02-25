@@ -1,11 +1,16 @@
 {
-    "cSpell.words": [
-        "accountimg",
-        "reactionnav",
-        "repost",
-        "Reposted",
-        "Reposts",
-        "Unfollow",
-        "usernav"
-    ]
+  "cSpell.words": [
+    "accountimg",
+    "reactionnav",
+    "repost",
+    "Reposted",
+    "Reposts",
+    "Unfollow",
+    "usernav"
+  ],
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "indentRainbow.lightIndicatorStyleLineWidth": 1,
+  "editor.tabSize": 4,
+  "prettier.useTabs": false
 }
