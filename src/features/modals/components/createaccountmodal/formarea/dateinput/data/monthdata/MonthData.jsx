@@ -12,5 +12,3 @@ export const MonthData = [
   'November',
   'December',
 ];
-
-export const DateData = [];
