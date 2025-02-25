@@ -9,7 +9,7 @@ const FormArea = () => {
       <EmailInput />
       <button
         type="button"
-        className="cursor-pointer text-right text-[15px] leading-5 text-[#1d9bf0] hover:underline"
+        className="mt-1 cursor-pointer text-right text-[15px] leading-5 text-[#1d9bf0] hover:underline"
       >
         <span>Use phone instead</span>
       </button>

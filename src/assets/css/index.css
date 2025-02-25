@@ -77,4 +77,7 @@ body {
   .drop-shadow-morebox {
     filter: drop-shadow(var(--drop-shadow-morebox));
   }
+  .grow-65 {
+    flex-grow: 6.5;
+  }
 }
