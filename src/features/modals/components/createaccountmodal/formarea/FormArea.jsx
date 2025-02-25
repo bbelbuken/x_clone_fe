@@ -1,52 +1,22 @@
-import NameInput from './nameinput.jsx/NameInput';
-import EmailInput from './emailinput/EmailInput';
-import DateInput from './dateinput/DateInput';
-import Button from 'components/buttons/Button';
-import { useState } from 'react';
+import React from 'react';
+import FormHeader from './formheader/FormHeader';
+import Inputs from './inputs/Inputs';
 
-const FormArea = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-  const [year, setYear] = useState('');
-  const [clicked, setClicked] = useState(false);
-  const FormValues = name && email && day && month && year;
-
-  const handleClickPhone = () => {
-    setClicked(true);
-  };
-
+const FormArea = ({ handleClose, handleNextSection }) => {
   return (
-    <form className="flex h-full flex-1 flex-col px-20">
-      <NameInput name={name} setName={setName} />
-      <EmailInput email={email} setEmail={setEmail} />
-      <button
-        type="button"
-        className={`mt-1 cursor-pointer text-right text-[15px] leading-5 ${clicked ? 'pointer-events-none' : 'hover:underline'}`}
-        onClick={handleClickPhone}
-      >
-        <span
-          className={`${clicked ? 'text-[#71767b] italic no-underline' : 'text-[#1d9bf0] not-italic'}`}
-        >
-          {clicked ? 'Coming Soon' : 'Use phone instead'}
-        </span>
-      </button>
-      <DateInput
-        month={month}
-        setMonth={setMonth}
-        day={day}
-        setDay={setDay}
-        year={year}
-        setYear={setYear}
-      />
-      <Button
-        type="button"
-        className={`${FormValues ? 'bg-[#fff]' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-21 min-h-[52px] w-full px-20 outline-none`}
-      >
-        <span className="text-lg text-black">Next</span>
-      </Button>
-    </form>
+    <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
+      <FormHeader handleClose={handleClose} />
+
+      <div className="mt-[5px] flex h-full flex-1 flex-col px-20">
+        <div className="my-4">
+          <h1 className="min-w-0 text-[31px] leading-9 font-bold text-[#e7e9ea]">
+            Create your account
+          </h1>
+        </div>
+      </div>
+
+      <Inputs handleNextSection={handleNextSection} />
+    </div>
   );
 };
 
