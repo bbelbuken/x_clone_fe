@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MonthData } from '../data/monthdata/MonthData';
 import { DropDownSVG } from 'components/icons/DropDownSVG';
 
-const Months = ({ selectedMonth, setSelectedMonth }) => {
+const Months = ({ month, setMonth }) => {
   const [isFocusedMonth, setIsFocusedMonth] = useState(false);
 
   return (
@@ -21,11 +21,11 @@ const Months = ({ selectedMonth, setSelectedMonth }) => {
       </div>
       <select
         id="month"
-        value={selectedMonth}
+        value={month}
         className="box-border h-full w-full min-w-0 cursor-pointer appearance-none bg-black pt-3 text-[17px] leading-6 text-[#e7e9ea] outline-none"
         onFocus={() => setIsFocusedMonth(true)}
         onBlur={() => setIsFocusedMonth(false)}
-        onChange={(e) => setSelectedMonth(Number(e.target.value))}
+        onChange={(e) => setMonth(Number(e.target.value))}
         autoComplete="off"
       >
         <option value=""></option>

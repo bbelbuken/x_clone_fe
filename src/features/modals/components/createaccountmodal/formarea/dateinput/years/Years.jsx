@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { YearData } from '../data/yeardata/YearData';
 import { DropDownSVG } from 'components/icons/DropDownSVG';
 
-const Years = ({ selectedYear, setSelectedYear }) => {
+const Years = ({ year, setYear }) => {
   const [isFocusedYear, setIsFocusedYear] = useState(false);
   const sortedYeardata = YearData.sort((a, b) => b - a);
 
@@ -20,11 +20,11 @@ const Years = ({ selectedYear, setSelectedYear }) => {
       </div>
       <select
         id="year"
-        value={selectedYear}
+        value={year}
         className="box-border w-full min-w-0 cursor-pointer appearance-none bg-black pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
         onFocus={() => setIsFocusedYear(true)}
         onBlur={() => setIsFocusedYear(false)}
-        onChange={(e) => setSelectedYear(Number(e.target.value))}
+        onChange={(e) => setYear(Number(e.target.value))}
         autoComplete="off"
       >
         <option value=""></option>

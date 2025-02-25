@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { DropDownSVG } from 'components/icons/DropDownSVG';
 
-const Days = ({ selectedDay, setSelectedDay }) => {
+const Days = ({ day, setDay }) => {
   const [isFocusedDay, setIsFocusedDay] = useState(false);
 
   return (
@@ -19,13 +19,13 @@ const Days = ({ selectedDay, setSelectedDay }) => {
       </div>
       <select
         id="days"
-        onChange={(e) => setSelectedDay(Number(e.target.value))}
+        onChange={(e) => setDay(Number(e.target.value))}
         className="box-border w-full min-w-0 cursor-pointer appearance-none bg-black pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
         onFocus={() => setIsFocusedDay(true)}
         onBlur={() => setIsFocusedDay(false)}
       >
         <option value=""></option>
-        {Array.from({ length: selectedDay }, (_, index) => (
+        {Array.from({ length: day }, (_, index) => (
           <option key={index} value={index + 1}>
             {index + 1}
           </option>
