@@ -5,14 +5,14 @@ import Years from './years/Years';
 import Days from './days/Days';
 
 const DateInput = () => {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [selectedMonth, setSelectedMonth] = useState(1); // Default to January
-  const [daysInMonth, setDaysInMonth] = useState(31); // Default for January
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
 
   // Update days in the selected month
   useEffect(() => {
     const days = DayData(selectedYear, selectedMonth);
-    setDaysInMonth(days);
+    setSelectedDay(days);
   }, [selectedYear, selectedMonth]);
 
   return (
@@ -21,19 +21,23 @@ const DateInput = () => {
         <span>Date of birth</span>
       </div>
 
-      <div className="mb-4 min-w-0 text-[14px] leading-4 break-words text-[#71767b]">
+      <div className="mb-1 min-w-0 text-[14px] leading-4 tracking-[0.012em] break-words text-[#71767b]">
         <span>
           This will not be shown publicly. Confirm your own age, even if this
           account is for a business, a pet, or something else.
         </span>
       </div>
 
-      <div>
+      <div className="flex">
         <Months
           selectedMonth={selectedMonth}
           setSelectedMonth={setSelectedMonth}
         />
-        <Days daysInMonth={daysInMonth} />
+        <Days
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+          selectedMonth={selectedMonth}
+        />
         <Years selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
       </div>
     </div>
