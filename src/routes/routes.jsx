@@ -1,72 +1,90 @@
 import { useLocation } from 'react-router-dom';
-import Layout from '../layout/Layout';
-import Home from '../pages/home/Home';
-import Explore from '../pages/explore/Explore';
-import Profile from '../pages/profile/Profile';
-import HeaderPhotoModal from 'features/modals/components/HeaderPhotoModal';
-import Notifications from '../pages/notifications/Notifications';
-import Messages from 'pages/messages/Messages';
-import Grok from 'pages/grok/Grok';
-import Bookmarks from 'pages/bookmarks/Bookmarks';
-import Lists from 'pages/lists/Lists';
-import Jobs from 'pages/jobs/Jobs';
-import Communities from 'pages/communities/Communities';
-import Premium from 'pages/premium/Premium';
-import PostStatus from 'components/posts/postStatus/PostStatus';
-import PostModal from 'features/modals/components/PostModal';
-import PhotoModal from 'features/modals/components/PhotoModal';
-import EditProfileModal from 'features/modals/components/EditProfileModal';
-import Welcome from 'features/auth/welcome/Welcome.jsx';
-import CreateAccountModal from 'features/modals/components/createaccountmodal/CreateAccountModal';
+import React from 'react';
 
+const Layout = React.lazy(() => import('../layout/Layout'));
+const Home = React.lazy(() => import('../pages/home/Home'));
+const Explore = React.lazy(() => import('../pages/explore/Explore'));
+const Profile = React.lazy(() => import('../pages/profile/Profile'));
+const HeaderPhotoModal = React.lazy(
+    () => import('features/modals/components/HeaderPhotoModal'),
+);
+const Notifications = React.lazy(
+    () => import('../pages/notifications/Notifications'),
+);
+const Messages = React.lazy(() => import('pages/messages/Messages'));
+const Grok = React.lazy(() => import('pages/grok/Grok'));
+const Bookmarks = React.lazy(() => import('pages/bookmarks/Bookmarks'));
+const Lists = React.lazy(() => import('pages/lists/Lists'));
+const Jobs = React.lazy(() => import('pages/jobs/Jobs'));
+const Communities = React.lazy(() => import('pages/communities/Communities'));
+const Premium = React.lazy(() => import('pages/premium/Premium'));
+const PostStatus = React.lazy(
+    () => import('components/posts/postStatus/PostStatus'),
+);
+const PostModal = React.lazy(
+    () => import('features/modals/components/PostModal'),
+);
+const PhotoModal = React.lazy(
+    () => import('features/modals/components/PhotoModal'),
+);
+const EditProfileModal = React.lazy(
+    () => import('features/modals/components/EditProfileModal'),
+);
+const Welcome = React.lazy(() => import('features/auth/welcome/Welcome.jsx'));
+const CreateAccountModal = React.lazy(
+    () =>
+        import(
+            'features/modals/components/createaccountmodal/CreateAccountModal'
+        ),
+);
 export const MyRoutes = () => {
-  const location = useLocation();
-  const state = location.state;
+    const location = useLocation();
+    const state = location.state;
 
-  const routes = [
-    { path: '/', element: <Welcome /> },
-    {
-      path: '/',
-      element: <Layout />,
-      children: [
-        { path: 'home', element: <Home /> },
-        { path: 'explore', element: <Explore /> },
-        { path: 'notifications', element: <Notifications /> },
-        { path: 'messages', element: <Messages /> },
-        { path: 'i/grok', element: <Grok /> },
-        { path: 'lists', element: <Lists /> },
-        { path: 'bookmarks', element: <Bookmarks /> },
-        { path: 'jobs', element: <Jobs /> },
-        { path: 'communities', element: <Communities /> },
-        { path: ':username', element: <Profile /> },
-        { path: ':username/status/:postId', element: <PostStatus /> },
-      ],
-    },
-    { path: 'premium', element: <Premium /> },
-  ];
+    const routes = [
+        { path: '/', element: <Welcome /> },
+        {
+            path: '/',
+            element: <Layout />,
+            children: [
+                { path: 'home', element: <Home /> },
+                { path: 'explore', element: <Explore /> },
+                { path: 'notifications', element: <Notifications /> },
+                { path: 'messages', element: <Messages /> },
+                { path: 'i/grok', element: <Grok /> },
+                { path: 'lists', element: <Lists /> },
+                { path: 'bookmarks', element: <Bookmarks /> },
+                { path: 'jobs', element: <Jobs /> },
+                { path: 'communities', element: <Communities /> },
+                { path: ':username', element: <Profile /> },
+                { path: ':username/status/:postId', element: <PostStatus /> },
+            ],
+        },
+        { path: 'premium', element: <Premium /> },
+    ];
 
-  const modalRoutes = [
-    {
-      path: '/:username/header_photo',
-      element: <HeaderPhotoModal />,
-    },
-    {
-      path: 'compose/post',
-      element: <PostModal />,
-    },
-    {
-      path: '/:username/photo',
-      element: <PhotoModal />,
-    },
-    {
-      path: '/settings/profile',
-      element: <EditProfileModal />,
-    },
-    {
-      path: '/i/flow/signup',
-      element: <CreateAccountModal />,
-    },
-  ];
+    const modalRoutes = [
+        {
+            path: '/:username/header_photo',
+            element: <HeaderPhotoModal />,
+        },
+        {
+            path: 'compose/post',
+            element: <PostModal />,
+        },
+        {
+            path: '/:username/photo',
+            element: <PhotoModal />,
+        },
+        {
+            path: '/settings/profile',
+            element: <EditProfileModal />,
+        },
+        {
+            path: '/i/flow/signup',
+            element: <CreateAccountModal />,
+        },
+    ];
 
-  return { routes, modalRoutes, state };
+    return { routes, modalRoutes, state };
 };
