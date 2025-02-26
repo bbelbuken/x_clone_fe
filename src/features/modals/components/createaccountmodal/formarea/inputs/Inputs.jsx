@@ -4,8 +4,7 @@ import DateInput from './dateinput/DateInput';
 import Button from 'components/buttons/Button';
 import { useState } from 'react';
 
-const Inputs = ({ handleNextSection }) => {
-    const [name, setName] = useState('');
+const Inputs = ({ handleNextSection, name, setName }) => {
     const [email, setEmail] = useState('');
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
