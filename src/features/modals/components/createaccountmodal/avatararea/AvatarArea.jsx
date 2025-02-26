@@ -22,13 +22,17 @@ const AvatarArea = ({ handleNextSection }) => {
 
             <AvatarInput media={media} setMedia={setMedia} />
 
-            <div className="mt-82 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
+            <div className="mt-81 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
                 <Button
                     type="button"
                     className={`${media ? 'bg-[#fff]' : 'border border-[#71767b] bg-[#000] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 outline-none`}
                     onClick={media ? handleNextSection : null}
                 >
-                    <span className="text-lg text-[#fff]">Skip for now</span>
+                    <span
+                        className={`text-lg ${media ? 'text-black' : 'text-[#fff]'}`}
+                    >
+                        {media ? 'Next' : 'Skip for now'}
+                    </span>
                 </Button>
             </div>
         </div>
