@@ -11,7 +11,7 @@ const PasswordInput = ({ password, setPassword }) => {
     const handleInput = (e) => {
         const inputValue = e.target.value;
         setPassword(inputValue);
-        if (inputValue.length <= 8) {
+        if (inputValue.length < 8) {
             setInvalidPass(true);
             setActive(true);
         } else {
@@ -61,7 +61,7 @@ const PasswordInput = ({ password, setPassword }) => {
                     type={iconClicked ? 'text' : 'password'}
                     id="password"
                     value={password}
-                    className="box-border w-full min-w-0 appearance-none bg-transparent pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
+                    className="box-border w-full min-w-0 appearance-none bg-transparent pt-3 text-left text-[20px] leading-6 font-normal text-[#e7e9ea] outline-none"
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                     onChange={handleInput}
