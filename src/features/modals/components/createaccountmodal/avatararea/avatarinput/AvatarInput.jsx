@@ -1,11 +1,10 @@
-import { AddPhotoSVG } from 'components/icons/AddPhotoSVG';
-import { DeletePhotoSVG } from 'components/icons/DeletePhotoSVG';
 import { useRef } from 'react';
+import AddAndDeleteIcons from './addanddeleteicons/AddAndDeleteIcons';
 
 const AvatarInput = ({ media, setMedia }) => {
     const fileInputRef = useRef();
 
-    const handleClick = () => {
+    const handleFileUpload = () => {
         fileInputRef.current?.click();
     };
 
@@ -30,31 +29,20 @@ const AvatarInput = ({ media, setMedia }) => {
                 />
             </div>
 
+            <AddAndDeleteIcons
+                media={media}
+                handleFileUpload={handleFileUpload}
+                handleFileDelete={handleFileDelete}
+            />
+
             <label htmlFor="avatar-upload" className="hidden">
                 Upload Avatar
             </label>
-
-            <div
-                className={`${media ? 'left-61.5' : ''} absolute top-17.5 flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full bg-[#0f14198c] transition-all outline-none hover:bg-[#28323d8c]`}
-                onClick={handleClick}
-            >
-                <AddPhotoSVG className="top-1.7 absolute cursor-pointer text-white" />
-            </div>
-
-            {media && (
-                <div
-                    className="absolute top-17.5 right-61.5 flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full bg-[#0f14198c] transition-all outline-none hover:bg-[#28323d8c]"
-                    onClick={handleFileDelete}
-                >
-                    <DeletePhotoSVG className="top-1.7 absolute cursor-pointer text-white" />
-                </div>
-            )}
-
             <input
                 ref={fileInputRef}
                 id="avatar-upload"
                 type="file"
-                accept="image/jpeg, image/png"
+                accept="image/jpeg, image/png image/webp"
                 className="hidden"
                 onChange={(e) => setMedia(e.target.files[0])}
             />
