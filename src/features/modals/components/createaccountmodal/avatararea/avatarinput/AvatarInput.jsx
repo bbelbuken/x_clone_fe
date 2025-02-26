@@ -1,12 +1,13 @@
 import { useRef, useState, useEffect } from 'react';
 import AddAndDeleteIcons from './addanddeleteicons/AddAndDeleteIcons';
 import Croppie from 'croppie';
+import Button from 'components/buttons/Button';
 
-const AvatarInput = ({ media, setMedia }) => {
+const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
     const fileInputRef = useRef();
     const croppieRef = useRef(null);
     const [croppedImage, setCroppedImage] = useState(null);
-    const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
+
     const [croppieInstance, setCroppieInstance] = useState(null); // Store Croppie instance
 
     const handleFileUpload = () => {
@@ -28,8 +29,8 @@ const AvatarInput = ({ media, setMedia }) => {
         if (media && isCropping) {
             // Initialize Croppie only when media is selected and cropping mode is active
             const instance = new Croppie(croppieRef.current, {
-                viewport: { width: 160, height: 160, type: 'circle' },
-                boundary: { width: 200, height: 200 },
+                viewport: { width: 188, height: 188, type: 'circle' },
+                boundary: { width: 400, height: 400 },
                 showZoomer: true,
             });
 
@@ -79,27 +80,37 @@ const AvatarInput = ({ media, setMedia }) => {
 
     return (
         <div className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20">
-            <div className="absolute mt-46 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
-                <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>
-                <img
-                    src={croppedImage || preview} // Use croppedImage or preview as the source
-                    alt="Cropped Avatar"
-                    className="box-content block h-[188px] w-[188px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
-                />
-            </div>
-
-            <AddAndDeleteIcons
-                media={media}
-                handleFileUpload={handleFileUpload}
-                handleFileDelete={handleFileDelete}
-            />
+            {!isCropping && (
+                <div className="absolute mt-63 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
+                    <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>
+                    <img
+                        src={croppedImage || preview} // Use croppedImage or preview as the source
+                        alt="Cropped Avatar"
+                        className="box-content block h-[188px] w-[188px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
+                    />
+                </div>
+            )}
 
             {/* Show Croppie if the user is in cropping mode */}
             {isCropping && (
-                <div className="croppie-container">
+                <div className="absolute -top-17.5 right-25">
                     <div ref={croppieRef}></div>
-                    <button onClick={handleCroppingDone}>Crop & Save</button>
+                    <Button
+                        size="apply"
+                        onClick={handleCroppingDone}
+                        className="fixed top-85 right-92 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                    >
+                        Apply
+                    </Button>
                 </div>
+            )}
+
+            {!isCropping && (
+                <AddAndDeleteIcons
+                    media={media}
+                    handleFileUpload={handleFileUpload}
+                    handleFileDelete={handleFileDelete}
+                />
             )}
 
             <label htmlFor="avatar-upload" className="hidden">

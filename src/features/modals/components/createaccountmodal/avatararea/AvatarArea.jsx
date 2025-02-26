@@ -5,6 +5,7 @@ import AvatarInput from './avatarinput/AvatarInput';
 
 const AvatarArea = ({ handleNextSection }) => {
     const [media, setMedia] = useState(null);
+    const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
     return (
         <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
             <FormHeader />
@@ -20,12 +21,17 @@ const AvatarArea = ({ handleNextSection }) => {
                 </div>
             </div>
 
-            <AvatarInput media={media} setMedia={setMedia} />
+            <AvatarInput
+                media={media}
+                setMedia={setMedia}
+                isCropping={isCropping}
+                setIsCropping={setIsCropping}
+            />
 
             <div className="mt-81 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
                 <Button
                     type="button"
-                    className={`${media ? 'bg-[#fff] text-black' : 'border border-[#71767b] bg-[#000] text-[#fff] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
+                    className={`${isCropping ? 'opacity-0' : media ? 'bg-[#fff] text-black' : 'border border-[#71767b] bg-[#000] text-[#fff] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
                     onClick={media ? handleNextSection : null}
                 >
                     <span
