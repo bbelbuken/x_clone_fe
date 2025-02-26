@@ -69,9 +69,9 @@ const PasswordInput = ({ password, setPassword }) => {
                     autoComplete="off"
                 />
             </label>
-            <div className="min-w-0 flex-1 px-2 pt-1 text-[13px] leading-4 tracking-wide">
+            <div className="min-w-0 flex-1 px-2 pt-1 text-[13px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
                 <span
-                    className={`${isFocused && invalidPass && active ? 'inline-block text-[#f4212e]' : 'hidden'}`}
+                    className={`${isFocused && invalidPass && active ? 'opacity-100' : 'opacity-0'} block text-[#f4212e] transition-opacity duration-300 ease-in-out`}
                 >
                     Your password needs to be at least 8 characters. Please
                     enter a longer one.

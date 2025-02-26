@@ -25,11 +25,11 @@ const PasswordArea = ({ handleNextSection }) => {
                 <PasswordInput password={password} setPassword={setPassword} />
             </form>
 
-            <div className="mt-54 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
+            <div className="mt-46 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
                 <LegalDisclaimerPassword />
                 <Button
                     type="button"
-                    className={`${password.length >= 8 ? 'bg-[#fff]' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-6 min-h-[52px] w-full px-20 outline-none`}
+                    className={`${password.length >= 8 ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-6 min-h-[52px] w-full px-20 transition-opacity duration-300 ease-in-out outline-none`}
                     onClick={password ? handleNextSection : null}
                 >
                     <span className="text-lg text-black">Sign up</span>

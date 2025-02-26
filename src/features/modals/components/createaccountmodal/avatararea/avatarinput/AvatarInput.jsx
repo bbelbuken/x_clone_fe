@@ -1,8 +1,13 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import AddAndDeleteIcons from './addanddeleteicons/AddAndDeleteIcons';
+import Croppie from 'croppie';
 
 const AvatarInput = ({ media, setMedia }) => {
     const fileInputRef = useRef();
+    const croppieRef = useRef(null);
+    const [croppedImage, setCroppedImage] = useState(null);
+    const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
+    const [croppieInstance, setCroppieInstance] = useState(null); // Store Croppie instance
 
     const handleFileUpload = () => {
         fileInputRef.current?.click();
@@ -11,21 +16,75 @@ const AvatarInput = ({ media, setMedia }) => {
     const handleFileDelete = () => {
         if (media) {
             setMedia(null);
+            setCroppedImage(null); // Clear cropped image as well
         }
     };
 
     const preview = media
-        ? URL.createObjectURL(media)
+        ? URL.createObjectURL(media) // Create an object URL only when there's a file to display
         : '/public/default_profile_200x200.png';
+
+    useEffect(() => {
+        if (media && isCropping) {
+            // Initialize Croppie only when media is selected and cropping mode is active
+            const instance = new Croppie(croppieRef.current, {
+                viewport: { width: 160, height: 160, type: 'circle' },
+                boundary: { width: 200, height: 200 },
+                showZoomer: true,
+            });
+
+            instance.bind({
+                url: URL.createObjectURL(media), // Bind the media URL for Croppie
+            });
+
+            setCroppieInstance(instance); // Store the Croppie instance in state
+
+            // Cleanup Croppie instance when media changes or when component unmounts
+            return () => {
+                if (instance) {
+                    instance.destroy();
+                    setCroppieInstance(null); // Clean up the state to avoid stale references
+                }
+            };
+        }
+    }, [media, isCropping]);
+
+    const handleCroppingDone = () => {
+        if (croppieInstance) {
+            croppieInstance
+                .result({ type: 'base64', size: 'viewport' })
+                .then((croppedImg) => {
+                    // Convert base64 to Blob
+                    const byteString = atob(croppedImg.split(',')[1]);
+                    const mimeString = croppedImg
+                        .split(',')[0]
+                        .split(':')[1]
+                        .split(';')[0];
+                    const ab = new ArrayBuffer(byteString.length);
+                    const ia = new Uint8Array(ab);
+                    for (let i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+                    const blob = new Blob([ab], { type: mimeString });
+
+                    setCroppedImage(croppedImg); // Set the cropped image as state
+                    setIsCropping(false); // Exit cropping mode
+                    setMedia(blob); // Store cropped image as a Blob in the media state
+                })
+                .catch((err) => {
+                    console.error('Error cropping image: ', err);
+                });
+        }
+    };
 
     return (
         <div className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20">
             <div className="absolute mt-46 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
                 <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>
                 <img
-                    src={preview}
-                    alt="default_profile"
-                    className="box-content block h-[188px] w-[188px] rounded-full opacity-70 outline-2 -outline-offset-2 outline-black"
+                    src={croppedImage || preview} // Use croppedImage or preview as the source
+                    alt="Cropped Avatar"
+                    className="box-content block h-[188px] w-[188px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
                 />
             </div>
 
@@ -35,6 +94,14 @@ const AvatarInput = ({ media, setMedia }) => {
                 handleFileDelete={handleFileDelete}
             />
 
+            {/* Show Croppie if the user is in cropping mode */}
+            {isCropping && (
+                <div className="croppie-container">
+                    <div ref={croppieRef}></div>
+                    <button onClick={handleCroppingDone}>Crop & Save</button>
+                </div>
+            )}
+
             <label htmlFor="avatar-upload" className="hidden">
                 Upload Avatar
             </label>
@@ -42,9 +109,12 @@ const AvatarInput = ({ media, setMedia }) => {
                 ref={fileInputRef}
                 id="avatar-upload"
                 type="file"
-                accept="image/jpeg, image/png image/webp"
+                accept="image/jpeg, image/png, image/webp"
                 className="hidden"
-                onChange={(e) => setMedia(e.target.files[0])}
+                onChange={(e) => {
+                    setMedia(e.target.files[0]);
+                    setIsCropping(true); // Activate cropping mode when a file is selected
+                }}
             />
         </div>
     );
