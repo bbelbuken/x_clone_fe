@@ -18,7 +18,7 @@ const Inputs = ({ handleNextSection }) => {
     };
 
     return (
-        <form className="flex h-full flex-1 flex-col px-20 transition-colors">
+        <form className="flex h-full flex-1 flex-col px-20">
             <NameInput name={name} setName={setName} />
             <EmailInput email={email} setEmail={setEmail} />
             <button
@@ -42,7 +42,7 @@ const Inputs = ({ handleNextSection }) => {
             />
             <Button
                 type="button"
-                className={`${FormValues ? 'bg-[#fff]' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-21 min-h-[52px] w-full px-20 outline-none`}
+                className={`${FormValues ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-21 min-h-[52px] w-full px-20 transition-opacity duration-300 ease-in-out outline-none`}
                 onClick={FormValues ? handleNextSection : null}
             >
                 <span className="text-lg text-black">Next</span>

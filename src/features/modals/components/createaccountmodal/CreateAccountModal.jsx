@@ -5,7 +5,7 @@ import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
 
 const CreateAccountModal = () => {
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(3);
     const navigate = useNavigate();
 
     const handleNextSection = () => {
