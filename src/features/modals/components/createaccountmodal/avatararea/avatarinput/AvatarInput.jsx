@@ -7,7 +7,6 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
     const fileInputRef = useRef();
     const croppieRef = useRef(null);
     const [croppedImage, setCroppedImage] = useState(null);
-
     const [croppieInstance, setCroppieInstance] = useState(null); // Store Croppie instance
 
     const handleFileUpload = () => {
@@ -23,7 +22,7 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
 
     const preview = media
         ? URL.createObjectURL(media) // Create an object URL only when there's a file to display
-        : '/public/default_profile_200x200.png';
+        : '/default_profile_200x200.png';
 
     useEffect(() => {
         if (media && isCropping) {
@@ -81,7 +80,7 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
     return (
         <div className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20">
             {!isCropping && (
-                <div className="absolute mt-63 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
+                <div className="absolute mt-66 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
                     <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>
                     <img
                         src={croppedImage || preview} // Use croppedImage or preview as the source
@@ -91,7 +90,6 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
                 </div>
             )}
 
-            {/* Show Croppie if the user is in cropping mode */}
             {isCropping && (
                 <div className="absolute -top-17.5 right-25">
                     <div ref={croppieRef}></div>

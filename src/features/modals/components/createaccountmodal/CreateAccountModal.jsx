@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import FormArea from './formarea/FormArea';
 import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
+import UsernameArea from './usernamearea/UsernameArea';
 
 const CreateAccountModal = () => {
-    const [step, setStep] = useState(3);
+    const [name, setName] = useState('');
+    const [step, setStep] = useState(1);
     const navigate = useNavigate();
 
     const handleNextSection = () => {
@@ -33,12 +35,20 @@ const CreateAccountModal = () => {
                     handleClose={handleClose}
                     handleNextSection={handleNextSection}
                     step={step}
+                    name={name}
+                    setName={setName}
                 />
             )}
             {step == 2 && (
                 <PasswordArea handleNextSection={handleNextSection} />
             )}
             {step == 3 && <AvatarArea handleNextSection={handleNextSection} />}
+            {step == 4 && (
+                <UsernameArea
+                    handleNextSection={handleNextSection}
+                    name={name}
+                />
+            )}
         </div>
     );
 };
