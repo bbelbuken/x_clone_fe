@@ -5,6 +5,8 @@ import UsernameInput from './usernameinput/UsernameInput';
 
 const UsernameArea = ({ handleNextSection, name }) => {
     const [username, setUsername] = useState('');
+    const [isFirstTime, setIsFirstTime] = useState(true);
+
     return (
         <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
             <FormHeader />
@@ -26,19 +28,25 @@ const UsernameArea = ({ handleNextSection, name }) => {
                     name={name}
                     username={username}
                     setUsername={setUsername}
+                    isFirstTime={isFirstTime}
+                    setIsFirstTime={setIsFirstTime}
                 />
             </form>
 
             <div className="mt-77 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
                 <Button
                     type="button"
-                    className={`${username ? 'bg-[#fff] text-black' : 'border border-[#71767b] bg-[#000] text-[#fff] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
+                    className={`${username == '' ? 'pointer-events-none bg-[#71767b]' : username ? 'bg-[#fff] text-black' : 'border border-[#71767b] bg-[#000] text-[#fff] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
                     onClick={handleNextSection}
                 >
                     <span
-                        className={`text-lg ${username ? 'text-black' : 'text-[#fff]'}`}
+                        className={`text-lg ${username == '' ? 'text-[#000000]' : username ? 'text-black' : 'text-[#e7e9ea]'}`}
                     >
-                        {username ? 'Next' : 'Skip for now'}
+                        {username == ''
+                            ? 'Try Again'
+                            : username
+                              ? 'Next'
+                              : 'Skip for now'}
                     </span>
                 </Button>
             </div>
