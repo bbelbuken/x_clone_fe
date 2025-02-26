@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormArea from './formarea/FormArea';
 import PasswordArea from './passwordarea/PasswordArea';
+import AvatarArea from './avatararea/AvatarArea';
 
 const CreateAccountModal = () => {
     const [step, setStep] = useState(1);
@@ -17,28 +18,27 @@ const CreateAccountModal = () => {
     }, [navigate]);
 
     const handleClickOutside = (e) => {
-        if (e.target === e.currentTarget) {
+        if (e.target === e.currentTarget && step == 1) {
             handleClose();
         }
     };
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
+            className={`fixed inset-0 z-50 flex items-center justify-center ${step == 1 ? 'bg-[#4a5c687c]' : 'bg-[#242e33]'} `}
             onClick={handleClickOutside}
         >
             {step == 1 && (
                 <FormArea
                     handleClose={handleClose}
                     handleNextSection={handleNextSection}
+                    step={step}
                 />
             )}
             {step == 2 && (
-                <PasswordArea
-                    handleClose={handleClose}
-                    handleNextSection={handleNextSection}
-                />
+                <PasswordArea handleNextSection={handleNextSection} />
             )}
+            {step == 3 && <AvatarArea handleNextSection={handleNextSection} />}
         </div>
     );
 };

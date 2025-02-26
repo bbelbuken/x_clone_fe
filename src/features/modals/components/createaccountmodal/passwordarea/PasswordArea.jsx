@@ -4,11 +4,11 @@ import { useState } from 'react';
 import Button from 'components/buttons/Button';
 import LegalDisclaimerPassword from './legaldisclaimerpassword/LegalDisclaimerPassword';
 
-const PasswordArea = ({ handleClose, handleNextSection }) => {
-    const [password, setPassword] = useState();
+const PasswordArea = ({ handleNextSection }) => {
+    const [password, setPassword] = useState('');
     return (
         <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
-            <FormHeader handleClose={handleClose} />
+            <FormHeader />
 
             <div className="mt-[5px] flex h-full flex-1 flex-col px-20">
                 <div className="my-4">
@@ -30,7 +30,7 @@ const PasswordArea = ({ handleClose, handleNextSection }) => {
                 <Button
                     type="button"
                     className={`${password.length >= 8 ? 'bg-[#fff]' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-6 min-h-[52px] w-full px-20 outline-none`}
-                    onClick={password.length >= 8 ? handleNextSection : null}
+                    onClick={password ? handleNextSection : null}
                 >
                     <span className="text-lg text-black">Sign up</span>
                 </Button>
