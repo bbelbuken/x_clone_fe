@@ -22,11 +22,11 @@ const Inputs = ({ handleNextSection, name, setName }) => {
             <EmailInput email={email} setEmail={setEmail} />
             <button
                 type="button"
-                className={`mt-1 cursor-pointer text-right text-[15px] leading-5 ${clicked ? 'pointer-events-none' : 'hover:underline'}`}
+                className={`mt-1 cursor-pointer text-right text-[15px] leading-5 ${clicked ? 'pointer-events-none' : 'text-[#1d9bf0] hover:underline'}`}
                 onClick={handleClickPhone}
             >
                 <span
-                    className={`${clicked ? 'text-[#71767b] italic no-underline' : 'text-[#1d9bf0] not-italic'}`}
+                    className={` ${clicked ? 'text-[#71767b] italic no-underline' : 'text-[#1d9bf0] not-italic'}`}
                 >
                     {clicked ? 'Coming Soon' : 'Use phone instead'}
                 </span>
