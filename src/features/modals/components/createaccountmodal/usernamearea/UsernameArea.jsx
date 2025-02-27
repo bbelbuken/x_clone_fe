@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import FormHeader from '../formarea/formheader/FormHeader';
 import Button from 'components/buttons/Button';
 import UsernameInput from './usernameinput/UsernameInput';
 
-const UsernameArea = ({ handleNextSection, name }) => {
+const UsernameArea = memo(({ handleNextSection, name }) => {
     const [username, setUsername] = useState('');
     const [isFirstTime, setIsFirstTime] = useState(true);
     const [useSuggested, setUseSuggested] = useState(false);
@@ -58,6 +58,7 @@ const UsernameArea = ({ handleNextSection, name }) => {
             </div>
         </div>
     );
-};
+});
 
+UsernameArea.displayName = 'UsernameArea';
 export default UsernameArea;

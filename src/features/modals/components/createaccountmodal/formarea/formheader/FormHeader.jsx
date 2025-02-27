@@ -1,6 +1,7 @@
 import { TwitterSVG } from 'components/icons/TwitterSVG';
+import { memo } from 'react';
 
-const FormHeader = ({ handleClose, step }) => {
+const FormHeader = memo(({ handleClose, step }) => {
     return (
         <div className="sticky top-0 mx-auto flex h-auto w-full flex-col items-start justify-center px-4">
             <div className="flex min-h-8 min-w-[56px] items-center justify-center">
@@ -28,6 +29,7 @@ const FormHeader = ({ handleClose, step }) => {
             </div>
         </div>
     );
-};
+});
 
+FormHeader.displayName = 'DisplayName';
 export default FormHeader;

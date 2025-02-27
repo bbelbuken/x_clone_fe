@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback, memo } from 'react';
 import { DiceSVG } from 'components/icons/DiceSVG';
 
-const EmailInput = ({ email, setEmail }) => {
+const EmailInput = memo(({ email, setEmail }) => {
     const inputRefEmail = useRef();
     const [isFocused, setIsFocused] = useState(false);
     const [diceClick, setDiceClick] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(true);
 
-    const handleDiceClick = (e) => {
+    const handleDiceClick = useCallback((e) => {
         e.preventDefault();
         e.stopPropagation();
         setDiceClick(true);
@@ -15,9 +15,9 @@ const EmailInput = ({ email, setEmail }) => {
         setTimeout(() => {
             setDiceClick(false);
         }, 100);
-    };
+    }, []);
 
-    const handleGenerateEmail = () => {
+    const handleGenerateEmail = useCallback(() => {
         //random letters
         let randomLetters = '';
         const randomCount = Math.floor(Math.random() * 5) + 5;
@@ -40,18 +40,21 @@ const EmailInput = ({ email, setEmail }) => {
         const newGeneratedEmail = `${randomLetters}${randomNumber}@${randomDomain}.com`;
         setEmail(newGeneratedEmail);
         setIsValidEmail(true);
-    };
+    }, [setEmail]);
 
-    const validateEmail = (email) => {
+    const validateEmail = useCallback((email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
-    };
+    }, []);
 
-    const handleEmailChange = (e) => {
-        const newEmail = e.target.value;
-        setEmail(newEmail);
-        setIsValidEmail(validateEmail(newEmail)); // Validate email on change
-    };
+    const handleEmailChange = useCallback(
+        (e) => {
+            const newEmail = e.target.value;
+            setEmail(newEmail);
+            setIsValidEmail(validateEmail(newEmail)); // Validate email on change
+        },
+        [setEmail, validateEmail],
+    );
 
     return (
         <label
@@ -107,6 +110,9 @@ const EmailInput = ({ email, setEmail }) => {
             )}
         </label>
     );
-};
+});
+
+// Set the display name for the memoized component
+EmailInput.displayName = 'EmailInput';
 
 export default EmailInput;

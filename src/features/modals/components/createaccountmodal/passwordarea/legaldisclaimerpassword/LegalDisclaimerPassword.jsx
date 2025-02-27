@@ -1,8 +1,8 @@
 import { WelcomeFooterData } from 'features/auth/welcome/footer/footerdata/WelcomeFooterData';
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
-const LegalDisclaimerPassword = () => {
+const LegalDisclaimerPassword = memo(() => {
     const tos = WelcomeFooterData.find(
         (item) => item.title === 'Terms of Service',
     );
@@ -42,6 +42,7 @@ const LegalDisclaimerPassword = () => {
             </span>
         </div>
     );
-};
+});
 
+LegalDisclaimerPassword.displayName = 'LegalDisclaimerPassword';
 export default LegalDisclaimerPassword;

@@ -2,9 +2,9 @@ import NameInput from './nameinput.jsx/NameInput';
 import EmailInput from './emailinput/EmailInput';
 import DateInput from './dateinput/DateInput';
 import Button from 'components/buttons/Button';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 
-const Inputs = ({ handleNextSection, name, setName }) => {
+const Inputs = memo(({ handleNextSection, name, setName }) => {
     const [email, setEmail] = useState('');
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
@@ -48,6 +48,7 @@ const Inputs = ({ handleNextSection, name, setName }) => {
             </Button>
         </form>
     );
-};
+});
 
+Inputs.displayName = 'Inputs';
 export default Inputs;

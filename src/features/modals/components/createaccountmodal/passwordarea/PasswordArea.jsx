@@ -1,10 +1,10 @@
 import FormHeader from '../formarea/formheader/FormHeader';
 import PasswordInput from './passwordinput/PasswordInput';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import Button from 'components/buttons/Button';
 import LegalDisclaimerPassword from './legaldisclaimerpassword/LegalDisclaimerPassword';
 
-const PasswordArea = ({ handleNextSection }) => {
+const PasswordArea = memo(({ handleNextSection }) => {
     const [password, setPassword] = useState('');
     return (
         <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
@@ -37,6 +37,7 @@ const PasswordArea = ({ handleNextSection }) => {
             </div>
         </div>
     );
-};
+});
 
+PasswordArea.displayName = 'PasswordArea';
 export default PasswordArea;

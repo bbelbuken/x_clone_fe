@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 
-const PasswordInput = ({ password, setPassword }) => {
+const PasswordInput = memo(({ password, setPassword }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [invalidPass, setInvalidPass] = useState(false);
     const [active, setActive] = useState(false);
@@ -79,6 +79,7 @@ const PasswordInput = ({ password, setPassword }) => {
             </div>
         </>
     );
-};
+});
 
+PasswordInput.displayName = 'PasswordInput';
 export default PasswordInput;
