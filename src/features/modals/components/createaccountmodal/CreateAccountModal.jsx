@@ -27,7 +27,7 @@ const CreateAccountModal = () => {
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center ${step == 1 ? 'bg-[#4a5c687c]' : 'bg-[#242e33]'} `}
+            className={`fixed inset-0 z-50 flex items-center justify-center ${step < 3 ? 'bg-[#4a5c687c]' : 'bg-[#242e33]'} `}
             onClick={handleClickOutside}
         >
             {step == 1 && (

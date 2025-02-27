@@ -6,7 +6,8 @@ const Home = React.lazy(() => import('../pages/home/Home'));
 const Explore = React.lazy(() => import('../pages/explore/Explore'));
 const Profile = React.lazy(() => import('../pages/profile/Profile'));
 const HeaderPhotoModal = React.lazy(
-    () => import('features/modals/components/HeaderPhotoModal'),
+    () =>
+        import('features/modals/components/headerphotomodal/HeaderPhotoModal'),
 );
 const Notifications = React.lazy(
     () => import('../pages/notifications/Notifications'),
@@ -22,13 +23,14 @@ const PostStatus = React.lazy(
     () => import('components/posts/postStatus/PostStatus'),
 );
 const PostModal = React.lazy(
-    () => import('features/modals/components/PostModal'),
+    () => import('features/modals/components/postmodal/PostModal'),
 );
 const PhotoModal = React.lazy(
-    () => import('features/modals/components/PhotoModal'),
+    () => import('features/modals/components/avatarmodal/PhotoModal'),
 );
 const EditProfileModal = React.lazy(
-    () => import('features/modals/components/EditProfileModal'),
+    () =>
+        import('features/modals/components/editprofilemodal/EditProfileModal'),
 );
 const Welcome = React.lazy(() => import('features/auth/welcome/Welcome.jsx'));
 const CreateAccountModal = React.lazy(
