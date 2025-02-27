@@ -12,11 +12,11 @@ const UsernameInputDecoration = ({
                 className={`absolute top-1 transform text-[13px] leading-4 text-ellipsis transition-all duration-300 ease-in-out select-none ${
                     isFirstTime
                         ? 'text-[#1d9bf0]'
-                        : isFocused && username
+                        : isFocused && username.length > 4
                           ? 'text-[#1d9bf0]'
-                          : !username && isFocused
+                          : isFocused && username.length < 5
                             ? 'text-[#f4212e]'
-                            : username && !isFocused
+                            : !isFocused && username.length > 4
                               ? 'text-[#1d9bf0]'
                               : 'text-[#f4212e]'
                 }`}
@@ -28,11 +28,11 @@ const UsernameInputDecoration = ({
                 className={`transition-colors duration-300 ease-in-out ${
                     isFirstTime
                         ? 'text-[#1d9bf0]'
-                        : isFocused && username
+                        : isFocused && username.length > 4
                           ? 'text-[#1d9bf0]'
-                          : !username && isFocused
+                          : isFocused && username.length < 5
                             ? 'text-[#f4212e]'
-                            : username && !isFocused
+                            : !isFocused && username.length > 4
                               ? 'text-[#1d9bf0]'
                               : 'text-[#f4212e]'
                 } mt-3`}
