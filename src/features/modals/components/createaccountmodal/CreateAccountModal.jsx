@@ -1,9 +1,9 @@
-import { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FormArea from './formarea/FormArea';
 import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
 import UsernameArea from './usernamearea/UsernameArea';
+const FormArea = React.lazy(() => import('./formarea/FormArea'));
 
 const CreateAccountModal = () => {
     const [name, setName] = useState('');
