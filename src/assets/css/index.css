@@ -81,4 +81,11 @@ body {
     .grow-65 {
         flex-grow: 6.5;
     }
+    .dice-clicked {
+        transform: scale(0.75);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition:
+            transform 0.1s ease-in-out,
+            box-shadow 0.1s ease-in-out;
+    }
 }

@@ -1,8 +1,21 @@
 import { useRef, useState } from 'react';
+import { DiceSVG } from 'components/icons/DiceSVG';
 
 const EmailInput = ({ email, setEmail }) => {
     const inputRefEmail = useRef();
     const [isFocused, setIsFocused] = useState(false);
+    const [diceClick, setDiceClick] = useState(false);
+
+    const handleDiceClick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDiceClick(true);
+        setIsFocused(true);
+    };
+
+    setTimeout(() => {
+        setDiceClick(false);
+    }, 200);
 
     return (
         <label
@@ -23,6 +36,15 @@ const EmailInput = ({ email, setEmail }) => {
                 >
                     <span>Email</span>
                 </div>
+
+                <DiceSVG
+                    className={`absolute top-5 right-3 z-50 cursor-pointer transition-all ${
+                        isFocused // Color is blue when focused
+                            ? 'text-[#1d9bf0]'
+                            : 'text-[#71767b] opacity-0' // Color changes back to gray when not focused
+                    } ${diceClick ? 'dice-clicked' : ''}`}
+                    onMouseDown={handleDiceClick}
+                />
             </div>
 
             <input
