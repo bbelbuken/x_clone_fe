@@ -1,6 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, memo } from 'react';
 
-const NameInput = ({ name, setName }) => {
+const NameInput = memo(({ name, setName }) => {
     const inputRef = useRef();
     const [isFocused, setIsFocused] = useState(true);
     const [count, setCount] = useState(0);
@@ -55,6 +55,7 @@ const NameInput = ({ name, setName }) => {
             />
         </label>
     );
-};
+});
 
+NameInput.displayName = 'NameInput';
 export default NameInput;

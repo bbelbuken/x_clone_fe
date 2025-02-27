@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import FormHeader from '../formarea/formheader/FormHeader';
 import Button from 'components/buttons/Button';
 import AvatarInput from './avatarinput/AvatarInput';
 
-const AvatarArea = ({ handleNextSection }) => {
+const AvatarArea = memo(({ handleNextSection }) => {
     const [media, setMedia] = useState(null);
     const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
     return (
@@ -43,6 +43,7 @@ const AvatarArea = ({ handleNextSection }) => {
             </div>
         </div>
     );
-};
+});
 
+AvatarArea.displayName = 'AvatarArea';
 export default AvatarArea;

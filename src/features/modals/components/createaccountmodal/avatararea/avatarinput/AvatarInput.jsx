@@ -1,9 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, memo, useCallback } from 'react';
 import AddAndDeleteIcons from './addanddeleteicons/AddAndDeleteIcons';
 import Croppie from 'croppie';
 import Button from 'components/buttons/Button';
 
-const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
+const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
     const fileInputRef = useRef();
     const croppieRef = useRef(null);
     const [croppedImage, setCroppedImage] = useState(null);
@@ -49,7 +49,7 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
         }
     }, [media, isCropping]);
 
-    const handleCroppingDone = () => {
+    const handleCroppingDone = useCallback(() => {
         if (croppieInstance) {
             croppieInstance
                 .result({ type: 'base64', size: 'viewport' })
@@ -75,7 +75,7 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
                     console.error('Error cropping image: ', err);
                 });
         }
-    };
+    }, [croppieInstance, setIsCropping, setMedia]);
 
     return (
         <div className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20">
@@ -127,6 +127,8 @@ const AvatarInput = ({ media, setMedia, isCropping, setIsCropping }) => {
             />
         </div>
     );
-};
+});
+
+AvatarInput.displayName = 'AvatarInput';
 
 export default AvatarInput;
