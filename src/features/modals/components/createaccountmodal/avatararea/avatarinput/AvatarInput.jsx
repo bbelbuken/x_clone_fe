@@ -85,6 +85,7 @@ const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
                     <img
                         src={croppedImage || preview} // Use croppedImage or preview as the source
                         alt="Cropped Avatar"
+                        loading="eager"
                         className="box-content block h-[188px] w-[188px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
                     />
                 </div>
