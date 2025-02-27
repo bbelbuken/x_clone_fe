@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
 import UsernameArea from './usernamearea/UsernameArea';
-const FormArea = React.lazy(() => import('./formarea/FormArea'));
+import FormArea from './formarea/FormArea';
 
 const CreateAccountModal = () => {
     const [name, setName] = useState('');

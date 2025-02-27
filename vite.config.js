@@ -1,10 +1,20 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import PluginInspect from 'vite-plugin-inspect';
 
-// https://vite.dev/config/
 export default defineConfig({
-    plugins: [tailwindcss(), react()],
+    plugins: [
+        tailwindcss(),
+        react({
+            fastRefresh: true, // Enable fast refresh
+            preact: {
+                // Enable Preact for faster HMR
+                preact: true,
+            },
+        }),
+        PluginInspect(),
+    ],
     resolve: {
         alias: {
             features: '/src/features',
@@ -21,15 +31,21 @@ export default defineConfig({
     server: {
         port: 3000,
         hmr: {
-            timeout: 3000, // 30 seconds (default is 10 seconds)
-            overlay: false, // shows errors on the browser overlay
+            timeout: 5000, // Increase timeout to 5 seconds
+            overlay: false, // Disable overlay to reduce overhead
         },
         watch: {
-            usePolling: true, // Enable polling in case your system is not detecting changes correctly
+            usePolling: false, // Disable polling unless absolutely necessary
         },
         optimizeDeps: {
+            include: [
+                // Add any large dependencies here to pre-bundle them
+                'react',
+                'react-dom',
+                'croppie',
+            ],
             esbuildOptions: {
-                target: 'es2020', // Set target to modern JS for better performance
+                target: 'es2020', // Modern JS target
             },
         },
     },
