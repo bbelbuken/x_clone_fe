@@ -45,6 +45,10 @@ const Button = ({
                         size === 'signup',
                 },
                 {
+                    'w-[105px] h-[40px] text-[15px] border-0 ':
+                        size === 'subscribe',
+                },
+                {
                     'w-[80px] h-[40px] text-[14px] border-0 ': size === 'apply',
                 },
                 {

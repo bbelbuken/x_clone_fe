@@ -49,6 +49,7 @@ const CreateAccountModal = () => {
                     name={name}
                 />
             )}
+            {step == 5 && navigate('/home')}
         </div>
     );
 };
