@@ -1,4 +1,4 @@
-export const DiceSVG = ({ className, ref, onMouseDown }) => (
+export const DiceSVG = ({ className, ref, onMouseDown, onClick }) => (
     <svg
         height="20px"
         width="20px"
@@ -9,6 +9,7 @@ export const DiceSVG = ({ className, ref, onMouseDown }) => (
         className={className}
         ref={ref}
         onMouseDown={onMouseDown}
+        onClick={onClick}
     >
         <path
             fill="currentColor"

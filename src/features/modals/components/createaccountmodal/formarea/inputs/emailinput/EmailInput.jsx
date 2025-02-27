@@ -5,17 +5,53 @@ const EmailInput = ({ email, setEmail }) => {
     const inputRefEmail = useRef();
     const [isFocused, setIsFocused] = useState(false);
     const [diceClick, setDiceClick] = useState(false);
+    const [isValidEmail, setIsValidEmail] = useState(true);
 
     const handleDiceClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
         setDiceClick(true);
         setIsFocused(true);
+        setTimeout(() => {
+            setDiceClick(false);
+        }, 100);
     };
 
-    setTimeout(() => {
-        setDiceClick(false);
-    }, 200);
+    const handleGenerateEmail = () => {
+        //random letters
+        let randomLetters = '';
+        const randomCount = Math.floor(Math.random() * 5) + 5;
+
+        for (let i = 0; i < randomCount; i++) {
+            const randomLetter = String.fromCharCode(
+                97 + Math.floor(Math.random() * 26),
+            );
+            randomLetters += randomLetter;
+        }
+        // random number
+        const randomNumber = Math.floor(Math.random() * 10000);
+
+        // random domain
+        const domains = ['hotmail', 'outlook', 'gmail', 'yahoo'];
+        const randomIndex = Math.floor(Math.random() * domains.length);
+        const randomDomain = domains[randomIndex];
+
+        // random email
+        const newGeneratedEmail = `${randomLetters}${randomNumber}@${randomDomain}.com`;
+        setEmail(newGeneratedEmail);
+        setIsValidEmail(true);
+    };
+
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleEmailChange = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        setIsValidEmail(validateEmail(newEmail)); // Validate email on change
+    };
 
     return (
         <label
@@ -44,6 +80,7 @@ const EmailInput = ({ email, setEmail }) => {
                             : 'text-[#71767b] opacity-0' // Color changes back to gray when not focused
                     } ${diceClick ? 'dice-clicked' : ''}`}
                     onMouseDown={handleDiceClick}
+                    onClick={handleGenerateEmail}
                 />
             </div>
 
@@ -55,9 +92,19 @@ const EmailInput = ({ email, setEmail }) => {
                 className="box-border w-full min-w-0 appearance-none bg-transparent pt-3 text-left text-[17px] leading-6 text-[#e7e9ea] outline-none"
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmailChange}
                 autoComplete="off"
             />
+
+            {!isValidEmail && (
+                <div className="absolute top-14 left-0 min-w-0 flex-1 px-2 pt-1 text-[12px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                    <span
+                        className={`${!isFocused ? 'opacity-0' : isValidEmail ? 'opacity-0' : 'opacity-100'} block text-[#f4212e] transition-opacity duration-300 ease-in-out`}
+                    >
+                        Your must enter a valid email
+                    </span>
+                </div>
+            )}
         </label>
     );
 };

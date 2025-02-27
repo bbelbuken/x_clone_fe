@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormArea from './formarea/FormArea';
 import PasswordArea from './passwordarea/PasswordArea';
@@ -24,6 +24,11 @@ const CreateAccountModal = () => {
             handleClose();
         }
     };
+    useEffect(() => {
+        if (step === 5) {
+            navigate('/home');
+        }
+    }, [step, navigate]);
 
     return (
         <div
@@ -49,7 +54,6 @@ const CreateAccountModal = () => {
                     name={name}
                 />
             )}
-            {step == 5 && navigate('/home')}
         </div>
     );
 };
