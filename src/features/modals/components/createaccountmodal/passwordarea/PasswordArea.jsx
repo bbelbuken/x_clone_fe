@@ -13,10 +13,10 @@ const PasswordArea = memo(({ handleNextSection }) => {
             <div className="mt-[5px] flex h-full flex-1 flex-col px-20">
                 <div className="my-4">
                     <h1 className="mb-[6px] min-w-0 text-[31px] leading-9 font-bold text-[#e7e9ea]">
-                        You'll need a password
+                        You&apos;ll need a password
                     </h1>
                     <span className="text-[15px] tracking-[0.013em] text-[#71767b]">
-                        Make sure it's 8 characters or more.
+                        Make sure it&apos;s 8 characters or more.
                     </span>
                 </div>
             </div>
