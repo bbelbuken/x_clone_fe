@@ -4,6 +4,7 @@ import SignInOptions from './signinoptions/SignInOptions';
 
 const SignInModal = () => {
     const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [step, setStep] = useState(1);
     const navigate = useNavigate();
 
@@ -40,6 +41,8 @@ const SignInModal = () => {
                     step={step}
                     name={name}
                     setName={setName}
+                    email={email}
+                    setEmail={setEmail}
                 />
             )}
         </div>
