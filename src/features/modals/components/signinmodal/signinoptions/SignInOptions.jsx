@@ -1,7 +1,6 @@
 import React from 'react';
 import FormHeader from '../../createaccountmodal/formarea/formheader/FormHeader';
 import GoogleSignUp from 'features/auth/welcome/googlesignup/GoogleSignUp';
-import Button from 'components/buttons/Button';
 import AppleSignUp from 'features/auth/welcome/applesignup/AppleSignUp';
 import Or from 'features/auth/welcome/or/Or';
 import UsernameOrEmailInput from './usernameoremailinput/UsernameOrEmailInput';
@@ -10,8 +9,8 @@ const SignInOptions = ({
     handleClose,
     handleNextSection,
     step,
-    name,
-    setName,
+    username,
+    setUsername,
     email,
     setEmail,
 }) => {
@@ -33,8 +32,8 @@ const SignInOptions = ({
                 <Or />
 
                 <UsernameOrEmailInput
-                    name={name}
-                    setName={setName}
+                    username={username}
+                    setUsername={setUsername}
                     email={email}
                     setEmail={setEmail}
                     handleNextSection={handleNextSection}

@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import SignInOptions from './signinoptions/SignInOptions';
 
 const SignInModal = () => {
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [step, setStep] = useState(1);
     const navigate = useNavigate();
@@ -39,8 +39,8 @@ const SignInModal = () => {
                     handleClose={handleClose}
                     handleNextSection={handleNextSection}
                     step={step}
-                    name={name}
-                    setName={setName}
+                    username={username}
+                    setUsername={setUsername}
                     email={email}
                     setEmail={setEmail}
                 />
