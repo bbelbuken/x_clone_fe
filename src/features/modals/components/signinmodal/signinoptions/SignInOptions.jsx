@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const SignInOptions = ({
     handleClose,
     handleNextSection,
-    step,
+    newStep,
     username,
     setUsername,
     email,
@@ -18,7 +18,7 @@ const SignInOptions = ({
 }) => {
     return (
         <div className="absolute top-[24.6%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col items-center justify-center rounded-2xl bg-black">
-            <FormHeader handleClose={handleClose} step={step} />
+            <FormHeader handleClose={handleClose} newStep={newStep} />
 
             <div className="mt-[5px] flex h-full max-w-[364px] min-w-[364px] flex-1 flex-col items-center justify-center px-8 pb-12">
                 <div className="my-4 w-full">
