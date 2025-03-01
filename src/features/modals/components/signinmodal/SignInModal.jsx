@@ -6,11 +6,11 @@ import SignInPassword from './singinpassword/SignInPassword';
 const SignInModal = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [step, setStep] = useState(1);
+    const [newStep, setNewStep] = useState(1);
     const navigate = useNavigate();
 
     const handleNextSection = () => {
-        setStep(step + 1);
+        setNewStep(newStep + 1);
     };
 
     const handleClose = useCallback(() => {
@@ -19,38 +19,38 @@ const SignInModal = () => {
     }, [navigate]);
 
     const handleClickOutside = (e) => {
-        if (e.target === e.currentTarget && step == 1) {
+        if (e.target === e.currentTarget && newStep == 1) {
             handleClose();
         }
     };
 
     useEffect(() => {
-        if (step === 5) {
+        if (newStep === 5) {
             navigate('/home');
         }
-    }, [step, navigate]);
+    }, [newStep, navigate]);
 
     return (
         <div
-            className={`fixed inset-0 z-50 flex items-center justify-center ${step < 3 ? 'bg-[#4a5c687c]' : 'bg-[#242e33]'} `}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
             onClick={handleClickOutside}
         >
-            {step == 1 && (
+            {newStep == 1 && (
                 <SignInOptions
                     handleClose={handleClose}
                     handleNextSection={handleNextSection}
-                    step={step}
+                    newStep={newStep}
                     username={username}
                     setUsername={setUsername}
                     email={email}
                     setEmail={setEmail}
                 />
             )}
-            {step == 2 && (
+            {newStep == 2 && (
                 <SignInPassword
                     handleClose={handleClose}
                     handleNextSection={handleNextSection}
-                    step={step}
+                    newStep={newStep}
                     username={username}
                     email={email}
                 />
