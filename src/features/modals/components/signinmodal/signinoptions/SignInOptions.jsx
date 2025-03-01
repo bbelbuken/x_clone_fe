@@ -11,9 +11,7 @@ const SignInOptions = ({
     handleClose,
     handleNextSection,
     newStep,
-    username,
     setUsername,
-    email,
     setEmail,
 }) => {
     return (
@@ -34,9 +32,7 @@ const SignInOptions = ({
                 <Or />
 
                 <UsernameOrEmailInput
-                    username={username}
                     setUsername={setUsername}
-                    email={email}
                     setEmail={setEmail}
                     handleNextSection={handleNextSection}
                 />
