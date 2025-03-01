@@ -1,7 +1,11 @@
 import { useState, useRef, useCallback } from 'react';
 import Button from 'components/buttons/Button';
 
-const UsernameOrEmailInput = ({ setUsername, setEmail, handleNextSection }) => {
+const UsernameOrEmailInput = ({
+    setUsername,
+    setEmail,
+    handleNextSection2,
+}) => {
     const inputRef = useRef();
     const [isFocused, setIsFocused] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(true);
@@ -38,7 +42,7 @@ const UsernameOrEmailInput = ({ setUsername, setEmail, handleNextSection }) => {
             setIsValidEmail(true); // Set isValidEmail to true
             setErrorMessage(''); // Clear any previous error message
             console.log('Sending email to backend:', inputValue);
-            handleNextSection(); // Proceed to the next section
+            handleNextSection2(); // Proceed to the next section
         } else if (
             (!validateEmail(inputValue) && inputValue.includes('@')) ||
             inputValue.includes('.')
@@ -54,7 +58,7 @@ const UsernameOrEmailInput = ({ setUsername, setEmail, handleNextSection }) => {
             setUsername(inputValue);
             setErrorMessage(''); // Clear any previous error message
             console.log('Sending username to backend:', inputValue);
-            handleNextSection(); // Proceed to the next section
+            handleNextSection2(); // Proceed to the next section
         }
     };
 

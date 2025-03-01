@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const SignInOptions = ({
     handleClose,
-    handleNextSection,
+    handleNextSection2,
     newStep,
     setUsername,
     setEmail,
@@ -34,7 +34,7 @@ const SignInOptions = ({
                 <UsernameOrEmailInput
                     setUsername={setUsername}
                     setEmail={setEmail}
-                    handleNextSection={handleNextSection}
+                    handleNextSection2={handleNextSection2}
                 />
                 <div className="mt-[9px] flex h-[36px] w-[300px] items-center justify-center rounded-[20px] border border-[#536471] bg-transparent">
                     <Button
