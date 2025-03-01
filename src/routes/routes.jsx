@@ -48,6 +48,10 @@ const LogOutModal = React.lazy(
     () => import('features/modals/components/logoutmodal/LogOutModal'),
 );
 
+const Organizations = React.lazy(
+    () => import('pages/organizations/Organizations'),
+);
+
 export const MyRoutes = () => {
     const location = useLocation();
     const state = location.state;
@@ -65,13 +69,14 @@ export const MyRoutes = () => {
                 { path: 'i/grok', element: <Grok /> },
                 { path: 'lists', element: <Lists /> },
                 { path: 'bookmarks', element: <Bookmarks /> },
-                { path: 'jobs', element: <Jobs /> },
                 { path: 'communities', element: <Communities /> },
                 { path: ':username', element: <Profile /> },
                 { path: ':username/status/:postId', element: <PostStatus /> },
             ],
         },
-        { path: 'premium', element: <Premium /> },
+        { path: 'i/premium_sign_up', element: <Premium /> },
+        { path: 'jobs', element: <Jobs /> },
+        { path: 'i/organizations', element: <Organizations /> },
     ];
 
     const modalRoutes = [

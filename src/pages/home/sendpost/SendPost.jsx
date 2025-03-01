@@ -52,14 +52,14 @@ const SendPost = ({ modalRef, handleClose }) => {
             onFocus={handleClick}
         >
             <div
-                className={`mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
+                className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >
                 <img
                     src={currentAccount.avatar}
                     alt="user_avatar"
                     width={40}
                     height={40}
-                    className="cursor-pointer rounded-full pt-3 transition-opacity duration-100 ease-in-out hover:opacity-60"
+                    className="cursor-pointer rounded-full transition-opacity duration-100 ease-in-out hover:opacity-60"
                     onClick={navigateToUserProfile}
                 />
             </div>

@@ -134,7 +134,7 @@ export const Menu = ({ handleSaveLocation }) => {
                 ),
                 passive: (
                     <svg
-                        viewBox="0 0 42 42"
+                        viewBox="0 0 32 32"
                         fill="white"
                         width={26.25}
                         height={26.25}
