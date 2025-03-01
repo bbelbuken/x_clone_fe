@@ -9,7 +9,12 @@ const LogOutModal = () => {
 
     const handleClose = () => {
         const previousRouteLogOut = localStorage.getItem('previousRouteLogOut');
-        navigate(previousRouteLogOut);
+        setTimeout(() => {
+            navigate(previousRouteLogOut, {
+                replace: true,
+                state: { reload: true },
+            });
+        }, 30);
     };
 
     const handleClickOutside = (e) => {

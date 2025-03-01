@@ -6,6 +6,7 @@ import Form from './form/Form';
 import WhoCanReply from './whocanreply/WhoCanReply';
 import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SendPost = ({ modalRef, handleClose }) => {
     const [tweet, setTweet] = useState('');
@@ -14,6 +15,7 @@ const SendPost = ({ modalRef, handleClose }) => {
     const [isClicked, setIsClicked] = useState(false);
     const currentAccount = useCurrentAccount();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleClick = () => {
         setIsClicked(true);
@@ -38,6 +40,11 @@ const SendPost = ({ modalRef, handleClose }) => {
         }
     };
 
+    const navigateToUserProfile = (e) => {
+        e.preventDefault();
+        navigate(`/${currentAccount.username}`);
+    };
+
     return (
         <div
             className="relative flex border-b border-b-[#2f3336] px-4 pt-1 pb-2"
@@ -45,14 +52,15 @@ const SendPost = ({ modalRef, handleClose }) => {
             onFocus={handleClick}
         >
             <div
-                className={`mr-2 grow-0 basis-10 pt-3 ${modalRef ? 'max-h-10' : ''}`}
+                className={`mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >
                 <img
                     src={currentAccount.avatar}
                     alt="user_avatar"
                     width={40}
                     height={40}
-                    className="rounded-full"
+                    className="cursor-pointer rounded-full pt-3 transition-opacity duration-100 ease-in-out hover:opacity-60"
+                    onClick={navigateToUserProfile}
                 />
             </div>
 
