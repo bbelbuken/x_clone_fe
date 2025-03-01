@@ -10,7 +10,7 @@ const SignInModal = () => {
     const [newStep, setNewStep] = useState(1);
     const navigate = useNavigate();
 
-    const handleNextSection = () => {
+    const handleNextSection2 = () => {
         setNewStep(newStep + 1);
     };
 
@@ -26,7 +26,7 @@ const SignInModal = () => {
     };
 
     useEffect(() => {
-        if (newStep === 5) {
+        if (newStep === 3) {
             navigate('/home');
         }
     }, [newStep, navigate]);
@@ -39,7 +39,7 @@ const SignInModal = () => {
             {newStep == 1 && (
                 <SignInOptions
                     handleClose={handleClose}
-                    handleNextSection={handleNextSection}
+                    handleNextSection2={handleNextSection2}
                     newStep={newStep}
                     username={username}
                     setUsername={setUsername}
@@ -50,7 +50,7 @@ const SignInModal = () => {
             {newStep == 2 && (
                 <SignInPassword
                     handleClose={handleClose}
-                    handleNextSection={handleNextSection}
+                    handleNextSection2={handleNextSection2}
                     newStep={newStep}
                     username={username}
                     email={email}

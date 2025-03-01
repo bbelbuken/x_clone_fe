@@ -1,7 +1,8 @@
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
+import Button from 'components/buttons/Button';
 
-const SignInPasswordInput = ({ password, setPassword }) => {
+const SignInPasswordInput = ({ password, setPassword, handleNextSection2 }) => {
     const inputRef = useRef();
     const [iconClicked, setIconClicked] = useState(false);
     const [isFocused, setIsFocused] = useState(true);
@@ -10,8 +11,12 @@ const SignInPasswordInput = ({ password, setPassword }) => {
         inputRef.current?.focus();
     }, []);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
-        <>
+        <form action="submit" onSubmit={handleSubmit} className="w-full">
             <label
                 htmlFor="password"
                 className={`relative mt-4 mb-0.5 flex h-full w-full flex-1 items-center justify-center rounded-[4px] border px-2 py-4 pt-4 pb-2 transition-colors ${isFocused ? 'border-[#1d9bf0]' : 'border-[#333639]'} `}
@@ -25,7 +30,6 @@ const SignInPasswordInput = ({ password, setPassword }) => {
                         {iconClicked ? svg.active : svg.passive}
                     </div>
                 ))}
-
                 <div className="flex h-full justify-between">
                     <div
                         className={`absolute text-ellipsis transition-all ease-in-out select-none ${
@@ -46,15 +50,23 @@ const SignInPasswordInput = ({ password, setPassword }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    autoComplete="off"
                 />
             </label>
-            <div className="mt-0.5 ml-5 flex h-[36px] w-full items-start justify-start rounded-[20px] bg-transparent">
+            <div className="mt-0.5 ml-2 flex h-[36px] w-full items-start justify-start rounded-[20px] bg-transparent">
                 <span className="cursor-pointer text-[13px] text-[#1d9bf0] hover:underline">
                     Forgot password?
                 </span>
             </div>
-        </>
+            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b]">
+                <Button
+                    type="button"
+                    className={`${password ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} mt-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none`}
+                    onClick={handleNextSection2}
+                >
+                    <span className="text-[17px] text-black">Log in</span>
+                </Button>
+            </div>
+        </form>
     );
 };
 
