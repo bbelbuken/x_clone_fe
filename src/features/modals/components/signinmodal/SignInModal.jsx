@@ -6,6 +6,7 @@ import SignInPassword from './singinpassword/SignInPassword';
 const SignInModal = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [newStep, setNewStep] = useState(1);
     const navigate = useNavigate();
 
@@ -53,6 +54,8 @@ const SignInModal = () => {
                     newStep={newStep}
                     username={username}
                     email={email}
+                    password={password}
+                    setPassword={setPassword}
                 />
             )}
         </div>

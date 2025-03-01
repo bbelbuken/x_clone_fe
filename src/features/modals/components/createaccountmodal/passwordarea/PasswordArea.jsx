@@ -7,7 +7,7 @@ import LegalDisclaimerPassword from './legaldisclaimerpassword/LegalDisclaimerPa
 const PasswordArea = memo(({ handleNextSection }) => {
     const [password, setPassword] = useState('');
     return (
-        <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
+        <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto ms-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
             <FormHeader />
 
             <div className="mt-[5px] flex h-full flex-1 flex-col px-20">
