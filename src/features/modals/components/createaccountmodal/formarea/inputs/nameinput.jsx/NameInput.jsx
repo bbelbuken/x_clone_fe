@@ -51,7 +51,6 @@ const NameInput = memo(({ name, setName }) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onChange={handleInput}
-                autoComplete="off"
             />
         </label>
     );

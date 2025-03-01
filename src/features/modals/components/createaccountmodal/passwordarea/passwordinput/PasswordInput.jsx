@@ -66,7 +66,6 @@ const PasswordInput = memo(({ password, setPassword }) => {
                     onBlur={() => setIsFocused(false)}
                     onChange={handleInput}
                     onKeyDown={handleKeyDown}
-                    autoComplete="off"
                 />
             </label>
             <div className="min-w-0 flex-1 px-2 pt-1 text-[13px] leading-4 tracking-wide transition-all duration-300 ease-in-out">

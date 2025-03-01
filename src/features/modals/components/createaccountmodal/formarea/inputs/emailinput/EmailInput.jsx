@@ -96,7 +96,6 @@ const EmailInput = memo(({ email, setEmail }) => {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onChange={handleEmailChange}
-                autoComplete="off"
             />
 
             {!isValidEmail && (

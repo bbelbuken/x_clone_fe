@@ -1,5 +1,4 @@
 import FormHeader from '../../createaccountmodal/formarea/formheader/FormHeader';
-import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';
 import DetectedUsernameInput from './detectedusernameinput/DetectedUsernameInput';
 import DetectedEmailInput from './detectedemailinput/DetectedEmailInput';
