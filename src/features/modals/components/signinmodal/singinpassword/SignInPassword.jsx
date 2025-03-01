@@ -1,9 +1,8 @@
 import FormHeader from '../../createaccountmodal/formarea/formheader/FormHeader';
 import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';
-import UsernameInput from '../../createaccountmodal/usernamearea/usernameinput/UsernameInput';
-import EmailInput from '../../createaccountmodal/formarea/inputs/emailinput/EmailInput';
 import DetectedUsernameInput from './detectedusernameinput/DetectedUsernameInput';
+import DetectedEmailInput from './detectedemailinput/DetectedEmailInput';
 
 const SignInPassword = ({
     handleClose,
@@ -26,13 +25,14 @@ const SignInPassword = ({
                 </div>
 
                 {username && <DetectedUsernameInput username={username} />}
-                {email && <EmailInput />}
+                {email && <DetectedEmailInput email={email} />}
 
                 <div className="mt-[9px] flex h-[36px] w-[300px] items-center justify-start rounded-[20px] bg-transparent">
                     <span className="cursor-pointer text-[13px] text-[#1d9bf0] hover:underline">
                         Forgot password?
                     </span>
                 </div>
+
                 <div className="mt-[42px] mb-13 flex h-[36px] w-[300px] items-center justify-start rounded-[20px]">
                     <span className="text-[15px] tracking-[0.010em] text-[#71767b]">
                         Don&apos;t have an account?
