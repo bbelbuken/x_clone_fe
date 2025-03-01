@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useCallback, useEffect } from 'react';
 import SignInOptions from './signinoptions/SignInOptions';
+import SignInPassword from './singinpassword/SignInPassword';
 
 const SignInModal = () => {
     const [username, setUsername] = useState('');
@@ -43,6 +44,15 @@ const SignInModal = () => {
                     setUsername={setUsername}
                     email={email}
                     setEmail={setEmail}
+                />
+            )}
+            {step == 2 && (
+                <SignInPassword
+                    handleClose={handleClose}
+                    handleNextSection={handleNextSection}
+                    step={step}
+                    username={username}
+                    email={email}
                 />
             )}
         </div>
