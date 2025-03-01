@@ -3,6 +3,7 @@ import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';
 import DetectedUsernameInput from './detectedusernameinput/DetectedUsernameInput';
 import DetectedEmailInput from './detectedemailinput/DetectedEmailInput';
+import SignInPasswordInput from './signinpasswordinput/SignInPasswordInput';
 
 const SignInPassword = ({
     handleClose,
@@ -27,11 +28,10 @@ const SignInPassword = ({
                 {username && <DetectedUsernameInput username={username} />}
                 {email && <DetectedEmailInput email={email} />}
 
-                <div className="mt-[9px] flex h-[36px] w-[300px] items-center justify-start rounded-[20px] bg-transparent">
-                    <span className="cursor-pointer text-[13px] text-[#1d9bf0] hover:underline">
-                        Forgot password?
-                    </span>
-                </div>
+                <SignInPasswordInput
+                    password={password}
+                    setPassword={setPassword}
+                />
 
                 <div className="mt-[42px] mb-13 flex h-[36px] w-[300px] items-center justify-start rounded-[20px]">
                     <span className="text-[15px] tracking-[0.010em] text-[#71767b]">
