@@ -44,6 +44,10 @@ const SignInModal = React.lazy(
     () => import('features/modals/components/signinmodal/SignInModal'),
 );
 
+const LogOutModal = React.lazy(
+    () => import('features/modals/components/logoutmodal/LogOutModal'),
+);
+
 export const MyRoutes = () => {
     const location = useLocation();
     const state = location.state;
@@ -94,6 +98,10 @@ export const MyRoutes = () => {
         {
             path: '/i/flow/login',
             element: <SignInModal />,
+        },
+        {
+            path: '/logout',
+            element: <LogOutModal />,
         },
     ];
 
