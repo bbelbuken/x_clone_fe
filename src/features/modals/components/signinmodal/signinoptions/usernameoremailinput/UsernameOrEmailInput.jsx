@@ -102,7 +102,7 @@ const UsernameOrEmailInput = ({ setUsername, setEmail, handleNextSection }) => {
             </div>
 
             {errorMessage && (
-                <div className="absolute -bottom-80 min-w-0 flex-1 bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
                     <span>{errorMessage}.</span>
                 </div>
             )}
