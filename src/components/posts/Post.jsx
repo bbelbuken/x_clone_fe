@@ -2,12 +2,17 @@ import RepostedBy from './utils/repostedBy/RepostedBy';
 import Content from './utils/content/Content';
 import AccountIMG from './utils/accountimg/AccountIMG';
 import { Link } from 'react-router-dom';
-import { selectAllAccounts } from '../../features/accounts/accountApiSlice';
-import { useSelector } from 'react-redux';
+import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
 
 const Post = ({ post, postId }) => {
-    const allAccounts = useSelector((state) => selectAllAccounts(state));
-    const account = allAccounts.find((account) => account.id === post.userId);
+    const {
+        data: account,
+        isLoading,
+        isError,
+    } = useGetAccountsByIdQuery(post.userId);
+    if (isLoading) return <p>Loading account...</p>;
+    if (isError) return <p>Error loading account</p>;
+
     const hasReposted = post.reactions.repostCount.repost > 0;
 
     return (

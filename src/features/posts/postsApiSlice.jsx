@@ -11,7 +11,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => ({
-                url: '/home',
+                url: '/posts',
                 validateStatus: (response, result) => {
                     return response.status === 200 && !result.isError;
                 },

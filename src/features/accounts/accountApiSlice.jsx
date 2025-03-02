@@ -28,10 +28,17 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
                 ];
             } else return [{ type: 'Account', id: 'LIST' }];
         },
+        getAccountsById: builder.query({
+            query: (userId) => `/users/${userId}`,
+            providesTags: (result, error, userId) => [
+                { type: 'Account', id: userId },
+            ],
+        }),
     }),
 });
 
-export const { useGetAccountsQuery } = accountsApiSlice;
+export const { useGetAccountsQuery, useGetAccountsByIdQuery } =
+    accountsApiSlice;
 
 // returning the query result obj
 export const selectAccountsResult =
