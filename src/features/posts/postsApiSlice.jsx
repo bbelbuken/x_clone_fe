@@ -1,5 +1,5 @@
 import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
-import { apiSlice } from 'app/api/apiSlice';
+import { apiSlice } from '../../app/api/apiSlice';
 
 const postsAdapter = createEntityAdapter({
     sortComparer: (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
