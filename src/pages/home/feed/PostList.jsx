@@ -17,10 +17,13 @@ const Feed = () => {
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
-        // Assuming `posts` is an array of post objects
-        content = posts.map((post) => (
-            <Post post={post} key={post.id} postId={post.id} />
-        ));
+        // using normalized data
+        const { ids, entities } = posts;
+
+        content = ids.map((postId) => {
+            const post = entities[postId];
+            return <Post post={post} key={postId} />;
+        });
     }
 
     return <>{content}</>;
