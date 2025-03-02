@@ -1,5 +1,5 @@
 import { createSelector, createEntityAdapter } from '@reduxjs/toolkit';
-import { apiSlice } from 'app/api/apiSlice';
+import { apiSlice } from '../../app/api/apiSlice';
 
 const accountsAdapter = createEntityAdapter({});
 
@@ -48,6 +48,6 @@ export const {
     selectAll: selectAllAccounts,
     selectById: selectAccountsById,
     selectIds: selectAccountIds,
-} = accountsAdapter.getSelectors((state) =>
-    selectAccountData(state ?? initialState),
+} = accountsAdapter.getSelectors(
+    (state) => selectAccountData(state) ?? initialState,
 );

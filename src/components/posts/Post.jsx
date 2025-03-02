@@ -1,13 +1,17 @@
 import RepostedBy from './utils/repostedBy/RepostedBy';
 import Content from './utils/content/Content';
 import AccountIMG from './utils/accountimg/AccountIMG';
-import { useAccounts } from 'hooks/useAccounts';
 import { Link } from 'react-router-dom';
+import { selectAllAccounts } from '../../features/accounts/accountApiSlice';
+import { useSelector } from 'react-redux';
 
 const Post = ({ post, postId }) => {
-    const allAccounts = useAccounts();
+    const allAccounts = useSelector((state) => selectAllAccounts(state));
+    console.log(allAccounts);
+
     const account = allAccounts.find((account) => account.id === post.userId);
-    const hasReposted = () => post.reactions.reposts.repost > 0;
+
+    const hasReposted = post.reactions.repostCount.repost > 0;
 
     return (
         <Link to={`/${account.username}/status/${postId}`}>
@@ -16,9 +20,9 @@ const Post = ({ post, postId }) => {
                 key={post.id}
             >
                 <article className="flex shrink grow cursor-pointer flex-col px-4">
-                    {hasReposted() && <RepostedBy account={account} />}
+                    {hasReposted && <RepostedBy account={account} />}
                     <div
-                        className={`flex ${hasReposted() ? 'mt-[1px]' : 'mt-[11px]'}`}
+                        className={`flex ${hasReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
                     >
                         <AccountIMG account={account} />
                         <Content
