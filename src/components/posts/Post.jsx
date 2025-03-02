@@ -7,10 +7,7 @@ import { useSelector } from 'react-redux';
 
 const Post = ({ post, postId }) => {
     const allAccounts = useSelector((state) => selectAllAccounts(state));
-    console.log(allAccounts);
-
     const account = allAccounts.find((account) => account.id === post.userId);
-
     const hasReposted = post.reactions.repostCount.repost > 0;
 
     return (

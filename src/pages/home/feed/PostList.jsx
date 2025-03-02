@@ -9,7 +9,7 @@ const Feed = () => {
         isError,
         error,
     } = useGetPostsQuery();
-
+    console.log(posts);
     let content;
 
     if (isLoading) {
