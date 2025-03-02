@@ -2,7 +2,16 @@ import { useNavigate } from 'react-router-dom';
 
 const AccountIMG = ({ account }) => {
     const navigate = useNavigate();
-    const avatar = account.avatar || '/public/default_profile_200x200.png';
+
+    // Convert Google Drive URL to a thumbnail link
+    const getThumbnailUrl = (url) => {
+        const fileId = url.split('=')[1];
+        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1050`; // ! size will be adjusted
+    };
+
+    const avatar = account.avatar
+        ? getThumbnailUrl(account.avatar)
+        : '/default_profile_200x200.png';
 
     const handleImageClick = (e) => {
         e.preventDefault();
@@ -19,7 +28,7 @@ const AccountIMG = ({ account }) => {
                     width={40}
                     height={40}
                     className="cursor-pointer rounded-full"
-                    onClick={handleImageClick} // Handle click on the image only
+                    onClick={handleImageClick}
                 />
             </div>
         </div>
