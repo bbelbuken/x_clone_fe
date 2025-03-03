@@ -31,7 +31,7 @@ const Post = ({ post, postId }) => {
                             account={account}
                             postId={post.id}
                             postContent={post.content}
-                            postDate={post.date}
+                            postDate={post.createdAt}
                             postIMG={post.media.image}
                             postVideo={post.media.video}
                             postReactions={post.reactions}
