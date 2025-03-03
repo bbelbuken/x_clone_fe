@@ -23,13 +23,13 @@ const AccountIMG = ({ account, imgData }) => {
 
     return (
         <div className="relative pb-2">
-            <div className="mr-2 h-10 w-10 grow-0 basis-10">
+            <div className="mr-2 h-10 w-10 grow-0 basis-10 overflow-hidden rounded-full">
                 <img
                     src={avatar}
                     alt="user_avatar"
                     width={40}
                     height={40}
-                    className="cursor-pointer rounded-full"
+                    className="cursor-pointer rounded-full object-cover"
                     onClick={handleImageClick}
                 />
             </div>
