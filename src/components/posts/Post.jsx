@@ -26,7 +26,10 @@ const Post = ({ post, postId }) => {
                     <div
                         className={`flex ${hasReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
                     >
-                        <AccountIMG account={account} />
+                        <AccountIMG
+                            account={account}
+                            imgData={post.cachedAvatarUrl}
+                        />
                         <Content
                             account={account}
                             postId={post.id}

@@ -12,6 +12,10 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         getPosts: builder.query({
             query: () => ({
                 url: '/posts',
+                headers: {
+                    'Custom-Header': 'Your-Value', // Add custom headers here
+                    'User-Agent': 'Your-App-Name/1.0', // Example header
+                },
                 validateStatus: (response, result) => {
                     return response.status === 200 && !result.isError;
                 },
@@ -34,7 +38,6 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         }),
     }),
 });
-
 export const { useGetPostsQuery } = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();

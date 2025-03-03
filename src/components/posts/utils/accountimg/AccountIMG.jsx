@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const AccountIMG = ({ account }) => {
+const AccountIMG = ({ account, imgData }) => {
     const navigate = useNavigate();
 
     // Convert Google Drive URL to a thumbnail link
@@ -9,9 +9,11 @@ const AccountIMG = ({ account }) => {
         return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1050`; // ! size will be adjusted
     };
 
-    const avatar = account.avatar
-        ? getThumbnailUrl(account.avatar)
-        : '/default_profile_200x200.png';
+    const avatar = imgData
+        ? `${imgData}` // Use cached Base64 image data
+        : account.avatar
+          ? getThumbnailUrl(account.avatar) // Use Google Drive thumbnail
+          : '/default_profile_200x200.png'; // Fallback to default image
 
     const handleImageClick = (e) => {
         e.preventDefault();
