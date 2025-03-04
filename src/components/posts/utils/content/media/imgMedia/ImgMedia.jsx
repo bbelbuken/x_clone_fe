@@ -9,19 +9,25 @@ const ImgMedia = ({ postIMG, postCachedIMG }) => {
 
     return (
         <div className="h-full w-full">
-            <div className={'block'}>
+            <div
+                className={`${mediaArray.length > 1 ? 'grid grid-cols-2 gap-0.5' : 'block'}`}
+            >
                 {mediaArray.map((media, index) => {
                     const src = media.startsWith('data:image')
                         ? media // Use base64 data directly
                         : getThumbnailUrl(media); // Use Google Drive thumbnail
 
                     return (
-                        <img
+                        <div
                             key={index}
-                            src={src}
-                            alt={`Media ${index + 1}`}
-                            className="h-auto w-full object-cover"
-                        />
+                            className={`${mediaArray.length > 1 ? 'relative w-full overflow-hidden pt-[70%]' : ''}`}
+                        >
+                            <img
+                                src={src}
+                                alt={`Media ${index + 1}`}
+                                className={`${mediaArray.length > 1 ? 'absolute top-0 left-0 h-full w-full' : 'h-full w-full object-cover'}`}
+                            />
+                        </div>
                     );
                 })}
             </div>

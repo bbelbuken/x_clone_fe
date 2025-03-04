@@ -14,7 +14,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo }) => {
         // Normalize postIMG to an array
         const imgArray = Array.isArray(postIMG) ? postIMG : [postIMG];
 
-        if (imgArray.length > 0) {
+        if (imgArray.length > 0 && !imgArray === '') {
             mediaElement = new Image();
             mediaElement.src = imgArray[0]; // Use the first image for sizing
             mediaElement.onload = () => {
@@ -23,7 +23,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo }) => {
                     height: mediaElement.naturalHeight + 'px',
                 });
             };
-        } else if (postVideo) {
+        } else if (postVideo && !postVideo === '') {
             mediaElement = document.createElement('video');
             mediaElement.src = postVideo;
             mediaElement.onloadedmetadata = () => {
