@@ -2,7 +2,7 @@ import ImgMedia from './imgMedia/ImgMedia';
 import VideoMedia from './videoMedia/VideoMedia';
 import { useEffect, useState } from 'react';
 
-const Media = ({ postIMG, postVideo }) => {
+const Media = ({ postIMG, postCachedIMG, postVideo }) => {
     const [mediaSize, setMediaSize] = useState({ width: null, height: null });
 
     useEffect(() => {
@@ -11,9 +11,12 @@ const Media = ({ postIMG, postVideo }) => {
 
         let mediaElement;
 
-        if (postIMG) {
+        // Normalize postIMG to an array
+        const imgArray = Array.isArray(postIMG) ? postIMG : [postIMG];
+
+        if (imgArray.length > 0) {
             mediaElement = new Image();
-            mediaElement.src = postIMG;
+            mediaElement.src = imgArray[0]; // Use the first image for sizing
             mediaElement.onload = () => {
                 setMediaSize({
                     width: mediaElement.naturalWidth + 'px',
@@ -50,9 +53,10 @@ const Media = ({ postIMG, postVideo }) => {
             }}
             className={`${postIMG || postVideo ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : ''}`}
         >
-            {postIMG && (
+            {(postIMG || postCachedIMG) && (
                 <ImgMedia
                     postIMG={postIMG}
+                    postCachedIMG={postCachedIMG}
                     style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
             )}

@@ -36,7 +36,8 @@ const Post = memo(({ post, postId }) => {
                             postId={post.id}
                             postContent={post.content}
                             postDate={post.createdAt}
-                            postIMG={post.cachedImages}
+                            postIMG={post.media.image}
+                            postCachedIMG={post.cachedImages}
                             postVideo={post.media.video}
                             postReactions={post.reactions}
                         />
