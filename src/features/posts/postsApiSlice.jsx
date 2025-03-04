@@ -12,10 +12,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         getPosts: builder.query({
             query: () => ({
                 url: '/posts',
-                headers: {
-                    'Custom-Header': 'Your-Value', // Add custom headers here
-                    'User-Agent': 'PostmanRuntime/7.43.0', // Example header
-                },
+
                 validateStatus: (response, result) => {
                     return response.status === 200 && !result.isError;
                 },
