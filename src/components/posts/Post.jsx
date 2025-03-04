@@ -3,8 +3,9 @@ import Content from './utils/content/Content';
 import AccountIMG from './utils/accountimg/AccountIMG';
 import { Link } from 'react-router-dom';
 import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
+import { memo } from 'react';
 
-const Post = ({ post, postId }) => {
+const Post = memo(({ post, postId }) => {
     const {
         data: account,
         isLoading,
@@ -44,6 +45,8 @@ const Post = ({ post, postId }) => {
             </div>
         </Link>
     );
-};
+});
+
+Post.displayName = 'Post';
 
 export default Post;

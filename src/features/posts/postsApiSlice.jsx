@@ -14,7 +14,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 url: '/posts',
                 headers: {
                     'Custom-Header': 'Your-Value', // Add custom headers here
-                    'User-Agent': 'Your-App-Name/1.0', // Example header
+                    'User-Agent': 'PostmanRuntime/7.43.0', // Example header
                 },
                 validateStatus: (response, result) => {
                     return response.status === 200 && !result.isError;
