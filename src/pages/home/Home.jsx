@@ -10,6 +10,7 @@ const Home = () => {
                     <HomeNav />
                 </div>
             </nav>
+            <SendPost />
             <PostList />
         </main>
     );

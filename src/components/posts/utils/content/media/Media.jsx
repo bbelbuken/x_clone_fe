@@ -13,6 +13,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo }) => {
 
         // Normalize postIMG to an array
         const imgArray = Array.isArray(postIMG) ? postIMG : [postIMG];
+        const vidArray = Array.isArray(postVideo) ? postVideo : [postVideo];
 
         if (imgArray.length > 0 && !imgArray === '') {
             mediaElement = new Image();
@@ -23,9 +24,9 @@ const Media = ({ postIMG, postCachedIMG, postVideo }) => {
                     height: mediaElement.naturalHeight + 'px',
                 });
             };
-        } else if (postVideo && !postVideo === '') {
+        } else if (vidArray.length > 0 && !vidArray === '') {
             mediaElement = document.createElement('video');
-            mediaElement.src = postVideo;
+            mediaElement.src = vidArray[0];
             mediaElement.onloadedmetadata = () => {
                 setMediaSize({
                     width: mediaElement.videoWidth + 'px',
