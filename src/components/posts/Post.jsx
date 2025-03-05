@@ -39,6 +39,7 @@ const Post = memo(({ post, postId }) => {
                             postIMG={post.media.image}
                             postCachedIMG={post.cachedImages}
                             postVideo={post.media.video}
+                            postCachedVideos={post.cachedVideos}
                             postReactions={post.reactions}
                         />
                     </div>

@@ -13,6 +13,7 @@ const Content = memo(
         postIMG,
         postCachedIMG,
         postVideo,
+        postCachedVideos,
         postReactions,
     }) => {
         return (
@@ -23,6 +24,7 @@ const Content = memo(
                     postIMG={postIMG}
                     postCachedIMG={postCachedIMG}
                     postVideo={postVideo}
+                    postCachedVideos={postCachedVideos}
                 />
                 <ReactionNav postId={postId} postReactions={postReactions} />
             </div>
