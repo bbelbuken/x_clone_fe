@@ -5,7 +5,9 @@ import { useDispatch } from 'react-redux';
 
 const SignInPasswordInput = ({
     username,
+    setUsername,
     email,
+    setEmail,
     password,
     setPassword,
     handleNextSection2,
@@ -35,6 +37,9 @@ const SignInPasswordInput = ({
                 password,
             }).unwrap();
             dispatch(setCredentials(accessToken));
+            setPassword('');
+            setUsername('');
+            setEmail('');
             handleNextSection2();
         } catch (err) {
             if (!err.status) {
@@ -48,6 +53,10 @@ const SignInPasswordInput = ({
             }
         }
     };
+
+    if (isLoading) {
+        <div>Loading...</div>;
+    }
 
     return (
         <form action="submit" onSubmit={handleSubmit} className="w-full">

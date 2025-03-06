@@ -44,19 +44,17 @@ const SignInModal = () => {
                     handleClose={handleClose}
                     handleNextSection2={handleNextSection2}
                     newStep={newStep}
-                    username={username}
                     setUsername={setUsername}
-                    email={email}
                     setEmail={setEmail}
-                    login={login}
-                    isLoading={isLoading}
                     error={error}
                 />
             )}
             {newStep == 2 && (
                 <SignInPassword
                     username={username}
+                    setUsername={setUsername}
                     email={email}
+                    setEmail={setEmail}
                     handleClose={handleClose}
                     handleNextSection2={handleNextSection2}
                     newStep={newStep}

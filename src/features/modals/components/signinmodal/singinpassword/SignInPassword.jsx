@@ -11,12 +11,14 @@ const SignInPassword = ({
     newStep,
     username,
     email,
+    setEmail,
     password,
     setPassword,
     login,
     isLoading,
     error,
     setCredentials,
+    setUsername,
 }) => {
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -36,7 +38,9 @@ const SignInPassword = ({
 
                 <SignInPasswordInput
                     username={username}
+                    setUsername={setUsername}
                     email={email}
+                    setEmail={setEmail}
                     password={password}
                     setPassword={setPassword}
                     handleNextSection2={handleNextSection2}
@@ -60,11 +64,12 @@ const SignInPassword = ({
                     </span>
                 </div>
 
-                {errorMessage && (
-                    <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
-                        <span>{errorMessage}.</span>
-                    </div>
-                )}
+                {errorMessage ||
+                    (error && (
+                        <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                            <span>{errorMessage || error}.</span>
+                        </div>
+                    ))}
             </div>
         </div>
     );

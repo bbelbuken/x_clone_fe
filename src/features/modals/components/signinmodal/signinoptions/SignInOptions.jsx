@@ -8,15 +8,12 @@ import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';
 
 const SignInOptions = ({
-    username,
-    email,
     handleClose,
     handleNextSection2,
     newStep,
     setUsername,
     setEmail,
-    login,
-    isLoading,
+
     error,
 }) => {
     return (
@@ -37,13 +34,9 @@ const SignInOptions = ({
                 <Or />
 
                 <UsernameOrEmailInput
-                    username={username}
-                    email={email}
                     setUsername={setUsername}
                     setEmail={setEmail}
                     handleNextSection2={handleNextSection2}
-                    login={login}
-                    isLoading={isLoading}
                     error={error}
                 />
                 <div className="mt-[9px] flex h-[36px] w-[300px] items-center justify-center rounded-[20px] border border-[#536471] bg-transparent">
