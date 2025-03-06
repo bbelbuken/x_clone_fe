@@ -35,9 +35,11 @@ const SignInPasswordInput = ({
             } else {
                 payload.email = email;
             }
+            console.log('Sending payload to backend:', payload); // Log the payload
 
             // Call the login mutation
             const { accessToken } = await login(payload).unwrap();
+            console.log('Received response from backend:', accessToken); // Log the response
             dispatch(setCredentials(accessToken));
             setPassword('');
             setUsername('');
