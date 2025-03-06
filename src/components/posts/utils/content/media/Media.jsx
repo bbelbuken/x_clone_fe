@@ -54,14 +54,15 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
             }}
             className={`${postIMG || postVideo ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : ''}`}
         >
-            {(postIMG || postCachedIMG) && (
+            {postIMG && postVideo.length === 0 && (
                 <ImgMedia
                     postIMG={postIMG}
                     postCachedIMG={postCachedIMG}
                     style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
             )}
-            {(postVideo || postCachedVideos) && (
+
+            {postVideo && postIMG.length === 0 && (
                 <VideoMedia
                     postVideo={postVideo}
                     postCachedVideos={postCachedVideos}
