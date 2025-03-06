@@ -13,7 +13,6 @@ const SignInPasswordInput = ({
     handleNextSection2,
     login,
     isLoading,
-    error,
     setCredentials,
     setErrorMessage,
 }) => {
@@ -30,12 +29,15 @@ const SignInPasswordInput = ({
         e.preventDefault();
 
         try {
+            const payload = { password };
+            if (username) {
+                payload.username = username;
+            } else {
+                payload.email = email;
+            }
+
             // Call the login mutation
-            const { accessToken } = await login({
-                username,
-                email,
-                password,
-            }).unwrap();
+            const { accessToken } = await login(payload).unwrap();
             dispatch(setCredentials(accessToken));
             setPassword('');
             setUsername('');
