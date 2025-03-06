@@ -6,8 +6,6 @@ const VideoMedia = ({ postVideo }) => {
         return `https://drive.google.com/file/d/${fileId}/preview`;
     };
 
-    console.log(postVideo);
-
     const vidArray = Array.isArray(postVideo) ? postVideo : [postVideo];
 
     return (

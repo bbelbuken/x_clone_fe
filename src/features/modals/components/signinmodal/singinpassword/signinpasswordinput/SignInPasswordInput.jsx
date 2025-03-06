@@ -1,8 +1,21 @@
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'components/buttons/Button';
+import { useDispatch } from 'react-redux';
 
-const SignInPasswordInput = ({ password, setPassword, handleNextSection2 }) => {
+const SignInPasswordInput = ({
+    username,
+    email,
+    password,
+    setPassword,
+    handleNextSection2,
+    login,
+    isLoading,
+    error,
+    setCredentials,
+    setErrorMessage,
+}) => {
+    const dispatch = useDispatch();
     const inputRef = useRef();
     const [iconClicked, setIconClicked] = useState(false);
     const [isFocused, setIsFocused] = useState(true);
@@ -11,8 +24,29 @@ const SignInPasswordInput = ({ password, setPassword, handleNextSection2 }) => {
         inputRef.current?.focus();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try {
+            // Call the login mutation
+            const { accessToken } = await login({
+                username,
+                email,
+                password,
+            }).unwrap();
+            dispatch(setCredentials(accessToken));
+            handleNextSection2();
+        } catch (err) {
+            if (!err.status) {
+                setErrorMessage('No Server Response');
+            } else if (err.status === 400) {
+                setErrorMessage('Missing Username or Password');
+            } else if (err.status === 401) {
+                setErrorMessage('Unauthorized');
+            } else {
+                setErrorMessage(err.data?.message);
+            }
+        }
     };
 
     return (
@@ -61,7 +95,6 @@ const SignInPasswordInput = ({ password, setPassword, handleNextSection2 }) => {
                 <Button
                     type="button"
                     className={`${password ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} mt-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none`}
-                    onClick={handleNextSection2}
                 >
                     <span className="text-[17px] text-black">Log in</span>
                 </Button>

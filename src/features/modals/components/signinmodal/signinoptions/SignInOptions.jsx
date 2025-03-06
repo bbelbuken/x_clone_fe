@@ -8,11 +8,16 @@ import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';
 
 const SignInOptions = ({
+    username,
+    email,
     handleClose,
     handleNextSection2,
     newStep,
     setUsername,
     setEmail,
+    login,
+    isLoading,
+    error,
 }) => {
     return (
         <div className="absolute top-[24.6%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col items-center justify-center rounded-2xl bg-black">
@@ -32,9 +37,14 @@ const SignInOptions = ({
                 <Or />
 
                 <UsernameOrEmailInput
+                    username={username}
+                    email={email}
                     setUsername={setUsername}
                     setEmail={setEmail}
                     handleNextSection2={handleNextSection2}
+                    login={login}
+                    isLoading={isLoading}
+                    error={error}
                 />
                 <div className="mt-[9px] flex h-[36px] w-[300px] items-center justify-center rounded-[20px] border border-[#536471] bg-transparent">
                     <Button

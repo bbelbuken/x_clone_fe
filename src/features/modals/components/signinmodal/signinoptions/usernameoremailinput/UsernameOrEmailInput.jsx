@@ -2,9 +2,14 @@ import { useState, useRef, useCallback } from 'react';
 import Button from 'components/buttons/Button';
 
 const UsernameOrEmailInput = ({
+    username,
+    email,
     setUsername,
     setEmail,
     handleNextSection2,
+    login,
+    isLoading,
+    error,
 }) => {
     const inputRef = useRef();
     const [isFocused, setIsFocused] = useState(false);
@@ -22,7 +27,7 @@ const UsernameOrEmailInput = ({
         setInputValue(value);
     };
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         // Reset error message
@@ -38,10 +43,11 @@ const UsernameOrEmailInput = ({
         // Validate email
         if (validateEmail(inputValue)) {
             // Input is a valid email
-            setEmail(inputValue);
+            const response = await login({ email }).unwrap();
+            setEmail(response);
             setIsValidEmail(true); // Set isValidEmail to true
             setErrorMessage(''); // Clear any previous error message
-            console.log('Sending email to backend:', inputValue);
+            console.log('Sending email to backend:', response);
             handleNextSection2(); // Proceed to the next section
         } else if (
             (!validateEmail(inputValue) && inputValue.includes('@')) ||
@@ -55,12 +61,14 @@ const UsernameOrEmailInput = ({
             setErrorMessage('Username must be at least 5 characters long.');
         } else {
             // Input is a valid username
-            setUsername(inputValue);
+            const response = await login({ username }).unwrap();
+            setUsername(response);
             setErrorMessage(''); // Clear any previous error message
-            console.log('Sending username to backend:', inputValue);
+            console.log('Sending username to backend:', response);
             handleNextSection2(); // Proceed to the next section
         }
     };
+    if (isLoading) return <p>Loading...</p>;
 
     return (
         <form
@@ -105,7 +113,7 @@ const UsernameOrEmailInput = ({
                 </Button>
             </div>
 
-            {errorMessage && (
+            {(errorMessage || error) && (
                 <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
                     <span>{errorMessage}.</span>
                 </div>
