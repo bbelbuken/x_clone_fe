@@ -14,7 +14,7 @@ const SignInPasswordInput = ({
     login,
     isLoading,
     setCredentials,
-    setErrorMessage,
+    newStep,
 }) => {
     const dispatch = useDispatch();
     const inputRef = useRef();
@@ -28,34 +28,22 @@ const SignInPasswordInput = ({
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const payload = { password };
-            if (username) {
-                payload.username = username;
-            } else {
-                payload.email = email;
-            }
-            console.log('Sending payload to backend:', payload); // Log the payload
-
-            // Call the login mutation
-            const { accessToken } = await login(payload).unwrap();
-            console.log('Received response from backend:', accessToken); // Log the response
-            dispatch(setCredentials({ accessToken }));
-            setPassword('');
-            setUsername('');
-            setEmail('');
-            handleNextSection2();
-        } catch (err) {
-            if (!err.status) {
-                setErrorMessage('No Server Response');
-            } else if (err.status === 400) {
-                setErrorMessage('Missing Username or Password');
-            } else if (err.status === 401) {
-                setErrorMessage('Unauthorized');
-            } else {
-                setErrorMessage(err.data?.message);
-            }
+        const payload = { password, step: newStep };
+        if (username) {
+            payload.username = username;
+        } else {
+            payload.email = email;
         }
+        console.log(payload);
+
+        // Call the login mutation
+        const { accessToken } = await login(payload).unwrap();
+        console.log('Received response from backend:', accessToken); // Log the response
+        dispatch(setCredentials({ accessToken }));
+        setPassword('');
+        setUsername('');
+        setEmail('');
+        handleNextSection2();
     };
 
     if (isLoading) {

@@ -47,6 +47,8 @@ const SignInModal = () => {
                     setUsername={setUsername}
                     setEmail={setEmail}
                     error={error}
+                    login={login}
+                    isLoading={isLoading}
                 />
             )}
             {newStep == 2 && (

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import DetectedUsernameInput from './detectedusernameinput/DetectedUsernameInput';
 import DetectedEmailInput from './detectedemailinput/DetectedEmailInput';
 import SignInPasswordInput from './signinpasswordinput/SignInPasswordInput';
-import { useState } from 'react';
 
 const SignInPassword = ({
     handleClose,
@@ -20,8 +19,6 @@ const SignInPassword = ({
     setCredentials,
     setUsername,
 }) => {
-    const [errorMessage, setErrorMessage] = useState('');
-
     return (
         <div className="absolute top-[24.6%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[600px] min-w-[600px] flex-col rounded-2xl bg-black">
             <FormHeader handleClose={handleClose} newStep={newStep} />
@@ -48,7 +45,7 @@ const SignInPassword = ({
                     isLoading={isLoading}
                     error={error}
                     setCredentials={setCredentials}
-                    setErrorMessage={setErrorMessage}
+                    newStep={newStep}
                 />
 
                 <div className="mt-[15px] flex h-[36px] w-full items-center justify-start rounded-[20px]">
@@ -64,12 +61,11 @@ const SignInPassword = ({
                     </span>
                 </div>
 
-                {errorMessage ||
-                    (error && (
-                        <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
-                            <span>{errorMessage || error}.</span>
-                        </div>
-                    ))}
+                {error && (
+                    <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                        <span>{error}.</span>
+                    </div>
+                )}
             </div>
         </div>
     );

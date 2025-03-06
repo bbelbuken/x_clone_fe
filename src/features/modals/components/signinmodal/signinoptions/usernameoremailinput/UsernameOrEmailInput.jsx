@@ -2,14 +2,16 @@ import { useState, useRef, useCallback } from 'react';
 import Button from 'components/buttons/Button';
 
 const UsernameOrEmailInput = ({
+    newStep,
     setUsername,
     setEmail,
     handleNextSection2,
+    login,
+    isLoading,
     error,
 }) => {
     const inputRef = useRef();
     const [isFocused, setIsFocused] = useState(false);
-    const [isValidEmail, setIsValidEmail] = useState(true);
     const [inputValue, setInputValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -26,43 +28,45 @@ const UsernameOrEmailInput = ({
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        // Reset error message
         setErrorMessage('');
 
-        // Check if input is empty
         if (inputValue === '') {
             setErrorMessage('Please enter your email or username.');
-            setIsValidEmail(false); // Reset isValidEmail state
-            return; // Stop further execution
+            return;
         }
 
-        // Validate email
+        let response;
         if (validateEmail(inputValue)) {
-            // Input is a valid email
+            // Validate email
+            response = await login({ email: inputValue, step: newStep });
+            if (response.error) return;
+
             setEmail(inputValue);
-            setIsValidEmail(true); // Set isValidEmail to true
-            setErrorMessage(''); // Clear any previous error message
-            console.log('Sending email to backend:', inputValue);
-            handleNextSection2(); // Proceed to the next section
+            setErrorMessage('');
         } else if (
             (!validateEmail(inputValue) && inputValue.includes('@')) ||
             inputValue.includes('.')
         ) {
-            setIsValidEmail(false); // Set isValidEmail to false
             setErrorMessage('You have entered a wrong email address');
             return;
         } else if (inputValue.length < 5) {
-            // Username is too short
             setErrorMessage('Username must be at least 5 characters long.');
+            return;
         } else {
-            // Input is a valid username
+            // Validate username
+            response = await login({ username: inputValue, step: newStep });
+            if (response.error) return;
+
             setUsername(inputValue);
-            setErrorMessage(''); // Clear any previous error message
-            console.log('Sending username to backend:', inputValue);
-            handleNextSection2(); // Proceed to the next section
+            setErrorMessage('');
         }
+
+        handleNextSection2();
     };
 
+    if (isLoading) {
+        <div>Loading...</div>;
+    }
     return (
         <form
             action="submit"

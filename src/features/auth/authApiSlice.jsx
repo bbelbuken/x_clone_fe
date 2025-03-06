@@ -8,6 +8,9 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: { ...credentials },
             }),
+            transformErrorResponse: (response) => {
+                return response.data?.message || 'An error occurred';
+            },
         }),
         signup: builder.mutation({
             query: (credentials) => ({
