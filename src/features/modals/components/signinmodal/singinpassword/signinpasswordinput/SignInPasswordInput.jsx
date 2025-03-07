@@ -37,7 +37,6 @@ const SignInPasswordInput = ({
 
         // Call the login mutation
         const { accessToken } = await login(payload).unwrap();
-        console.log('Received response from backend:', accessToken); // Log the response
         dispatch(setCredentials({ accessToken }));
         setPassword('');
         setUsername('');

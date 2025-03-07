@@ -6,10 +6,24 @@ import ButtonItems from './buttonitems/ButtonItems';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const AccountButton = () => {
-    const currentAccount = useCurrentAccount();
-    const account = currentAccount.account;
-    const isLoading = currentAccount.isLoading;
-    const error = currentAccount.error;
+    const currentAccountUsername = useCurrentAccount();
+    const {
+        account: currentAccount,
+        error,
+        isLoading,
+    } = currentAccountUsername;
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Show a loading spinner or placeholder
+    }
+
+    if (error) {
+        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
+    }
+
+    if (!currentAccount) {
+        return <div>No account data found.</div>; // Handle case where account is undefined
+    }
 
     return (
         <Popover className={'relative z-20'}>
@@ -23,12 +37,7 @@ const AccountButton = () => {
                         'flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden bg-transparent px-3 text-[17px] leading-5 font-bold break-words transition-colors outline-none active:bg-white'
                     }
                 >
-                    <ButtonItems
-                        gap={2}
-                        account={account}
-                        isLoading={isLoading}
-                        error={error}
-                    />
+                    <ButtonItems gap={2} currentAccount={currentAccount} />
                 </div>
 
                 <div className="absolute top-[15px] -right-1 inline-flex h-[34.75px] w-[34.75px] rounded-full transition-colors">
@@ -44,7 +53,7 @@ const AccountButton = () => {
                 }
                 transition
             >
-                <PanelItems />
+                <PanelItems currentAccount={currentAccount} />
             </PopoverPanel>
         </Popover>
     );

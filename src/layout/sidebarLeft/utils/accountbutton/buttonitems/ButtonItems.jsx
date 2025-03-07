@@ -1,25 +1,15 @@
-import React from 'react';
-
-const ButtonItems = ({ gap, account, isLoading, error }) => {
+const ButtonItems = ({ gap, currentAccount = {} }) => {
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
         const fileId = urlParams.get('id');
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
-    const avatar = account.cachedAvatar
-        ? `${account.cachedAvatar}`
-        : account.avatar
-          ? getGoogleDriveDirectImageUrl(account.avatar)
+    const avatar = currentAccount.cachedAvatar
+        ? `${currentAccount.cachedAvatar}`
+        : currentAccount.avatar
+          ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
           : '/public/default_profile_200x200.png';
-
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
-    if (error) {
-        return <p>Error loading account data</p>;
-    }
 
     return (
         <div
@@ -32,12 +22,12 @@ const ButtonItems = ({ gap, account, isLoading, error }) => {
             />
             <div className="ml-1 flex flex-col items-start justify-center">
                 <p className="text-[15px] font-bold break-words">
-                    {account.fullname}
+                    {currentAccount.fullname || 'Guest'}
                 </p>
                 <div className="text-[15px] leading-[1.5em] font-light tracking-[0.045em] text-[#71767b]">
                     <div className="flex items-center justify-center">
                         <p className="text-[12px]">@</p>
-                        {account.username}
+                        {currentAccount.username || 'guest'}
                     </div>
                 </div>
             </div>

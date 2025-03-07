@@ -1,13 +1,12 @@
 import React from 'react';
-import { useCurrentAccount, useAccounts } from 'hooks/useAccounts';
+import { useAccounts } from 'hooks/useAccounts';
 import { Link, useNavigate } from 'react-router-dom';
 import CurrentAccountItems from '../buttonitems/ButtonItems';
 import OtherAccountLists from './otheraccountlists/OtherAccountLists';
 
-const PanelItems = () => {
+const PanelItems = ({ currentAccount }) => {
     const navigate = useNavigate();
-    const currentAccount = useCurrentAccount();
-    const accounts = useAccounts();
+    const loggedAccounts = useAccounts();
 
     const openLogOutModal = (e) => {
         e.preventDefault();
@@ -17,11 +16,14 @@ const PanelItems = () => {
     };
     return (
         <div className="flex flex-1 flex-col justify-center self-stretch overflow-visible py-3 text-sm font-bold">
-            {accounts.length > 1 && (
+            {loggedAccounts.length > 1 && (
                 <>
                     <ol className="px-4 pt-0.5">
                         <li className="relative">
-                            <CurrentAccountItems gap={1} />
+                            <CurrentAccountItems
+                                gap={1}
+                                currentAccount={currentAccount}
+                            />
                             <svg
                                 viewBox="0 0 24 24"
                                 className="absolute top-3 right-2"
@@ -34,7 +36,7 @@ const PanelItems = () => {
                         </li>
                     </ol>
 
-                    <OtherAccountLists />
+                    <OtherAccountLists currentAccount={currentAccount} />
 
                     <div className="my-3 h-[1px] bg-[#2f3336]"></div>
                 </>
@@ -42,7 +44,7 @@ const PanelItems = () => {
             <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
                 Add an existing account
             </Link>
-            {accounts.length > 1 && (
+            {loggedAccounts.length > 1 && (
                 <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
                     Manage accounts
                 </Link>

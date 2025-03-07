@@ -1,30 +1,30 @@
 import { selectCurrentToken } from 'features/auth/authSlice';
 import { useSelector } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
-import { useMemo } from 'react';
 import { useGetCurrentAccountQuery } from 'features/accounts/accountApiSlice';
+import { useState, useEffect } from 'react';
 
 const useCurrentAccount = () => {
+    const [currentUsername, setCurrentUsername] = useState('');
     const token = useSelector(selectCurrentToken);
-    console.log('Token:', token); // Log the token
-
-    const decoded = useMemo(() => {
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            console.log('Decoded Token:', decodedToken); // Log the decoded token
-            return decodedToken;
-        }
-        return null;
-    }, [token]);
-
-    const username = decoded?.UserInfo?.username || '';
-    console.log('Username:', username); // Log the username
-
     const {
         data: account,
         isLoading,
         error,
-    } = useGetCurrentAccountQuery(username, { skip: !username });
+    } = useGetCurrentAccountQuery(currentUsername);
+
+    useEffect(() => {
+        if (token) {
+            const decoded = jwtDecode(token);
+            const { username } = decoded.UserInfo;
+
+            if (username !== currentUsername) {
+                setCurrentUsername(username);
+            }
+        } else {
+            setCurrentUsername('');
+        }
+    }, [token, currentUsername]);
 
     return { account, isLoading, error };
 };

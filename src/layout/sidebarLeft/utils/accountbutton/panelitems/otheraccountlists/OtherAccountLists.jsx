@@ -1,11 +1,10 @@
 import React from 'react';
-import { useCurrentAccount, useAccounts } from 'hooks/useAccounts';
+import { useAccounts } from 'hooks/useAccounts';
 import { useDispatch } from 'react-redux';
 import { setCurrentAccount } from 'features/accounts/accountSlice';
 
-const OtherAccountLists = () => {
+const OtherAccountLists = ({ currentAccount }) => {
     const dispatch = useDispatch();
-    const currentAccount = useCurrentAccount();
     const accounts = useAccounts();
     const otherAccounts = accounts.filter(
         (account) => account.id !== currentAccount.id,
