@@ -3,8 +3,14 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import ThreeDotSVG from 'components/icons/ThreeDotSVG';
 import PanelItems from './panelitems/PanelItems';
 import ButtonItems from './buttonitems/ButtonItems';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const AccountButton = () => {
+    const currentAccount = useCurrentAccount();
+    const account = currentAccount.account;
+    const isLoading = currentAccount.isLoading;
+    const error = currentAccount.error;
+
     return (
         <Popover className={'relative z-20'}>
             <PopoverButton
@@ -17,7 +23,12 @@ const AccountButton = () => {
                         'flex min-h-[65px] w-full min-w-[52px] items-center justify-center overflow-hidden bg-transparent px-3 text-[17px] leading-5 font-bold break-words transition-colors outline-none active:bg-white'
                     }
                 >
-                    <ButtonItems gap={2} />
+                    <ButtonItems
+                        gap={2}
+                        account={account}
+                        isLoading={isLoading}
+                        error={error}
+                    />
                 </div>
 
                 <div className="absolute top-[15px] -right-1 inline-flex h-[34.75px] w-[34.75px] rounded-full transition-colors">

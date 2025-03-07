@@ -1,15 +1,6 @@
 import React from 'react';
-import useCurrentAccount from 'hooks/useCurrentAccount';
-import { useGetCurrentAccountQuery } from 'features/accounts/accountApiSlice';
 
-const ButtonItems = ({ gap }) => {
-    const currentAccount = useCurrentAccount();
-    const {
-        data: account,
-        isLoading,
-        error,
-    } = useGetCurrentAccountQuery(currentAccount);
-
+const ButtonItems = ({ gap, account, isLoading, error }) => {
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
         const fileId = urlParams.get('id');
