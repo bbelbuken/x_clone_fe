@@ -37,7 +37,7 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
         }),
 
         getCurrentAccount: builder.query({
-            query: (username) => '/users/current',
+            query: (username) => `/users/current/${username}`,
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError;
             },
@@ -48,8 +48,11 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetAccountsQuery, useGetAccountsByIdQuery } =
-    accountsApiSlice;
+export const {
+    useGetAccountsQuery,
+    useGetAccountsByIdQuery,
+    useGetCurrentAccountQuery,
+} = accountsApiSlice;
 
 // returning the query result obj
 export const selectAccountsResult =

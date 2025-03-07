@@ -5,8 +5,8 @@ const AccountIMG = ({ account, imgData }) => {
 
     // Convert Google Drive URL to a thumbnail link
     const getThumbnailUrl = (url) => {
-        const fileId = url.split('=')[1];
-        return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1050`; // ! size will be adjusted
+        const fileId = url.split('/d/')[1].split('/')[0]; // Extract file ID
+        return `https://lh3.googleusercontent.com/d/${fileId}`;
     };
 
     const avatar = imgData

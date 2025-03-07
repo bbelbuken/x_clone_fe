@@ -34,7 +34,6 @@ const SignInPasswordInput = ({
         } else {
             payload.email = email;
         }
-        console.log(payload);
 
         // Call the login mutation
         const { accessToken } = await login(payload).unwrap();

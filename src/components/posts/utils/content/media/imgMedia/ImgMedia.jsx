@@ -1,7 +1,7 @@
 const ImgMedia = ({ postIMG, postCachedIMG }) => {
     const getThumbnailUrl = (url) => {
-        const fileId = url.split('=')[1];
-        return `https://drive.google.com/thumbnail?id=${fileId}`;
+        const fileId = url.split('/d/')[1].split('/')[0];
+        return `https://lh3.googleusercontent.com/d/${fileId}`;
     };
 
     const imgArray = Array.isArray(postIMG) ? postIMG : [postIMG];
