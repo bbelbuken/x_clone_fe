@@ -16,6 +16,12 @@ const ButtonItems = ({ gap }) => {
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
+    const avatar = account.cachedAvatar
+        ? `${account.cachedAvatar}`
+        : account.avatar
+          ? getGoogleDriveDirectImageUrl(account.avatar)
+          : '/public/default_profile_200x200.png';
+
     if (isLoading) {
         return <p>Loading...</p>;
     }
@@ -23,16 +29,13 @@ const ButtonItems = ({ gap }) => {
     if (error) {
         return <p>Error loading account data</p>;
     }
-    console.log(getGoogleDriveDirectImageUrl(account.avatar)); // Check if the URL is correct
 
     return (
         <div
             className={`items-starts flex h-auto w-full justify-start gap-${gap}`}
         >
             <img
-                src={getGoogleDriveDirectImageUrl(
-                    'https://drive.google.com/thumbnail?id=101pdSR_fZE2dZZOP79_YOEX2uytV-2QQ&sz=w1050',
-                )}
+                src={avatar}
                 alt="Avatar"
                 className="mt-[1px] h-10 w-10 rounded-full"
             />
