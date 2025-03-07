@@ -6,12 +6,8 @@ import ButtonItems from './buttonitems/ButtonItems';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const AccountButton = () => {
-    const currentAccountUsername = useCurrentAccount();
-    const {
-        account: currentAccount,
-        error,
-        isLoading,
-    } = currentAccountUsername;
+    const currentAccountData = useCurrentAccount();
+    const { account: currentAccount, error, isLoading } = currentAccountData;
 
     if (isLoading) {
         return <div>Loading...</div>; // Show a loading spinner or placeholder

@@ -103,6 +103,7 @@ const initialState = {
             createdAt: '',
         },
     ],
+    loggedInAccounts: [],
 };
 
 const accountSlice = createSlice({

@@ -5,6 +5,7 @@ import { setCurrentAccount } from 'features/accounts/accountSlice';
 
 const OtherAccountLists = ({ currentAccount }) => {
     const dispatch = useDispatch();
+
     const accounts = useAccounts();
     const otherAccounts = accounts.filter(
         (account) => account.id !== currentAccount.id,

@@ -29,7 +29,7 @@ const AccountIMG = ({ account, imgData }) => {
                     alt="user_avatar"
                     width={40}
                     height={40}
-                    className="cursor-pointer rounded-full object-cover"
+                    className="mt-[1px] h-10 w-10 rounded-full object-cover"
                     onClick={handleImageClick}
                 />
             </div>

@@ -2,6 +2,7 @@ import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'components/buttons/Button';
 import { useDispatch } from 'react-redux';
+import { setCurrentAccount } from 'features/accounts/accountSlice';
 
 const SignInPasswordInput = ({
     username,
@@ -38,6 +39,7 @@ const SignInPasswordInput = ({
         // Call the login mutation
         const { accessToken } = await login(payload).unwrap();
         dispatch(setCredentials({ accessToken }));
+        dispatch(setCurrentAccount);
         setPassword('');
         setUsername('');
         setEmail('');

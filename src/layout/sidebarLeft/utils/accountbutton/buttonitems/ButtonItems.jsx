@@ -18,7 +18,7 @@ const ButtonItems = ({ gap, currentAccount = {} }) => {
             <img
                 src={avatar}
                 alt="Avatar"
-                className="mt-[1px] h-10 w-10 rounded-full"
+                className="mt-[1px] h-10 w-10 rounded-full object-cover"
             />
             <div className="ml-1 flex flex-col items-start justify-center">
                 <p className="text-[15px] font-bold break-words">

@@ -1,4 +1,3 @@
-import { useCurrentAccount } from 'hooks/useAccounts';
 import { useState } from 'react';
 import PostNavData from './postnavdata/PostNavData';
 import Button from 'components/buttons/Button';
@@ -7,15 +6,42 @@ import WhoCanReply from './whocanreply/WhoCanReply';
 import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
 import { useNavigate } from 'react-router-dom';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const SendPost = ({ modalRef, handleClose }) => {
+    const currentAccountData = useCurrentAccount();
+    const { account: currentAccount, error, isLoading } = currentAccountData;
+
     const [tweet, setTweet] = useState('');
     const [media, setMedia] = useState('');
     const [mediaType, setMediaType] = useState('');
     const [isClicked, setIsClicked] = useState(false);
-    const currentAccount = useCurrentAccount();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const getGoogleDriveDirectImageUrl = (url) => {
+        const urlParams = new URLSearchParams(url.split('?')[1]);
+        const fileId = urlParams.get('id');
+        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Show a loading spinner or placeholder
+    }
+
+    if (error) {
+        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
+    }
+
+    if (!currentAccount) {
+        return <div>No account data found.</div>; // Handle case where account is undefined
+    }
+
+    const avatar = currentAccount.cachedAvatar
+        ? `${currentAccount.cachedAvatar}`
+        : currentAccount.avatar
+          ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
+          : '/public/default_profile_200x200.png';
 
     const handleClick = () => {
         setIsClicked(true);
@@ -55,11 +81,11 @@ const SendPost = ({ modalRef, handleClose }) => {
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >
                 <img
-                    src={currentAccount.avatar}
+                    src={avatar}
                     alt="user_avatar"
                     width={40}
                     height={40}
-                    className="cursor-pointer rounded-full transition-opacity duration-100 ease-in-out hover:opacity-60"
+                    className="mt-[1px] h-10 w-10 cursor-pointer rounded-full object-cover transition-opacity duration-100 ease-in-out hover:opacity-60"
                     onClick={navigateToUserProfile}
                 />
             </div>

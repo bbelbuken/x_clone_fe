@@ -7,11 +7,14 @@ import { useState, useEffect } from 'react';
 const useCurrentAccount = () => {
     const [currentUsername, setCurrentUsername] = useState('');
     const token = useSelector(selectCurrentToken);
+
     const {
         data: account,
         isLoading,
         error,
-    } = useGetCurrentAccountQuery(currentUsername);
+    } = useGetCurrentAccountQuery(currentUsername, {
+        skip: !currentUsername, // Skip the query if currentUsername is not set
+    });
 
     useEffect(() => {
         if (token) {
