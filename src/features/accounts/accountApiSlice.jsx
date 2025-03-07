@@ -9,29 +9,40 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAccounts: builder.query({
             query: () => '/users',
+            validateStatus: (response, result) => {
+                return response.status === 200 && !result.isError;
+            },
+            transformResponse: (responseData) => {
+                const loadedAccounts = responseData.map((account) => {
+                    account.id = account._id;
+                    return account;
+                });
+                return accountsAdapter.setAll(initialState, loadedAccounts);
+            },
+            providesTags: (result, error, arg) => {
+                if (result?.ids) {
+                    return [
+                        { type: 'Account', id: 'LIST' },
+                        ...result.ids.map((id) => ({ type: 'Account', id })),
+                    ];
+                } else return [{ type: 'Account', id: 'LIST' }];
+            },
         }),
-        validateStatus: (response, result) => {
-            return response.status === 200 && !result.isError;
-        },
-        transformResponse: (responseData) => {
-            const loadedAccounts = responseData.map((account) => {
-                account.id = account._id;
-                return account;
-            });
-            return accountsAdapter.setAll(initialState, loadedAccounts);
-        },
-        providesTags: (result, error, arg) => {
-            if (result?.ids) {
-                return [
-                    { type: 'Account', id: 'LIST' },
-                    ...result.ids.map((id) => ({ type: 'Account', id })),
-                ];
-            } else return [{ type: 'Account', id: 'LIST' }];
-        },
+
         getAccountsById: builder.query({
             query: (userId) => `/users/${userId}`,
             providesTags: (result, error, userId) => [
                 { type: 'Account', id: userId },
+            ],
+        }),
+
+        getCurrentAccount: builder.query({
+            query: (username) => '/users/current',
+            validateStatus: (response, result) => {
+                return response.status === 200 && !result.isError;
+            },
+            providesTags: (result, error, username) => [
+                { type: 'Account', id: username },
             ],
         }),
     }),
