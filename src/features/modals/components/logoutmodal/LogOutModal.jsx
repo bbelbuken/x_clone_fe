@@ -2,10 +2,13 @@ import { useRef } from 'react';
 import Button from 'components/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import { TwitterSVG } from 'components/icons/TwitterSVG';
+import { useSendLogOutMutation } from 'features/auth/authApiSlice';
 
 const LogOutModal = () => {
     const modalRef = useRef();
     const navigate = useNavigate();
+
+    const [sendLogOut, { isLoading, error }] = useSendLogOutMutation();
 
     const handleClose = () => {
         const previousRouteLogOut = localStorage.getItem('previousRouteLogOut');
@@ -23,9 +26,19 @@ const LogOutModal = () => {
         }
     };
 
-    const handleLogOut = () => {
+    const handleLogOut = async () => {
+        await sendLogOut();
         navigate('/');
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
     return (
         <div
             onClick={handleClickOutside}
