@@ -26,9 +26,23 @@ const LogOutModal = () => {
         }
     };
 
+    const clearRoutesUponLogOut = () => {
+        Object.keys(localStorage).forEach((key) => {
+            if (key.startsWith('previous')) {
+                localStorage.removeItem(key);
+            }
+        });
+        localStorage.removeItem('persist:root');
+    };
+
     const handleLogOut = async () => {
-        await sendLogOut();
-        navigate('/');
+        try {
+            await sendLogOut();
+            clearRoutesUponLogOut();
+            navigate('/');
+        } catch (error) {
+            console.error('Logout Failed', error);
+        }
     };
 
     if (isLoading) {
