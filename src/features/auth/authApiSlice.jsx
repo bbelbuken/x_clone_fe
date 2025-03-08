@@ -1,5 +1,5 @@
 import { apiSlice } from '../../app/api/apiSlice';
-import { setCredentials } from './authSlice';
+import { setCredentials, logOut } from './authSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -22,6 +22,21 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 return response.data?.message || 'An error occurred';
             },
         }),
+        sendLogOut: builder.mutation({
+            query: () => ({
+                url: '/i/flow/logout',
+                method: 'post',
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(logOut());
+                    dispatch(apiSlice.util.resetApiState());
+                } catch (error) {
+                    console.error('Logout Failed', error);
+                }
+            },
+        }),
         signup: builder.mutation({
             query: (credentials) => ({
                 url: '/i/flow/signup',
@@ -32,4 +47,4 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useLoginMutation, useSignUpMutation } = authApiSlice;
+export const { useLoginMutation, useSignUpMutation, sendLogOut } = authApiSlice;
