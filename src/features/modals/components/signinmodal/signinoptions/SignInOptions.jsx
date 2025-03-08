@@ -1,8 +1,8 @@
 import React from 'react';
 import FormHeader from '../../createaccountmodal/formarea/formheader/FormHeader';
-import GoogleSignUp from 'features/auth/welcome/googlesignup/GoogleSignUp';
-import AppleSignUp from 'features/auth/welcome/applesignup/AppleSignUp';
-import Or from 'features/auth/welcome/or/Or';
+import GoogleSignUp from 'pages/welcome/googlesignup/GoogleSignUp';
+import AppleSignUp from 'pages/welcome/applesignup/AppleSignUp';
+import Or from 'pages/welcome/or/Or';
 import UsernameOrEmailInput from './usernameoremailinput/UsernameOrEmailInput';
 import Button from 'components/buttons/Button';
 import { Link } from 'react-router-dom';

@@ -32,7 +32,7 @@ const EditProfileModal = React.lazy(
     () =>
         import('features/modals/components/editprofilemodal/EditProfileModal'),
 );
-const Welcome = React.lazy(() => import('features/auth/welcome/Welcome.jsx'));
+const Welcome = React.lazy(() => import('pages/welcome/Welcome.jsx'));
 const CreateAccountModal = React.lazy(
     () =>
         import(

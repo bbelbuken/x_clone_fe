@@ -1,4 +1,4 @@
-import { WelcomeFooterData } from 'features/auth/welcome/footer/footerdata/WelcomeFooterData';
+import { WelcomeFooterData } from 'pages/welcome/footer/footerdata/WelcomeFooterData';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 
