@@ -11,7 +11,6 @@ import { apiSlice } from '../api/apiSlice';
 const persistConfig = {
     key: 'root', // Key for the persisted state
     storage, // Storage engine (localStorage by default)
-    whitelist: ['auth'], // Only persist the 'auth' slice (or any other slices you want to persist)
 };
 
 // Wrap the auth reducer with persistReducer
@@ -20,7 +19,6 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
-
         auth: persistedAuthReducer,
         posts: postReducer,
         accounts: accountReducer,
