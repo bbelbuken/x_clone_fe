@@ -60,6 +60,8 @@ const SendPost = ({ modalRef, handleClose }) => {
 
     const handlePost = async () => {
         try {
+            console.log(media);
+
             tweet.trim();
             await addPost({
                 content: tweet,

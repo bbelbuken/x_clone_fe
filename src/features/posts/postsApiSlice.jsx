@@ -36,19 +36,33 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         addPost: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
+
+                // Append the content and userId fields
                 formData.append('content', credentials.content);
                 formData.append('userId', credentials.userId);
 
-                if (credentials.mediaFiles) {
-                    credentials.mediaFiles.forEach((file, index) => {
-                        formData.append('mediaFiles', file);
-                    });
+                console.log('content:', credentials.content);
+                console.log('userId', credentials.userId);
+
+                // Append the media file(s) if they exist
+                if (credentials.media) {
+                    if (Array.isArray(credentials.media)) {
+                        // If media is an array, append each file
+                        credentials.media.forEach((file) => {
+                            formData.append('mediaFiles', file);
+                        });
+                    } else {
+                        // If media is a single file, append it directly
+                        formData.append('mediaFiles', credentials.media);
+                    }
                 }
+                console.log('media', credentials.media);
 
                 return {
                     url: '/posts',
                     method: 'POST',
                     body: formData,
+                    // Do NOT specify Content-Type here, browser will set it correctly
                 };
             },
             transformResponse: (responseData) => {
