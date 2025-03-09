@@ -52,7 +52,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                 maxWidth: mediaSize.width,
                 maxHeight: mediaSize.height,
             }}
-            className={`${postIMG || postVideo ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : ''}`}
+            className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
         >
             {postIMG && postVideo.length === 0 && (
                 <ImgMedia
