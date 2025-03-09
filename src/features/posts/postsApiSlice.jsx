@@ -35,34 +35,30 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         }),
         addPost: builder.mutation({
             query: (credentials) => {
+                console.log('content:', credentials.content);
+                console.log('userId', credentials.userId);
+                console.log('mediaFiles', credentials.mediaFiles);
                 const formData = new FormData();
 
-                // Append the content and userId fields
                 formData.append('content', credentials.content);
                 formData.append('userId', credentials.userId);
 
-                console.log('content:', credentials.content);
-                console.log('userId', credentials.userId);
-
-                // Append the media file(s) if they exist
-                if (credentials.media) {
-                    if (Array.isArray(credentials.media)) {
-                        // If media is an array, append each file
-                        credentials.media.forEach((file) => {
+                if (credentials.mediaFiles) {
+                    if (Array.isArray(credentials.mediaFiles)) {
+                        // If mediaFiles is an array, append each file
+                        credentials.mediaFiles.forEach((file) => {
                             formData.append('mediaFiles', file);
                         });
                     } else {
-                        // If media is a single file, append it directly
-                        formData.append('mediaFiles', credentials.media);
+                        // If mediaFiles is a single file, append it directly
+                        formData.append('mediaFiles', credentials.mediaFiles);
                     }
                 }
-                console.log('media', credentials.media);
 
                 return {
                     url: '/posts',
                     method: 'POST',
                     body: formData,
-                    // Do NOT specify Content-Type here, browser will set it correctly
                 };
             },
             transformResponse: (responseData) => {

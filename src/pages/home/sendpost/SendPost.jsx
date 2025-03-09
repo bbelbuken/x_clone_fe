@@ -17,7 +17,7 @@ const SendPost = ({ modalRef, handleClose }) => {
         useAddPostMutation();
 
     const [tweet, setTweet] = useState('');
-    const [media, setMedia] = useState('');
+    const [media, setMedia] = useState([]);
     const [mediaType, setMediaType] = useState('');
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
@@ -51,17 +51,20 @@ const SendPost = ({ modalRef, handleClose }) => {
     };
 
     const handleMediaSelect = (file) => {
-        setMedia(file);
+        if (Array.isArray(media)) {
+            setMedia((prevMedia) => [...prevMedia, file]); // Append to array
+        } else {
+            setMedia([file]); // Convert to array if it's a single file
+        }
     };
 
     const handleMediaType = (type) => {
         setMediaType(type);
+        console.log(media);
     };
 
     const handlePost = async () => {
         try {
-            console.log(media);
-
             tweet.trim();
             await addPost({
                 content: tweet,
