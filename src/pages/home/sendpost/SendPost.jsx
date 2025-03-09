@@ -6,6 +6,7 @@ import WhoCanReply from './whocanreply/WhoCanReply';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import { useAddPostMutation } from 'features/posts/postsApiSlice';
+
 const SendPost = ({ modalRef, handleClose }) => {
     const currentAccountData = useCurrentAccount();
     const {
@@ -18,7 +19,7 @@ const SendPost = ({ modalRef, handleClose }) => {
 
     const [tweet, setTweet] = useState('');
     const [media, setMedia] = useState([]);
-    const [mediaType, setMediaType] = useState('');
+    const [mediaType, setMediaType] = useState(null); // Centralized mediaType state
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
 
@@ -56,11 +57,13 @@ const SendPost = ({ modalRef, handleClose }) => {
             ? fileOrFiles
             : [fileOrFiles];
 
-        // Check if adding new files would exceed the limit of 4
-        const totalFiles = (media?.length || 0) + newFiles.length;
-        if (totalFiles > 4) {
-            alert('You can only upload up to 4 media files.');
-            return;
+        // Determine media type based on the first file
+        const firstFile = newFiles[0];
+        const mediaExtension = firstFile?.name?.split('.').pop()?.toLowerCase();
+        if (['jpeg', 'jpg', 'png', 'webp'].includes(mediaExtension)) {
+            setMediaType('image');
+        } else if (['mp4', 'mov'].includes(mediaExtension)) {
+            setMediaType('video');
         }
 
         // Append new files to the existing media state
@@ -68,11 +71,6 @@ const SendPost = ({ modalRef, handleClose }) => {
             const updatedMedia = [...(prevMedia || []), ...newFiles]; // Ensure prevMedia is an array
             return updatedMedia.slice(0, 4); // Ensure the total number of files does not exceed 4
         });
-    };
-
-    const handleMediaType = (type) => {
-        setMediaType(type);
-        console.log(media);
     };
 
     const handlePost = async () => {
@@ -84,8 +82,8 @@ const SendPost = ({ modalRef, handleClose }) => {
                 mediaFiles: media,
             }).unwrap();
             setTweet('');
-            setMedia('');
-
+            setMedia([]);
+            setMediaType(null); // Reset mediaType after posting
             if (modalRef) {
                 handleClose();
             }
@@ -123,8 +121,8 @@ const SendPost = ({ modalRef, handleClose }) => {
                     tweet={tweet}
                     setTweet={setTweet}
                     media={media}
+                    mediaType={mediaType} // Pass mediaType to Form
                     modalRef={modalRef}
-                    handleMediaType={handleMediaType}
                 />
                 {isClicked || modalRef ? (
                     <div
@@ -146,7 +144,7 @@ const SendPost = ({ modalRef, handleClose }) => {
 
             <Button
                 size="normal"
-                className={`absolute right-4 bottom-[10px] px-[16.5px] py-[7px] text-[14.5px] text-black ${tweet || media ? 'bg-[#eff3f4]' : 'pointer-events-none bg-[#787a7a]'}`}
+                className={`absolute right-4 bottom-[10px] px-[16.5px] py-[7px] text-[14.5px] text-black ${tweet.length !== 0 || media.length !== 0 ? 'bg-[#eff3f4]' : 'pointer-events-none bg-[#787a7a]'}`}
                 onClick={handlePost}
             >
                 <span>Post</span>

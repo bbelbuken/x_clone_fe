@@ -1,7 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const PostNavData = ({ handleMediaSelect }) => {
     const fileInputRef = useRef(null);
+    const [inputErrorMsg, setInputErrorMsg] = useState(false);
 
     const handleFileClick = () => {
         fileInputRef.current?.click();
@@ -10,7 +11,10 @@ const PostNavData = ({ handleMediaSelect }) => {
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
         if (files.length > 4) {
-            alert('You can only upload up to 4 media files.');
+            setInputErrorMsg(true);
+            setTimeout(() => {
+                setInputErrorMsg(false);
+            }, 5000);
             return;
         }
         handleMediaSelect(files);
@@ -135,6 +139,12 @@ const PostNavData = ({ handleMediaSelect }) => {
                 onChange={handleFileChange}
                 multiple
             />
+
+            {inputErrorMsg && (
+                <div className="absolute right-20 -bottom-250 z-50 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                    <span>Please choose up to 4 photos, videos, or GIFs.</span>
+                </div>
+            )}
         </div>
     );
 };
