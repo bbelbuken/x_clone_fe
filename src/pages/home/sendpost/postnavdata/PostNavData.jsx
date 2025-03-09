@@ -7,6 +7,15 @@ const PostNavData = ({ handleMediaSelect }) => {
         fileInputRef.current?.click();
     };
 
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 4) {
+            alert('You can only upload up to 4 media files.');
+            return;
+        }
+        handleMediaSelect(files);
+    };
+
     const navdata = [
         {
             title: 'Media',
@@ -123,12 +132,8 @@ const PostNavData = ({ handleMediaSelect }) => {
                 type="file"
                 accept="image/jpeg, image/png, image/gif, image/webp, video/mp4, video/quicktime"
                 style={{ display: 'none' }}
-                onChange={(e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        handleMediaSelect(file);
-                    }
-                }}
+                onChange={handleFileChange}
+                multiple
             />
         </div>
     );

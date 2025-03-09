@@ -50,12 +50,24 @@ const SendPost = ({ modalRef, handleClose }) => {
         setIsClicked(true);
     };
 
-    const handleMediaSelect = (file) => {
-        if (Array.isArray(media)) {
-            setMedia((prevMedia) => [...prevMedia, file]); // Append to array
-        } else {
-            setMedia([file]); // Convert to array if it's a single file
+    const handleMediaSelect = (fileOrFiles) => {
+        // Convert the input to an array (if it's a single file, wrap it in an array)
+        const newFiles = Array.isArray(fileOrFiles)
+            ? fileOrFiles
+            : [fileOrFiles];
+
+        // Check if adding new files would exceed the limit of 4
+        const totalFiles = (media?.length || 0) + newFiles.length;
+        if (totalFiles > 4) {
+            alert('You can only upload up to 4 media files.');
+            return;
         }
+
+        // Append new files to the existing media state
+        setMedia((prevMedia) => {
+            const updatedMedia = [...(prevMedia || []), ...newFiles]; // Ensure prevMedia is an array
+            return updatedMedia.slice(0, 4); // Ensure the total number of files does not exceed 4
+        });
     };
 
     const handleMediaType = (type) => {
