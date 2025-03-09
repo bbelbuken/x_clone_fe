@@ -39,6 +39,9 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: { ...credentials },
             }),
+            transformResponse: (responseData) => {
+                return responseData.post;
+            },
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: 'LIST' },
             ],

@@ -3,12 +3,9 @@ import PostNavData from './postnavdata/PostNavData';
 import Button from 'components/buttons/Button';
 import Form from './form/Form';
 import WhoCanReply from './whocanreply/WhoCanReply';
-import { useDispatch } from 'react-redux';
-import { addPost } from 'features/posts/postSlice';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import { useAddPostMutation } from 'features/posts/postsApiSlice';
-
 const SendPost = ({ modalRef, handleClose }) => {
     const currentAccountData = useCurrentAccount();
     const {
@@ -16,17 +13,13 @@ const SendPost = ({ modalRef, handleClose }) => {
         error: accountError,
         isLoading: isLoadingAccount,
     } = currentAccountData;
-    const {
-        data: post,
-        error: postError,
-        isLoading: isLoadingPost,
-    } = useAddPostMutation();
+    const [addPost, { isLoading: isAddingPost, error: postError }] =
+        useAddPostMutation();
 
     const [tweet, setTweet] = useState('');
     const [media, setMedia] = useState('');
     const [mediaType, setMediaType] = useState('');
     const [isClicked, setIsClicked] = useState(false);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const getGoogleDriveDirectImageUrl = (url) => {
@@ -35,7 +28,7 @@ const SendPost = ({ modalRef, handleClose }) => {
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
-    if (isLoadingAccount || isLoadingPost) {
+    if (isLoadingAccount || isAddingPost) {
         return <div>Loading...</div>; // Show a loading spinner or placeholder
     }
 
@@ -66,18 +59,21 @@ const SendPost = ({ modalRef, handleClose }) => {
     };
 
     const handlePost = async () => {
-        tweet.trim();
-        const { response } = await addPost({
-            content: tweet,
-            userId: currentAccount._id,
-            mediaFiles: media,
-        }).unwrap();
-        console.log(response);
-        setTweet('');
-        setMedia('');
+        try {
+            tweet.trim();
+            await addPost({
+                content: tweet,
+                userId: currentAccount._id,
+                mediaFiles: media,
+            }).unwrap();
+            setTweet('');
+            setMedia('');
 
-        if (modalRef) {
-            handleClose();
+            if (modalRef) {
+                handleClose();
+            }
+        } catch (error) {
+            console.error('Failed to add posts:', error);
         }
     };
 
