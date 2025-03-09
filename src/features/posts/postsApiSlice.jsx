@@ -34,11 +34,23 @@ export const postsApiSlice = apiSlice.injectEndpoints({
             },
         }),
         addPost: builder.mutation({
-            query: (credentials) => ({
-                url: '/posts',
-                method: 'POST',
-                body: { ...credentials },
-            }),
+            query: (credentials) => {
+                const formData = new FormData();
+                formData.append('content', credentials.content);
+                formData.append('userId', credentials.userId);
+
+                if (credentials.mediaFiles) {
+                    credentials.mediaFiles.forEach((file, index) => {
+                        formData.append('mediaFiles', file);
+                    });
+                }
+
+                return {
+                    url: '/posts',
+                    method: 'POST',
+                    body: formData,
+                };
+            },
             transformResponse: (responseData) => {
                 return responseData.post;
             },
