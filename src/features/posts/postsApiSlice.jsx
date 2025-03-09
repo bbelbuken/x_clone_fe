@@ -33,9 +33,19 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Post', id: 'LIST' }];
             },
         }),
+        addPost: builder.mutation({
+            query: (credentials) => ({
+                url: '/posts',
+                method: 'POST',
+                body: { ...credentials },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: 'LIST' },
+            ],
+        }),
     }),
 });
-export const { useGetPostsQuery } = postsApiSlice;
+export const { useGetPostsQuery, useAddPostMutation } = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
 
