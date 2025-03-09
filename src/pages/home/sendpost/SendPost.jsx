@@ -7,10 +7,20 @@ import { useDispatch } from 'react-redux';
 import { addPost } from 'features/posts/postSlice';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
+import { useAddPostMutation } from 'features/posts/postsApiSlice';
 
 const SendPost = ({ modalRef, handleClose }) => {
     const currentAccountData = useCurrentAccount();
-    const { account: currentAccount, error, isLoading } = currentAccountData;
+    const {
+        account: currentAccount,
+        error: accountError,
+        isLoading: isLoadingAccount,
+    } = currentAccountData;
+    const {
+        data: post,
+        error: postError,
+        isLoading: isLoadingPost,
+    } = useAddPostMutation();
 
     const [tweet, setTweet] = useState('');
     const [media, setMedia] = useState('');
@@ -25,12 +35,12 @@ const SendPost = ({ modalRef, handleClose }) => {
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
-    if (isLoading) {
+    if (isLoadingAccount || isLoadingPost) {
         return <div>Loading...</div>; // Show a loading spinner or placeholder
     }
 
-    if (error) {
-        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
+    if (accountError || postError) {
+        return <div>Error: {accountError.message || postError.message}</div>;
     }
 
     if (!currentAccount) {
@@ -55,9 +65,14 @@ const SendPost = ({ modalRef, handleClose }) => {
         setMediaType(type);
     };
 
-    const handlePost = () => {
+    const handlePost = async () => {
         tweet.trim();
-        dispatch(addPost(tweet, currentAccount.id, media, mediaType));
+        const { response } = await addPost({
+            content: tweet,
+            userId: currentAccount._id,
+            mediaFiles: media,
+        }).unwrap();
+        console.log(response);
         setTweet('');
         setMedia('');
 
