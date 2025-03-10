@@ -17,6 +17,8 @@ const PanelItems = ({ currentAccount }) => {
 
     const openSignInModal = (e) => {
         e.preventDefault();
+        const previousRouteSignIn = location.pathname;
+        localStorage.setItem('previousRouteSignIn', previousRouteSignIn);
         navigate('i/flow/login', { state: { background: location.pathname } });
     };
     return (

@@ -20,7 +20,7 @@ const SignInModal = () => {
     const handleClose = useCallback(() => {
         const outsideWelcomePage = location.pathname !== '/';
         const previousRoute = localStorage.getItem('previousRouteWelcomePage');
-        const previousRouteSignIn = localStorage.getItem('previousRouteLogOut');
+        const previousRouteSignIn = localStorage.getItem('previousRouteSignIn');
 
         navigate(outsideWelcomePage ? previousRouteSignIn : previousRoute);
     }, [navigate]);
