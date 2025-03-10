@@ -25,7 +25,7 @@ const ImgMedia = ({ postIMG, postCachedIMG }) => {
                             <img
                                 src={src}
                                 alt={`Media ${index + 1}`}
-                                className={`${mediaArray.length > 1 ? 'absolute top-0 left-0 h-full w-full' : 'h-full w-full object-cover'}`}
+                                className={`${mediaArray.length > 1 ? 'absolute top-0 left-0 h-full w-full object-cover' : 'h-full w-full object-cover'}`}
                                 loading="lazy"
                             />
                         </div>

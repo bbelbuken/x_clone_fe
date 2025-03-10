@@ -24,7 +24,7 @@ const VideoMedia = ({ postVideo }) => {
                             src={getGoogleDriveEmbedUrl(video)}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
-                            className={`${vidArray.length > 1 ? 'absolute top-0 left-0 h-full w-full' : 'absolute top-0 right-0 h-full w-full object-fill'}`}
+                            className={`${vidArray.length > 1 ? 'absolute top-0 left-0 h-full w-full object-cover' : 'absolute top-0 right-0 h-full w-full object-fill'}`}
                             loading="lazy"
                         ></iframe>
                     </div>

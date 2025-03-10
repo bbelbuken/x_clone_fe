@@ -6,12 +6,14 @@ const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
     useEffect(() => {
         const resetMediaSize = () =>
             setMediaSize({ width: null, height: null });
+
         let mediaElement;
 
-        if (media && mediaType) {
+        if (media && media.length > 0) {
+            const file = media[0]; // Use the first file for sizing
             if (mediaType === 'image') {
                 mediaElement = new Image();
-                mediaElement.src = URL.createObjectURL(media[0]); // Use the first file
+                mediaElement.src = URL.createObjectURL(file);
                 mediaElement.onload = () => {
                     setMediaSize({
                         width: mediaElement.naturalWidth + 'px',
@@ -20,7 +22,7 @@ const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
                 };
             } else if (mediaType === 'video') {
                 mediaElement = document.createElement('video');
-                mediaElement.src = URL.createObjectURL(media[0]); // Use the first file
+                mediaElement.src = URL.createObjectURL(file);
                 mediaElement.onloadedmetadata = () => {
                     setMediaSize({
                         width: mediaElement.videoWidth + 'px',
@@ -66,7 +68,7 @@ const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
                 />
             </label>
 
-            {media && mediaType && (
+            {media && media.length > 0 && (
                 <div
                     style={{
                         width: '100%',
@@ -76,33 +78,46 @@ const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
                     }}
                     className="transition-colors-feed mt-3 max-h-auto max-w-full overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat"
                 >
-                    {mediaType === 'image' && (
-                        <img
-                            src={URL.createObjectURL(media[0])}
-                            alt="Selected media"
-                            style={{
-                                maxWidth: '100%',
-                                maxHeight: '100%',
-                                objectFit: 'contain',
-                            }}
-                        />
-                    )}
-                    {mediaType === 'video' && (
-                        <video
-                            controls
-                            style={{
-                                maxHeight: '100%',
-                                maxWidth: '100%',
-                                objectFit: 'contain',
-                            }}
-                        >
-                            <source
-                                src={URL.createObjectURL(media[0])}
-                                type={`video/${media[0].name.split('.').pop()}`}
-                            />
-                            Your browser does not support the video tag.
-                        </video>
-                    )}
+                    <div
+                        className={`${media.length > 1 ? 'grid grid-cols-2 gap-0.5' : 'block'}`}
+                    >
+                        {media.map((file, index) => {
+                            const isImage = file.type.startsWith('image');
+                            const isVideo = file.type.startsWith('video');
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`${media.length > 1 ? 'relative w-full overflow-hidden pt-[70%]' : ''}`}
+                                >
+                                    {isImage ? (
+                                        <img
+                                            src={URL.createObjectURL(file)}
+                                            alt="Selected media"
+                                            style={{
+                                                maxWidth: '100%',
+                                                maxHeight: '100%',
+                                                objectFit: 'cover',
+                                            }}
+                                            className={`${media.length > 1 ? 'absolute top-0 left-0 h-full w-full' : 'h-full w-full object-cover'}`}
+                                        />
+                                    ) : isVideo ? (
+                                        <video
+                                            controls
+                                            className={`${media.length > 1 ? 'absolute top-0 left-0 h-full w-full object-cover' : 'h-full w-full object-cover'}`}
+                                        >
+                                            <source
+                                                src={URL.createObjectURL(file)}
+                                                type={file.type}
+                                            />
+                                            Your browser does not support the
+                                            video tag.
+                                        </video>
+                                    ) : null}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             )}
         </form>
