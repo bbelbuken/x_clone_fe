@@ -4,16 +4,15 @@ import Button from 'components/buttons/Button';
 import Form from './form/Form';
 import WhoCanReply from './whocanreply/WhoCanReply';
 import { useNavigate } from 'react-router-dom';
-import useCurrentAccount from 'hooks/useCurrentAccount';
 import { useAddPostMutation } from 'features/posts/postsApiSlice';
 
-const SendPost = ({ modalRef, handleClose }) => {
-    const currentAccountData = useCurrentAccount();
-    const {
-        account: currentAccount,
-        error: accountError,
-        isLoading: isLoadingAccount,
-    } = currentAccountData;
+const SendPost = ({
+    modalRef,
+    handleClose,
+    currentAccount,
+    accountError,
+    isLoadingAccount,
+}) => {
     const [addPost, { isLoading: isAddingPost, error: postError }] =
         useAddPostMutation();
 

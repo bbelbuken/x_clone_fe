@@ -7,6 +7,8 @@ import { memo } from 'react';
 const Content = memo(
     ({
         account,
+        currentAccount,
+        post,
         postId,
         postContent,
         postDate,
@@ -21,7 +23,8 @@ const Content = memo(
                 <UserNav
                     account={account}
                     postDate={postDate}
-                    postId={postId}
+                    post={post}
+                    currentAccount={currentAccount}
                 />
                 <Index postContent={postContent} />
                 <Media

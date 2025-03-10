@@ -1,7 +1,7 @@
 import Post from 'components/posts/Post';
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 
-const Feed = () => {
+const Feed = ({ currentAccount }) => {
     const {
         data: posts,
         isLoading,
@@ -22,7 +22,14 @@ const Feed = () => {
         content = ids.map((postId, index) => {
             const post = entities[postId];
 
-            return <Post post={post} postId={postId} key={index} />;
+            return (
+                <Post
+                    post={post}
+                    postId={postId}
+                    key={index}
+                    currentAccount={currentAccount}
+                />
+            );
         });
     }
 

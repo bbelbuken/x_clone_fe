@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
 import { memo } from 'react';
 
-const Post = memo(({ post, postId }) => {
+const Post = memo(({ post, postId, currentAccount }) => {
     const {
         data: account,
         isLoading,
@@ -33,6 +33,8 @@ const Post = memo(({ post, postId }) => {
                         />
                         <Content
                             account={account}
+                            currentAccount={currentAccount}
+                            post={post}
                             postId={postId}
                             postContent={post.content}
                             postDate={post.createdAt}
