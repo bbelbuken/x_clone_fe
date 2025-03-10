@@ -33,7 +33,7 @@ const Post = memo(({ post, postId }) => {
                         />
                         <Content
                             account={account}
-                            postId={post.id}
+                            postId={postId}
                             postContent={post.content}
                             postDate={post.createdAt}
                             postIMG={post.media.image}

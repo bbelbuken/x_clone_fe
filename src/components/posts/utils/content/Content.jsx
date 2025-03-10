@@ -18,7 +18,11 @@ const Content = memo(
     }) => {
         return (
             <div className="items-star flex grow flex-col justify-start pb-3">
-                <UserNav account={account} postDate={postDate} />
+                <UserNav
+                    account={account}
+                    postDate={postDate}
+                    postId={postId}
+                />
                 <Index postContent={postContent} />
                 <Media
                     postIMG={postIMG}

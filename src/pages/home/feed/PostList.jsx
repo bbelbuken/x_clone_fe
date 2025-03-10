@@ -19,9 +19,10 @@ const Feed = () => {
         // using normalized data
         const { ids, entities } = posts;
 
-        content = ids.map((postId) => {
+        content = ids.map((postId, index) => {
             const post = entities[postId];
-            return <Post post={post} key={postId} />;
+
+            return <Post post={post} postId={postId} key={index} />;
         });
     }
 
