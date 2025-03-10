@@ -45,30 +45,60 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
     }, [postIMG, postVideo]);
 
     return (
-        <div
-            style={{
-                width: '100%',
-                height: 'auto',
-                maxWidth: mediaSize.width,
-                maxHeight: mediaSize.height,
-            }}
-            className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
-        >
-            {postIMG && postVideo.length === 0 && (
-                <ImgMedia
-                    postIMG={postIMG}
-                    postCachedIMG={postCachedIMG}
-                    style={{ maxWidth: '100%', maxHeight: '100%' }}
-                />
+        <div>
+            {postIMG.length !== 0 && postIMG.length !== 0 && (
+                <div
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: mediaSize.width,
+                        maxHeight: mediaSize.height,
+                    }}
+                    className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
+                >
+                    <div>
+                        {postIMG.length !== 0 && (
+                            <ImgMedia
+                                postIMG={postIMG}
+                                postCachedIMG={postCachedIMG}
+                                style={{
+                                    maxWidth: '100%',
+                                    maxHeight: '100%',
+                                }}
+                            />
+                        )}
+
+                        {postVideo.length !== 0 && (
+                            <VideoMedia
+                                postVideo={postVideo}
+                                postCachedVideos={postCachedVideos}
+                                style={{
+                                    maxWidth: '100%',
+                                    maxHeight: '100%',
+                                }}
+                            />
+                        )}
+                    </div>
+                </div>
             )}
 
-            {postVideo && postIMG.length === 0 && (
-                <VideoMedia
-                    postVideo={postVideo}
-                    postCachedVideos={postCachedVideos}
-                    style={{ maxWidth: '100%', maxHeight: '100%' }}
-                />
-            )}
+            <div
+                style={{
+                    width: '100%',
+                    height: 'auto',
+                    maxWidth: mediaSize.width,
+                    maxHeight: mediaSize.height,
+                }}
+                className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
+            >
+                {postVideo && postIMG.length === 0 && (
+                    <VideoMedia
+                        postVideo={postVideo}
+                        postCachedVideos={postCachedVideos}
+                        style={{ maxWidth: '100%', maxHeight: '100%' }}
+                    />
+                )}
+            </div>
         </div>
     );
 };
