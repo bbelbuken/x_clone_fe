@@ -14,6 +14,11 @@ const PanelItems = ({ currentAccount }) => {
         localStorage.setItem('previousRouteLogOut', previousRouteLogOut);
         navigate('/logout', { state: { background: location.pathname } });
     };
+
+    const openSignInModal = (e) => {
+        e.preventDefault();
+        navigate('i/flow/login', { state: { background: location.pathname } });
+    };
     return (
         <div className="flex flex-1 flex-col justify-center self-stretch overflow-visible py-3 text-sm font-bold">
             {loggedAccounts.length > 1 && (
@@ -41,7 +46,10 @@ const PanelItems = ({ currentAccount }) => {
                     <div className="my-3 h-[1px] bg-[#2f3336]"></div>
                 </>
             )}
-            <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
+            <Link
+                onClick={openSignInModal}
+                className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]"
+            >
                 Add an existing account
             </Link>
             {loggedAccounts.length > 1 && (

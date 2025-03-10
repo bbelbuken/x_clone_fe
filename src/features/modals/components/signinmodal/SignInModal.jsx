@@ -18,8 +18,11 @@ const SignInModal = () => {
     };
 
     const handleClose = useCallback(() => {
+        const outsideWelcomePage = location.pathname !== '/';
         const previousRoute = localStorage.getItem('previousRouteWelcomePage');
-        navigate(previousRoute || '/');
+        const previousRouteSignIn = localStorage.getItem('previousRouteLogOut');
+
+        navigate(outsideWelcomePage ? previousRouteSignIn : previousRoute);
     }, [navigate]);
 
     const handleClickOutside = (e) => {
