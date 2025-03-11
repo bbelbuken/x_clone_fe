@@ -23,7 +23,9 @@ const DeletePostModal = () => {
 
     const handleDeletePost = async (e) => {
         e.preventDefault();
-        await deletePost({ postId: post._id }).unwrap();
+        const response = await deletePost({ postId: post._id }).unwrap();
+        console.log('response', response);
+        handleClose();
     };
 
     if (isLoading) {
@@ -56,14 +58,14 @@ const DeletePostModal = () => {
                 <div className="mt-6 mb-[calc(-12px)] flex flex-col transition-colors">
                     <Button
                         size="deletePost"
-                        onClick={''}
+                        onClick={handleDeletePost}
                         className="mb-3 min-h-[44px] text-white hover:bg-[#dc1e29]"
                     >
                         Delete
                     </Button>
                     <Button
                         size="profile-follow"
-                        onClick={() => dispatch(closeModal())}
+                        onClick={handleClose}
                         className="mb-3 min-h-[44px] hover:bg-[#eff3f41a]"
                     >
                         Cancel
