@@ -9,7 +9,7 @@ const WhatIsHappening = () => {
     return (
         <div className="block outline-none">
             <div className="flex max-w-full min-w-0 flex-col justify-between self-center px-4 py-3 text-xl leading-6 font-bold tracking-wide break-words outline-none">
-                <h2 className="">What's happening</h2>
+                <h2 className="">What&apos;s happening</h2>
             </div>
             <div>
                 {Trending.map((item, index) => (

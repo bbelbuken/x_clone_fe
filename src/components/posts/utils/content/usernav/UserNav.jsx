@@ -3,7 +3,7 @@ import TimeAgo from './timeago/TimeAgo';
 import More from './more/More';
 import VerifiedSVG from 'components/icons/VerifiedSVG';
 
-const UserNav = ({ account, postDate, post, currentAccount }) => {
+const UserNav = ({ account, postDate }) => {
     const navigate = useNavigate();
     const handleImageClick = (e) => {
         e.preventDefault();
@@ -33,12 +33,6 @@ const UserNav = ({ account, postDate, post, currentAccount }) => {
                     <TimeAgo postDate={postDate} />
                 </div>
             </div>
-
-            <More
-                account={account}
-                post={post}
-                currentAccount={currentAccount}
-            />
         </div>
     );
 };

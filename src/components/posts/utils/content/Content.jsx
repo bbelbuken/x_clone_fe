@@ -7,8 +7,7 @@ import { memo } from 'react';
 const Content = memo(
     ({
         account,
-        currentAccount,
-        post,
+
         postId,
         postContent,
         postDate,
@@ -20,12 +19,7 @@ const Content = memo(
     }) => {
         return (
             <div className="items-star flex grow flex-col justify-start pb-3">
-                <UserNav
-                    account={account}
-                    postDate={postDate}
-                    post={post}
-                    currentAccount={currentAccount}
-                />
+                <UserNav account={account} postDate={postDate} />
                 <Index postContent={postContent} />
                 <Media
                     postIMG={postIMG}
