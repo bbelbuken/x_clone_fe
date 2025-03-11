@@ -1,11 +1,15 @@
 import { useRef } from 'react';
 import Button from 'components/buttons/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'features/modals/modalSlice';
+import { useDeletePostMutation } from 'features/posts/postsApiSlice';
 
 const DeletePostModal = () => {
     const modalRef = useRef();
     const dispatch = useDispatch();
+    const [deletePost, { isLoading, error }] = useDeletePostMutation();
+    const { post } = useSelector((state) => state.modals.props);
+    console.log(post._id);
 
     const handleClose = () => {
         dispatch(closeModal());
@@ -17,14 +21,18 @@ const DeletePostModal = () => {
         }
     };
 
-    /* 
+    const handleDeletePost = async (e) => {
+        e.preventDefault();
+        await deletePost({ postId: post._id }).unwrap();
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
     if (error) {
         return <div>Error: {error.message}</div>;
-    } */
+    }
 
     return (
         <div

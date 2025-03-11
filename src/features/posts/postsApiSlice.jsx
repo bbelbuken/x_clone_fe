@@ -68,7 +68,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: 'LIST' },
             ],
         }),
-        deleteNote: builder.mutation({
+        deletePost: builder.mutation({
             query: ({ postId }) => ({
                 url: `/posts`,
                 method: 'DELETE',
@@ -80,7 +80,8 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         }),
     }),
 });
-export const { useGetPostsQuery, useAddPostMutation } = postsApiSlice;
+export const { useGetPostsQuery, useAddPostMutation, useDeletePostMutation } =
+    postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
 
