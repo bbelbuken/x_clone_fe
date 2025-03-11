@@ -8,7 +8,7 @@ export const PostPanelData = ({ accounts, post, currentAccount }) => {
     const handleDeletePost = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        dispatch(openModal({ modalType: 'delete' }));
+        dispatch(openModal({ modalType: 'delete', prop: 'post' }));
     };
 
     const myPanelData = [
