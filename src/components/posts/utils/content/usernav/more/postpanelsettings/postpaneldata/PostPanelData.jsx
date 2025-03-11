@@ -1,17 +1,14 @@
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
-import { useNavigate } from 'react-router-dom';
 
 export const PostPanelData = ({ accounts, post, currentAccount }) => {
     const loggedAccount = currentAccount?._id === post.userId;
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleDeletePost = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        dispatch(openModal({ ModalType: 'Delete' }));
-        navigate(`${loggedAccount.username}`);
+        dispatch(openModal({ modalType: 'delete' }));
     };
 
     const myPanelData = [
