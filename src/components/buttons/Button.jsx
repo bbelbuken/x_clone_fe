@@ -61,6 +61,10 @@ const Button = memo(
                         'min-h-9 px-3 text-[15px] border border-[#536471] pb-0.5 font-bold transition-colors':
                             size === 'profile-follow',
                     },
+                    {
+                        'min-h-9 px-3 text-[15px] bg-[#f4212e] pb-0.5 font-bold transition-colors':
+                            size === 'deletePost',
+                    },
                     className,
                 ),
                 onClick: handleClick,

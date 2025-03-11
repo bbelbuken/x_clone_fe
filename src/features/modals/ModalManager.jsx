@@ -4,7 +4,6 @@ import DeletePostModal from './components/deletepostmodal/DeletePostModal';
 
 const ModalManager = () => {
     const { isOpen, modalType } = useModal();
-    console.log('ModalManager - isOpen:', isOpen, 'modalType:', modalType); // Debugging
 
     if (!isOpen) return null;
 
