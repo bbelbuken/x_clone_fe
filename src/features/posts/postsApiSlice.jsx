@@ -35,11 +35,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         }),
         addPost: builder.mutation({
             query: (credentials) => {
-                console.log('content:', credentials.content);
-                console.log('userId', credentials.userId);
-                console.log('mediaFiles', credentials.mediaFiles);
                 const formData = new FormData();
-
                 formData.append('content', credentials.content);
                 formData.append('userId', credentials.userId);
 
@@ -77,10 +73,24 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.id },
             ],
         }),
+        likePost: builder.mutation({
+            query: ({ postId, userId }) => ({
+                url: `/posts/${postId}/like`,
+                method: 'PATCH',
+                body: { userId },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: arg.postId },
+            ],
+        }),
     }),
 });
-export const { useGetPostsQuery, useAddPostMutation, useDeletePostMutation } =
-    postsApiSlice;
+export const {
+    useGetPostsQuery,
+    useAddPostMutation,
+    useDeletePostMutation,
+    useLikePostMutation,
+} = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
 

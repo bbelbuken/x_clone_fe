@@ -9,7 +9,6 @@ const DeletePostModal = () => {
     const dispatch = useDispatch();
     const [deletePost, { isLoading, error }] = useDeletePostMutation();
     const { post } = useSelector((state) => state.modals.props);
-    console.log(post._id);
 
     const handleClose = () => {
         dispatch(closeModal());
@@ -23,8 +22,7 @@ const DeletePostModal = () => {
 
     const handleDeletePost = async (e) => {
         e.preventDefault();
-        const response = await deletePost({ postId: post._id }).unwrap();
-        console.log('response', response);
+        await deletePost({ postId: post._id }).unwrap();
         handleClose();
     };
 

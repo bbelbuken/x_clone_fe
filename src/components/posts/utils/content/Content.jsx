@@ -7,7 +7,7 @@ import { memo } from 'react';
 const Content = memo(
     ({
         account,
-
+        currentAccount,
         postId,
         postContent,
         postDate,
@@ -27,7 +27,11 @@ const Content = memo(
                     postVideo={postVideo}
                     postCachedVideos={postCachedVideos}
                 />
-                <ReactionNav postId={postId} postReactions={postReactions} />
+                <ReactionNav
+                    postId={postId}
+                    postReactions={postReactions}
+                    currentAccount={currentAccount}
+                />
             </div>
         );
     },
