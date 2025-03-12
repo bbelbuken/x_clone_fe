@@ -1,6 +1,22 @@
 import { Popover, PopoverPanel, PopoverButton } from '@headlessui/react';
+import { useRepostPostMutation } from 'features/posts/postsApiSlice';
 
 const Repost = ({ postReactions, currentAccount, postId }) => {
+    const [repostPost] = useRepostPostMutation();
+
+    const handleRepost = async (e) => {
+        e.stopPropagation();
+        try {
+            const response = await repostPost({
+                postId,
+                userId: currentAccount._id,
+            }).unwrap();
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const data = {
         title: 'Repost',
         count: postReactions.repostCount || 0,
@@ -37,7 +53,10 @@ const Repost = ({ postReactions, currentAccount, postId }) => {
                         'box-shadow-morebox pointer-cursor absolute -top-3 right-16 z-50 box-border flex h-auto w-auto flex-col items-center justify-center overflow-hidden rounded-xl bg-black transition-colors'
                     }
                 >
-                    <button className="box-border flex h-full w-auto cursor-pointer items-center justify-start">
+                    <button
+                        className="box-border flex h-full w-auto cursor-pointer items-center justify-start"
+                        onClick={handleRepost}
+                    >
                         <div className="flex h-full w-full items-center justify-start overflow-hidden px-[15px] py-[9px] outline-none hover:bg-[#e7e9ea0c]">
                             <svg
                                 viewBox="0 0 24 24"

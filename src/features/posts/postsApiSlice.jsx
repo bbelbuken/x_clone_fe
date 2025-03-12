@@ -111,6 +111,7 @@ export const {
     useDeletePostMutation,
     useLikePostMutation,
     useViewCountMutation,
+    useRepostPostMutation,
 } = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
