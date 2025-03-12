@@ -83,7 +83,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.postId },
             ],
         }),
-        incrementView: builder.mutation({
+        viewCount: builder.mutation({
             query: ({ postId, userId }) => ({
                 url: `/posts/${postId}/view`,
                 method: 'PATCH',
@@ -100,6 +100,7 @@ export const {
     useAddPostMutation,
     useDeletePostMutation,
     useLikePostMutation,
+    useViewCountMutation,
 } = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();

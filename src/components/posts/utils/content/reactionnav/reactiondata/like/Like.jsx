@@ -1,8 +1,6 @@
 import { useLikePostMutation } from 'features/posts/postsApiSlice';
-import { useRef } from 'react';
 
 const Like = ({ postReactions, postId, currentAccount }) => {
-    const buttonRef = useRef();
     const [likePost] = useLikePostMutation();
 
     const isLiked = postReactions.likedBy.includes(currentAccount._id);
@@ -58,7 +56,6 @@ const Like = ({ postReactions, postId, currentAccount }) => {
             title={data.title}
         >
             <button
-                ref={buttonRef}
                 className={`group absolute flex min-h-5 transform cursor-pointer items-center text-[14px] text-[#71767b] transition-colors hover:text-[#f91881] ${isLiked ? 'text-[#f91880]' : ''}`}
                 onClick={handleLike}
             >

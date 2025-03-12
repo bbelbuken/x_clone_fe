@@ -1,6 +1,24 @@
-import React from 'react';
+import { useEffect, useCallback } from 'react';
+import { useViewCountMutation } from 'features/posts/postsApiSlice';
 
-const ViewCount = ({ postReactions }) => {
+const ViewCount = ({ postReactions, postId, currentAccount }) => {
+    const [viewCount] = useViewCountMutation();
+
+    const handleViewCount = useCallback(async () => {
+        try {
+            await viewCount({
+                postId,
+                userId: currentAccount._id,
+            });
+        } catch (error) {
+            console.error('Failed to fetch view count', error);
+        }
+    }, [postId, currentAccount?._id, viewCount]);
+
+    useEffect(() => {
+        handleViewCount();
+    }, [handleViewCount]);
+
     const data = {
         title: 'View',
         count: postReactions.viewCount || 0,
