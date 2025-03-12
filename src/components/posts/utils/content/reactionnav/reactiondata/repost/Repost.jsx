@@ -1,6 +1,6 @@
 import { Popover, PopoverPanel, PopoverButton } from '@headlessui/react';
 
-const Repost = ({ postReactions }) => {
+const Repost = ({ postReactions, currentAccount, postId }) => {
     const data = {
         title: 'Repost',
         count: postReactions.repostCount || 0,
@@ -55,6 +55,7 @@ const Repost = ({ postReactions }) => {
                             </div>
                         </div>
                     </button>
+
                     <button className="box-border flex h-full w-auto cursor-pointer items-center justify-start">
                         <div className="flex h-full w-full items-center justify-start overflow-hidden px-[15px] py-[9px] outline-none hover:bg-[#e7e9ea0c]">
                             <svg

@@ -7,7 +7,11 @@ const ReactionData = ({ postId, postReactions, currentAccount }) => {
     return (
         <div className="justify-star relative mr-[49px] flex flex-1 items-center">
             <Reply postReactions={postReactions} />
-            <Repost postReactions={postReactions} />
+            <Repost
+                postReactions={postReactions}
+                currentAccount={currentAccount}
+                postId={postId}
+            />
             <Like
                 postReactions={postReactions}
                 currentAccount={currentAccount}

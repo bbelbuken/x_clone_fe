@@ -93,6 +93,16 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.postId },
             ],
         }),
+        repostPost: builder.mutation({
+            query: ({ postId, userId }) => ({
+                url: `/posts/${postId}/repost`,
+                method: 'POST',
+                body: { userId },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: arg.postId },
+            ],
+        }),
     }),
 });
 export const {
