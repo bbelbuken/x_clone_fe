@@ -10,8 +10,6 @@ const Home = () => {
         isLoading: isLoadingAccount,
     } = useCurrentAccount();
 
-    console.log(currentAccount);
-
     if (isLoadingAccount) {
         return <div>Loading...</div>;
     }
