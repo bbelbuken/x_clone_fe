@@ -7,18 +7,15 @@ import { memo } from 'react';
 const Content = memo(
     ({
         account,
-        currentAccount,
-        postId,
         postContent,
         postDate,
         postIMG,
         postCachedIMG,
         postVideo,
         postCachedVideos,
-        postReactions,
     }) => {
         return (
-            <div className="items-star flex grow flex-col justify-start pb-3">
+            <div>
                 <UserNav account={account} postDate={postDate} />
                 <Index postContent={postContent} />
                 <Media
@@ -26,11 +23,6 @@ const Content = memo(
                     postCachedIMG={postCachedIMG}
                     postVideo={postVideo}
                     postCachedVideos={postCachedVideos}
-                />
-                <ReactionNav
-                    postId={postId}
-                    postReactions={postReactions}
-                    currentAccount={currentAccount}
                 />
             </div>
         );

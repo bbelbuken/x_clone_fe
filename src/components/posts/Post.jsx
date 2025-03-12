@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
 import { memo } from 'react';
 import More from './utils/content/usernav/more/More';
+import ReactionNav from './utils/content/reactionnav/ReactionNav';
 
 const Post = memo(({ post, postId, currentAccount }) => {
     const {
@@ -19,37 +20,50 @@ const Post = memo(({ post, postId, currentAccount }) => {
 
     return (
         <div className="relative">
-            <Link to={`/${account.username}/status/${postId}`}>
-                <div
-                    className="transition-colors-feed hover:box-shadow-feedbox border-b border-b-[#2f3336] hover:bg-[#ffffff08]"
-                    key={post.id}
-                >
-                    <article className="flex shrink grow cursor-pointer flex-col px-4">
-                        {hasReposted && <RepostedBy account={account} />}
-                        <div
-                            className={`flex ${hasReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
-                        >
-                            <AccountIMG
-                                account={account}
-                                imgData={post.cachedAvatarUrl}
-                            />
-                            <Content
-                                account={account}
-                                currentAccount={currentAccount}
-                                post={post}
+            <div
+                className="transition-colors-feed hover:box-shadow-feedbox border-b border-b-[#2f3336] hover:bg-[#ffffff08]"
+                key={post.id}
+            >
+                <article className="flex shrink grow cursor-pointer flex-col px-4">
+                    {hasReposted && <RepostedBy account={account} />}
+
+                    <div
+                        className={`flex ${hasReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
+                    >
+                        <Link to={`/${account.username}/status/${postId}`}>
+                            <div className="relative pb-2">
+                                <AccountIMG
+                                    account={account}
+                                    imgData={post.cachedAvatarUrl}
+                                />
+                            </div>
+                        </Link>
+                        <div className="items-star flex grow flex-col justify-start pb-3">
+                            <Link to={`/${account.username}/status/${postId}`}>
+                                <Content
+                                    account={account}
+                                    currentAccount={currentAccount}
+                                    post={post}
+                                    postId={postId}
+                                    postContent={post.content}
+                                    postDate={post.createdAt}
+                                    postIMG={post.media.image}
+                                    postCachedIMG={post.cachedImages}
+                                    postVideo={post.media.video}
+                                    postCachedVideos={post.cachedVideos}
+                                    postReactions={post.reactions}
+                                />
+                            </Link>
+                            <ReactionNav
                                 postId={postId}
-                                postContent={post.content}
-                                postDate={post.createdAt}
-                                postIMG={post.media.image}
-                                postCachedIMG={post.cachedImages}
-                                postVideo={post.media.video}
-                                postCachedVideos={post.cachedVideos}
                                 postReactions={post.reactions}
+                                currentAccount={currentAccount}
                             />
                         </div>
-                    </article>
-                </div>
-            </Link>
+                    </div>
+                </article>
+            </div>
+
             <More
                 account={account}
                 post={post}
