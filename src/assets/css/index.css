@@ -49,8 +49,8 @@ body {
     0% {
         transform: scale(1);
     }
-    50% {
-        transform: scale(1.5);
+    70% {
+        transform: scale(1.35);
     }
     100% {
         transform: scale(1);
@@ -100,7 +100,7 @@ body {
             transform 0.1s ease-in-out,
             box-shadow 0.1s ease-in-out;
     }
-    .animate-like:active {
-        animation: like 0.3s ease-in-out;
+    .animate-like {
+        animation: like 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
