@@ -4,12 +4,22 @@ import PostList from './feed/PostList';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const Home = () => {
-    const currentAccountData = useCurrentAccount();
     const {
         account: currentAccount,
         error: accountError,
         isLoading: isLoadingAccount,
-    } = currentAccountData;
+    } = useCurrentAccount();
+
+    console.log(currentAccount);
+
+    if (isLoadingAccount) {
+        return <div>Loading...</div>;
+    }
+
+    if (accountError) {
+        return <div>Error: {accountError.message}</div>;
+    }
+
     return (
         <main className="flex w-full flex-col">
             <nav className="sticky flex snap-mandatory scroll-px-4 items-center justify-center border-b border-b-[#2f3336]">
@@ -17,12 +27,16 @@ const Home = () => {
                     <HomeNav />
                 </div>
             </nav>
-            <SendPost
-                currentAccount={currentAccount}
-                accountError={accountError}
-                isLoadingAccount={isLoadingAccount}
-            />
-            <PostList currentAccount={currentAccount} />
+            {currentAccount && (
+                <>
+                    <SendPost
+                        currentAccount={currentAccount}
+                        accountError={accountError}
+                        isLoadingAccount={isLoadingAccount}
+                    />
+                    <PostList currentAccount={currentAccount} />
+                </>
+            )}
         </main>
     );
 };

@@ -6,13 +6,7 @@ import WhoCanReply from './whocanreply/WhoCanReply';
 import { useNavigate } from 'react-router-dom';
 import { useAddPostMutation } from 'features/posts/postsApiSlice';
 
-const SendPost = ({
-    modalRef,
-    handleClose,
-    currentAccount,
-    accountError,
-    isLoadingAccount,
-}) => {
+const SendPost = ({ modalRef, handleClose, currentAccount }) => {
     const [addPost, { isLoading: isAddingPost, error: postError }] =
         useAddPostMutation();
 
@@ -28,12 +22,12 @@ const SendPost = ({
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
-    if (isLoadingAccount || isAddingPost) {
+    if (isAddingPost) {
         return <div>Loading...</div>; // Show a loading spinner or placeholder
     }
 
-    if (accountError || postError) {
-        return <div>Error: {accountError.message || postError.message}</div>;
+    if (postError) {
+        return <div>Error: {postError.message}</div>;
     }
 
     if (!currentAccount) {

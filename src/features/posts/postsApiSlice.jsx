@@ -83,6 +83,16 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.postId },
             ],
         }),
+        incrementView: builder.mutation({
+            query: ({ postId, userId }) => ({
+                url: `/posts/${postId}/view`,
+                method: 'PATCH',
+                body: { userId },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: arg.postId },
+            ],
+        }),
     }),
 });
 export const {
