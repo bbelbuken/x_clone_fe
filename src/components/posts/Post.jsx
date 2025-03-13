@@ -16,8 +16,10 @@ const Post = memo(({ post, postId, currentAccount }) => {
     if (isLoading) return <p>Loading account...</p>;
     if (isError) return <p>Error loading account</p>;
 
-    const hasReposted = post.reactions.repostCount.repost > 0;
-
+    const isReposted = post.isReposted;
+    if (post.originalPost) {
+        console.log(post.originalPost);
+    }
     return (
         <div className="relative">
             <div
@@ -25,34 +27,64 @@ const Post = memo(({ post, postId, currentAccount }) => {
                 key={post.id}
             >
                 <article className="flex shrink grow cursor-pointer flex-col px-4">
-                    {hasReposted && <RepostedBy account={account} />}
+                    {isReposted && <RepostedBy account={account} />}
 
                     <div
-                        className={`flex ${hasReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
+                        className={`flex ${isReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
                     >
                         <Link to={`/${account.username}/status/${postId}`}>
                             <div className="relative pb-2">
-                                <AccountIMG
-                                    account={account}
-                                    imgData={post.cachedAvatarUrl}
-                                />
+                                {!isReposted ? (
+                                    <AccountIMG
+                                        isReposted={isReposted}
+                                        account={account}
+                                        imgData={post.cachedAvatarUrl}
+                                    />
+                                ) : (
+                                    <AccountIMG
+                                        isReposted={isReposted}
+                                        account={account}
+                                        imgData={post.cachedAvatarUrl}
+                                    />
+                                )}
                             </div>
                         </Link>
+
                         <div className="items-star flex grow flex-col justify-start pb-3">
                             <Link to={`/${account.username}/status/${postId}`}>
-                                <Content
-                                    account={account}
-                                    currentAccount={currentAccount}
-                                    post={post}
-                                    postId={postId}
-                                    postContent={post.content}
-                                    postDate={post.createdAt}
-                                    postIMG={post.media.image}
-                                    postCachedIMG={post.cachedImages}
-                                    postVideo={post.media.video}
-                                    postCachedVideos={post.cachedVideos}
-                                    postReactions={post.reactions}
-                                />
+                                {!isReposted && !post.originalPost ? (
+                                    <Content
+                                        isReposted={isReposted}
+                                        account={account}
+                                        currentAccount={currentAccount}
+                                        post={post}
+                                        postId={postId}
+                                        postContent={post.content}
+                                        postDate={post.createdAt}
+                                        postIMG={post.media.image}
+                                        postCachedIMG={post.cachedImages}
+                                        postVideo={post.media.video}
+                                        postCachedVideos={post.cachedVideos}
+                                        postReactions={post.reactions}
+                                    />
+                                ) : (
+                                    <Content
+                                        isReposted={isReposted}
+                                        account={account}
+                                        currentAccount={currentAccount}
+                                        post={post.originalPost}
+                                        postId={postId}
+                                        postContent={post.originalPost.content}
+                                        postDate={post.originalPost.createdAt}
+                                        postIMG={post.originalPost.media.image}
+                                        postCachedIMG={
+                                            post.originalPost.cachedImages
+                                        }
+                                        postVideo={post.media.video}
+                                        postCachedVideos={post.cachedVideos}
+                                        postReactions={post.reactions}
+                                    />
+                                )}
                             </Link>
                             <ReactionNav
                                 postId={postId}

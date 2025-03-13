@@ -1,9 +1,13 @@
 const ImgMedia = ({ postIMG, postCachedIMG }) => {
     const getThumbnailUrl = (url) => {
-        const fileId = url.split('/d/')[1].split('/')[0];
-        return `https://lh3.googleusercontent.com/d/${fileId}`;
+        // Check if the URL is valid and matches the expected format
+        if (typeof url === 'string' && url.includes('/d/')) {
+            const fileId = url.split('/d/')[1].split('/')[0];
+            return `https://lh3.googleusercontent.com/d/${fileId}`;
+        }
+        // Return the original URL if it doesn't match the expected format
+        return url;
     };
-
     const imgArray = Array.isArray(postIMG) ? postIMG : [postIMG];
     const mediaArray = postCachedIMG ? postCachedIMG : imgArray;
 
