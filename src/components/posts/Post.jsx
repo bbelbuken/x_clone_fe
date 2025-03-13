@@ -13,6 +13,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
         isLoading,
         isError,
     } = useGetAccountsByIdQuery(post.userId);
+
     if (isLoading) return <p>Loading account...</p>;
     if (isError) return <p>Error loading account</p>;
 
@@ -20,6 +21,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
     if (post.originalPost) {
         console.log(post.originalPost);
     }
+
     return (
         <div className="relative">
             <div
@@ -41,7 +43,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                     />
                                 ) : (
                                     <AccountIMG
-                                        account={account}
+                                        account={post.originalPost}
                                         imgData={
                                             post.originalPost.cachedAvatarUrl
                                         }

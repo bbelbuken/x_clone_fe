@@ -1,7 +1,6 @@
 import Index from './index/Index';
 import UserNav from './usernav/UserNav';
 import Media from './media/Media';
-import ReactionNav from './reactionnav/ReactionNav';
 import { memo } from 'react';
 
 const Content = memo(

@@ -18,7 +18,9 @@ const UserNav = ({ account, postDate }) => {
                     className="flex max-w-full shrink cursor-pointer items-center justify-start gap-0.5 text-[15px] leading-5 font-bold whitespace-nowrap hover:underline"
                 >
                     {account.fullname}
-                    {account?.verified && <VerifiedSVG />}
+                    {account?.verified && (
+                        <VerifiedSVG width={18.75} height={18.75} />
+                    )}
                 </div>
                 <div className="ml-1 flex items-center justify-center text-[15px] leading-5 text-[#71767b]">
                     <div
