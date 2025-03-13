@@ -6,7 +6,6 @@ import { memo } from 'react';
 
 const Content = memo(
     ({
-        isReposted,
         account,
         postContent,
         postDate,
@@ -17,9 +16,7 @@ const Content = memo(
     }) => {
         return (
             <div>
-                {!isReposted && (
-                    <UserNav account={account} postDate={postDate} />
-                )}
+                <UserNav account={account} postDate={postDate} />
                 <Index postContent={postContent} />
                 <Media
                     postIMG={postIMG}

@@ -36,15 +36,15 @@ const Post = memo(({ post, postId, currentAccount }) => {
                             <div className="relative pb-2">
                                 {!isReposted ? (
                                     <AccountIMG
-                                        isReposted={isReposted}
                                         account={account}
                                         imgData={post.cachedAvatarUrl}
                                     />
                                 ) : (
                                     <AccountIMG
-                                        isReposted={isReposted}
                                         account={account}
-                                        imgData={post.cachedAvatarUrl}
+                                        imgData={
+                                            post.originalPost.cachedAvatarUrl
+                                        }
                                     />
                                 )}
                             </div>
@@ -54,7 +54,6 @@ const Post = memo(({ post, postId, currentAccount }) => {
                             <Link to={`/${account.username}/status/${postId}`}>
                                 {!isReposted && !post.originalPost ? (
                                     <Content
-                                        isReposted={isReposted}
                                         account={account}
                                         currentAccount={currentAccount}
                                         post={post}
@@ -69,8 +68,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                     />
                                 ) : (
                                     <Content
-                                        isReposted={isReposted}
-                                        account={account}
+                                        account={post.originalPost.user}
                                         currentAccount={currentAccount}
                                         post={post.originalPost}
                                         postId={postId}
@@ -80,9 +78,15 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                         postCachedIMG={
                                             post.originalPost.cachedImages
                                         }
-                                        postVideo={post.media.video}
-                                        postCachedVideos={post.cachedVideos}
-                                        postReactions={post.reactions}
+                                        postVideo={
+                                            post.originalPost.media.video
+                                        }
+                                        postCachedVideos={
+                                            post.originalPost.cachedVideos
+                                        }
+                                        postReactions={
+                                            post.originalPost.reactions
+                                        }
                                     />
                                 )}
                             </Link>
