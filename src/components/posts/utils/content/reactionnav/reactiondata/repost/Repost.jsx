@@ -1,9 +1,14 @@
 import { Popover, PopoverPanel, PopoverButton } from '@headlessui/react';
 import { useRepostPostMutation } from 'features/posts/postsApiSlice';
 
-const Repost = ({ postReactions, currentAccount, postId, isReposted }) => {
+const Repost = ({
+    postReactions,
+    currentAccount,
+    postId,
+    isARepost,
+    currentAccountReposted,
+}) => {
     const [repostPost] = useRepostPostMutation();
-
     const handleRepost = async (e) => {
         e.stopPropagation();
         try {
@@ -23,7 +28,7 @@ const Repost = ({ postReactions, currentAccount, postId, isReposted }) => {
         svg: (
             <svg
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                fill={`${currentAccountReposted ? '#00ba7c' : 'currentColor'}`}
                 width={18.75}
                 height={18.75}
             >
@@ -38,7 +43,9 @@ const Repost = ({ postReactions, currentAccount, postId, isReposted }) => {
             title={data.title}
         >
             <Popover>
-                <PopoverButton className="group absolute -top-4 flex min-h-5 cursor-pointer items-center text-[14px] text-[#71767b] hover:text-[#00ba7c]">
+                <PopoverButton
+                    className={`group absolute -top-4 flex min-h-5 cursor-pointer items-center text-[14px] ${currentAccountReposted ? 'text-[#00ba7c]' : 'text-[#71767b]'} hover:text-[#00ba7c]`}
+                >
                     <div
                         className={`flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full group-hover:bg-[#1d9bf022]`}
                     >

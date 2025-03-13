@@ -17,9 +17,10 @@ const Post = memo(({ post, postId, currentAccount }) => {
     if (isLoading) return <p>Loading account...</p>;
     if (isError) return <p>Error loading account</p>;
 
-    const isReposted = post.isReposted;
+    const isARepost = post.isARepost;
     const currentAccountReposted =
-        currentAccount._id === post.userId && isReposted;
+        (currentAccount._id === post.userId && isARepost) ||
+        post.reactions.repostedBy.includes(currentAccount._id);
 
     return (
         <div className="relative">
@@ -28,7 +29,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
                 key={post.id}
             >
                 <article className="flex shrink grow cursor-pointer flex-col px-4">
-                    {isReposted && (
+                    {isARepost && (
                         <RepostedBy
                             account={account}
                             currentAccountReposted={currentAccountReposted}
@@ -36,11 +37,11 @@ const Post = memo(({ post, postId, currentAccount }) => {
                     )}
 
                     <div
-                        className={`flex ${isReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
+                        className={`flex ${isARepost ? 'mt-[1px]' : 'mt-[11px]'}`}
                     >
                         <Link to={`/${account.username}/status/${postId}`}>
                             <div className="relative pb-2">
-                                {!isReposted ? (
+                                {!isARepost ? (
                                     <AccountIMG
                                         account={account}
                                         imgData={post.cachedAvatarUrl}
@@ -58,7 +59,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
 
                         <div className="items-star flex grow flex-col justify-start pb-3">
                             <Link to={`/${account.username}/status/${postId}`}>
-                                {!isReposted && !post.originalPost ? (
+                                {!isARepost && !post.originalPost ? (
                                     <Content
                                         account={account}
                                         currentAccount={currentAccount}
@@ -97,9 +98,14 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                 )}
                             </Link>
                             <ReactionNav
-                                isReposted={isReposted}
+                                currentAccountReposted={currentAccountReposted}
                                 postId={postId}
-                                postReactions={post.reactions}
+                                isARepost={isARepost}
+                                postReactions={
+                                    isARepost
+                                        ? post.originalPost.reactions
+                                        : post.reactions
+                                }
                                 currentAccount={currentAccount}
                             />
                         </div>
