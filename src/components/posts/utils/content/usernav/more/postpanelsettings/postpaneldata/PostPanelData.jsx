@@ -1,7 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
 
-export const PostPanelData = ({ accounts, post, currentAccount }) => {
+export const PostPanelData = ({
+    accounts,
+    post,
+    currentAccount,
+    currentAccountReposted,
+}) => {
     const loggedAccount = currentAccount?._id === post.userId;
     const dispatch = useDispatch();
 
@@ -126,7 +131,10 @@ export const PostPanelData = ({ accounts, post, currentAccount }) => {
         },
     ];
 
-    const panelData = loggedAccount ? myPanelData : othersPanelData;
+    const panelData =
+        loggedAccount && !currentAccountReposted
+            ? myPanelData
+            : othersPanelData;
     return (
         <>
             {panelData.map((item, index) => (

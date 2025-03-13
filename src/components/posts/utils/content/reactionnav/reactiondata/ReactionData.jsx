@@ -3,7 +3,12 @@ import Repost from './repost/Repost';
 import Like from './like/Like';
 import ViewCount from './viewcount/ViewCount';
 
-const ReactionData = ({ postId, postReactions, currentAccount }) => {
+const ReactionData = ({
+    postId,
+    postReactions,
+    currentAccount,
+    isReposted,
+}) => {
     return (
         <div className="justify-star relative mr-[49px] flex flex-1 items-center">
             <Reply postReactions={postReactions} />
@@ -11,6 +16,7 @@ const ReactionData = ({ postId, postReactions, currentAccount }) => {
                 postReactions={postReactions}
                 currentAccount={currentAccount}
                 postId={postId}
+                isReposted={isReposted}
             />
             <Like
                 postReactions={postReactions}

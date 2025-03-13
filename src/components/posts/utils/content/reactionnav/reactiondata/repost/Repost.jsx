@@ -1,7 +1,7 @@
 import { Popover, PopoverPanel, PopoverButton } from '@headlessui/react';
 import { useRepostPostMutation } from 'features/posts/postsApiSlice';
 
-const Repost = ({ postReactions, currentAccount, postId }) => {
+const Repost = ({ postReactions, currentAccount, postId, isReposted }) => {
     const [repostPost] = useRepostPostMutation();
 
     const handleRepost = async (e) => {

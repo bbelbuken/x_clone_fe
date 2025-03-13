@@ -18,9 +18,8 @@ const Post = memo(({ post, postId, currentAccount }) => {
     if (isError) return <p>Error loading account</p>;
 
     const isReposted = post.isReposted;
-    if (post.originalPost) {
-        console.log(post.originalPost);
-    }
+    const currentAccountReposted =
+        currentAccount._id === post.userId && isReposted;
 
     return (
         <div className="relative">
@@ -29,7 +28,12 @@ const Post = memo(({ post, postId, currentAccount }) => {
                 key={post.id}
             >
                 <article className="flex shrink grow cursor-pointer flex-col px-4">
-                    {isReposted && <RepostedBy account={account} />}
+                    {isReposted && (
+                        <RepostedBy
+                            account={account}
+                            currentAccountReposted={currentAccountReposted}
+                        />
+                    )}
 
                     <div
                         className={`flex ${isReposted ? 'mt-[1px]' : 'mt-[11px]'}`}
@@ -93,6 +97,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                 )}
                             </Link>
                             <ReactionNav
+                                isReposted={isReposted}
                                 postId={postId}
                                 postReactions={post.reactions}
                                 currentAccount={currentAccount}
@@ -103,6 +108,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
             </div>
 
             <More
+                currentAccountReposted={currentAccountReposted}
                 account={account}
                 post={post}
                 currentAccount={currentAccount}
