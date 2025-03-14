@@ -5,7 +5,7 @@ import Button from 'components/buttons/Button';
 import AccountButton from './utils/accountbutton/AccountButton';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const SidebarLeft = () => {
+const SidebarLeft = ({ currentAccount }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -28,7 +28,10 @@ const SidebarLeft = () => {
                     <Logo />
                     <div className="mt-0.5 mb-1 flex flex-shrink flex-grow flex-col">
                         <nav className="flex h-auto flex-shrink flex-grow flex-col">
-                            <Menu handleSaveLocation={handleSaveLocation} />
+                            <Menu
+                                handleSaveLocation={handleSaveLocation}
+                                currentAccount={currentAccount}
+                            />
                             <MoreButton />
                             <div className="my-[22px] w-[90%]">
                                 <Button
@@ -45,7 +48,7 @@ const SidebarLeft = () => {
                     </div>
                 </div>
 
-                <AccountButton />
+                <AccountButton currentAccount={currentAccount} />
             </div>
         </header>
     );

@@ -1,9 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useCurrentAccount } from 'hooks/useAccounts';
 
-export const Menu = ({ handleSaveLocation }) => {
+export const Menu = ({ handleSaveLocation, currentAccount }) => {
     const location = useLocation();
-    const currentAccount = useCurrentAccount();
 
     const menuItems = [
         {

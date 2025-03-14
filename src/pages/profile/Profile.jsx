@@ -1,4 +1,3 @@
-import { useAccounts } from 'hooks/useAccounts';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import usePostCountByUser from 'hooks/usePostCountByUser';
@@ -7,13 +6,32 @@ import ProfileBanner from './profilebanner/ProfileBanner';
 import ProfileNav from './profilenav/ProfileNav';
 import UserPostList from './profilenavfeed/UserPostList';
 import UserLikes from './profilenavfeed/UserLikes';
+import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 
 const Profile = () => {
     const [activeTitle, setActiveTitle] = useState('Posts');
     const { username } = useParams();
     const postCount = usePostCountByUser();
-    const accounts = useAccounts();
-    const account = accounts.find((account) => account.username === username);
+
+    const { data: accounts, isLoading, error } = useGetAccountsQuery();
+    const { ids, entities } = accounts || { ids: [], entities: {} }; // Provide fallback
+
+    // Find the account by username
+    const account = Object.values(entities).find(
+        (account) => account.username === username,
+    );
+
+    if (isLoading) {
+        return <div>Loading profile...</div>;
+    }
+
+    if (error) {
+        return <div>Error loading profile: {error.message}</div>;
+    }
+
+    if (!account) {
+        return <div>No account found for username: {username}</div>;
+    }
 
     return (
         <div className="w-full max-w-[600px]">

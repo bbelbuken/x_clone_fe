@@ -3,24 +3,8 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import ThreeDotSVG from 'components/icons/ThreeDotSVG';
 import PanelItems from './panelitems/PanelItems';
 import ButtonItems from './buttonitems/ButtonItems';
-import useCurrentAccount from 'hooks/useCurrentAccount';
 
-const AccountButton = () => {
-    const currentAccountData = useCurrentAccount();
-    const { account: currentAccount, error, isLoading } = currentAccountData;
-
-    if (isLoading) {
-        return <div>Loading...</div>; // Show a loading spinner or placeholder
-    }
-
-    if (error) {
-        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
-    }
-
-    if (!currentAccount) {
-        return <div>No account data found.</div>; // Handle case where account is undefined
-    }
-
+const AccountButton = ({ currentAccount }) => {
     return (
         <Popover className={'relative z-20'}>
             <PopoverButton

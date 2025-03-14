@@ -1,8 +1,11 @@
 import { useRef, useCallback } from 'react';
 import SendPost from 'pages/home/sendpost/SendPost';
 import { useNavigate } from 'react-router-dom';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const PostModal = () => {
+    const currentAccountData = useCurrentAccount();
+    const { account: currentAccount, error, isLoading } = currentAccountData;
     const modalRef = useRef();
     const navigate = useNavigate();
 
@@ -16,6 +19,18 @@ const PostModal = () => {
             handleClose();
         }
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Show a loading spinner or placeholder
+    }
+
+    if (error) {
+        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
+    }
+
+    if (!currentAccount) {
+        return <div>No account data found.</div>; // Handle case where account is undefined
+    }
 
     return (
         <div
@@ -54,7 +69,11 @@ const PostModal = () => {
                     </div>
                 </div>
                 <div className="w-full">
-                    <SendPost modalRef={modalRef} handleClose={handleClose} />
+                    <SendPost
+                        modalRef={modalRef}
+                        handleClose={handleClose}
+                        currentAccount={currentAccount}
+                    />
                 </div>
             </div>
         </div>
