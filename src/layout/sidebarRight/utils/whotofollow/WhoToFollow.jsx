@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import Button from 'components/buttons/Button';
 import VerifiedSVG from 'components/icons/VerifiedSVG';
-import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
+import {
+    useGetAccountsQuery,
+    useToggleFollowMutation,
+} from 'features/accounts/accountApiSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
-import { addFollower } from 'features/accounts/accountSlice';
 import { useState } from 'react';
 
-const WhoToFollow = ({ currentAccount }) => {
+const WhoToFollow = ({ currentAccount, refetch }) => {
     const [hoverStates, setHoverStates] = useState({});
     const dispatch = useDispatch();
 
@@ -18,17 +20,43 @@ const WhoToFollow = ({ currentAccount }) => {
         error,
     } = useGetAccountsQuery();
 
+    const [toggleFollow] = useToggleFollowMutation(); // Add toggleFollow mutation
+
     const { ids = [], entities = {} } = accounts || {};
 
-    const handleFollow = (account) => {
+    const handleFollow = async (account) => {
         const isFollowing = currentAccount.following.includes(account._id);
+
         if (isFollowing) {
-            dispatch(openModal({ modalType: 'unfollow', props: { account } }));
+            dispatch(
+                openModal({
+                    modalType: 'unfollow',
+                    props: {
+                        account,
+                        userId: account._id,
+                        currentUserId: currentAccount._id,
+                        refetch,
+                    },
+                }),
+            );
         } else {
-            dispatch(addFollower(account._id));
+            try {
+                const payload = {
+                    userId: account._id,
+                    currentUserId: currentAccount._id,
+                };
+
+                console.log('Payload:', payload);
+
+                const response = await toggleFollow(payload).unwrap();
+                console.log('Response:', response);
+
+                await refetch(); // Refetch data after following
+            } catch (error) {
+                console.error('Failed to follow:', error);
+            }
         }
     };
-
     const handleMouseEnter = (accountId) => {
         setHoverStates((prev) => ({ ...prev, [accountId]: true }));
     };
@@ -100,7 +128,7 @@ const WhoToFollow = ({ currentAccount }) => {
                                 </li>
                             </Link>
                             <Button
-                                onClick={() => handleFollow(account)}
+                                onClick={() => handleFollow(account)} // Pass the target account
                                 className={`absolute top-4 right-4 border-[#536471] ${
                                     currentAccount.following.includes(
                                         account._id,

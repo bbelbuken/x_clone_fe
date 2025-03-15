@@ -6,7 +6,12 @@ import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const Layout = () => {
     const currentAccountData = useCurrentAccount();
-    const { account: currentAccount, error, isLoading } = currentAccountData;
+    const {
+        account: currentAccount,
+        error,
+        isLoading,
+        refetch,
+    } = currentAccountData;
     const grok = location.pathname === '/i/grok';
 
     if (isLoading) {
@@ -37,7 +42,10 @@ const Layout = () => {
 
                     {!grok && (
                         <div className="sticky top-0 self-start">
-                            <SideBarRight currentAccount={currentAccount} />
+                            <SideBarRight
+                                currentAccount={currentAccount}
+                                refetch={refetch}
+                            />
                         </div>
                     )}
                 </main>

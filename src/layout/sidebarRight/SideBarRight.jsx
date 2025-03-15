@@ -7,7 +7,7 @@ import Messages from 'pages/messages/Messages';
 import { Footer } from './utils/footer/Footer';
 import { useLocation } from 'react-router-dom';
 
-const SideBarRight = ({ currentAccount }) => {
+const SideBarRight = ({ currentAccount, refetch }) => {
     const location = useLocation();
     const path = location.pathname; // ! important variable
     const [isExplore, setIsExplore] = useState(false);
@@ -48,7 +48,10 @@ const SideBarRight = ({ currentAccount }) => {
                         <div
                             className={`${isExplore ? 'mt-2' : ''} mb-4 flex h-[297px] w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]`}
                         >
-                            <WhoToFollow currentAccount={currentAccount} />
+                            <WhoToFollow
+                                currentAccount={currentAccount}
+                                refetch={refetch}
+                            />
                         </div>
                         <Footer />
                     </div>

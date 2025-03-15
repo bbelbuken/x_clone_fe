@@ -2,13 +2,31 @@ import { useDispatch } from 'react-redux';
 import { closeModal } from 'features/modals/modalSlice';
 import { useRef } from 'react';
 import Button from 'components/buttons/Button';
+import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
 
-const UnfollowModal = ({ currentAccount }) => {
+const UnfollowModal = ({ account, userId, currentUserId, refetch }) => {
     const modalRef = useRef();
     const dispatch = useDispatch();
+    const [toggleFollow] = useToggleFollowMutation(); // Add toggleFollow mutation
 
-    const handleUnfollow = () => {
-        dispatch(closeModal());
+    const handleUnfollow = async () => {
+        try {
+            const payload = {
+                userId, // Use the userId from props
+                currentUserId, // Use the currentUserId from props
+            };
+
+            console.log('Payload:', payload); // Debugging: Log the payload
+
+            const response = await toggleFollow(payload).unwrap();
+            console.log('Response:', response); // Debugging: Log the response
+
+            dispatch(closeModal()); // Close the modal after unfollowing
+
+            await refetch();
+        } catch (error) {
+            console.error('Failed to unfollow:', error);
+        }
     };
 
     const handleClickOutside = (e) => {
@@ -28,7 +46,7 @@ const UnfollowModal = ({ currentAccount }) => {
                 className="mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"
             >
                 <h1 className="mb-2 min-w-0 text-left text-xl font-bold break-words">
-                    Unfollow @{currentAccount?.username}
+                    Unfollow @{account?.username}
                 </h1>
 
                 <p className="w-full min-w-0 text-left text-[15px] leading-5 font-normal break-words text-[#71767b]">
@@ -40,7 +58,7 @@ const UnfollowModal = ({ currentAccount }) => {
                 <div className="mt-6 mb-[calc(-12px)] flex flex-col transition-colors">
                     <Button
                         size="profile-follow"
-                        onClick={handleUnfollow}
+                        onClick={handleUnfollow} // Call handleUnfollow
                         className="mb-3 min-h-[44px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]"
                     >
                         Unfollow

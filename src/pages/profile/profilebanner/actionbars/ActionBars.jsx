@@ -36,27 +36,37 @@ const ActionBars = ({ currentAccount }) => {
     };
 
     const handleFollow = async () => {
-        try {
-            const payload = {
-                userId: currentAccount._id,
-                currentUserId: loggedAccount._id,
-            };
+        const isFollowing = loggedAccount.following.includes(
+            currentAccount._id,
+        );
 
-            if (isFollowing) {
-                dispatch(
-                    openModal({
-                        modalType: 'unfollow',
-                        props: { currentAccount },
-                    }),
-                );
+        if (isFollowing) {
+            dispatch(
+                openModal({
+                    modalType: 'unfollow',
+                    props: {
+                        userId: currentAccount._id,
+                        currentUserId: loggedAccount._id,
+                        refetch,
+                    },
+                }),
+            );
+        } else {
+            try {
+                const payload = {
+                    userId: currentAccount._id,
+                    currentUserId: loggedAccount._id,
+                };
+
+                console.log('Payload:', payload);
+
+                const response = await toggleFollow(payload).unwrap();
+                console.log('Response:', response);
+
+                await refetch(); // Refetch data after following
+            } catch (error) {
+                console.error('Failed to follow:', error);
             }
-            const response = await toggleFollow(payload).unwrap();
-            console.log(response.message);
-
-            // Refetch the loggedAccount data
-            await refetch();
-        } catch (error) {
-            console.error('Failed to toggle follow:', error);
         }
     };
 
