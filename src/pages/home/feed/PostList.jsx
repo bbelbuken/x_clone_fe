@@ -1,7 +1,7 @@
 import Post from 'components/posts/Post';
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 
-const Feed = ({ currentAccount }) => {
+const Feed = ({ currentAccount, isProfile = false }) => {
     const {
         data: posts,
         isLoading,
@@ -16,17 +16,23 @@ const Feed = ({ currentAccount }) => {
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
-        // using normalized data
+        // Using normalized data
         const { ids, entities } = posts;
 
-        content = ids.map((postId, index) => {
-            const post = entities[postId];
+        // Filter posts based on whether it's the profile page or not
+        const filteredIds = isProfile
+            ? ids.filter(
+                  (postId) => entities[postId].userId === currentAccount?._id,
+              ) // Only show current user's posts
+            : ids; // Show all posts
 
+        content = filteredIds.map((postId) => {
+            const post = entities[postId];
             return (
                 <Post
                     post={post}
                     postId={postId}
-                    key={index}
+                    key={postId}
                     currentAccount={currentAccount}
                 />
             );

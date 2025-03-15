@@ -17,7 +17,7 @@ const AccountAvatar = ({ account }) => {
             onClick={handleAvatarClick}
         >
             <img
-                src={account.avatar}
+                src={account.cached}
                 alt="avatar"
                 className="box-content h-full w-full rounded-full border-4 border-black"
             />

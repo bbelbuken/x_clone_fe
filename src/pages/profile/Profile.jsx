@@ -1,41 +1,52 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import usePostCountByUser from 'hooks/usePostCountByUser';
 import GoBack from './goback/GoBack';
 import ProfileBanner from './profilebanner/ProfileBanner';
 import ProfileNav from './profilenav/ProfileNav';
-import UserPostList from './profilenavfeed/UserPostList';
 import UserLikes from './profilenavfeed/UserLikes';
-import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
+import useCurrentAccount from 'hooks/useCurrentAccount';
+import PostList from 'pages/home/feed/PostList';
 
 const Profile = () => {
     const [activeTitle, setActiveTitle] = useState('Posts');
-    const { username } = useParams();
-    const postCount = usePostCountByUser();
+    const {
+        account: currentAccount,
+        error: accountError,
+        isLoading: isLoadingAccount,
+    } = useCurrentAccount();
 
-    const { data: accounts, isLoading, error } = useGetAccountsQuery();
-    const { ids, entities } = accounts || { ids: [], entities: {} }; // Provide fallback
+    // Fallback for currentAccount
+    const account = currentAccount || {
+        _id: '',
+        username: 'Unknown User',
+        email: '',
+        dateOfBirth: '',
+        fullname: '',
+        avatar: '',
+        header_photo: '',
+        verified: false,
+        bio: '',
+        location: '',
+        website: '',
+        postCount: 0,
+    };
 
-    // Find the account by username
-    const account = Object.values(entities).find(
-        (account) => account.username === username,
-    );
-
-    if (isLoading) {
-        return <div>Loading profile...</div>;
+    if (isLoadingAccount) {
+        return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>Error loading profile: {error.message}</div>;
+    if (accountError) {
+        return <div>Error: {accountError.message}</div>;
     }
 
-    if (!account) {
-        return <div>No account found for username: {username}</div>;
+    if (!currentAccount) {
+        return (
+            <div>No account found for username: {currentAccount?.username}</div>
+        );
     }
 
     return (
         <div className="w-full max-w-[600px]">
-            <GoBack account={account} postCount={postCount} />
+            <GoBack account={account} postCount={account.postCount} />
             <div className="mx-auto flex w-full grow flex-col">
                 <ProfileBanner account={account} />
                 <ProfileNav
@@ -43,17 +54,21 @@ const Profile = () => {
                     activeTitle={activeTitle}
                     setActiveTitle={setActiveTitle}
                 />
-                {activeTitle === 'Posts' && <UserPostList account={account} />}
+                {activeTitle === 'Posts' && (
+                    <PostList currentAccount={account} isProfile={true} />
+                )}
                 {activeTitle === 'Replies' && (
-                    <UserPostList account={account} />
+                    <PostList currentAccount={account} isProfile={true} />
                 )}
                 {activeTitle === 'Highlights' && (
-                    <UserPostList account={account} />
+                    <PostList currentAccount={account} isProfile={true} />
                 )}
                 {activeTitle === 'Articles' && (
-                    <UserPostList account={account} />
+                    <PostList currentAccount={account} isProfile={true} />
                 )}
-                {activeTitle === 'Media' && <UserPostList account={account} />}
+                {activeTitle === 'Media' && (
+                    <PostList currentAccount={account} isProfile={true} />
+                )}
                 {activeTitle === 'Likes' && <UserLikes account={account} />}
             </div>
         </div>
