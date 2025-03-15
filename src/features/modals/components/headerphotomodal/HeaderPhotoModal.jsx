@@ -1,23 +1,56 @@
 import React, { useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAccounts } from 'hooks/useAccounts';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const HeaderPhotoModal = () => {
-    const { username } = useParams();
     const modalRef = useRef(null);
     const navigate = useNavigate();
-    const accounts = useAccounts();
-    const account = accounts.find((account) => account.username === username);
+
+    const {
+        account: currentAccount,
+        error: accountError,
+        isLoading: isLoadingAccount,
+    } = useCurrentAccount();
+    console.log(currentAccount);
+
+    const account = currentAccount || {
+        _id: '',
+        username: 'Unknown User',
+        email: '',
+        dateOfBirth: '',
+        fullname: '',
+        avatar: '',
+        header_photo: '',
+        verified: false,
+        bio: '',
+        location: '',
+        website: '',
+        postCount: 0,
+    };
 
     const handleClose = useCallback(() => {
-        navigate(`/${username}`);
-    }, [navigate, username]);
+        navigate(`/${account?.username}`);
+    }, [navigate, account?.username]);
 
     const handleClickOutside = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
             handleClose();
         }
     };
+
+    if (isLoadingAccount) {
+        return <div>Loading...</div>;
+    }
+
+    if (accountError) {
+        return <div>Error: {accountError.message}</div>;
+    }
+
+    if (!currentAccount) {
+        return (
+            <div>No account found for username: {currentAccount?.username}</div>
+        );
+    }
 
     return (
         <div
@@ -46,7 +79,7 @@ const HeaderPhotoModal = () => {
 
                 <img
                     ref={modalRef}
-                    src={account.header_photo}
+                    src={account?.cachedHeader}
                     alt="Header Fullscreen"
                     className="h-screen max-h-[436px] w-screen object-cover"
                 />
