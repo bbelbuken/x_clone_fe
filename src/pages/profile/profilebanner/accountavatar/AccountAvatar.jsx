@@ -13,13 +13,13 @@ const AccountAvatar = ({ account }) => {
 
     return (
         <div
-            className="z-20 -mt-[14.9%] mb-3 block h-auto w-[23.5%] min-w-12 rounded-full"
+            className="z-20 -mt-[14.9%] mb-3 block h-auto min-w-12 rounded-full"
             onClick={handleAvatarClick}
         >
             <img
-                src={account.cached}
+                src={account.cachedAvatar}
                 alt="avatar"
-                className="box-content h-full w-full rounded-full border-4 border-black"
+                className="h-35 w-35 rounded-full border-4 border-black object-cover"
             />
         </div>
     );

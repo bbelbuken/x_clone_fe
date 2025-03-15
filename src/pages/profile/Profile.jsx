@@ -13,6 +13,7 @@ const Profile = () => {
         error: accountError,
         isLoading: isLoadingAccount,
     } = useCurrentAccount();
+    console.log(currentAccount);
 
     // Fallback for currentAccount
     const account = currentAccount || {
