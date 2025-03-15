@@ -1,17 +1,39 @@
+import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 import React, { useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAccounts } from 'hooks/useAccounts';
 
 const PhotoModal = () => {
     const { username } = useParams();
+
     const modalRef = useRef(null);
     const navigate = useNavigate();
-    const accounts = useAccounts();
-    const account = accounts.find((account) => account.username === username);
+
+    const { data: accounts, isLoading, error } = useGetAccountsQuery();
+
+    const { ids = [], entities = {} } = accounts || {};
+
+    const currentAccount = Object.values(entities).find(
+        (account) => account.username === username,
+    );
+
+    const account = currentAccount || {
+        _id: '',
+        username: 'Unknown User',
+        email: '',
+        dateOfBirth: '',
+        fullname: '',
+        avatar: '',
+        header_photo: '',
+        verified: false,
+        bio: '',
+        location: '',
+        website: '',
+        postCount: 0,
+    };
 
     const handleClose = useCallback(() => {
-        navigate(`/${username}`);
-    }, [navigate, username]);
+        navigate(`/${account.username}`);
+    }, [navigate, account.username]);
 
     const handleClickOutside = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -19,6 +41,17 @@ const PhotoModal = () => {
         }
     };
 
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!currentAccount) {
+        return <div>No account found for username: {username}</div>;
+    }
     return (
         <div
             className="bg-opacity-[0.93] fixed inset-0 z-50 mx-auto flex items-center justify-center bg-black"
@@ -43,9 +76,9 @@ const PhotoModal = () => {
                 </div>
                 <img
                     ref={modalRef}
-                    src={account.avatar}
+                    src={account.cachedAvatar}
                     alt="Header Fullscreen"
-                    className="mx-auto max-h-[30vh] max-w-[30vw] rounded-full object-contain"
+                    className="mx-auto h-100 w-100 rounded-full object-cover"
                 />
             </div>
         </div>

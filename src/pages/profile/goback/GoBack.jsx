@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import VerifiedSVG from 'components/icons/VerifiedSVG';
 
-const GoBack = ({ account, postCount }) => {
+const GoBack = ({ currentAccount, postCount }) => {
     const navigate = useNavigate();
-    const verified = account.verified;
+    const verified = currentAccount?.verified;
 
     const handleGetLocation = () => {
         const previousRoute = localStorage.getItem('previousRouteProfile');
@@ -36,7 +36,7 @@ const GoBack = ({ account, postCount }) => {
 
                 <div className="relative mb-[1px] flex h-full flex-col items-start justify-center">
                     <h2 className="flex max-w-full min-w-0 items-center justify-center overflow-hidden py-0.5 text-xl leading-7 font-bold tracking-[0.015em] break-words whitespace-nowrap text-[#e7e9ea]">
-                        {account.fullname}
+                        {currentAccount?.fullname}
                         <div className="ml-[1px]">
                             {verified && <VerifiedSVG width={20} height={20} />}
                         </div>

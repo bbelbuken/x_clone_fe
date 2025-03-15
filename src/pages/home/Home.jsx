@@ -9,7 +9,6 @@ const Home = () => {
         error: accountError,
         isLoading: isLoadingAccount,
     } = useCurrentAccount();
-    console.log(currentAccount);
 
     if (isLoadingAccount) {
         return <div>Loading...</div>;

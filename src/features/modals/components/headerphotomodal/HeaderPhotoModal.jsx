@@ -1,17 +1,19 @@
+import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 import React, { useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const HeaderPhotoModal = () => {
+    const { username } = useParams();
     const modalRef = useRef(null);
     const navigate = useNavigate();
 
-    const {
-        account: currentAccount,
-        error: accountError,
-        isLoading: isLoadingAccount,
-    } = useCurrentAccount();
-    console.log(currentAccount);
+    const { data: accounts, isLoading, error } = useGetAccountsQuery();
+
+    const { ids = [], entities = {} } = accounts || {};
+
+    const currentAccount = Object.values(entities).find(
+        (account) => account.username === username,
+    );
 
     const account = currentAccount || {
         _id: '',
@@ -27,7 +29,6 @@ const HeaderPhotoModal = () => {
         website: '',
         postCount: 0,
     };
-
     const handleClose = useCallback(() => {
         navigate(`/${account?.username}`);
     }, [navigate, account?.username]);
@@ -38,18 +39,16 @@ const HeaderPhotoModal = () => {
         }
     };
 
-    if (isLoadingAccount) {
+    if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (accountError) {
-        return <div>Error: {accountError.message}</div>;
+    if (error) {
+        return <div>Error: {error.message}</div>;
     }
 
     if (!currentAccount) {
-        return (
-            <div>No account found for username: {currentAccount?.username}</div>
-        );
+        return <div>No account found for username: {username}</div>;
     }
 
     return (

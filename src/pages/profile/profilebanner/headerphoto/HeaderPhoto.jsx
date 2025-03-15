@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const HeaderPhoto = ({ account }) => {
+const HeaderPhoto = ({ currentAccount }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
     const handleHeaderPhotoClick = (e) => {
         e.preventDefault();
-        navigate(`/${account?.username}/header_photo`, {
+        navigate(`/${currentAccount?.username}/header_photo`, {
             state: { background: location.pathname },
         });
     };
@@ -18,7 +18,7 @@ const HeaderPhoto = ({ account }) => {
                 className="absolute top-0 right-0 bottom-0 left-0 h-full w-full cursor-pointer transition-colors"
             >
                 <img
-                    src={account.cachedHeader}
+                    src={currentAccount.cachedHeader}
                     alt="header_photo"
                     className="h-full w-full object-cover"
                 />

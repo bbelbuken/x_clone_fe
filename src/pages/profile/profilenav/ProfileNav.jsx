@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useCurrentAccount } from 'hooks/useAccounts';
 
 const ProfileNav = ({ account, activeTitle, setActiveTitle }) => {
-    const currentAccount = useCurrentAccount();
-    const activeAccount = account.id === currentAccount.id;
     const ProfileNavItems = [
         { title: 'Posts', alwaysActive: true },
         { title: 'Replies', alwaysActive: true },
@@ -14,7 +11,7 @@ const ProfileNav = ({ account, activeTitle, setActiveTitle }) => {
     ];
 
     const profileNav = ProfileNavItems.filter(
-        (item) => item.alwaysActive || activeAccount,
+        (item) => item.alwaysActive || account,
     );
 
     return (

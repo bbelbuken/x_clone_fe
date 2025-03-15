@@ -3,19 +3,26 @@ import GoBack from './goback/GoBack';
 import ProfileBanner from './profilebanner/ProfileBanner';
 import ProfileNav from './profilenav/ProfileNav';
 import UserLikes from './profilenavfeed/UserLikes';
-import useCurrentAccount from 'hooks/useCurrentAccount';
 import PostList from 'pages/home/feed/PostList';
+import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
+import { useParams } from 'react-router-dom';
+import UserArticles from './profilenavfeed/UserArticles';
+import UserHighlights from './profilenavfeed/UserHighlights';
+import UserMedia from './profilenavfeed/UserMedia';
+import UserReplies from './profilenavfeed/UserReplies';
 
 const Profile = () => {
     const [activeTitle, setActiveTitle] = useState('Posts');
-    const {
-        account: currentAccount,
-        error: accountError,
-        isLoading: isLoadingAccount,
-    } = useCurrentAccount();
-    console.log(currentAccount);
+    const { username } = useParams();
 
-    // Fallback for currentAccount
+    const { data: accounts, isLoading, error } = useGetAccountsQuery();
+
+    const { ids = [], entities = {} } = accounts || {};
+
+    const currentAccount = Object.values(entities).find(
+        (account) => account.username === username,
+    );
+
     const account = currentAccount || {
         _id: '',
         username: 'Unknown User',
@@ -31,46 +38,67 @@ const Profile = () => {
         postCount: 0,
     };
 
-    if (isLoadingAccount) {
+    if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (accountError) {
-        return <div>Error: {accountError.message}</div>;
+    if (error) {
+        return <div>Error: {error.message}</div>;
     }
 
     if (!currentAccount) {
-        return (
-            <div>No account found for username: {currentAccount?.username}</div>
-        );
+        return <div>No account found for username: {username}</div>;
     }
 
     return (
         <div className="w-full max-w-[600px]">
-            <GoBack account={account} postCount={account.postCount} />
+            <GoBack
+                currentAccount={currentAccount}
+                postCount={currentAccount?.postCount}
+            />
             <div className="mx-auto flex w-full grow flex-col">
-                <ProfileBanner account={account} />
-                <ProfileNav
+                <ProfileBanner
+                    currentAccount={currentAccount}
                     account={account}
+                />
+                <ProfileNav
+                    account={currentAccount}
                     activeTitle={activeTitle}
                     setActiveTitle={setActiveTitle}
                 />
                 {activeTitle === 'Posts' && (
-                    <PostList currentAccount={account} isProfile={true} />
+                    <PostList
+                        currentAccount={currentAccount}
+                        isProfile={true}
+                    />
                 )}
                 {activeTitle === 'Replies' && (
-                    <PostList currentAccount={account} isProfile={true} />
+                    <UserReplies
+                        currentAccount={currentAccount}
+                        isProfile={true}
+                    />
                 )}
                 {activeTitle === 'Highlights' && (
-                    <PostList currentAccount={account} isProfile={true} />
+                    <UserHighlights
+                        currentAccount={currentAccount}
+                        isProfile={true}
+                    />
                 )}
                 {activeTitle === 'Articles' && (
-                    <PostList currentAccount={account} isProfile={true} />
+                    <UserArticles
+                        currentAccount={currentAccount}
+                        isProfile={true}
+                    />
                 )}
                 {activeTitle === 'Media' && (
-                    <PostList currentAccount={account} isProfile={true} />
+                    <UserMedia
+                        currentAccount={currentAccount}
+                        isProfile={true}
+                    />
                 )}
-                {activeTitle === 'Likes' && <UserLikes account={account} />}
+                {activeTitle === 'Likes' && (
+                    <UserLikes currentAccount={currentAccount} />
+                )}
             </div>
         </div>
     );

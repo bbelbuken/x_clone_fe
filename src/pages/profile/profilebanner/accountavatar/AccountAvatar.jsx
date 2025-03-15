@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const AccountAvatar = ({ account }) => {
+const AccountAvatar = ({ currentAccount }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleAvatarClick = (e) => {
         e.preventDefault();
-        navigate(`/${account.username}/photo`, {
+        navigate(`/${currentAccount.username}/photo`, {
             state: { background: location.pathname },
         });
     };
@@ -17,7 +17,7 @@ const AccountAvatar = ({ account }) => {
             onClick={handleAvatarClick}
         >
             <img
-                src={account.cachedAvatar}
+                src={currentAccount.cachedAvatar}
                 alt="avatar"
                 className="h-35 w-35 rounded-full border-4 border-black object-cover"
             />

@@ -1,25 +1,48 @@
 import Button from 'components/buttons/Button';
-import { useCurrentAccount } from 'hooks/useAccounts';
 import { addFollower } from 'features/accounts/accountSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
-const ActionBars = ({ account }) => {
+const ActionBars = ({ currentAccount }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
-    const currentAccount = useCurrentAccount();
-    const isCurrentAccount = currentAccount.id === account.id;
-    const isFollowing = currentAccount.following.includes(account.id);
+
+    const {
+        account: myCurrentAccount,
+        error: accountError,
+        isLoading: isLoadingAccount,
+    } = useCurrentAccount();
+
+    const loggedAccount = myCurrentAccount || {
+        _id: '',
+        username: 'Unknown User',
+        email: '',
+        dateOfBirth: '',
+        fullname: '',
+        avatar: '',
+        header_photo: '',
+        verified: false,
+        bio: '',
+        location: '',
+        website: '',
+        postCount: 0,
+    };
+
+    const isFollowing = currentAccount.following.includes(currentAccount._id);
+    const isCurrentAccount = currentAccount._id === loggedAccount._id;
     const [isHovering, setIsHovering] = useState(false);
 
     const handleFollow = () => {
         if (isFollowing) {
-            dispatch(openModal({ modalType: 'unfollow', props: { account } }));
+            dispatch(
+                openModal({ modalType: 'unfollow', props: { currentAccount } }),
+            );
         } else {
-            dispatch(addFollower(account.id));
+            dispatch(addFollower(currentAccount._id));
         }
     };
 
@@ -77,6 +100,17 @@ const ActionBars = ({ account }) => {
         (item) => item.showAlways || isFollowing,
     );
 
+    if (isLoadingAccount) {
+        return <div>Loading...</div>;
+    }
+
+    if (accountError) {
+        return <div>Error: {accountError.message}</div>;
+    }
+
+    if (!loggedAccount) {
+        return <div>No account found</div>;
+    }
     return (
         <div className="flex max-w-full flex-wrap items-end justify-center">
             {!isCurrentAccount && (
@@ -85,7 +119,7 @@ const ActionBars = ({ account }) => {
                         <button
                             key={index}
                             title={item.title}
-                            className="mr-2 mb-3 flex min-h-9 min-w-9 items-center justify-center rounded-full border border-[#536471] transition-colors hover:bg-[#eff3f41a]"
+                            className="mr-2 mb-3 flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full border border-[#536471] transition-colors hover:bg-[#eff3f41a]"
                         >
                             <svg
                                 viewBox="0 0 24 24"
@@ -99,9 +133,10 @@ const ActionBars = ({ account }) => {
                     ))}
                 </>
             )}
+
             <Button
                 size="profile-follow"
-                className={`mb-3 flex min-h-9 min-w-9 items-center justify-center ${isCurrentAccount ? 'min-w-9 px-[17px] hover:bg-[#eff3f41a]' : isFollowing ? 'min-w-[104px] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]' : 'min-w-[81px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]'}`}
+                className={`mb-3 flex min-h-9 min-w-9 cursor-pointer items-center justify-center ${isCurrentAccount ? 'min-w-9 px-[17px] hover:bg-[#eff3f41a]' : isFollowing ? 'min-w-[104px] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]' : 'min-w-[81px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]'}`}
                 onClick={isCurrentAccount ? editProfile : handleFollow}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}

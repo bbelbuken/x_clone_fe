@@ -24,7 +24,7 @@ const Button = memo(
             'button',
             {
                 className: classNames(
-                    ' flex justify-center items-center rounded-full transition-colors font-bold overflow-hidden break-words cursor-pointer',
+                    'cursor-pointer flex justify-center items-center rounded-full transition-colors font-bold overflow-hidden break-words cursor-pointer',
                     {
                         'min-h-9 min-w-9 text-[15px] tracking-[0.020em] hover:bg-[#d7dbdc] px-4':
                             size === 'normal',
