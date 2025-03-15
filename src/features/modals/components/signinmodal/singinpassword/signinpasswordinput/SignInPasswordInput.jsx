@@ -36,9 +36,7 @@ const SignInPasswordInput = ({
             payload.email = email;
         }
 
-        // Call the login mutation
-        const { accessToken } = await login(payload).unwrap();
-        dispatch(setCredentials({ accessToken }));
+        await login(payload).unwrap();
         dispatch(setCurrentAccount);
         setPassword('');
         setUsername('');

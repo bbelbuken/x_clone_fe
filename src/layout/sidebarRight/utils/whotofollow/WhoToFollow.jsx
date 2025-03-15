@@ -20,7 +20,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
         error,
     } = useGetAccountsQuery();
 
-    const [toggleFollow] = useToggleFollowMutation(); // Add toggleFollow mutation
+    const [toggleFollow] = useToggleFollowMutation();
 
     const { ids = [], entities = {} } = accounts || {};
 
@@ -45,11 +45,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                     userId: account._id,
                     currentUserId: currentAccount._id,
                 };
-
-                console.log('Payload:', payload);
-
-                const response = await toggleFollow(payload).unwrap();
-                console.log('Response:', response);
+                await toggleFollow(payload).unwrap();
 
                 await refetch(); // Refetch data after following
             } catch (error) {

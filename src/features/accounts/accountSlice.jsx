@@ -1,20 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentAccount: {
-        id: 1,
-        username: 'bbelbuken',
-        fullname: 'Batuhan',
-        avatar: 'https://pbs.twimg.com/profile_images/1863667711319924737/RrRyq3vD_400x400.jpg',
-        header_photo: '',
-        verified: false,
-        followers: [],
-        following: [],
-        bio: 'Hello, I am Batuhan. I am a software engineer.',
-        location: 'Istanbul, Turkey',
-        website: 'youtube.com',
-        createdAt: '2024-01-01',
-    },
+    currentAccount: null,
     accounts: [
         {
             id: 1,
@@ -110,75 +97,33 @@ const accountSlice = createSlice({
     name: 'account',
     initialState,
     reducers: {
-        addAccount: (state, action) => {
-            state.accounts.push(action.payload);
-        },
-        removeAccount: (state, action) => {
-            state.accounts = state.accounts.filter(
-                (account) => account.id !== action.payload,
+        addLoggedInAccount: (state, action) => {
+            // Check if the account already exists in the list
+            const accountExists = state.loggedInAccounts.some(
+                (account) => account._id === action.payload._id,
             );
-            if (
-                state.currentAccount &&
-                action.payload === state.currentAccount.id
-            ) {
-                state.currentAccount = false;
+            if (!accountExists) {
+                state.loggedInAccounts.push(action.payload);
             }
         },
         setCurrentAccount: (state, action) => {
             state.currentAccount = action.payload;
         },
-        addFollower: (state, action) => {
-            state.currentAccount.following.push(action.payload);
-
-            const accountIndex = state.accounts.findIndex(
-                (account) => account.id === state.currentAccount.id,
+        removeLoggedInAccount: (state, action) => {
+            state.loggedInAccounts = state.loggedInAccounts.filter(
+                (account) => account._id !== action.payload,
             );
-            if (accountIndex !== -1) {
-                state.accounts[accountIndex].following.push(action.payload);
-            }
-
-            const followedAccountIndex = state.accounts.findIndex(
-                (account) => account.id === action.payload,
-            );
-            if (followedAccountIndex !== -1) {
-                state.accounts[followedAccountIndex].followers.push(
-                    state.currentAccount.id,
-                );
-            }
-        },
-        removeFollower: (state, action) => {
-            state.currentAccount.following =
-                state.currentAccount.following.filter(
-                    (id) => id !== action.payload,
-                );
-
-            const accountIndex = state.accounts.findIndex(
-                (account) => account.id === state.currentAccount.id,
-            );
-            if (accountIndex !== -1) {
-                state.accounts[accountIndex].following = state.accounts[
-                    accountIndex
-                ].following.filter((id) => id !== action.payload);
-            }
-
-            const followedAccountIndex = state.accounts.findIndex(
-                (account) => account.id === action.payload,
-            );
-            if (followedAccountIndex !== -1) {
-                state.accounts[followedAccountIndex].followers = state.accounts[
-                    followedAccountIndex
-                ].followers.filter((id) => id !== state.currentAccount.id);
+            if (
+                state.currentAccount &&
+                action.payload === state.currentAccount._id
+            ) {
+                state.currentAccount = null;
             }
         },
     },
 });
 
-export const {
-    addAccount,
-    removeAccount,
-    setCurrentAccount,
-    addFollower,
-    removeFollower,
-} = accountSlice.actions;
+export const { addLoggedInAccount, setCurrentAccount, removeLoggedInAccount } =
+    accountSlice.actions;
 
 export default accountSlice.reducer;

@@ -12,17 +12,13 @@ const UnfollowModal = ({ account, userId, currentUserId, refetch }) => {
     const handleUnfollow = async () => {
         try {
             const payload = {
-                userId, // Use the userId from props
-                currentUserId, // Use the currentUserId from props
+                userId,
+                currentUserId,
             };
 
-            console.log('Payload:', payload); // Debugging: Log the payload
+            await toggleFollow(payload).unwrap();
 
-            const response = await toggleFollow(payload).unwrap();
-            console.log('Response:', response); // Debugging: Log the response
-
-            dispatch(closeModal()); // Close the modal after unfollowing
-
+            dispatch(closeModal());
             await refetch();
         } catch (error) {
             console.error('Failed to unfollow:', error);
@@ -58,7 +54,7 @@ const UnfollowModal = ({ account, userId, currentUserId, refetch }) => {
                 <div className="mt-6 mb-[calc(-12px)] flex flex-col transition-colors">
                     <Button
                         size="profile-follow"
-                        onClick={handleUnfollow} // Call handleUnfollow
+                        onClick={handleUnfollow}
                         className="mb-3 min-h-[44px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]"
                     >
                         Unfollow
