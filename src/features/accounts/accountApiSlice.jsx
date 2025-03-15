@@ -45,6 +45,16 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Account', id: username },
             ],
         }),
+        toggleFollow: builder.mutation({
+            query: ({ userId, currentUserId }) => ({
+                url: `/users/${userId}/toggle-follow`, // Correct endpoint
+                method: 'POST',
+                body: { currentUserId },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Account', id: arg.currentUserId },
+            ],
+        }),
     }),
 });
 
@@ -52,6 +62,7 @@ export const {
     useGetAccountsQuery,
     useGetAccountsByIdQuery,
     useGetCurrentAccountQuery,
+    useToggleFollowMutation,
 } = accountsApiSlice;
 
 // returning the query result obj

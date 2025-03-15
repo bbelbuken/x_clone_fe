@@ -37,7 +37,7 @@ const Layout = () => {
 
                     {!grok && (
                         <div className="sticky top-0 self-start">
-                            <SideBarRight />
+                            <SideBarRight currentAccount={currentAccount} />
                         </div>
                     )}
                 </main>

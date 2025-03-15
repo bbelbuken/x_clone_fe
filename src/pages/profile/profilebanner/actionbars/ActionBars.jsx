@@ -1,20 +1,22 @@
 import Button from 'components/buttons/Button';
-import { addFollower } from 'features/accounts/accountSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
+import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
 
 const ActionBars = ({ currentAccount }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
+    const [toggleFollow, { isLoading }] = useToggleFollowMutation();
 
     const {
         account: myCurrentAccount,
         error: accountError,
         isLoading: isLoadingAccount,
+        refetch,
     } = useCurrentAccount();
 
     const loggedAccount = myCurrentAccount || {
@@ -30,21 +32,37 @@ const ActionBars = ({ currentAccount }) => {
         location: '',
         website: '',
         postCount: 0,
+        following: '',
     };
 
-    const isFollowing = currentAccount.following.includes(currentAccount._id);
-    const isCurrentAccount = currentAccount._id === loggedAccount._id;
-    const [isHovering, setIsHovering] = useState(false);
+    const handleFollow = async () => {
+        try {
+            const payload = {
+                userId: currentAccount._id,
+                currentUserId: loggedAccount._id,
+            };
 
-    const handleFollow = () => {
-        if (isFollowing) {
-            dispatch(
-                openModal({ modalType: 'unfollow', props: { currentAccount } }),
-            );
-        } else {
-            dispatch(addFollower(currentAccount._id));
+            if (isFollowing) {
+                dispatch(
+                    openModal({
+                        modalType: 'unfollow',
+                        props: { currentAccount },
+                    }),
+                );
+            }
+            const response = await toggleFollow(payload).unwrap();
+            console.log(response.message);
+
+            // Refetch the loggedAccount data
+            await refetch();
+        } catch (error) {
+            console.error('Failed to toggle follow:', error);
         }
     };
+
+    const isFollowing = loggedAccount?.following.includes(currentAccount?._id);
+    const isCurrentAccount = currentAccount._id === loggedAccount?._id;
+    const [isHovering, setIsHovering] = useState(false);
 
     const editProfile = (e) => {
         e.preventDefault();

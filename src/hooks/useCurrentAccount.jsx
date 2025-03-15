@@ -12,9 +12,8 @@ const useCurrentAccount = () => {
         data: account,
         isLoading,
         error,
-    } = useGetCurrentAccountQuery(currentUsername, {
-        skip: !currentUsername, // Skip the query if currentUsername is not set
-    });
+        refetch,
+    } = useGetCurrentAccountQuery(currentUsername || null); // Pass null if currentUsername is not set
 
     useEffect(() => {
         if (token) {
@@ -29,7 +28,7 @@ const useCurrentAccount = () => {
         }
     }, [token, currentUsername]);
 
-    return { account, isLoading, error };
+    return { account, isLoading, error, refetch }; // Return refetch method
 };
 
 export default useCurrentAccount;

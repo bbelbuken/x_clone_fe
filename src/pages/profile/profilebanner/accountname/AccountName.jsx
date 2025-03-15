@@ -3,8 +3,6 @@ import VerifiedSVG from 'components/icons/VerifiedSVG';
 const AccountName = ({ account }) => {
     const verified = account.verified;
 
-    console.log(account);
-
     return (
         <div className="mt-1 mb-3 flex flex-col items-start justify-center">
             <div className="flex flex-col items-start justify-center">
