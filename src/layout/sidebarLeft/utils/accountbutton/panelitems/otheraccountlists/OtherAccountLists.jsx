@@ -12,7 +12,9 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     const { data: fetchedAccounts, isLoading, error } = useGetAccountsQuery();
 
     // entities object into an array of accounts
-    const accountsArray = Object.values(fetchedAccounts.entities);
+    const accountsArray = fetchedAccounts
+        ? Object.values(fetchedAccounts.entities)
+        : [];
 
     const mergedAccounts = React.useMemo(() => {
         if (!accountsArray || !otherLoggedInAccounts) return [];

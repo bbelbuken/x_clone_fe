@@ -1,14 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Button from 'components/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import { TwitterSVG } from 'components/icons/TwitterSVG';
 import { useSendLogOutMutation } from 'features/auth/authApiSlice';
 import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
+import { setCurrentAccount } from 'features/accounts/accountSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LogOutModal = () => {
     const modalRef = useRef();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const loggedInAccounts = useLoggedInAccounts();
+    const currentAccount = useSelector(
+        (state) => state.accounts.currentAccount,
+    );
 
     const [sendLogOut, { isLoading, error }] = useSendLogOutMutation();
 
@@ -39,8 +45,9 @@ const LogOutModal = () => {
 
     const handleLogOut = async () => {
         try {
-            await sendLogOut();
+            await sendLogOut().unwrap();
             clearRoutesUponLogOut();
+            dispatch(setCurrentAccount(loggedInAccounts));
             if (loggedInAccounts.length > 1) {
                 navigate('/home');
             } else {
@@ -50,6 +57,12 @@ const LogOutModal = () => {
             console.error('Logout Failed', error);
         }
     };
+
+    useEffect(() => {
+        if (!currentAccount) {
+            navigate('/');
+        }
+    }, [currentAccount, navigate]);
 
     if (isLoading) {
         return <div>Loading...</div>;

@@ -16,14 +16,16 @@ const persistConfig = {
 // Wrap the auth reducer with persistReducer
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedAccountReducer = persistReducer(persistConfig, accountReducer);
+const persistedModalReducer = persistReducer(persistConfig, modalReducer);
+const persistedPostReducer = persistReducer(persistConfig, postReducer);
 
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
         auth: persistedAuthReducer,
-        posts: postReducer,
+        posts: persistedPostReducer,
         accounts: persistedAccountReducer,
-        modals: modalReducer,
+        modals: persistedModalReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
