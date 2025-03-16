@@ -3,10 +3,12 @@ import Button from 'components/buttons/Button';
 import { useNavigate } from 'react-router-dom';
 import { TwitterSVG } from 'components/icons/TwitterSVG';
 import { useSendLogOutMutation } from 'features/auth/authApiSlice';
+import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
 
 const LogOutModal = () => {
     const modalRef = useRef();
     const navigate = useNavigate();
+    const loggedInAccounts = useLoggedInAccounts();
 
     const [sendLogOut, { isLoading, error }] = useSendLogOutMutation();
 
@@ -39,7 +41,11 @@ const LogOutModal = () => {
         try {
             await sendLogOut();
             clearRoutesUponLogOut();
-            navigate('/');
+            if (loggedInAccounts.length > 1) {
+                navigate('/home');
+            } else {
+                navigate('/');
+            }
         } catch (error) {
             console.error('Logout Failed', error);
         }

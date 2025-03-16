@@ -17,11 +17,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled;
-                    const { accessToken, foundUser } = data;
 
-                    dispatch(setCredentials({ accessToken }));
-                    dispatch(addLoggedInAccount(foundUser));
-                    dispatch(setCurrentAccount(foundUser));
+                    // Only dispatch Redux actions if step === 2 (password verification)
+                    if (arg.step === 2) {
+                        const { accessToken, foundUser } = data;
+                        dispatch(setCredentials({ accessToken }));
+                        dispatch(addLoggedInAccount(foundUser));
+                        dispatch(setCurrentAccount(foundUser));
+                    }
                 } catch (error) {
                     console.error('Login Failed', error);
                 }
@@ -38,16 +41,25 @@ export const authApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { dispatch, queryFulfilled, getState }) {
                 try {
                     await queryFulfilled;
-                    dispatch(logOut());
-                    dispatch(apiSlice.util.resetApiState());
 
-                    const currentAccountId =
-                        getState().accounts.currentAccount?._id;
+                    const state = getState();
+                    const currentAccountId = state.accounts.currentAccount?._id;
 
                     // Remove the specific account from loggedInAccounts
                     if (currentAccountId) {
                         dispatch(removeLoggedInAccount(currentAccountId));
                     }
+
+                    // Set the currentAccount to the next available account or null
+                    const loggedInAccounts = state.accounts.loggedInAccounts;
+                    if (loggedInAccounts.length > 0) {
+                        dispatch(setCurrentAccount(loggedInAccounts[0]));
+                    } else {
+                        dispatch(setCurrentAccount(null));
+                    }
+
+                    // Reset the API state
+                    dispatch(apiSlice.util.resetApiState());
                 } catch (error) {
                     console.error('Logout Failed', error);
                 }
