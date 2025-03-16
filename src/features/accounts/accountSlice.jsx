@@ -115,13 +115,13 @@ const accountSlice = createSlice({
             state.currentAccount = action.payload;
         },
         removeLoggedInAccount: (state, action) => {
+            const accountId = action.payload; // Get the account ID from the payload
             state.loggedInAccounts = state.loggedInAccounts.filter(
-                (account) => account._id !== action.payload,
+                (account) => account._id !== accountId,
             );
-            if (
-                state.currentAccount &&
-                action.payload === state.currentAccount._id
-            ) {
+
+            // If the removed account is the current account, reset the current account
+            if (state.currentAccount?._id === accountId) {
                 state.currentAccount = null;
             }
         },

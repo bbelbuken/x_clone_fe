@@ -1,22 +1,65 @@
 import React from 'react';
-import { useAccounts } from 'hooks/useAccounts';
 import { useDispatch } from 'react-redux';
 import { setCurrentAccount } from 'features/accounts/accountSlice';
+import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 
-const OtherAccountLists = ({ currentAccount }) => {
+const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     const dispatch = useDispatch();
 
-    const accounts = useAccounts();
-    const otherAccounts = accounts.filter(
-        (account) => account.id !== currentAccount.id,
-    );
+    // Fetch all accounts from the backend
+    const { data: fetchedAccounts, isLoading, error } = useGetAccountsQuery();
+
+    // Log the fetched data to inspect its structure
+    console.log('Fetched Accounts:', fetchedAccounts);
+
+    // Convert entities object into an array of accounts
+    const accountsArray = fetchedAccounts
+        ? Object.values(fetchedAccounts.entities)
+        : [];
+
+    // Merge loggedInAccounts with fetched accounts to get cachedAvatar
+    const mergedAccounts = React.useMemo(() => {
+        if (!accountsArray || !otherLoggedInAccounts) return [];
+
+        return otherLoggedInAccounts.map((loggedInAccount) => {
+            const matchedAccount = accountsArray.find(
+                (account) => account.username === loggedInAccount.username,
+            );
+
+            return {
+                ...loggedInAccount,
+                cachedAvatar:
+                    matchedAccount?.cachedAvatar ||
+                    loggedInAccount.cachedAvatar,
+            };
+        });
+    }, [accountsArray, otherLoggedInAccounts]);
 
     const handleCurrentAccount = (account) => {
         dispatch(setCurrentAccount(account));
     };
+
+    const getGoogleDriveDirectImageUrl = (url) => {
+        const urlParams = new URLSearchParams(url.split('?')[1]);
+        const fileId = urlParams.get('id');
+        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!currentAccount) {
+        return <div>No account found</div>;
+    }
+
     return (
         <div className="relative flex flex-col items-center justify-center py-0.5">
-            {otherAccounts.map((account, key) => (
+            {mergedAccounts.map((account, key) => (
                 <button
                     className="w-full cursor-pointer px-4 hover:bg-[#c4c4c41a]"
                     type="button"
@@ -28,10 +71,18 @@ const OtherAccountLists = ({ currentAccount }) => {
                         key={account.id}
                     >
                         <img
-                            src={account.avatar}
+                            src={
+                                account.cachedAvatar
+                                    ? account.cachedAvatar
+                                    : account.avatar
+                                      ? getGoogleDriveDirectImageUrl(
+                                            account.avatar,
+                                        )
+                                      : '/public/default_profile_200x200.png'
+                            }
                             alt="Avatar"
                             className="h-10 w-10 rounded-full"
-                        ></img>
+                        />
                         <div className="flex flex-col items-start justify-center py-2">
                             <p className="text-[15px] font-bold break-words">
                                 {account.fullname}

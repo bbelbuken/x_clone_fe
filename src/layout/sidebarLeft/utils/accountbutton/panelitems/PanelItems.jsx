@@ -1,12 +1,16 @@
 import React from 'react';
-import { useAccounts } from 'hooks/useAccounts';
 import { Link, useNavigate } from 'react-router-dom';
 import CurrentAccountItems from '../buttonitems/ButtonItems';
 import OtherAccountLists from './otheraccountlists/OtherAccountLists';
+import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
 
 const PanelItems = ({ currentAccount }) => {
     const navigate = useNavigate();
-    const loggedAccounts = useAccounts();
+    const loggedInAccounts = useLoggedInAccounts();
+
+    const otherLoggedInAccounts = loggedInAccounts.filter(
+        (account) => currentAccount._id !== account._id,
+    );
 
     const openLogOutModal = (e) => {
         e.preventDefault();
@@ -23,9 +27,11 @@ const PanelItems = ({ currentAccount }) => {
     };
     return (
         <div className="flex flex-1 flex-col justify-center self-stretch overflow-visible py-3 text-sm font-bold">
-            {loggedAccounts.length > 1 && (
+            {loggedInAccounts.length > 0 && (
                 <>
-                    <ol className="px-4 pt-0.5">
+                    <ol
+                        className={`px-4 pt-0.5 ${otherLoggedInAccounts.length > 0 ? '' : 'my-2'}`}
+                    >
                         <li className="relative">
                             <CurrentAccountItems
                                 gap={1}
@@ -42,8 +48,12 @@ const PanelItems = ({ currentAccount }) => {
                             </svg>
                         </li>
                     </ol>
-
-                    <OtherAccountLists currentAccount={currentAccount} />
+                    {otherLoggedInAccounts.length > 0 && (
+                        <OtherAccountLists
+                            currentAccount={currentAccount}
+                            otherLoggedInAccounts={otherLoggedInAccounts}
+                        />
+                    )}
 
                     <div className="my-3 h-[1px] bg-[#2f3336]"></div>
                 </>
@@ -54,7 +64,7 @@ const PanelItems = ({ currentAccount }) => {
             >
                 Add an existing account
             </Link>
-            {loggedAccounts.length > 1 && (
+            {otherLoggedInAccounts.length > 1 && (
                 <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
                     Manage accounts
                 </Link>

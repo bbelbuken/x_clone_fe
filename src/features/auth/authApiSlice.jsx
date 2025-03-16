@@ -3,6 +3,7 @@ import { setCredentials, logOut } from './authSlice';
 import {
     addLoggedInAccount,
     setCurrentAccount,
+    removeLoggedInAccount,
 } from 'features/accounts/accountSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
@@ -21,7 +22,6 @@ export const authApiSlice = apiSlice.injectEndpoints({
                     dispatch(setCredentials({ accessToken }));
                     dispatch(addLoggedInAccount(foundUser));
                     dispatch(setCurrentAccount(foundUser));
-                    console.log('Logged-in user:', foundUser);
                 } catch (error) {
                     console.error('Login Failed', error);
                 }
@@ -35,11 +35,19 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 url: '/i/flow/logout',
                 method: 'post',
             }),
-            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+            async onQueryStarted(arg, { dispatch, queryFulfilled, getState }) {
                 try {
                     await queryFulfilled;
                     dispatch(logOut());
                     dispatch(apiSlice.util.resetApiState());
+
+                    const currentAccountId =
+                        getState().accounts.currentAccount?._id;
+
+                    // Remove the specific account from loggedInAccounts
+                    if (currentAccountId) {
+                        dispatch(removeLoggedInAccount(currentAccountId));
+                    }
                 } catch (error) {
                     console.error('Logout Failed', error);
                 }
