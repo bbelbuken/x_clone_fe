@@ -16,7 +16,6 @@ const SignInPassword = ({
     login,
     isLoading,
     error,
-    setCredentials,
     setUsername,
 }) => {
     return (
@@ -44,7 +43,6 @@ const SignInPassword = ({
                     login={login}
                     isLoading={isLoading}
                     error={error}
-                    setCredentials={setCredentials}
                     newStep={newStep}
                 />
 

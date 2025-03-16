@@ -1,5 +1,9 @@
 import { apiSlice } from '../../app/api/apiSlice';
 import { setCredentials, logOut } from './authSlice';
+import {
+    addLoggedInAccount,
+    setCurrentAccount,
+} from 'features/accounts/accountSlice';
 
 export const authApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -12,8 +16,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled;
-                    const { accessToken } = data; // Ensure this matches the response structure
+                    const { accessToken, foundUser } = data;
+
                     dispatch(setCredentials({ accessToken }));
+                    dispatch(addLoggedInAccount(foundUser));
+                    dispatch(setCurrentAccount(foundUser));
+                    console.log('Logged-in user:', foundUser);
                 } catch (error) {
                     console.error('Login Failed', error);
                 }

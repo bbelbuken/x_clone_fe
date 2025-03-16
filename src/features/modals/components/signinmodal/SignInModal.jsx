@@ -3,7 +3,6 @@ import { useState, useCallback, useEffect } from 'react';
 import SignInOptions from './signinoptions/SignInOptions';
 import SignInPassword from './singinpassword/SignInPassword';
 import { useLoginMutation } from 'features/auth/authApiSlice';
-import { setCredentials } from 'features/auth/authSlice';
 
 const SignInModal = () => {
     const [login, { isLoading, error }] = useLoginMutation();
@@ -68,7 +67,6 @@ const SignInModal = () => {
                     login={login}
                     isLoading={isLoading}
                     error={error}
-                    setCredentials={setCredentials}
                 />
             )}
         </div>

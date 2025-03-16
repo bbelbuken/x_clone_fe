@@ -98,10 +98,15 @@ const accountSlice = createSlice({
     initialState,
     reducers: {
         addLoggedInAccount: (state, action) => {
-            // Check if the account already exists in the list
+            if (!action.payload) {
+                console.error('Payload is undefined in addLoggedInAccount');
+                return;
+            }
+
             const accountExists = state.loggedInAccounts.some(
                 (account) => account._id === action.payload._id,
             );
+
             if (!accountExists) {
                 state.loggedInAccounts.push(action.payload);
             }

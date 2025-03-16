@@ -1,8 +1,6 @@
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'components/buttons/Button';
-import { useDispatch } from 'react-redux';
-import { setCurrentAccount } from 'features/accounts/accountSlice';
 
 const SignInPasswordInput = ({
     username,
@@ -14,10 +12,8 @@ const SignInPasswordInput = ({
     handleNextSection2,
     login,
     isLoading,
-    setCredentials,
     newStep,
 }) => {
-    const dispatch = useDispatch();
     const inputRef = useRef();
     const [iconClicked, setIconClicked] = useState(false);
     const [isFocused, setIsFocused] = useState(true);
@@ -37,7 +33,6 @@ const SignInPasswordInput = ({
         }
 
         await login(payload).unwrap();
-        dispatch(setCurrentAccount);
         setPassword('');
         setUsername('');
         setEmail('');
