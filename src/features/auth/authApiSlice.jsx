@@ -60,8 +60,19 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials },
             }),
         }),
+        switchAccount: builder.mutation({
+            query: ({ username, userId }) => ({
+                url: '/i/flow/switch-account',
+                method: 'PATCH',
+                body: { username, userId },
+            }),
+        }),
     }),
 });
 
-export const { useLoginMutation, useSignUpMutation, useSendLogOutMutation } =
-    authApiSlice;
+export const {
+    useLoginMutation,
+    useSignUpMutation,
+    useSendLogOutMutation,
+    useSwitchAccountMutation,
+} = authApiSlice;

@@ -2,22 +2,18 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setCurrentAccount } from 'features/accounts/accountSlice';
 import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
+import { useSwitchAccountMutation } from 'features/auth/authApiSlice';
+import { setCredentials } from 'features/auth/authSlice';
 
 const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     const dispatch = useDispatch();
+    const [switchAccount] = useSwitchAccountMutation();
 
-    // Fetch all accounts from the backend
     const { data: fetchedAccounts, isLoading, error } = useGetAccountsQuery();
 
-    // Log the fetched data to inspect its structure
-    console.log('Fetched Accounts:', fetchedAccounts);
+    // entities object into an array of accounts
+    const accountsArray = Object.values(fetchedAccounts.entities);
 
-    // Convert entities object into an array of accounts
-    const accountsArray = fetchedAccounts
-        ? Object.values(fetchedAccounts.entities)
-        : [];
-
-    // Merge loggedInAccounts with fetched accounts to get cachedAvatar
     const mergedAccounts = React.useMemo(() => {
         if (!accountsArray || !otherLoggedInAccounts) return [];
 
@@ -35,8 +31,26 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
         });
     }, [accountsArray, otherLoggedInAccounts]);
 
-    const handleCurrentAccount = (account) => {
-        dispatch(setCurrentAccount(account));
+    const handleCurrentAccount = async (account) => {
+        try {
+            console.log('Switching to account:', account.username);
+            console.log('Current User ID:', currentAccount._id);
+
+            const payload = {
+                username: account.username,
+                userId: currentAccount._id,
+            };
+            console.log('Payload:', payload);
+
+            const response = await switchAccount(payload).unwrap();
+            console.log('Switch Account Response:', response);
+
+            dispatch(setCurrentAccount(response.newAccount));
+
+            dispatch(setCredentials({ accessToken: response.accessToken }));
+        } catch (error) {
+            console.error('Switch Account Error:', error);
+        }
     };
 
     const getGoogleDriveDirectImageUrl = (url) => {
