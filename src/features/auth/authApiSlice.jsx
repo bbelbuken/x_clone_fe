@@ -22,8 +22,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
                     if (arg.step === 2) {
                         const { accessToken, foundUser } = data;
                         dispatch(setCredentials({ accessToken }));
-                        dispatch(addLoggedInAccount(foundUser));
-                        dispatch(setCurrentAccount(foundUser));
+                        dispatch(
+                            addLoggedInAccount({ ...foundUser, accessToken }),
+                        ); // Include accessToken
+                        dispatch(
+                            setCurrentAccount({ ...foundUser, accessToken }),
+                        ); // Include accessTo
                     }
                 } catch (error) {
                     console.error('Login Failed', error);
@@ -53,9 +57,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
                     // Set the currentAccount to the next available account or null
                     const loggedInAccounts = state.accounts.loggedInAccounts;
                     if (loggedInAccounts.length > 0) {
-                        dispatch(setCurrentAccount(loggedInAccounts[0]));
+                        const nextAccount = loggedInAccounts[0];
+                        dispatch(setCurrentAccount(nextAccount));
+
+                        // Update credentials for the next account
+                        dispatch(
+                            setCredentials({
+                                accessToken: nextAccount.accessToken, // Ensure this field exists
+                            }),
+                        );
                     } else {
                         dispatch(setCurrentAccount(null));
+
+                        // Clear credentials if no accounts are left
+                        dispatch(setCredentials({ accessToken: null }));
                     }
 
                     // Reset the API state

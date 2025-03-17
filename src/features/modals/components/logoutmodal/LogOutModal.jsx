@@ -6,6 +6,8 @@ import { useSendLogOutMutation } from 'features/auth/authApiSlice';
 import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
 import { setCurrentAccount } from 'features/accounts/accountSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeLoggedInAccount } from 'features/accounts/accountSlice';
+import { setCredentials } from 'features/auth/authSlice';
 
 const LogOutModal = () => {
     const modalRef = useRef();
@@ -46,11 +48,32 @@ const LogOutModal = () => {
     const handleLogOut = async () => {
         try {
             await sendLogOut().unwrap();
+            dispatch(removeLoggedInAccount(currentAccount._id));
             clearRoutesUponLogOut();
-            dispatch(setCurrentAccount(loggedInAccounts));
-            if (loggedInAccounts.length > 1) {
+
+            // Set the currentAccount to the next available account or null
+            const remainingAccounts = loggedInAccounts.filter(
+                (account) => account._id !== currentAccount._id,
+            );
+
+            if (remainingAccounts.length > 0) {
+                const nextAccount = remainingAccounts[0];
+                dispatch(setCurrentAccount(nextAccount));
+
+                // Update credentials for the next account
+                dispatch(
+                    setCredentials({
+                        accessToken: nextAccount.accessToken, // Ensure this field exists
+                    }),
+                );
+
                 navigate('/home');
             } else {
+                dispatch(setCurrentAccount(null));
+
+                // Clear credentials if no accounts are left
+                dispatch(setCredentials({ accessToken: null }));
+
                 navigate('/');
             }
         } catch (error) {

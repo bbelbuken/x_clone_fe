@@ -42,10 +42,7 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
                 username: account.username,
                 userId: currentAccount._id,
             };
-            console.log('Payload:', payload);
-
             const response = await switchAccount(payload).unwrap();
-            console.log('Switch Account Response:', response);
 
             dispatch(setCurrentAccount(response.newAccount));
 
