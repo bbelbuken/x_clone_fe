@@ -7,7 +7,7 @@ import { memo } from 'react';
 import More from './utils/content/usernav/more/More';
 import ReactionNav from './utils/content/reactionnav/ReactionNav';
 
-const Post = memo(({ post, postId, currentAccount }) => {
+const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
     const {
         data: account,
         isLoading,
@@ -25,7 +25,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
     return (
         <div className="relative">
             <div
-                className="transition-colors-feed hover:box-shadow-feedbox border-b border-b-[#2f3336] hover:bg-[#ffffff08]"
+                className={`${replyClicked ? '' : 'border-b border-b-[#2f3336]'} transition-colors-feed hover:box-shadow-feedbox hover:bg-[#ffffff08]`}
                 key={post.id}
             >
                 <article className="flex shrink grow cursor-pointer flex-col px-4">
@@ -72,6 +72,7 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                         postVideo={post.media.video}
                                         postCachedVideos={post.cachedVideos}
                                         postReactions={post.reactions}
+                                        replyClicked={replyClicked}
                                     />
                                 ) : (
                                     <Content
@@ -94,31 +95,50 @@ const Post = memo(({ post, postId, currentAccount }) => {
                                         postReactions={
                                             post.originalPost.reactions
                                         }
+                                        replyClicked={replyClicked}
                                     />
                                 )}
                             </Link>
-                            <ReactionNav
-                                currentAccountReposted={currentAccountReposted}
-                                postId={postId}
-                                isARepost={isARepost}
-                                postReactions={
-                                    isARepost
-                                        ? post.originalPost.reactions
-                                        : post.reactions
-                                }
-                                currentAccount={currentAccount}
-                            />
+                            {!replyClicked && (
+                                <ReactionNav
+                                    currentAccountReposted={
+                                        currentAccountReposted
+                                    }
+                                    postId={postId}
+                                    isARepost={isARepost}
+                                    postReactions={
+                                        isARepost
+                                            ? post.originalPost.reactions
+                                            : post.reactions
+                                    }
+                                    currentAccount={currentAccount}
+                                />
+                            )}
+                            {replyClicked && (
+                                <div className="mt-6 flex items-center justify-start text-[15px]">
+                                    <span className="text-[#71767b]">
+                                        Replying to{' '}
+                                        <Link
+                                            to={`/${account.username}`}
+                                            className="cursor-pointer text-[#1d9bf0] hover:underline"
+                                        >
+                                            @{account.username}
+                                        </Link>
+                                    </span>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </article>
             </div>
-
-            <More
-                currentAccountReposted={currentAccountReposted}
-                account={account}
-                post={post}
-                currentAccount={currentAccount}
-            />
+            {!replyClicked && (
+                <More
+                    currentAccountReposted={currentAccountReposted}
+                    account={account}
+                    post={post}
+                    currentAccount={currentAccount}
+                />
+            )}
         </div>
     );
 });

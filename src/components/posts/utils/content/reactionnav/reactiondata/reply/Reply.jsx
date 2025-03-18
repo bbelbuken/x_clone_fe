@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const Reply = ({ postReactions, currentAccount, postId }) => {
+const Reply = ({ postReactions, postId }) => {
     const navigate = useNavigate();
 
     const openReplyPostal = (e) => {
@@ -10,7 +10,7 @@ const Reply = ({ postReactions, currentAccount, postId }) => {
             'previousRouteReplyModal',
             previousRouteReplyModal,
         );
-        navigate('/compose/reply', {
+        navigate(`/post/${postId}/reply`, {
             state: { background: location.pathname },
         });
     };

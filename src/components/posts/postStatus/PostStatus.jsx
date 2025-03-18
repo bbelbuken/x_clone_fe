@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Post from '../Post';
 import GoBack from 'pages/profile/goback/GoBack';
 
-const PostStatus = () => {
+const PostStatus = ({ replyClicked }) => {
     const { postId } = useParams();
     const currentAccount = useSelector(
         (state) => state.accounts.currentAccount,
@@ -21,8 +21,13 @@ const PostStatus = () => {
 
     return (
         <main className="flex w-full flex-col">
-            <GoBack postId={postId} />
-            <Post post={post} postId={postId} currentAccount={currentAccount} />
+            {!replyClicked && <GoBack postId={postId} />}
+            <Post
+                post={post}
+                postId={postId}
+                currentAccount={currentAccount}
+                replyClicked={replyClicked}
+            />
         </main>
     );
 };

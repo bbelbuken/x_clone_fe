@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 
-const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
+const Form = ({
+    tweet,
+    setTweet,
+    media,
+    mediaType,
+    modalRef,
+    replyIsNotClicked,
+}) => {
     const [mediaSize, setMediaSize] = useState({ width: null, height: null });
 
     useEffect(() => {
@@ -60,7 +67,7 @@ const Form = ({ tweet, setTweet, media, mediaType, modalRef }) => {
                     type="text"
                     id="newPost"
                     name="newPost"
-                    placeholder="What is happening?!"
+                    placeholder={`${replyIsNotClicked ? 'What is happening?!' : 'Post your reply'}`}
                     value={tweet}
                     onChange={handleInputChange}
                     rows={`${modalRef ? 4 : 1}`}

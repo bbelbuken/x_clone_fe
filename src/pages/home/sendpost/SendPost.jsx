@@ -15,6 +15,7 @@ const SendPost = ({ modalRef, handleClose, currentAccount }) => {
     const [mediaType, setMediaType] = useState(null); // Centralized mediaType state
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
+    const replyIsNotClicked = location.pathname === `/compose/post`;
 
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -116,8 +117,10 @@ const SendPost = ({ modalRef, handleClose, currentAccount }) => {
                     media={media}
                     mediaType={mediaType} // Pass mediaType to Form
                     modalRef={modalRef}
+                    replyIsNotClicked={replyIsNotClicked}
                 />
-                {isClicked || modalRef ? (
+
+                {(isClicked || modalRef) && replyIsNotClicked ? (
                     <div
                         className={`sticky top-0 -bottom-[1px] mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336] ${modalRef ? '-ml-14 w-[570px]' : '-ml-2'}`}
                     >

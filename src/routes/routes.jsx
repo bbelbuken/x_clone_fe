@@ -94,7 +94,7 @@ export const MyRoutes = () => {
             element: <PostModal />,
         },
         {
-            path: 'compose/reply',
+            path: 'post/:postId/reply',
             element: <ReplyModal />,
         },
         {
