@@ -17,7 +17,7 @@ const UserNav = ({ account, postDate }) => {
                     onClick={handleImageClick}
                     className="flex max-w-full shrink cursor-pointer items-center justify-start gap-0.5 text-[15px] leading-5 font-bold whitespace-nowrap hover:underline"
                 >
-                    {account.fullname}
+                    {account?.fullname}
                     {account?.verified && (
                         <VerifiedSVG width={18.75} height={18.75} />
                     )}
@@ -28,7 +28,7 @@ const UserNav = ({ account, postDate }) => {
                         className="flex max-w-full min-w-0 shrink leading-5"
                     >
                         <span className="text-[12px]">@</span>
-                        {account.username}
+                        {account?.username}
                     </div>
                     <span className="-translate-y-1 px-1">.</span>
                     <TimeAgo postDate={postDate} />

@@ -96,6 +96,32 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.postId },
             ],
         }),
+        replyToPost: builder.mutation({
+            query: (credentials) => {
+                const formData = new FormData();
+                formData.append('userId', credentials.userId);
+                formData.append('content', credentials.content);
+
+                if (credentials.mediaFiles) {
+                    if (Array.isArray(credentials.mediaFiles)) {
+                        credentials.mediaFiles.forEach((file) => {
+                            formData.append('mediaFiles', file);
+                        });
+                    } else {
+                        formData.append('mediaFiles', credentials.mediaFiles);
+                    }
+                }
+
+                return {
+                    url: `/posts/${credentials.postId}/reply`,
+                    method: 'POST',
+                    body: formData,
+                };
+            },
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: arg.postId },
+            ],
+        }),
         viewCount: builder.mutation({
             query: ({ postId, userId }) => ({
                 url: `/posts/${postId}/view`,
@@ -124,6 +150,7 @@ export const {
     useAddPostMutation,
     useDeletePostMutation,
     useLikePostMutation,
+    useReplyToPostMutation,
     useViewCountMutation,
     useRepostPostMutation,
 } = postsApiSlice;

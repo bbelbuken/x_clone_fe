@@ -1,6 +1,20 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Reply = ({ postReactions }) => {
+const Reply = ({ postReactions, currentAccount, postId }) => {
+    const navigate = useNavigate();
+
+    const openReplyPostal = (e) => {
+        e.preventDefault();
+        const previousRouteReplyModal = location.pathname;
+        localStorage.setItem(
+            'previousRouteReplyModal',
+            previousRouteReplyModal,
+        );
+        navigate('/compose/reply', {
+            state: { background: location.pathname },
+        });
+    };
+
     const data = {
         title: 'Reply',
         count: postReactions.replyCount || 0,
@@ -23,9 +37,7 @@ const Reply = ({ postReactions }) => {
         >
             <button
                 className="absolute flex min-h-5 cursor-pointer items-center text-[14px] text-[#71767b] hover:text-[#1d9bf0]"
-                onClick={(e) => {
-                    e.preventDefault();
-                }}
+                onClick={openReplyPostal}
             >
                 <div
                     className={`flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]`}

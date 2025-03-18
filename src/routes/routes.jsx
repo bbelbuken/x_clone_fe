@@ -25,6 +25,11 @@ const PostStatus = React.lazy(
 const PostModal = React.lazy(
     () => import('features/modals/components/postmodal/PostModal'),
 );
+
+const ReplyModal = React.lazy(
+    () => import('features/modals/components/replymodal/ReplyModal'),
+);
+
 const PhotoModal = React.lazy(
     () => import('features/modals/components/avatarmodal/PhotoModal'),
 );
@@ -87,6 +92,10 @@ export const MyRoutes = () => {
         {
             path: 'compose/post',
             element: <PostModal />,
+        },
+        {
+            path: 'compose/reply',
+            element: <ReplyModal />,
         },
         {
             path: '/:username/photo',
