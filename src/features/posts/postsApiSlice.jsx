@@ -46,6 +46,29 @@ export const postsApiSlice = apiSlice.injectEndpoints({
             },
             providesTags: (result, error, arg) => [{ type: 'Post', id: arg }],
         }),
+        getRepliesForPost: builder.query({
+            query: (postId) => ({
+                url: `/posts/${postId}/reply`,
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError;
+                },
+            }),
+            transformResponse: (responseData) => {
+                const loadedPosts = responseData.map((post) => {
+                    post.id = post._id;
+                    return post;
+                });
+                return postsAdapter.setAll(initialState, loadedPosts);
+            },
+            providesTags: (result, error, arg) => {
+                if (result?.ids) {
+                    return [
+                        { type: 'Post', id: 'LIST' },
+                        ...result.ids.map((id) => ({ type: 'Post', id })),
+                    ];
+                } else return [{ type: 'Post', id: 'LIST' }];
+            },
+        }),
         addPost: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
@@ -150,6 +173,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
 export const {
     useGetPostsQuery,
     useGetPostByIdQuery,
+    useGetRepliesForPostQuery,
     useAddPostMutation,
     useDeletePostMutation,
     useLikePostMutation,

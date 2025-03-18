@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Post from '../Post';
 import GoBack from 'pages/profile/goback/GoBack';
+import ReplyList from './replies/ReplyList';
 
 const PostStatus = ({ replyClicked }) => {
     const { postId } = useParams();
@@ -28,6 +29,7 @@ const PostStatus = ({ replyClicked }) => {
                 currentAccount={currentAccount}
                 replyClicked={replyClicked}
             />
+            <ReplyList currentAccount={currentAccount} postId={postId} />
         </main>
     );
 };
