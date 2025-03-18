@@ -33,6 +33,19 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Post', id: 'LIST' }];
             },
         }),
+        getPostById: builder.query({
+            query: (postId) => ({
+                url: `/posts/${postId}`,
+                validateStatus: (response, result) => {
+                    return response.status === 200 && !result.isError;
+                },
+            }),
+            transformResponse: (responseData) => {
+                responseData.id = responseData._id;
+                return responseData;
+            },
+            providesTags: (result, error, arg) => [{ type: 'Post', id: arg }],
+        }),
         addPost: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
@@ -107,6 +120,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
 });
 export const {
     useGetPostsQuery,
+    useGetPostByIdQuery,
     useAddPostMutation,
     useDeletePostMutation,
     useLikePostMutation,
