@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import PostStatus from 'components/posts/postStatus/PostStatus';
@@ -12,10 +12,17 @@ const ReplyModal = () => {
     const { account: currentAccount, error, isLoading } = currentAccountData;
     const modalRef = useRef();
     const navigate = useNavigate();
+    const [isReplyModalOpen, setIsReplyModalOpen] = useState(true); // Track modal open/close
+    const [isModalClosing, setIsModalClosing] = useState(false); // Track modal closing state
 
     const handleClose = useCallback(() => {
-        const previousRoute = localStorage.getItem('previousRoute');
-        navigate(previousRoute || '/home');
+        setIsModalClosing(true); // Set modal closing state to true
+        setTimeout(() => {
+            const previousRouteReply =
+                localStorage.getItem('previousRouteReply');
+            navigate(previousRouteReply || '/home');
+            setIsReplyModalOpen(false); // Close the modal after delay
+        }, 300); // Adjust the delay to match the CSS transition duration
     }, [navigate]);
 
     const handleClickOutside = (e) => {
@@ -38,7 +45,9 @@ const ReplyModal = () => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
+                isModalClosing ? 'opacity-0' : 'opacity-100'
+            }`}
             onClick={handleClickOutside}
         >
             <div
@@ -73,7 +82,11 @@ const ReplyModal = () => {
                     </div>
                 </div>
                 <div className="w-full">
-                    <PostStatus replyClicked={replyClicked} />
+                    <PostStatus
+                        replyClicked={replyClicked}
+                        isReplyModalOpen={isReplyModalOpen}
+                        isModalClosing={isModalClosing} // Pass modal closing state
+                    />
                     <SendReply
                         modalRef={modalRef}
                         handleClose={handleClose}

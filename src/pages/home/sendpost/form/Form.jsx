@@ -7,6 +7,7 @@ const Form = ({
     mediaType,
     modalRef,
     replyClicked,
+    isOnStatus,
 }) => {
     const [mediaSize, setMediaSize] = useState({ width: null, height: null });
 
@@ -67,7 +68,7 @@ const Form = ({
                     type="text"
                     id="newPost"
                     name="newPost"
-                    placeholder={`${!replyClicked ? 'What is happening?!' : 'Post your reply'}`}
+                    placeholder={`${!replyClicked && !isOnStatus ? 'What is happening?!' : 'Post your reply'}`}
                     value={tweet}
                     onChange={handleInputChange}
                     rows={`${modalRef ? 4 : 1}`}

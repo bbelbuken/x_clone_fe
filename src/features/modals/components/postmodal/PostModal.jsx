@@ -1,4 +1,4 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import SendPost from 'pages/home/sendpost/SendPost';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
@@ -8,10 +8,14 @@ const PostModal = () => {
     const { account: currentAccount, error, isLoading } = currentAccountData;
     const modalRef = useRef();
     const navigate = useNavigate();
+    const [isModalClosing, setIsModalClosing] = useState(false);
 
     const handleClose = useCallback(() => {
-        const previousRoute = localStorage.getItem('previousRoute');
-        navigate(previousRoute || '/home');
+        setIsModalClosing(true);
+        setTimeout(() => {
+            const previousRoute = localStorage.getItem('previousRoute');
+            navigate(previousRoute || '/home');
+        }, 300);
     }, [navigate]);
 
     const handleClickOutside = (e) => {
@@ -34,7 +38,9 @@ const PostModal = () => {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
+                isModalClosing ? 'opacity-0' : 'opacity-100'
+            }`}
             onClick={handleClickOutside}
         >
             <div

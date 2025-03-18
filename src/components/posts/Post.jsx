@@ -6,6 +6,7 @@ import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
 import { memo } from 'react';
 import More from './utils/content/usernav/more/More';
 import ReactionNav from './utils/content/reactionnav/ReactionNav';
+import SendReply from 'pages/home/sendreply/SendReply';
 
 const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
     const {
@@ -19,10 +20,14 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
 
     const isARepost = post.isARepost;
     const isAReply = post.repliedPostUsername;
+    const isReplied = post.repliedPost;
 
     const currentAccountReposted =
         (currentAccount._id === post.userId && isARepost) ||
         post.reactions.repostedBy.includes(currentAccount._id);
+
+    const isOnStatus =
+        location.pathname === `/${account.username}/status/${postId}`;
 
     return (
         <div className="relative">
@@ -59,7 +64,7 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
                             </div>
                         </Link>
 
-                        <div className="items-star flex grow flex-col justify-start pb-3">
+                        <div className="$items-star flex grow flex-col justify-start pb-3">
                             <Link to={`/${account.username}/status/${postId}`}>
                                 {!isARepost && !post.originalPost ? (
                                     <Content
@@ -118,8 +123,20 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
                                             : post.reactions
                                     }
                                     currentAccount={currentAccount}
+                                    replyClicked={replyClicked}
+                                    isReplied={isReplied}
+                                    account={account}
                                 />
                             )}
+                            {isOnStatus && (
+                                <SendReply
+                                    currentAccount={currentAccount}
+                                    replyClicked={replyClicked}
+                                    postId={postId}
+                                    isOnStatus={isOnStatus}
+                                />
+                            )}
+
                             {replyClicked && (
                                 <div className="mt-6 flex items-center justify-start text-[15px]">
                                     <span className="text-[#71767b]">

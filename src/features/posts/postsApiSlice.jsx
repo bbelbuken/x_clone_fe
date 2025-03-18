@@ -144,8 +144,8 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 };
             },
             invalidatesTags: (result, error, arg) => [
-                // Fix the spelling here
-                { type: 'Post', id: arg.postId },
+                { type: 'Post', id: arg.postId }, // Access postId directly from arg
+                { type: 'Post', id: 'LIST' },
             ],
         }),
         viewCount: builder.mutation({

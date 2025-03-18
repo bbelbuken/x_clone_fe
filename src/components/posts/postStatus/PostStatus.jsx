@@ -1,15 +1,14 @@
 import { useGetPostByIdQuery } from 'features/posts/postsApiSlice';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 import Post from '../Post';
 import GoBack from 'pages/profile/goback/GoBack';
 import ReplyList from './replies/ReplyList';
 
-const PostStatus = ({ replyClicked }) => {
+const PostStatus = ({ replyClicked, isReplyModalOpen, isModalClosing }) => {
     const { postId } = useParams();
-    const currentAccount = useSelector(
-        (state) => state.accounts.currentAccount,
-    );
+    const currentAccountData = useCurrentAccount();
+    const { account: currentAccount } = currentAccountData;
     const {
         data: post,
         isLoading,
@@ -29,7 +28,14 @@ const PostStatus = ({ replyClicked }) => {
                 currentAccount={currentAccount}
                 replyClicked={replyClicked}
             />
-            <ReplyList currentAccount={currentAccount} postId={postId} />
+
+            {!isReplyModalOpen &&
+                !isModalClosing && ( // Render ReplyList only if modal is fully closed
+                    <ReplyList
+                        currentAccount={currentAccount}
+                        postId={postId}
+                    />
+                )}
         </main>
     );
 };

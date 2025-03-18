@@ -12,6 +12,7 @@ const SendReply = ({
     currentAccount,
     replyClicked,
     postId,
+    isOnStatus,
 }) => {
     const [replyToPost, { isLoading }] = useReplyToPostMutation();
     const [tweet, setTweet] = useState('');
@@ -93,7 +94,7 @@ const SendReply = ({
 
     return (
         <div
-            className="relative flex border-b border-b-[#2f3336] px-4 pt-1 pb-2"
+            className={`${isOnStatus || replyClicked ? '' : 'border-b border-b-[#2f3336]'}relative flex px-4 pt-1 pb-2`}
             onClick={handleClick}
             onFocus={handleClick}
         >
@@ -118,9 +119,10 @@ const SendReply = ({
                     mediaType={mediaType} // Pass mediaType to Form
                     modalRef={modalRef}
                     replyClicked={replyClicked}
+                    isOnStatus={isOnStatus}
                 />
 
-                {(isClicked || modalRef) && !replyClicked ? (
+                {(isClicked || modalRef) && !replyClicked && !isOnStatus ? (
                     <div
                         className={`sticky top-0 -bottom-[1px] mt-[14px] flex w-full flex-wrap items-center justify-between border-b border-b-[#2f3336] ${modalRef ? '-ml-14 w-[570px]' : '-ml-2'}`}
                     >
@@ -128,7 +130,7 @@ const SendReply = ({
                     </div>
                 ) : null}
                 <div
-                    className={`flex min-h-10 w-full items-center justify-center ${isClicked ? 'mt-2' : 'mt-5'}`}
+                    className={`flex min-h-10 w-full items-center justify-center ${isOnStatus ? 'mt-5' : isClicked ? 'mt-2' : 'mt-5'}`}
                 >
                     <nav
                         className={`mr-1 flex h-full w-full items-center justify-center ${modalRef ? '-ml-[105px]' : '-ml-2'}`}

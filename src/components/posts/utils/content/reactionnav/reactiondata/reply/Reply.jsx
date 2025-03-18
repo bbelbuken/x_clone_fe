@@ -5,6 +5,8 @@ const Reply = ({ postReactions, postId }) => {
 
     const openReplyPostal = (e) => {
         e.preventDefault();
+        const previousRouteReply = location.pathname;
+        localStorage.setItem('previousRouteReply', previousRouteReply);
         navigate(`/post/${postId}/reply`, {
             state: { background: location.pathname },
         });
