@@ -18,6 +18,8 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
     if (isError) return <p>Error loading account</p>;
 
     const isARepost = post.isARepost;
+    const isAReply = post.repliedPostUsername;
+
     const currentAccountReposted =
         (currentAccount._id === post.userId && isARepost) ||
         post.reactions.repostedBy.includes(currentAccount._id);
@@ -72,7 +74,11 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
                                         postVideo={post.media.video}
                                         postCachedVideos={post.cachedVideos}
                                         postReactions={post.reactions}
+                                        isAReply={isAReply}
                                         replyClicked={replyClicked}
+                                        repliedPostUsername={
+                                            post.repliedPostUsername
+                                        }
                                     />
                                 ) : (
                                     <Content

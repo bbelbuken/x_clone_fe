@@ -20,11 +20,26 @@ const Feed = ({ currentAccount, isProfile = false }) => {
         const { ids, entities } = posts;
 
         // Filter posts based on whether it's the profile page or not
-        const filteredIds = isProfile
-            ? ids.filter(
-                  (postId) => entities[postId].userId === currentAccount?._id,
-              ) // Only show current user's posts
-            : ids; // Show all posts
+        const filteredIds = ids.filter((postId) => {
+            const post = entities[postId];
+
+            // If it's a profile page, only show current user's posts
+            if (isProfile) {
+                return (
+                    post.userId === currentAccount?._id &&
+                    !post.repliedPostUsername
+                );
+            }
+
+            // If it's not a profile page, show all posts except replies that don't belong to the current user
+            if (post.repliedPost) {
+                // Only show the reply if it belongs to the current user
+                return post.userId === currentAccount?._id;
+            }
+
+            // Show all non-reply posts
+            return true;
+        });
 
         content = filteredIds.map((postId) => {
             const post = entities[postId];

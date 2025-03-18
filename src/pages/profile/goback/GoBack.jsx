@@ -6,10 +6,13 @@ const GoBack = ({ currentAccount, postCount, postId }) => {
     const verified = currentAccount?.verified;
 
     const handleGetLocation = () => {
-        const previousRoute = localStorage.getItem('previousRouteProfile');
+        const previousRoute = location.pathname === `/status/${postId}`;
+        const newRoute = previousRoute
+            ? localStorage.getItem('previousRouteReplyModal')
+            : localStorage.getItem('previousRouteProfile');
 
         if (previousRoute) {
-            navigate(previousRoute);
+            navigate(newRoute);
         } else {
             navigate('/home');
         }

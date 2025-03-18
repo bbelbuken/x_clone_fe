@@ -1,9 +1,10 @@
 import { useRef, useCallback } from 'react';
-import SendPost from 'pages/home/sendpost/SendPost';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import PostStatus from 'components/posts/postStatus/PostStatus';
 import { useParams } from 'react-router-dom';
+import SendReply from 'pages/home/sendreply/SendReply';
+
 const ReplyModal = () => {
     const { postId } = useParams();
     const replyClicked = location.pathname === `/post/${postId}/reply`;
@@ -73,11 +74,12 @@ const ReplyModal = () => {
                 </div>
                 <div className="w-full">
                     <PostStatus replyClicked={replyClicked} />
-                    <SendPost
+                    <SendReply
                         modalRef={modalRef}
                         handleClose={handleClose}
                         currentAccount={currentAccount}
                         replyClicked={replyClicked}
+                        postId={postId}
                     />
                 </div>
             </div>

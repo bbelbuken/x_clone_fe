@@ -41,9 +41,9 @@ const DeletePostModal = () => {
         >
             <div
                 ref={modalRef}
-                className="mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"
+                className="z-50 mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"
             >
-                <h1 className="min-w-0 text-left text-xl font-bold tracking-wide break-words">
+                <h1 className="z-50text-left min-w-0 text-xl font-bold tracking-wide break-words">
                     Delete post?
                 </h1>
 

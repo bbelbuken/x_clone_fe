@@ -13,17 +13,24 @@ const UserReplies = ({ currentAccount }) => {
     let content;
 
     if (isLoading) {
-        content = <p>Loading liked posts...</p>;
+        content = <p>Loading replied posts...</p>;
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
         const { ids, entities } = posts;
 
-        // Filter posts that the current user has liked
-        const repliedPostIds = ids.filter((postId) =>
-            entities[postId].reactions.repliedBy.includes(currentAccount._id),
-        );
+        // Filter posts that are replies made by the current user
+        const repliedPostIds = ids.filter((postId) => {
+            const post = entities[postId];
+            console.log(post.repliedPost);
+            // Check if the post is a reply and if it belongs to the current user
+            return (
+                post.repliedPost && // Check if it's a reply
+                post.userId === currentAccount._id // Check if the reply belongs to the current user
+            );
+        });
 
+        // Map the filtered reply posts to the Post component
         content = repliedPostIds.map((postId) => {
             const post = entities[postId];
             return (
@@ -36,6 +43,7 @@ const UserReplies = ({ currentAccount }) => {
             );
         });
 
+        // Display a message if no replied posts are found
         if (repliedPostIds.length === 0) {
             content = (
                 <p className="mx-auto mt-10 text-lg">No replied posts found.</p>

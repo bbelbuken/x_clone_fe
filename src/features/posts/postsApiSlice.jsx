@@ -99,15 +99,17 @@ export const postsApiSlice = apiSlice.injectEndpoints({
         replyToPost: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
-                formData.append('userId', credentials.userId);
                 formData.append('content', credentials.content);
+                formData.append('userId', credentials.userId);
 
                 if (credentials.mediaFiles) {
                     if (Array.isArray(credentials.mediaFiles)) {
+                        // If mediaFiles is an array, append each file
                         credentials.mediaFiles.forEach((file) => {
                             formData.append('mediaFiles', file);
                         });
                     } else {
+                        // If mediaFiles is a single file, append it directly
                         formData.append('mediaFiles', credentials.mediaFiles);
                     }
                 }
@@ -119,6 +121,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 };
             },
             invalidatesTags: (result, error, arg) => [
+                // Fix the spelling here
                 { type: 'Post', id: arg.postId },
             ],
         }),

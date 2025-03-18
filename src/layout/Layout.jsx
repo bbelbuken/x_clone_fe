@@ -5,6 +5,8 @@ import ModalManager from 'features/modals/ModalManager';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const Layout = () => {
+    const previousRouteReplyModal = location.pathname;
+    localStorage.setItem('previousRouteReplyModal', previousRouteReplyModal);
     const currentAccountData = useCurrentAccount();
     const {
         account: currentAccount,
