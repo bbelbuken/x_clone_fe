@@ -2,6 +2,7 @@ import { useGetPostByIdQuery } from 'features/posts/postsApiSlice';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Post from '../Post';
+import GoBack from 'pages/profile/goback/GoBack';
 
 const PostStatus = () => {
     const { postId } = useParams();
@@ -20,6 +21,7 @@ const PostStatus = () => {
 
     return (
         <main className="flex w-full flex-col">
+            <GoBack postId={postId} />
             <Post post={post} postId={postId} currentAccount={currentAccount} />
         </main>
     );

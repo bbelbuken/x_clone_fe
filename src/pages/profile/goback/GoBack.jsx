@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import VerifiedSVG from 'components/icons/VerifiedSVG';
 
-const GoBack = ({ currentAccount, postCount }) => {
+const GoBack = ({ currentAccount, postCount, postId }) => {
     const navigate = useNavigate();
     const verified = currentAccount?.verified;
 
@@ -34,15 +34,17 @@ const GoBack = ({ currentAccount, postCount }) => {
                     </button>
                 </div>
 
-                <div className="relative mb-[1px] flex h-full flex-col items-start justify-center">
+                <div
+                    className={`${postId ? 'mt-1 -mb-[3px]' : 'mb-[1px]'}relative flex h-full flex-col items-start justify-center`}
+                >
                     <h2 className="flex max-w-full min-w-0 items-center justify-center overflow-hidden py-0.5 text-xl leading-7 font-bold tracking-[0.015em] break-words whitespace-nowrap text-[#e7e9ea]">
-                        {currentAccount?.fullname}
+                        {postId ? 'Post' : currentAccount?.fullname}
                         <div className="ml-[1px]">
                             {verified && <VerifiedSVG width={20} height={20} />}
                         </div>
                     </h2>
                     <div className="max-w-full pb-1 text-[13px] leading-3 font-normal break-words whitespace-nowrap text-[#71767b]">
-                        {`${postCount} posts`}
+                        {postId ? '' : `${postCount} posts`}
                     </div>
                 </div>
             </div>
