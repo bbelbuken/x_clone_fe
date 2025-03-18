@@ -7,6 +7,7 @@ import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
 const PanelItems = ({ currentAccount }) => {
     const navigate = useNavigate();
     const loggedInAccounts = useLoggedInAccounts();
+    console.log(loggedInAccounts);
 
     const otherLoggedInAccounts = loggedInAccounts.filter(
         (account) => currentAccount._id !== account._id,

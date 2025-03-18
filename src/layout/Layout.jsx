@@ -25,6 +25,7 @@ const Layout = () => {
     if (!currentAccount) {
         return <div>No account data found.</div>; // Handle case where account is undefined
     }
+
     return (
         <>
             <ModalManager />

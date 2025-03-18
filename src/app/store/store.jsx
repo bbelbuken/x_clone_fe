@@ -3,7 +3,6 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import accountReducer from '../../features/accounts/accountSlice';
 import modalReducer from '../../features/modals/modalSlice';
-import postReducer from '../../features/posts/postSlice';
 import authReducer from '../../features/auth/authSlice';
 import { apiSlice } from '../api/apiSlice';
 
@@ -17,13 +16,11 @@ const persistConfig = {
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedAccountReducer = persistReducer(persistConfig, accountReducer);
 const persistedModalReducer = persistReducer(persistConfig, modalReducer);
-const persistedPostReducer = persistReducer(persistConfig, postReducer);
 
 export const store = configureStore({
     reducer: {
         [apiSlice.reducerPath]: apiSlice.reducer,
         auth: persistedAuthReducer,
-        posts: persistedPostReducer,
         accounts: persistedAccountReducer,
         modals: persistedModalReducer,
     },

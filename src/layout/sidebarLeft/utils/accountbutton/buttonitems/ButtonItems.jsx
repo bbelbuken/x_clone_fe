@@ -1,4 +1,4 @@
-const ButtonItems = ({ gap, currentAccount = {} }) => {
+const ButtonItems = ({ gap, currentAccount }) => {
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
         const fileId = urlParams.get('id');
