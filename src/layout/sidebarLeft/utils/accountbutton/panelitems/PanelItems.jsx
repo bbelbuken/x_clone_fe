@@ -4,10 +4,9 @@ import CurrentAccountItems from '../buttonitems/ButtonItems';
 import OtherAccountLists from './otheraccountlists/OtherAccountLists';
 import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
 
-const PanelItems = ({ currentAccount }) => {
+const PanelItems = ({ currentAccount, setIsOpen }) => {
     const navigate = useNavigate();
     const loggedInAccounts = useLoggedInAccounts();
-    console.log(loggedInAccounts);
 
     const otherLoggedInAccounts = loggedInAccounts.filter(
         (account) => currentAccount._id !== account._id,
@@ -17,13 +16,15 @@ const PanelItems = ({ currentAccount }) => {
         e.preventDefault();
         const previousRouteLogOut = location.pathname;
         localStorage.setItem('previousRouteLogOut', previousRouteLogOut);
+        setIsOpen(false);
         navigate('/logout', { state: { background: location.pathname } });
     };
 
     const openSignInModal = (e) => {
         e.preventDefault();
-        const previousRouteSignIn = location.pathname;
-        localStorage.setItem('previousRouteSignIn', previousRouteSignIn);
+        localStorage.setItem('previousRouteSignIn', location.pathname);
+        localStorage.removeItem('previousRouteWelcomePage');
+        setIsOpen(false);
         navigate('i/flow/login', { state: { background: location.pathname } });
     };
     return (

@@ -37,10 +37,22 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
         }),
 
         getCurrentAccount: builder.query({
-            query: (username) => `/users/current/${username}`,
+            query: (username) => ({
+                url: `/users/current/${username}`,
+                method: 'GET',
+                credentials: 'include',
+            }),
+            transformResponse: (responseData) => {
+                if (!responseData) return null;
+                return {
+                    ...responseData,
+                    id: responseData._id, // Ensure ID is properly set
+                };
+            },
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError;
             },
+            skip: (username) => !username,
             providesTags: (result, error, username) => [
                 { type: 'Account', id: username },
             ],

@@ -6,16 +6,31 @@ import modalReducer from '../../features/modals/modalSlice';
 import authReducer from '../../features/auth/authSlice';
 import { apiSlice } from '../api/apiSlice';
 
-// Persist configuration
-const persistConfig = {
-    key: 'root', // Key for the persisted state
-    storage, // Storage engine (localStorage by default)
+// Persist configuration for each reducer
+const authPersistConfig = {
+    key: 'auth',
+    storage,
+    whitelist: ['token'], // Only persist the token
 };
 
-// Wrap the auth reducer with persistReducer
-const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-const persistedAccountReducer = persistReducer(persistConfig, accountReducer);
-const persistedModalReducer = persistReducer(persistConfig, modalReducer);
+const accountPersistConfig = {
+    key: 'accounts',
+    storage,
+    whitelist: ['currentAccount', 'loggedInAccounts'], // Only persist account-related data
+};
+
+const modalPersistConfig = {
+    key: 'modals',
+    storage,
+};
+
+// Wrap each reducer with its own persist configuration
+const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistedAccountReducer = persistReducer(
+    accountPersistConfig,
+    accountReducer,
+);
+const persistedModalReducer = persistReducer(modalPersistConfig, modalReducer);
 
 export const store = configureStore({
     reducer: {
@@ -27,7 +42,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
-                ignoredActions: ['persist/PERSIST'], // Ignore redux-persist actions
+                ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
             },
         }).concat(apiSlice.middleware),
     devTools: true,

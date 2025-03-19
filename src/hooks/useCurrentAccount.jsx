@@ -7,28 +7,76 @@ import { useState, useEffect } from 'react';
 const useCurrentAccount = () => {
     const [currentUsername, setCurrentUsername] = useState('');
     const token = useSelector(selectCurrentToken);
+    const persistedAccount = useSelector(
+        (state) => state.accounts.currentAccount,
+    );
 
-    const {
-        data: account,
-        isLoading,
-        error,
-        refetch,
-    } = useGetCurrentAccountQuery(currentUsername || null); // Pass null if currentUsername is not set
-
+    // First, try to get username from token
     useEffect(() => {
         if (token) {
-            const decoded = jwtDecode(token);
-            const { username } = decoded.UserInfo;
+            try {
+                const decoded = jwtDecode(token);
+                const { username } = decoded.UserInfo;
 
-            if (username !== currentUsername) {
-                setCurrentUsername(username);
+                if (username && username !== currentUsername) {
+                    setCurrentUsername(username);
+                }
+            } catch (err) {
+                console.error('Error decoding token:', err);
+                setCurrentUsername('');
             }
         } else {
             setCurrentUsername('');
         }
     }, [token, currentUsername]);
 
-    return { account, isLoading, error, refetch }; // Return refetch method
+    // Then fetch the account data
+    const {
+        data: account,
+        isLoading: isAccountLoading,
+        error: accountError,
+        refetch,
+    } = useGetCurrentAccountQuery(currentUsername, {
+        skip: !currentUsername,
+    });
+
+    // Use persisted account data while loading
+    if (isAccountLoading && persistedAccount) {
+        return {
+            account: persistedAccount,
+            isLoading: false,
+            error: null,
+            refetch,
+        };
+    }
+
+    // Handle error states
+    if (!token) {
+        return { account: null, isLoading: false, error: null, refetch };
+    }
+
+    // Still loading
+    if (!currentUsername || isAccountLoading) {
+        return { account: null, isLoading: true, error: null, refetch };
+    }
+
+    // Error fetching account
+    if (accountError) {
+        return {
+            account: persistedAccount || null,
+            isLoading: false,
+            error: accountError,
+            refetch,
+        };
+    }
+
+    // Success state - use fresh data if available, otherwise use persisted data
+    return {
+        account: account || persistedAccount,
+        isLoading: false,
+        error: null,
+        refetch,
+    };
 };
 
 export default useCurrentAccount;

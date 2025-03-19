@@ -1,16 +1,14 @@
 import Button from 'components/buttons/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const openSignInModal = (e) => {
         e.preventDefault();
-        const previousRouteWelcomePage = location.pathname;
-        localStorage.setItem(
-            'previousRouteWelcomePage',
-            previousRouteWelcomePage,
-        );
+        localStorage.setItem('previousRouteWelcomePage', location.pathname);
+        localStorage.removeItem('previousRouteSignIn');
         navigate('i/flow/login', { state: { background: location.pathname } });
     };
 

@@ -42,7 +42,7 @@ const LogOutModal = () => {
                 localStorage.removeItem(key);
             }
         });
-        localStorage.removeItem('persist:root');
+        // Do not remove persist:root as it breaks persistence
     };
 
     const handleLogOut = async () => {
