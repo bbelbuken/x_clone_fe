@@ -3,6 +3,7 @@ import FormHeader from '../formarea/formheader/FormHeader';
 import Button from 'components/buttons/Button';
 import UsernameInput from './usernameinput/UsernameInput';
 import { useSignUpMutation } from 'features/auth/authApiSlice';
+import { useNavigate } from 'react-router-dom';
 
 const UsernameArea = memo(
     ({
@@ -19,6 +20,7 @@ const UsernameArea = memo(
         setStep,
         payload,
     }) => {
+        const navigate = useNavigate();
         const [isFirstTime, setIsFirstTime] = useState(true);
         const [useSuggested, setUseSuggested] = useState(false);
         const [signup, { isLoading, error }] = useSignUpMutation();
@@ -37,6 +39,7 @@ const UsernameArea = memo(
                 setYear('');
                 setMedia('');
                 setStep(1);
+                navigate('/home');
             } catch (error) {
                 console.error(error);
             }
@@ -64,7 +67,10 @@ const UsernameArea = memo(
                     </div>
                 </div>
 
-                <form className="flex h-full flex-1 flex-col px-20">
+                <form
+                    className="flex h-full flex-1 flex-col px-20"
+                    onSubmit={(e) => e.preventDefault()}
+                >
                     <UsernameInput
                         name={name}
                         username={username}
@@ -78,21 +84,20 @@ const UsernameArea = memo(
                 <div className="mt-77 min-w-0 px-20 text-[13px] leading-4 tracking-[0.010em] text-[#71767b]">
                     <Button
                         type="button"
-                        className={`${useSuggested ? 'bg-white' : isFirstTime ? 'border border-[#71767b] bg-black hover:bg-[#eff3f41a]' : username == '' ? 'pointer-events-none bg-[#71767b]' : username ? 'bg-[#fff] text-black' : 'border border-[#71767b] bg-[#000] text-[#fff] hover:bg-[#eff3f41a]'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
+                        disabled={!username && !isFirstTime}
+                        className={`${useSuggested ? 'bg-white' : isFirstTime ? 'border border-[#71767b] bg-black hover:bg-[#eff3f41a]' : !username ? 'pointer-events-none bg-[#71767b]' : 'bg-[#fff] text-black'} my-6 mt-6 min-h-[52px] w-full px-20 transition-all duration-100 ease-in-out outline-none`}
                         onClick={handleSignUp}
                     >
                         <span
-                            className={`text-lg ${useSuggested ? 'text-black' : isFirstTime ? 'text-white' : username == '' ? 'text-[#000000]' : username ? 'text-black' : 'text-[#e7e9ea]'}`}
+                            className={`text-lg ${useSuggested ? 'text-black' : isFirstTime ? 'text-white' : !username ? 'text-[#000000]' : 'text-black'}`}
                         >
                             {useSuggested
                                 ? 'Next'
                                 : isFirstTime
                                   ? 'Skip for now'
-                                  : username == ''
+                                  : !username
                                     ? 'Try Again'
-                                    : username
-                                      ? 'Next'
-                                      : ''}
+                                    : 'Next'}
                         </span>
                     </Button>
                 </div>

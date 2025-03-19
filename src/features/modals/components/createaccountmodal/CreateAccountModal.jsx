@@ -1,10 +1,9 @@
-import React, { useCallback, useState, useEffect, Suspense } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
 import UsernameArea from './usernamearea/UsernameArea';
 import FormArea from './formarea/FormArea';
-import { useSignUpMutation } from 'features/auth/authApiSlice';
 
 const CreateAccountModal = () => {
     const [name, setName] = useState('');
@@ -42,7 +41,6 @@ const CreateAccountModal = () => {
         dateOfBirth: `${day}-${month}-${year}`,
         avatar: media,
     };
-    console.log(payload);
 
     return (
         <div
@@ -87,6 +85,7 @@ const CreateAccountModal = () => {
                     username={username}
                     setUsername={setUsername}
                     setName={setName}
+                    setPassword={setPassword}
                     setEmail={setEmail}
                     setMonth={setMonth}
                     setDay={setDay}

@@ -20,7 +20,10 @@ const PasswordArea = memo(({ handleNextSection, password, setPassword }) => {
                 </div>
             </div>
 
-            <form className="flex h-full flex-1 flex-col px-20">
+            <form
+                className="flex h-full flex-1 flex-col px-20"
+                onSubmit={(e) => e.preventDefault()}
+            >
                 <PasswordInput password={password} setPassword={setPassword} />
             </form>
 

@@ -78,7 +78,10 @@ const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
     }, [croppieInstance, setIsCropping, setMedia]);
 
     return (
-        <div className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20">
+        <div
+            className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20"
+            onSubmit={(e) => e.preventDefault()}
+        >
             {!isCropping && (
                 <div className="absolute mt-66 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
                     <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>

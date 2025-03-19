@@ -24,10 +24,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
                         dispatch(setCredentials({ accessToken }));
                         dispatch(
                             addLoggedInAccount({ ...foundUser, accessToken }),
-                        ); // Include accessToken
+                        );
                         dispatch(
                             setCurrentAccount({ ...foundUser, accessToken }),
-                        ); // Include accessTo
+                        );
                     }
                 } catch (error) {
                     console.error('Login Failed', error);
@@ -80,21 +80,39 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 }
             },
         }),
-        signup: builder.mutation({
-            query: (credentials) => ({
-                url: '/i/flow/signup',
-                method: 'POST',
-                body: { ...credentials },
-            }),
+        signUp: builder.mutation({
+            query: (credentials) => {
+                const formData = new FormData();
+                formData.append('username', credentials.username);
+                formData.append('fullname', credentials.fullname);
+                formData.append('password', credentials.password);
+                formData.append('email', credentials.email);
+                formData.append('dateOfBirth', credentials.dateOfBirth);
+
+                if (credentials.avatar) {
+                    formData.append('avatar', credentials.avatar);
+                }
+
+                return {
+                    url: '/i/flow/signup',
+                    method: 'POST',
+                    body: formData,
+                };
+            },
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     const { data } = await queryFulfilled;
-                    const { accessToken, foundUser } = data;
-                    dispatch(setCredentials({ accessToken }));
-                    dispatch(addLoggedInAccount({ ...foundUser, accessToken }));
-                    dispatch(setCurrentAccount({ ...foundUser, accessToken }));
+                    const { accessToken, newUser } = data;
+
+                    // Only add the account if we have the full user data and it's not already in loggedInAccounts
+                    if (newUser && newUser._id) {
+                        const userWithToken = { ...newUser, accessToken };
+                        dispatch(setCredentials({ accessToken }));
+                        dispatch(addLoggedInAccount(userWithToken));
+                        dispatch(setCurrentAccount(userWithToken));
+                    }
                 } catch (error) {
-                    console.error(error);
+                    console.error('Signup Failed:', error);
                 }
             },
             transformErrorResponse: (response) => {
@@ -107,6 +125,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method: 'PATCH',
                 body: { username, userId },
             }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    const { data } = await queryFulfilled;
+                    const { accessToken, newAccount } = data;
+
+                    if (newAccount && newAccount._id) {
+                        const accountWithToken = { ...newAccount, accessToken };
+                        dispatch(setCredentials({ accessToken }));
+                        dispatch(setCurrentAccount(accountWithToken));
+                    }
+                } catch (error) {
+                    console.error('Switch Account Failed:', error);
+                }
+            },
         }),
     }),
 });

@@ -58,10 +58,7 @@ const ActionBars = ({ currentAccount }) => {
                     currentUserId: loggedAccount._id,
                 };
 
-                console.log('Payload:', payload);
-
                 const response = await toggleFollow(payload).unwrap();
-                console.log('Response:', response);
 
                 await refetch(); // Refetch data after following
             } catch (error) {

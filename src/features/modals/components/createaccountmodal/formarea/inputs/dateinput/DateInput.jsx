@@ -6,9 +6,12 @@ import Days from './days/Days';
 
 const DateInput = ({ month, setMonth, day, setDay, year, setYear }) => {
     useEffect(() => {
-        const days = DayData(year, month);
-        setDay(days);
-    }, [year, month, setDay]);
+        // Only reset the day if it's invalid for the selected month/year
+        const daysInMonth = DayData(year, month);
+        if (day > daysInMonth) {
+            setDay(''); // Reset day if current selection is invalid
+        }
+    }, [year, month, day, setDay]);
 
     return (
         <div className="mt-5">
@@ -25,7 +28,11 @@ const DateInput = ({ month, setMonth, day, setDay, year, setYear }) => {
 
             <div className="flex">
                 <Months month={month} setMonth={setMonth} />
-                <Days day={day} setDay={setDay} />
+                <Days
+                    day={day}
+                    setDay={setDay}
+                    maxDays={DayData(year, month)}
+                />
                 <Years year={year} setYear={setYear} />
             </div>
         </div>

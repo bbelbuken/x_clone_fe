@@ -26,7 +26,10 @@ const Inputs = memo(
         };
 
         return (
-            <form className="flex h-full flex-1 flex-col px-20">
+            <form
+                className="flex h-full flex-1 flex-col px-20"
+                onSubmit={(e) => e.preventDefault()}
+            >
                 <NameInput name={name} setName={setName} />
                 <EmailInput email={email} setEmail={setEmail} />
                 <button
