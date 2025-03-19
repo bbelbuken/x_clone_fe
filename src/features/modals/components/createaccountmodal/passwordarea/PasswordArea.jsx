@@ -4,8 +4,7 @@ import { useState, memo } from 'react';
 import Button from 'components/buttons/Button';
 import LegalDisclaimerPassword from './legaldisclaimerpassword/LegalDisclaimerPassword';
 
-const PasswordArea = memo(({ handleNextSection }) => {
-    const [password, setPassword] = useState('');
+const PasswordArea = memo(({ handleNextSection, password, setPassword }) => {
     return (
         <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto ms-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
             <FormHeader />

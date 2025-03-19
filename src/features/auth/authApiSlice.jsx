@@ -86,6 +86,20 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: { ...credentials },
             }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    const { data } = await queryFulfilled;
+                    const { accessToken, foundUser } = data;
+                    dispatch(setCredentials({ accessToken }));
+                    dispatch(addLoggedInAccount({ ...foundUser, accessToken }));
+                    dispatch(setCurrentAccount({ ...foundUser, accessToken }));
+                } catch (error) {
+                    console.error(error);
+                }
+            },
+            transformErrorResponse: (response) => {
+                return response.data?.message || 'An error occurred';
+            },
         }),
         switchAccount: builder.mutation({
             query: ({ username, userId }) => ({

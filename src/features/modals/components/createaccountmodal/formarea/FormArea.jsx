@@ -4,7 +4,21 @@ import Inputs from './inputs/Inputs';
 import { memo } from 'react';
 
 const FormArea = memo(
-    ({ handleClose, handleNextSection, step, name, setName }) => {
+    ({
+        handleClose,
+        handleNextSection,
+        step,
+        name,
+        setName,
+        email,
+        setEmail,
+        month,
+        setMonth,
+        day,
+        setDay,
+        year,
+        setYear,
+    }) => {
         return (
             <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
                 <FormHeader handleClose={handleClose} step={step} />
@@ -21,6 +35,14 @@ const FormArea = memo(
                     handleNextSection={handleNextSection}
                     name={name}
                     setName={setName}
+                    email={email}
+                    setEmail={setEmail}
+                    month={month}
+                    setMonth={setMonth}
+                    day={day}
+                    setDay={setDay}
+                    year={year}
+                    setYear={setYear}
                 />
             </div>
         );
