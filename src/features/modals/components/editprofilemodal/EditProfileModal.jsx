@@ -1,6 +1,8 @@
 import { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
+import HeaderPhoto from 'pages/profile/profilebanner/headerphoto/HeaderPhoto';
+import AvatarInput from '../createaccountmodal/avatararea/avatarinput/AvatarInput';
 
 const EditProfileModal = () => {
     const currentAccountData = useCurrentAccount();
@@ -8,6 +10,16 @@ const EditProfileModal = () => {
     const modalRef = useRef();
     const navigate = useNavigate();
     const [isModalClosing, setIsModalClosing] = useState(false);
+
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [month, setMonth] = useState('');
+    const [day, setDay] = useState('');
+    const [year, setYear] = useState('');
+    const [media, setMedia] = useState(null);
+    const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
 
     const handleClose = useCallback(() => {
         setIsModalClosing(true);
@@ -45,7 +57,7 @@ const EditProfileModal = () => {
         >
             <div
                 ref={modalRef}
-                className="absolute top-[5%] left-[339px] z-50 mx-auto flex max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
+                className="absolute top-[25%] left-[339px] z-50 mx-auto flex max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
             >
                 <div className="sticky top-0 mx-auto flex h-[53px] w-full items-center justify-center px-4">
                     <div className="flex min-h-8 min-w-[56px] items-center justify-start">
@@ -67,13 +79,21 @@ const EditProfileModal = () => {
                     </div>
                     <div className="flex h-full flex-1 justify-center"></div>
                     <div className="inline-flex min-h-8 min-w-14 items-center justify-center gap-3">
-                        <button className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full px-4 transition-colors outline-none hover:bg-[#1d9bf01a]">
-                            <span className="max-w-full min-w-0 text-center text-[14px] leading-4 font-bold break-words whitespace-nowrap text-[#1d9bf0]">
-                                Drafts
+                        <button className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full bg-[#eff3f4] px-4 transition-colors outline-none">
+                            <span className="max-w-full min-w-0 text-center text-[14px] leading-4 break-words whitespace-nowrap text-black">
+                                Save
                             </span>
                         </button>
                     </div>
                 </div>
+                <HeaderPhoto currentAccount={currentAccount} />
+
+                <AvatarInput
+                    media={media}
+                    setMedia={setMedia}
+                    isCropping={isCropping}
+                    setIsCropping={setIsCropping}
+                />
             </div>
         </div>
     );

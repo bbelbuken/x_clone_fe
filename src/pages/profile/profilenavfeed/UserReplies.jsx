@@ -22,7 +22,6 @@ const UserReplies = ({ currentAccount }) => {
         // Filter posts that are replies made by the current user
         const repliedPostIds = ids.filter((postId) => {
             const post = entities[postId];
-            console.log(post.repliedPost);
             // Check if the post is a reply and if it belongs to the current user
             return (
                 post.repliedPost && // Check if it's a reply
