@@ -42,9 +42,7 @@ const EditProfileModal = React.lazy(
 const Welcome = React.lazy(() => import('pages/welcome/Welcome.jsx'));
 const CreateAccountModal = React.lazy(
     () =>
-        import(
-            'features/modals/components/createaccountmodal/CreateAccountModal'
-        ),
+        import('features/modals/components/editprofilemodal/EditProfileModal'),
 );
 
 const SignInModal = React.lazy(
@@ -105,7 +103,7 @@ export const MyRoutes = () => {
             element: <PhotoModal />,
         },
         {
-            path: '/settings/profile',
+            path: 'settings/profile',
             element: <EditProfileModal />,
         },
         {

@@ -19,6 +19,15 @@ const ActionBars = ({ currentAccount }) => {
         refetch,
     } = useCurrentAccount();
 
+    const openEditProfileModal = (e) => {
+        e.preventDefault();
+        const previousRouteEditModal = location.pathname;
+        localStorage.setItem('previousRouteEditModal', previousRouteEditModal);
+        navigate('/settings/profile', {
+            state: { background: location.pathname },
+        });
+    };
+
     const loggedAccount = myCurrentAccount || {
         _id: '',
         username: 'Unknown User',
@@ -70,13 +79,6 @@ const ActionBars = ({ currentAccount }) => {
     const isFollowing = loggedAccount?.following.includes(currentAccount?._id);
     const isCurrentAccount = currentAccount._id === loggedAccount?._id;
     const [isHovering, setIsHovering] = useState(false);
-
-    const editProfile = (e) => {
-        e.preventDefault();
-        navigate(`/settings/profile`, {
-            state: { background: location.pathname },
-        });
-    };
 
     const actionBarItems = [
         {
@@ -162,7 +164,7 @@ const ActionBars = ({ currentAccount }) => {
             <Button
                 size="profile-follow"
                 className={`mb-3 flex min-h-9 min-w-9 cursor-pointer items-center justify-center ${isCurrentAccount ? 'min-w-9 px-[17px] hover:bg-[#eff3f41a]' : isFollowing ? 'min-w-[104px] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]' : 'min-w-[81px] bg-[#eff3f4] text-black hover:bg-[#d7dbdc]'}`}
-                onClick={isCurrentAccount ? editProfile : handleFollow}
+                onClick={isCurrentAccount ? openEditProfileModal : handleFollow}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
             >
