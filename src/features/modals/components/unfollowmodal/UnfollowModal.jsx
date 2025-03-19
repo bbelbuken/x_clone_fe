@@ -7,7 +7,7 @@ import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
 const UnfollowModal = ({ account, userId, currentUserId, refetch }) => {
     const modalRef = useRef();
     const dispatch = useDispatch();
-    const [toggleFollow] = useToggleFollowMutation(); // Add toggleFollow mutation
+    const [toggleFollow] = useToggleFollowMutation();
 
     const handleUnfollow = async () => {
         try {
@@ -16,10 +16,15 @@ const UnfollowModal = ({ account, userId, currentUserId, refetch }) => {
                 currentUserId,
             };
 
+            // First, perform the unfollow action
             await toggleFollow(payload).unwrap();
 
-            dispatch(closeModal());
+            // Then, wait for a short delay to ensure the backend has processed the change
+            await new Promise((resolve) => setTimeout(resolve, 100));
+
+            // Finally, refetch the data and close the modal
             await refetch();
+            dispatch(closeModal());
         } catch (error) {
             console.error('Failed to unfollow:', error);
         }

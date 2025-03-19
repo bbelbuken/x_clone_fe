@@ -7,11 +7,18 @@ import {
 } from 'features/accounts/accountApiSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const WhoToFollow = ({ currentAccount, refetch }) => {
     const [hoverStates, setHoverStates] = useState({});
+    const [localFollowing, setLocalFollowing] = useState([]);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (currentAccount?.following) {
+            setLocalFollowing(currentAccount.following);
+        }
+    }, [currentAccount]);
 
     const {
         data: accounts,
@@ -25,7 +32,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
     const { ids = [], entities = {} } = accounts || {};
 
     const handleFollow = async (account) => {
-        const isFollowing = currentAccount.following.includes(account._id);
+        const isFollowing = localFollowing.includes(account._id);
 
         if (isFollowing) {
             dispatch(
@@ -46,7 +53,6 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                     currentUserId: currentAccount._id,
                 };
                 await toggleFollow(payload).unwrap();
-
                 await refetch(); // Refetch data after following
             } catch (error) {
                 console.error('Failed to follow:', error);
@@ -126,9 +132,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                             <Button
                                 onClick={() => handleFollow(account)} // Pass the target account
                                 className={`absolute top-4 right-4 border-[#536471] ${
-                                    currentAccount.following.includes(
-                                        account._id,
-                                    )
+                                    localFollowing.includes(account._id)
                                         ? 'min-w-[104px] border border-[#536471] hover:border-[#f4212f] hover:bg-transparent hover:text-[#f4212f]'
                                         : 'bg-[#eff3f4] text-black'
                                 }`}
@@ -140,7 +144,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                                     handleMouseLeave(account._id)
                                 }
                             >
-                                {currentAccount.following.includes(account._id)
+                                {localFollowing.includes(account._id)
                                     ? hoverStates[account._id]
                                         ? 'Unfollow'
                                         : 'Following'

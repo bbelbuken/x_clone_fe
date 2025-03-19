@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import React from 'react';
+import FollowList from 'pages/profile/followlist/FollowList';
+import { element } from 'prop-types';
 
 const Layout = React.lazy(() => import('../layout/Layout'));
 const Home = React.lazy(() => import('../pages/home/Home'));
@@ -75,8 +77,9 @@ export const MyRoutes = () => {
                 { path: 'lists', element: <Lists /> },
                 { path: 'bookmarks', element: <Bookmarks /> },
                 { path: 'communities', element: <Communities /> },
+                { path: 'status/:postId', element: <PostStatus /> },
                 { path: ':username', element: <Profile /> },
-                { path: ':username/status/:postId', element: <PostStatus /> },
+                { path: ':username/followlist', element: <FollowList /> },
             ],
         },
         { path: 'i/premium_sign_up', element: <Premium /> },

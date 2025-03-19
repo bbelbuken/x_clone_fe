@@ -20,7 +20,8 @@ const AccountBio = ({ account }) => {
 
             <div className="flex text-[14px] leading-[18px]">
                 <Link
-                    to={`/${account.username}/following`}
+                    to={`/${account.username}/followlist`}
+                    state={{ initialSection: 'following' }}
                     className="mr-5 hover:underline"
                 >
                     <span className="font-bold tracking-wide text-[#e7e9ea]">
@@ -32,7 +33,8 @@ const AccountBio = ({ account }) => {
                 </Link>
 
                 <Link
-                    to={`/${account.username}/followers`}
+                    to={`/${account.username}/followlist`}
+                    state={{ initialSection: 'followers' }}
                     className="hover:underline"
                 >
                     <span className="font-bold text-[#e7e9ea]">
