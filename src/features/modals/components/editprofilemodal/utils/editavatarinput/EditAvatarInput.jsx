@@ -1,10 +1,16 @@
 import { useRef, useState, useEffect, memo, useCallback } from 'react';
 import Croppie from 'croppie';
 import Button from 'components/buttons/Button';
-import AddAndDeleteIconsEditModal from './addanddeleteiconseditmodal/AddAndDeleteIconsEditModal';
+import AddAndDeleteIconsEditAvatar from './addanddeleteiconseditmodal/AddAndDeleteIconsEditAvatar';
 
 const EditAvatarInput = memo(
-    ({ media, setMedia, isCropping, setIsCropping, currentAccount }) => {
+    ({
+        avatarMedia,
+        setAvatarMedia,
+        isCropping,
+        setIsCropping,
+        currentAccount,
+    }) => {
         const fileInputRef = useRef();
         const croppieRef = useRef(null);
         const [croppedImage, setCroppedImage] = useState(null);
@@ -21,8 +27,8 @@ const EditAvatarInput = memo(
         };
 
         const handleFileDelete = () => {
-            if (media) {
-                setMedia(null);
+            if (avatarMedia) {
+                setAvatarMedia(null);
                 setCroppedImage(null);
             }
             if (currentAccount?.cachedAvatar) {
@@ -38,8 +44,8 @@ const EditAvatarInput = memo(
             if (currentAccount?.cachedAvatar) {
                 return currentAccount.cachedAvatar;
             }
-            if (media) {
-                return URL.createObjectURL(media);
+            if (avatarMedia) {
+                return URL.createObjectURL(avatarMedia);
             }
             if (currentAccount?.avatar) {
                 return getGoogleDriveDirectImageUrl(currentAccount.avatar);
@@ -50,7 +56,7 @@ const EditAvatarInput = memo(
         const imageSource = getImageSource();
 
         useEffect(() => {
-            if (media && isCropping) {
+            if (avatarMedia && isCropping) {
                 // Initialize Croppie only when media is selected and cropping mode is active
                 const instance = new Croppie(croppieRef.current, {
                     viewport: { width: 188, height: 188, type: 'circle' },
@@ -59,7 +65,7 @@ const EditAvatarInput = memo(
                 });
 
                 instance.bind({
-                    url: URL.createObjectURL(media), // Bind the media URL for Croppie
+                    url: URL.createObjectURL(avatarMedia), // Bind the media URL for Croppie
                 });
 
                 setCroppieInstance(instance); // Store the Croppie instance in state
@@ -72,7 +78,7 @@ const EditAvatarInput = memo(
                     }
                 };
             }
-        }, [media, isCropping]);
+        }, [avatarMedia, isCropping]);
 
         const handleCroppingDone = useCallback(() => {
             if (croppieInstance) {
@@ -94,13 +100,13 @@ const EditAvatarInput = memo(
 
                         setCroppedImage(croppedImg); // Set the cropped image as state
                         setIsCropping(false); // Exit cropping mode
-                        setMedia(blob); // Store cropped image as a Blob in the media state
+                        setAvatarMedia(blob); // Store cropped image as a Blob in the media state
                     })
                     .catch((err) => {
                         console.error('Error cropping image: ', err);
                     });
             }
-        }, [croppieInstance, setIsCropping, setMedia]);
+        }, [croppieInstance, setIsCropping, setAvatarMedia]);
 
         return (
             <div
@@ -137,7 +143,7 @@ const EditAvatarInput = memo(
                 )}
 
                 {!isCropping && (
-                    <AddAndDeleteIconsEditModal
+                    <AddAndDeleteIconsEditAvatar
                         handleFileUpload={handleFileUpload}
                         handleFileDelete={handleFileDelete}
                     />
@@ -153,7 +159,7 @@ const EditAvatarInput = memo(
                     accept="image/jpeg, image/png, image/webp"
                     className="hidden"
                     onChange={(e) => {
-                        setMedia(e.target.files[0]);
+                        setAvatarMedia(e.target.files[0]);
                         setIsCropping(true); // Activate cropping mode when a file is selected
                     }}
                 />

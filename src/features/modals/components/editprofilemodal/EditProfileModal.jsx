@@ -1,13 +1,13 @@
 import { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
-import HeaderPhoto from 'pages/profile/profilebanner/headerphoto/HeaderPhoto';
 import EditNameInput from './utils/editnameinput/EditNameInput';
 import EditAvatarInput from './utils/editavatarinput/EditAvatarInput';
 import EditBioInput from './utils/editbioinput/EditBioInput';
 import EditLocationInput from './utils/editlocationinput/EditLocationInput';
 import EditWebsiteInput from './utils/editwebsiteinput/EditWebsiteInput';
 import EditDateInput from './utils/editdateinput/EditDateInput';
+import EditHeaderInput from './utils/editheaderinput/EditHeaderInput';
 
 const EditProfileModal = () => {
     const currentAccountData = useCurrentAccount();
@@ -23,8 +23,10 @@ const EditProfileModal = () => {
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
     const [year, setYear] = useState('');
-    const [media, setMedia] = useState(null);
-    const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
+    const [avatarMedia, setAvatarMedia] = useState(null);
+    const [headerMedia, setHeaderMedia] = useState(null);
+    const [isCropping, setIsCropping] = useState(false);
+    const [isCroppingHeader, setIsCroppingHeader] = useState(false);
 
     const handleClose = useCallback(() => {
         setIsModalClosing(true);
@@ -91,11 +93,18 @@ const EditProfileModal = () => {
                         </button>
                     </div>
                 </div>
-                <HeaderPhoto currentAccount={currentAccount} />
+
+                <EditHeaderInput
+                    headerMedia={headerMedia}
+                    setHeaderMedia={setHeaderMedia}
+                    isCroppingHeader={isCroppingHeader}
+                    setIsCroppingHeader={setIsCroppingHeader}
+                    currentAccount={currentAccount}
+                />
 
                 <EditAvatarInput
-                    media={media}
-                    setMedia={setMedia}
+                    avatarMedia={avatarMedia}
+                    setAvatarMedia={setAvatarMedia}
                     isCropping={isCropping}
                     setIsCropping={setIsCropping}
                     currentAccount={currentAccount}
