@@ -59,7 +59,7 @@ const EditHeaderInput = ({
             // Initialize Croppie only when media is selected and cropping mode is active
             const instance = new Croppie(croppieRef.current, {
                 viewport: { width: 600, height: 200, type: 'square' }, // Adjust viewport for header
-                boundary: { width: 800, height: 300 }, // Adjust boundary for header
+                boundary: { width: 600, height: 200 }, // Adjust boundary for header
                 showZoomer: true,
             });
 
@@ -109,7 +109,7 @@ const EditHeaderInput = ({
 
     return (
         <div
-            className="relative z-10 w-full pb-[33.3344%]"
+            className={`${isCroppingHeader ? 'z-50' : 'z-10'} relative w-full pb-[33.3344%]`}
             onSubmit={(e) => e.preventDefault()}
         >
             {/* Always show the header image */}
@@ -125,13 +125,13 @@ const EditHeaderInput = ({
             {/* Show Croppie and Apply button when cropping */}
             {isCroppingHeader && (
                 <div
-                    className={`${isCroppingHeader ? 'absolute -top-20 -left-35' : 'absolute -top-20 left-[99999px]'}`}
+                    className={`${isCroppingHeader ? 'absolute top-0 -left-0 z-50' : 'absolute -top-20 left-[99999px] z-50'}`}
                 >
                     <div ref={croppieRef}></div>
                     <Button
                         size="apply"
                         onClick={handleCroppingDone}
-                        className="fixed top-28.5 right-87 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                        className="fixed top-66 right-87 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
                     >
                         Apply
                     </Button>
