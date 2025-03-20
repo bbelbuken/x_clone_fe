@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import React from 'react';
 import FollowList from 'pages/profile/followlist/FollowList';
-import { element } from 'prop-types';
 
 const Layout = React.lazy(() => import('../layout/Layout'));
 const Home = React.lazy(() => import('../pages/home/Home'));
@@ -105,7 +104,7 @@ export const MyRoutes = () => {
             element: <PhotoModal />,
         },
         {
-            path: '/settings/profile',
+            path: '/:userId/settings/profile',
             element: <EditProfileModal />,
         },
         {

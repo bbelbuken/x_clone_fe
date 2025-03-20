@@ -57,9 +57,60 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Account', id: username },
             ],
         }),
+        editCurrentAccount: builder.mutation({
+            query: (credentials) => {
+                const formData = new FormData();
+                if (credentials.fullname)
+                    formData.append('fullname', credentials.fullname);
+                if (credentials.bio) formData.append('bio', credentials.bio);
+                if (credentials.location)
+                    formData.append('location', credentials.location);
+                if (credentials.website)
+                    formData.append('website', credentials.website);
+                if (credentials.dateOfBirth)
+                    formData.append('dateOfBirth', credentials.dateOfBirth);
+
+                if (credentials.avatar) {
+                    if (Array.isArray(credentials.avatar)) {
+                        // If avatar is an array, append each file
+                        credentials.avatar.forEach((file) => {
+                            formData.append('avatar', file);
+                        });
+                    } else {
+                        // If avatar is a single file, append it directly
+                        formData.append('avatar', credentials.avatar);
+                    }
+                }
+
+                if (credentials.header_photo) {
+                    if (Array.isArray(credentials.header_photo)) {
+                        credentials.header_photo.forEach((file) => {
+                            formData.append('header_photo', file);
+                        });
+                    } else {
+                        formData.append(
+                            'header_photo',
+                            credentials.header_photo,
+                        );
+                    }
+                }
+
+                return {
+                    url: `/users/${credentials.userId}`,
+                    method: 'PATCH',
+                    body: formData,
+                };
+            },
+            transformResponse: (responseData) => {
+                return responseData.updatedUser;
+            },
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Account', id: arg.userId },
+            ],
+        }),
         toggleFollow: builder.mutation({
             query: ({ userId, currentUserId }) => ({
-                url: `/users/${userId}/toggle-follow`, // Correct endpoint
+                url: `/users/${userId}/toggle-follow`,
                 method: 'POST',
                 body: { currentUserId },
             }),
@@ -74,6 +125,7 @@ export const {
     useGetAccountsQuery,
     useGetAccountsByIdQuery,
     useGetCurrentAccountQuery,
+    useEditCurrentAccountMutation,
     useToggleFollowMutation,
 } = accountsApiSlice;
 

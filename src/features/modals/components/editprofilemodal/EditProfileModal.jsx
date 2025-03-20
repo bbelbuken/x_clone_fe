@@ -1,5 +1,5 @@
 import { useRef, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import EditNameInput from './utils/editnameinput/EditNameInput';
 import EditAvatarInput from './utils/editavatarinput/EditAvatarInput';
@@ -8,8 +8,10 @@ import EditLocationInput from './utils/editlocationinput/EditLocationInput';
 import EditWebsiteInput from './utils/editwebsiteinput/EditWebsiteInput';
 import EditDateInput from './utils/editdateinput/EditDateInput';
 import EditHeaderInput from './utils/editheaderinput/EditHeaderInput';
+import { useEditCurrentAccountMutation } from 'features/accounts/accountApiSlice';
 
 const EditProfileModal = () => {
+    const { userId } = useParams();
     const currentAccountData = useCurrentAccount();
     const { account: currentAccount, error, isLoading } = currentAccountData;
     const modalRef = useRef();
@@ -28,6 +30,9 @@ const EditProfileModal = () => {
     const [isCropping, setIsCropping] = useState(false);
     const [isCroppingHeader, setIsCroppingHeader] = useState(false);
 
+    const [editCurrentAccount, { isLoading: uploading, error: uploadError }] =
+        useEditCurrentAccountMutation();
+
     const handleClose = useCallback(() => {
         setIsModalClosing(true);
         setTimeout(() => {
@@ -44,16 +49,47 @@ const EditProfileModal = () => {
         }
     };
 
-    if (isLoading) {
+    if (isLoading || uploading) {
         return <div>Loading...</div>;
     }
-    if (error) {
+    if (error || uploadError) {
         return <div>Error: {error.message || 'Failed to fetch account'}</div>;
     }
 
     if (!currentAccount) {
         return <div>No account data found.</div>;
     }
+
+    const handleEditCurrentAccount = async (e) => {
+        e.preventDefault();
+        try {
+            const payload = {
+                userId,
+                fullname,
+                bio,
+                location,
+                website,
+                dateOfBirth: `${day}-${month}-${year}`,
+                avatar: avatarMedia,
+                header_photo: headerMedia,
+            };
+            console.log(payload);
+
+            const response = await editCurrentAccount(payload).unwrap();
+            console.log('Response', response);
+            setFullname('');
+            setBio('');
+            setLocation('');
+            setWebsite('');
+            setDay('');
+            setMonth('');
+            setYear('');
+            setAvatarMedia('');
+            setHeaderMedia('');
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div
@@ -86,7 +122,10 @@ const EditProfileModal = () => {
                     </div>
                     <div className="flex h-full flex-1 justify-center"></div>
                     <div className="inline-flex min-h-8 min-w-14 items-center justify-center gap-3">
-                        <button className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full bg-[#eff3f4] px-4 transition-colors outline-none">
+                        <button
+                            className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full bg-[#eff3f4] px-4 transition-colors outline-none"
+                            onClick={handleEditCurrentAccount}
+                        >
                             <span className="max-w-full min-w-0 text-center text-[14px] leading-4 break-words whitespace-nowrap text-black">
                                 Save
                             </span>

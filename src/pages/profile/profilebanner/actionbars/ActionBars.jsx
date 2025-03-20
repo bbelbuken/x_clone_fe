@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
 
-const ActionBars = ({ currentAccount }) => {
+const ActionBars = ({ currentAccount, username }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ActionBars = ({ currentAccount }) => {
         e.preventDefault();
         const previousRouteEditModal = location.pathname;
         localStorage.setItem('previousRouteEditModal', previousRouteEditModal);
-        navigate('/settings/profile', {
+        navigate(`/${currentAccount._id}/settings/profile`, {
             state: { background: location.pathname },
         });
     };

@@ -66,7 +66,7 @@ const PanelItems = ({ currentAccount, setIsOpen }) => {
             >
                 Add an existing account
             </Link>
-            {otherLoggedInAccounts.length > 1 && (
+            {loggedInAccounts.length > 1 && (
                 <Link className="w-full px-4 py-3 hover:bg-[#e7e9ea1a]">
                     Manage accounts
                 </Link>

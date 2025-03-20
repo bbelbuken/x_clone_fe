@@ -4,7 +4,7 @@ import ActionBars from './actionbars/ActionBars';
 import AccountName from './accountname/AccountName';
 import AccountBio from './accountbio/AccountBio';
 
-const ProfileBanner = ({ currentAccount, account }) => {
+const ProfileBanner = ({ currentAccount, account, username }) => {
     return (
         <div>
             <HeaderPhoto currentAccount={currentAccount} />
@@ -15,6 +15,7 @@ const ProfileBanner = ({ currentAccount, account }) => {
                     <ActionBars
                         currentAccount={currentAccount}
                         account={account}
+                        username={username}
                     />
                 </div>
 

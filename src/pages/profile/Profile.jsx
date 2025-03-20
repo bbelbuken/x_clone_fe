@@ -60,6 +60,7 @@ const Profile = () => {
                 <ProfileBanner
                     currentAccount={currentAccount}
                     account={account}
+                    username={username}
                 />
                 <ProfileNav
                     account={currentAccount}
