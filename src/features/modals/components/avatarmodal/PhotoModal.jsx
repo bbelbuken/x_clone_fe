@@ -76,7 +76,11 @@ const PhotoModal = () => {
                 </div>
                 <img
                     ref={modalRef}
-                    src={account.cachedAvatar}
+                    src={
+                        currentAccount?.cachedAvatar
+                            ? currentAccount.cachedAvatar
+                            : '/default_profile_200x200.png'
+                    }
                     alt="Header Fullscreen"
                     className="mx-auto h-100 w-100 rounded-full object-cover"
                 />

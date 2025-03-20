@@ -67,6 +67,15 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
         setHoverStates((prev) => ({ ...prev, [accountId]: false }));
     };
 
+    const handleAccountFullname = (account) => {
+        const name =
+            account.fullname.length > 23
+                ? account.fullname.slice(0, 24) + '..'
+                : account.fullname;
+
+        return name;
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -99,7 +108,11 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                             >
                                 <li className="flex items-center justify-center px-4 py-[11px]">
                                     <img
-                                        src={account.cachedAvatar}
+                                        src={
+                                            account?.cachedAvatar
+                                                ? account.cachedAvatar
+                                                : '/default_profile_200x200.png'
+                                        }
                                         alt="user_avatar"
                                         className="mr-1 h-10 w-10 basis-[40px] rounded-full object-cover"
                                     />
@@ -107,7 +120,9 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                                         <div className="ml-1 flex flex-col items-start justify-center">
                                             <div className="flex items-center justify-center gap-0.5">
                                                 <p className="text-[15px] leading-5 font-bold break-words whitespace-nowrap hover:underline">
-                                                    {account.fullname}
+                                                    {handleAccountFullname(
+                                                        account,
+                                                    )}
                                                 </p>
                                                 {account?.verified && (
                                                     <VerifiedSVG

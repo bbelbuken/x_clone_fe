@@ -17,7 +17,11 @@ const AccountAvatar = ({ currentAccount }) => {
             onClick={handleAvatarClick}
         >
             <img
-                src={currentAccount.cachedAvatar}
+                src={
+                    currentAccount?.cachedAvatar
+                        ? currentAccount.cachedAvatar
+                        : '/default_profile_200x200.png'
+                }
                 alt="avatar"
                 className="h-35 w-35 rounded-full border-4 border-black object-cover"
             />

@@ -58,6 +58,15 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
+    const handleAccountFullname = (account) => {
+        const name =
+            account.fullname.length > 20
+                ? account.fullname.slice(0, 24) + '..'
+                : account.fullname;
+
+        return name;
+    };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -98,7 +107,7 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
                         />
                         <div className="flex flex-col items-start justify-center py-2">
                             <p className="text-[15px] font-bold break-words">
-                                {account.fullname}
+                                {handleAccountFullname(account)}
                             </p>
                             <div className="text-[15px] leading-[1.5em] font-light tracking-[0.045em] text-[#71767b]">
                                 <div className="flex items-center justify-center">

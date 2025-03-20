@@ -18,7 +18,11 @@ const HeaderPhoto = ({ currentAccount }) => {
                 className="absolute top-0 right-0 bottom-0 left-0 h-full w-full cursor-pointer transition-colors"
             >
                 <img
-                    src={currentAccount.cachedHeader}
+                    src={
+                        currentAccount.cachedHeader
+                            ? currentAccount.cachedHeader
+                            : '/default_header.jpg'
+                    }
                     alt="header_photo"
                     className="h-full w-full object-cover"
                 />

@@ -11,6 +11,15 @@ const ButtonItems = ({ gap, currentAccount }) => {
           ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
           : '/public/default_profile_200x200.png';
 
+    const handleAccountFullname = (currentAccount) => {
+        const name =
+            currentAccount.fullname.length > 20
+                ? currentAccount.fullname.slice(0, 21) + '..'
+                : currentAccount.fullname;
+
+        return name;
+    };
+
     return (
         <div
             className={`items-starts flex h-auto w-full justify-start gap-${gap}`}
@@ -22,7 +31,7 @@ const ButtonItems = ({ gap, currentAccount }) => {
             />
             <div className="ml-1 flex flex-col items-start justify-center">
                 <p className="text-[15px] font-bold break-words">
-                    {currentAccount.fullname || 'Guest'}
+                    {handleAccountFullname(currentAccount) || 'Guest'}
                 </p>
                 <div className="text-[15px] leading-[1.5em] font-light tracking-[0.045em] text-[#71767b]">
                     <div className="flex items-center justify-center">
