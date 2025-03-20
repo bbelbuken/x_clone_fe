@@ -13,7 +13,12 @@ import { useEditCurrentAccountMutation } from 'features/accounts/accountApiSlice
 const EditProfileModal = () => {
     const { userId } = useParams();
     const currentAccountData = useCurrentAccount();
-    const { account: currentAccount, error, isLoading } = currentAccountData;
+    const {
+        account: currentAccount,
+        error,
+        isLoading,
+        refetch,
+    } = currentAccountData;
     const modalRef = useRef();
     const navigate = useNavigate();
     const [isModalClosing, setIsModalClosing] = useState(false);
@@ -77,15 +82,8 @@ const EditProfileModal = () => {
 
             const response = await editCurrentAccount(payload).unwrap();
             console.log('Response', response);
-            setFullname('');
-            setBio('');
-            setLocation('');
-            setWebsite('');
-            setDay('');
-            setMonth('');
-            setYear('');
-            setAvatarMedia('');
-            setHeaderMedia('');
+            navigate(`/${currentAccount.username}`);
+            await refetch();
         } catch (error) {
             console.error(error);
         }

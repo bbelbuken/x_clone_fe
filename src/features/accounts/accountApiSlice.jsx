@@ -60,39 +60,29 @@ export const accountsApiSlice = apiSlice.injectEndpoints({
         editCurrentAccount: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
-                if (credentials.fullname)
-                    formData.append('fullname', credentials.fullname);
-                if (credentials.bio) formData.append('bio', credentials.bio);
-                if (credentials.location)
-                    formData.append('location', credentials.location);
-                if (credentials.website)
-                    formData.append('website', credentials.website);
-                if (credentials.dateOfBirth)
-                    formData.append('dateOfBirth', credentials.dateOfBirth);
 
-                if (credentials.avatar) {
-                    if (Array.isArray(credentials.avatar)) {
-                        // If avatar is an array, append each file
-                        credentials.avatar.forEach((file) => {
-                            formData.append('avatar', file);
-                        });
-                    } else {
-                        // If avatar is a single file, append it directly
-                        formData.append('avatar', credentials.avatar);
-                    }
+                formData.append('fullname', credentials.fullname);
+                formData.append('bio', credentials.bio);
+                formData.append('location', credentials.location);
+                formData.append('website', credentials.website);
+                formData.append('dateOfBirth', credentials.dateOfBirth);
+
+                if (Array.isArray(credentials.avatar)) {
+                    // If avatar is an array, append each file
+                    credentials.avatar.forEach((file) => {
+                        formData.append('avatar', file);
+                    });
+                } else {
+                    // If avatar is a single file, append it directly
+                    formData.append('avatar', credentials.avatar);
                 }
 
-                if (credentials.header_photo) {
-                    if (Array.isArray(credentials.header_photo)) {
-                        credentials.header_photo.forEach((file) => {
-                            formData.append('header_photo', file);
-                        });
-                    } else {
-                        formData.append(
-                            'header_photo',
-                            credentials.header_photo,
-                        );
-                    }
+                if (Array.isArray(credentials.header_photo)) {
+                    credentials.header_photo.forEach((file) => {
+                        formData.append('header_photo', file);
+                    });
+                } else {
+                    formData.append('header_photo', credentials.header_photo);
                 }
 
                 return {
