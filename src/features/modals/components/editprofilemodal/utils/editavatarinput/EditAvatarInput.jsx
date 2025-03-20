@@ -8,7 +8,7 @@ const EditAvatarInput = memo(
         const fileInputRef = useRef();
         const croppieRef = useRef(null);
         const [croppedImage, setCroppedImage] = useState(null);
-        const [croppieInstance, setCroppieInstance] = useState(null); // Store Croppie instance
+        const [croppieInstance, setCroppieInstance] = useState(null);
 
         const getGoogleDriveDirectImageUrl = (url) => {
             const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -23,13 +23,31 @@ const EditAvatarInput = memo(
         const handleFileDelete = () => {
             if (media) {
                 setMedia(null);
-                setCroppedImage(null); // Clear cropped image as well
+                setCroppedImage(null);
+            }
+            if (currentAccount?.cachedAvatar) {
+                console.log('Deleting cachedAvatar...');
+                currentAccount.cachedAvatar = null;
             }
         };
 
-        const preview = media
-            ? URL.createObjectURL(media) // Create an object URL only when there's a file to display
-            : '/default_profile_200x200.png';
+        const getImageSource = () => {
+            if (croppedImage) {
+                return croppedImage;
+            }
+            if (currentAccount?.cachedAvatar) {
+                return currentAccount.cachedAvatar;
+            }
+            if (media) {
+                return URL.createObjectURL(media);
+            }
+            if (currentAccount?.avatar) {
+                return getGoogleDriveDirectImageUrl(currentAccount.avatar);
+            }
+            return '/default_profile_200x200.png';
+        };
+
+        const imageSource = getImageSource();
 
         useEffect(() => {
             if (media && isCropping) {
@@ -93,15 +111,7 @@ const EditAvatarInput = memo(
                     <div className="absolute -top-10 -left-50 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white">
                         <div className="absolute h-[116px] w-[116px] rounded-full bg-black"></div>
                         <img
-                            src={
-                                currentAccount.cachedAvatar
-                                    ? croppedImage || preview
-                                    : croppedImage || preview
-                                      ? currentAccount.avatar
-                                      : getGoogleDriveDirectImageUrl(
-                                            currentAccount.avatar,
-                                        )
-                            }
+                            src={imageSource}
                             alt="Cropped Avatar"
                             loading="eager"
                             className="box-content block h-[116px] w-[116px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
@@ -117,7 +127,9 @@ const EditAvatarInput = memo(
                         <Button
                             size="apply"
                             onClick={handleCroppingDone}
-                            className="fixed top-85 right-92 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                            className={
+                                'fixed top-28.5 right-87 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]'
+                            }
                         >
                             Apply
                         </Button>
@@ -126,7 +138,6 @@ const EditAvatarInput = memo(
 
                 {!isCropping && (
                     <AddAndDeleteIconsEditModal
-                        media={media}
                         handleFileUpload={handleFileUpload}
                         handleFileDelete={handleFileDelete}
                     />
