@@ -86,7 +86,7 @@ const EditAvatarInput = memo(
 
         return (
             <div
-                className="relative z-20 flex h-full flex-1 items-center justify-center px-20"
+                className="relative z-20 flex items-center justify-center px-20"
                 onSubmit={(e) => e.preventDefault()}
             >
                 {!isCropping && (

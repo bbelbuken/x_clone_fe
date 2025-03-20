@@ -5,6 +5,8 @@ import HeaderPhoto from 'pages/profile/profilebanner/headerphoto/HeaderPhoto';
 import EditNameInput from './utils/editnameinput/EditNameInput';
 import EditAvatarInput from './utils/editavatarinput/EditAvatarInput';
 import EditBioInput from './utils/editbioinput/EditBioInput';
+import EditLocationInput from './utils/editlocationinput/EditLocationInput';
+import EditWebsiteInput from './utils/editwebsiteinput/EditWebsiteInput';
 
 const EditProfileModal = () => {
     const currentAccountData = useCurrentAccount();
@@ -13,11 +15,10 @@ const EditProfileModal = () => {
     const navigate = useNavigate();
     const [isModalClosing, setIsModalClosing] = useState(false);
 
-    const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [fullname, setFullname] = useState('');
+    const [location, setLocation] = useState('');
     const [bio, setBio] = useState('');
-    const [email, setEmail] = useState('');
+    const [website, setWebsite] = useState('');
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
     const [year, setYear] = useState('');
@@ -60,9 +61,9 @@ const EditProfileModal = () => {
         >
             <div
                 ref={modalRef}
-                className="absolute top-[25%] left-[339px] z-50 mx-auto flex h-120 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
+                className="relative z-50 mx-auto mb-11 flex h-150 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
             >
-                <div className="sticky top-0 mx-auto flex h-[53px] w-full items-center justify-center px-4">
+                <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
                     <div className="flex min-h-8 min-w-[56px] items-center justify-start">
                         <button
                             type="button"
@@ -99,15 +100,28 @@ const EditProfileModal = () => {
                     currentAccount={currentAccount}
                 />
 
-                <div className="absolute mt-60 h-14 w-full px-6">
+                <div className="mt-20 h-14 w-full px-6">
                     <EditNameInput
-                        name={name}
-                        setName={setName}
+                        fullname={fullname}
+                        setFullname={setFullname}
                         currentAccount={currentAccount}
                     />
+
                     <EditBioInput
                         bio={bio}
                         setBio={setBio}
+                        currentAccount={currentAccount}
+                    />
+
+                    <EditLocationInput
+                        location={location}
+                        setLocation={setLocation}
+                        currentAccount={currentAccount}
+                    />
+
+                    <EditWebsiteInput
+                        website={website}
+                        setWebsite={setWebsite}
                         currentAccount={currentAccount}
                     />
                 </div>
