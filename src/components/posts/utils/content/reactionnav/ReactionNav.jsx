@@ -6,14 +6,9 @@ const ReactionNav = ({
     currentAccount,
     isARepost,
     currentAccountReposted,
-    isReplied,
-    isAReply,
-    account = {},
 }) => {
     return (
-        <div
-            className={`${!isReplied && !isAReply && location.pathname !== '/home' && location.pathname !== `/${account.username}` ? 'mt-2 border-t border-b border-[#2f3336] pt-2 pb-2' : ''} mt-3 flex max-w-[600px] items-center justify-between`}
-        >
+        <div className={`mt-3 flex max-w-[600px] items-center justify-between`}>
             <ReactionData
                 postId={postId}
                 postReactions={postReactions}

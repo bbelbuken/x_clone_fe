@@ -77,7 +77,7 @@ export const MyRoutes = () => {
                 { path: 'lists', element: <Lists /> },
                 { path: 'bookmarks', element: <Bookmarks /> },
                 { path: 'communities', element: <Communities /> },
-                { path: 'status/:postId', element: <PostStatus /> },
+                { path: ':username/status/:postId', element: <PostStatus /> },
                 { path: ':username', element: <Profile /> },
                 { path: ':username/followlist', element: <FollowList /> },
             ],

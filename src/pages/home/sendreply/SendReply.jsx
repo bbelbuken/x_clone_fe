@@ -94,10 +94,12 @@ const SendReply = ({
 
     return (
         <div
-            className={`${isOnStatus || replyClicked ? '' : 'border-b border-b-[#2f3336]'}relative flex px-4 pt-1 pb-2`}
+            className={`${isOnStatus || replyClicked ? '' : 'border-b border-b-[#2f3336]'}relative flex px-4 pt-5 pb-1`}
             onClick={handleClick}
             onFocus={handleClick}
         >
+            <div className="absolute top-3.5 left-0 h-[1px] w-full bg-[#2f3336]"></div>
+
             <div
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >

@@ -23,8 +23,8 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
     const isReplied = post.repliedPost;
 
     const currentAccountReposted =
-        (currentAccount._id === post.userId && isARepost) ||
-        post.reactions.repostedBy.includes(currentAccount._id);
+        (currentAccount?._id === post.userId && isARepost) ||
+        post.reactions.repostedBy.includes(currentAccount?._id);
 
     const isOnStatus =
         location.pathname === `/${account.username}/status/${postId}`;
@@ -124,8 +124,6 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
                                     }
                                     currentAccount={currentAccount}
                                     replyClicked={replyClicked}
-                                    isReplied={isReplied}
-                                    account={account}
                                 />
                             )}
                             {isOnStatus && (
