@@ -110,7 +110,9 @@ const EditAvatarInput = memo(
                 )}
 
                 {isCropping && (
-                    <div className="-top-17.5 right-25">
+                    <div
+                        className={`${isCropping ? 'absolute -top-20 -left-35' : 'absolute -top-20 left-[99999px]'}`}
+                    >
                         <div ref={croppieRef}></div>
                         <Button
                             size="apply"

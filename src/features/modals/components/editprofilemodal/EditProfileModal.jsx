@@ -2,7 +2,9 @@ import { useRef, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import HeaderPhoto from 'pages/profile/profilebanner/headerphoto/HeaderPhoto';
-import EditAvatarInput from './editavatarinput/EditAvatarInput';
+import EditNameInput from './utils/editnameinput/EditNameInput';
+import EditAvatarInput from './utils/editavatarinput/EditAvatarInput';
+import EditBioInput from './utils/editbioinput/EditBioInput';
 
 const EditProfileModal = () => {
     const currentAccountData = useCurrentAccount();
@@ -14,6 +16,7 @@ const EditProfileModal = () => {
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
     const [month, setMonth] = useState('');
     const [day, setDay] = useState('');
@@ -95,6 +98,19 @@ const EditProfileModal = () => {
                     setIsCropping={setIsCropping}
                     currentAccount={currentAccount}
                 />
+
+                <div className="absolute mt-60 h-14 w-full px-6">
+                    <EditNameInput
+                        name={name}
+                        setName={setName}
+                        currentAccount={currentAccount}
+                    />
+                    <EditBioInput
+                        bio={bio}
+                        setBio={setBio}
+                        currentAccount={currentAccount}
+                    />
+                </div>
             </div>
         </div>
     );
