@@ -7,6 +7,7 @@ import EditAvatarInput from './utils/editavatarinput/EditAvatarInput';
 import EditBioInput from './utils/editbioinput/EditBioInput';
 import EditLocationInput from './utils/editlocationinput/EditLocationInput';
 import EditWebsiteInput from './utils/editwebsiteinput/EditWebsiteInput';
+import EditDateInput from './utils/editdateinput/EditDateInput';
 
 const EditProfileModal = () => {
     const currentAccountData = useCurrentAccount();
@@ -61,7 +62,7 @@ const EditProfileModal = () => {
         >
             <div
                 ref={modalRef}
-                className="relative z-50 mx-auto mb-11 flex h-150 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
+                className="relative z-50 mx-auto mb-11 flex h-180 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
             >
                 <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
                     <div className="flex min-h-8 min-w-[56px] items-center justify-start">
@@ -122,6 +123,16 @@ const EditProfileModal = () => {
                     <EditWebsiteInput
                         website={website}
                         setWebsite={setWebsite}
+                        currentAccount={currentAccount}
+                    />
+
+                    <EditDateInput
+                        day={day}
+                        setDay={setDay}
+                        month={month}
+                        setMonth={setMonth}
+                        year={year}
+                        setYear={setYear}
                         currentAccount={currentAccount}
                     />
                 </div>

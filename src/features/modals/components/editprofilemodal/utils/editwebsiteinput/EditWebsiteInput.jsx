@@ -19,7 +19,7 @@ const EditWebsiteInput = memo(({ website, setWebsite, currentAccount }) => {
     return (
         <label
             htmlFor="website"
-            className="relative mt-4 mb-3 flex h-full w-full flex-1 items-center justify-center rounded-[4px] border border-[#333639] px-2 py-3 pt-3 pb-2 transition-colors duration-200 ease-in-out focus-within:border-[#1d9bf0]"
+            className="relative mt-4 flex h-full w-full flex-1 items-center justify-center rounded-[4px] border border-[#333639] px-2 py-3 pt-3 pb-2 transition-colors duration-200 ease-in-out focus-within:border-[#1d9bf0]"
         >
             <div className="flex h-full justify-between">
                 <div
