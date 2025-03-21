@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 const AccountIMG = ({ account, imgData }) => {
     const navigate = useNavigate();
 
-    // Convert Google Drive URL to a thumbnail link
     const getThumbnailUrl = (url) => {
         const fileId = url.split('/d/')[1].split('/')[0]; // Extract file ID
         return `https://lh3.googleusercontent.com/d/${fileId}`;

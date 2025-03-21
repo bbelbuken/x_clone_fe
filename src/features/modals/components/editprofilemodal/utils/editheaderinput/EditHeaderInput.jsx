@@ -129,9 +129,9 @@ const EditHeaderInput = ({
                 >
                     <div ref={croppieRef}></div>
                     <Button
-                        size="apply"
+                        size="apply-header"
                         onClick={handleCroppingDone}
-                        className="fixed top-66 right-87 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                        className="fixed top-66.5 right-88.5 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
                     >
                         Apply
                     </Button>

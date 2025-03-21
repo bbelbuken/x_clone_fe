@@ -20,7 +20,6 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
 
     const isARepost = post.isARepost;
     const isAReply = post.repliedPostUsername;
-    const isReplied = post.repliedPost;
 
     const currentAccountReposted =
         (currentAccount?._id === post.userId && isARepost) ||
@@ -51,7 +50,7 @@ const Post = memo(({ post, postId, currentAccount, replyClicked }) => {
                                 {!isARepost ? (
                                     <AccountIMG
                                         account={account}
-                                        imgData={post.cachedAvatarUrl}
+                                        imgData={account.cachedAvatar}
                                     />
                                 ) : (
                                     <AccountIMG

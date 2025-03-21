@@ -54,6 +54,14 @@ const Button = memo(
                             size === 'apply',
                     },
                     {
+                        'w-[66px] h-[33px] text-[14px] border-0 ':
+                            size === 'apply-avatar',
+                    },
+                    {
+                        'w-[66px] h-[33px] text-[14px] border-0 ':
+                            size === 'apply-header',
+                    },
+                    {
                         'w-full h-[36px] text-[14px] border-0 ':
                             size === 'forgot-password',
                     },

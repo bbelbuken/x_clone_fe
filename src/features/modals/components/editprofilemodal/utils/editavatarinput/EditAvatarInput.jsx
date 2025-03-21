@@ -15,6 +15,7 @@ const EditAvatarInput = memo(
         const croppieRef = useRef(null);
         const [croppedImage, setCroppedImage] = useState(null);
         const [croppieInstance, setCroppieInstance] = useState(null);
+        const [isDefaultAvatar, setIsDefaultAvatar] = useState(false); // Track if default avatar is active
 
         const getGoogleDriveDirectImageUrl = (url) => {
             const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -27,17 +28,15 @@ const EditAvatarInput = memo(
         };
 
         const handleFileDelete = () => {
-            if (avatarMedia) {
-                setAvatarMedia(null);
-                setCroppedImage(null);
-            }
-            if (currentAccount?.cachedAvatar) {
-                console.log('Deleting cachedAvatar...');
-                currentAccount.cachedAvatar = null;
-            }
+            setAvatarMedia(''); // Clear the avatar media
+            setCroppedImage(null); // Clear the cropped image
+            setIsDefaultAvatar(true); // Set default avatar state
         };
 
         const getImageSource = () => {
+            if (isDefaultAvatar) {
+                return '/default_profile_200x200.png'; // Default image
+            }
             if (croppedImage) {
                 return croppedImage;
             }
@@ -50,7 +49,7 @@ const EditAvatarInput = memo(
             if (currentAccount?.avatar) {
                 return getGoogleDriveDirectImageUrl(currentAccount.avatar);
             }
-            return '/default_profile_200x200.png';
+            return '/default_profile_200x200.png'; // Fallback to default image
         };
 
         const imageSource = getImageSource();
@@ -101,6 +100,7 @@ const EditAvatarInput = memo(
                         setCroppedImage(croppedImg); // Set the cropped image as state
                         setIsCropping(false); // Exit cropping mode
                         setAvatarMedia(blob); // Store cropped image as a Blob in the media state
+                        setIsDefaultAvatar(false); // Reset default avatar state
                     })
                     .catch((err) => {
                         console.error('Error cropping image: ', err);
@@ -131,10 +131,10 @@ const EditAvatarInput = memo(
                     >
                         <div ref={croppieRef}></div>
                         <Button
-                            size="apply"
+                            size="apply-avatar"
                             onClick={handleCroppingDone}
                             className={
-                                'fixed top-28.5 right-87 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]'
+                                'fixed top-66.5 right-88.5 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]'
                             }
                         >
                             Apply
@@ -161,6 +161,7 @@ const EditAvatarInput = memo(
                     onChange={(e) => {
                         setAvatarMedia(e.target.files[0]);
                         setIsCropping(true); // Activate cropping mode when a file is selected
+                        setIsDefaultAvatar(false); // Reset default avatar state
                     }}
                 />
             </div>
