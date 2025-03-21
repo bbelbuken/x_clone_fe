@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
 
-const ProfileNav = ({ account, activeTitle, setActiveTitle }) => {
+const ProfileNav = ({
+    currentAccount,
+    visitedAccount,
+    activeTitle,
+    setActiveTitle,
+}) => {
     const ProfileNavItems = [
         { title: 'Posts', alwaysActive: true },
         { title: 'Replies', alwaysActive: true },
@@ -10,9 +15,14 @@ const ProfileNav = ({ account, activeTitle, setActiveTitle }) => {
         { title: 'Likes', alwaysActive: false },
     ];
 
-    const profileNav = ProfileNavItems.filter(
-        (item) => item.alwaysActive || account,
-    );
+    // Filter nav items based on whether the visited account is the current account
+    const profileNav = ProfileNavItems.filter((item) => {
+        // Always show items marked as alwaysActive
+        if (item.alwaysActive) return true;
+
+        // Only show Highlights, Articles, and Likes if the visited account is the current account
+        return currentAccount?._id === visitedAccount?._id;
+    });
 
     return (
         <div className="flex border-b border-b-[#2f3336]">

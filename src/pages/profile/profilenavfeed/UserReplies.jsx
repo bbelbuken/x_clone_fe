@@ -1,7 +1,7 @@
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 import Post from 'components/posts/Post';
 
-const UserReplies = ({ currentAccount }) => {
+const UserReplies = ({ currentAccount, visitedAccount }) => {
     const {
         data: posts,
         isLoading,
@@ -25,7 +25,7 @@ const UserReplies = ({ currentAccount }) => {
             // Check if the post is a reply and if it belongs to the current user
             return (
                 post.repliedPost && // Check if it's a reply
-                post.userId === currentAccount._id // Check if the reply belongs to the current user
+                post.userId === visitedAccount._id // Check if the reply belongs to the current user
             );
         });
 
@@ -38,6 +38,8 @@ const UserReplies = ({ currentAccount }) => {
                     postId={postId}
                     key={postId}
                     currentAccount={currentAccount}
+                    visitedAccount={visitedAccount}
+                    isProfile={true}
                 />
             );
         });

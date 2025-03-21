@@ -10,33 +10,22 @@ import UserArticles from './profilenavfeed/UserArticles';
 import UserHighlights from './profilenavfeed/UserHighlights';
 import UserMedia from './profilenavfeed/UserMedia';
 import UserReplies from './profilenavfeed/UserReplies';
+import useCurrentAccount from 'hooks/useCurrentAccount';
 
 const Profile = () => {
     const [activeTitle, setActiveTitle] = useState('Posts');
     const { username } = useParams();
 
+    const currentAccountData = useCurrentAccount();
+    const { account: currentAccount } = currentAccountData;
+
     const { data: accounts, isLoading, error } = useGetAccountsQuery();
 
     const { ids = [], entities = {} } = accounts || {};
 
-    const currentAccount = Object.values(entities).find(
+    const visitedAccount = Object.values(entities).find(
         (account) => account.username === username,
     );
-
-    const account = currentAccount || {
-        _id: '',
-        username: 'Unknown User',
-        email: '',
-        dateOfBirth: '',
-        fullname: '',
-        avatar: '',
-        header_photo: '',
-        verified: false,
-        bio: '',
-        location: '',
-        website: '',
-        postCount: 0,
-    };
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -46,59 +35,71 @@ const Profile = () => {
         return <div>Error: {error.message}</div>;
     }
 
-    if (!currentAccount) {
+    if (!visitedAccount) {
         return <div>No account found for username: {username}</div>;
+    }
+
+    if (!currentAccount) {
+        return <div>No current account found</div>;
     }
 
     return (
         <div className="w-full max-w-[600px]">
             <GoBack
-                currentAccount={currentAccount}
-                postCount={currentAccount?.postCount}
+                currentAccount={visitedAccount}
+                postCount={visitedAccount?.postCount}
             />
             <div className="mx-auto flex w-full grow flex-col">
                 <ProfileBanner
-                    currentAccount={currentAccount}
-                    account={account}
+                    currentAccount={visitedAccount}
                     username={username}
                 />
                 <ProfileNav
-                    account={currentAccount}
+                    currentAccount={currentAccount}
+                    visitedAccount={visitedAccount}
                     activeTitle={activeTitle}
                     setActiveTitle={setActiveTitle}
                 />
                 {activeTitle === 'Posts' && (
                     <PostList
                         currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
                         isProfile={true}
                     />
                 )}
                 {activeTitle === 'Replies' && (
                     <UserReplies
                         currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
                         isProfile={true}
                     />
                 )}
                 {activeTitle === 'Highlights' && (
                     <UserHighlights
                         currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
                         isProfile={true}
                     />
                 )}
                 {activeTitle === 'Articles' && (
                     <UserArticles
                         currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
                         isProfile={true}
                     />
                 )}
                 {activeTitle === 'Media' && (
                     <UserMedia
                         currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
                         isProfile={true}
                     />
                 )}
                 {activeTitle === 'Likes' && (
-                    <UserLikes currentAccount={currentAccount} />
+                    <UserLikes
+                        currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
+                    />
                 )}
             </div>
         </div>

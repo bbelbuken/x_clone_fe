@@ -1,7 +1,7 @@
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 import Post from 'components/posts/Post';
 
-const UserLikes = ({ currentAccount }) => {
+const UserLikes = ({ currentAccount, visitedAccount }) => {
     const {
         data: posts,
         isLoading,
@@ -21,7 +21,7 @@ const UserLikes = ({ currentAccount }) => {
 
         // Filter posts that the current user has liked
         const likedPostIds = ids.filter((postId) =>
-            entities[postId].reactions.likedBy.includes(currentAccount._id),
+            entities[postId].reactions.likedBy.includes(visitedAccount._id),
         );
 
         content = likedPostIds.map((postId) => {

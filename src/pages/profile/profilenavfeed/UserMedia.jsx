@@ -1,7 +1,7 @@
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 import Post from 'components/posts/Post';
 
-const UserMedia = ({ currentAccount }) => {
+const UserMedia = ({ currentAccount, visitedAccount }) => {
     const {
         data: posts,
         isLoading,
@@ -23,7 +23,7 @@ const UserMedia = ({ currentAccount }) => {
         const postsWithMedia = ids.filter((postId) => {
             const post = entities[postId];
             return (
-                post.userId === currentAccount._id && // Check if the post belongs to the current user
+                post.userId === visitedAccount._id && // Check if the post belongs to the current user
                 ((post.media?.image && post.media.image.length > 0) || // Check for images
                     (post.media?.video && post.media.video.length > 0)) // Check for videos
             );
@@ -37,6 +37,8 @@ const UserMedia = ({ currentAccount }) => {
                     postId={postId}
                     key={postId}
                     currentAccount={currentAccount}
+                    visitedAccount={visitedAccount}
+                    isProfile={true}
                 />
             );
         });

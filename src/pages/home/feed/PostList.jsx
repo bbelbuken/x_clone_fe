@@ -1,7 +1,7 @@
 import Post from 'components/posts/Post';
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
 
-const Feed = ({ currentAccount, isProfile = false }) => {
+const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
     const {
         data: posts,
         isLoading,
@@ -23,11 +23,11 @@ const Feed = ({ currentAccount, isProfile = false }) => {
         const filteredIds = ids.filter((postId) => {
             const post = entities[postId];
 
-            // If it's a profile page, only show current user's posts
+            // If it's a profile page, only show posts by the visited account
             if (isProfile) {
                 return (
-                    post.userId === currentAccount?._id &&
-                    !post.repliedPostUsername
+                    post.userId === visitedAccount?._id && // Only show posts by the visited account
+                    !post.repliedPost // Exclude replies
                 );
             }
 
@@ -49,6 +49,8 @@ const Feed = ({ currentAccount, isProfile = false }) => {
                     postId={postId}
                     key={postId}
                     currentAccount={currentAccount}
+                    visitedAccount={visitedAccount}
+                    isProfile={isProfile}
                 />
             );
         });
