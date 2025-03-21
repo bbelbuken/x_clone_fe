@@ -14,6 +14,7 @@ const EditHeaderInput = ({
     const croppieRef = useRef(null);
     const [croppedImage, setCroppedImage] = useState(null);
     const [croppieInstance, setCroppieInstance] = useState(null);
+    const [isDefaultHeader, setIsDefaultHeader] = useState(false);
 
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -26,17 +27,15 @@ const EditHeaderInput = ({
     };
 
     const handleFileDelete = () => {
-        if (headerMedia) {
-            setHeaderMedia(null);
-            setCroppedImage(null);
-        }
-        if (currentAccount?.cachedHeader) {
-            console.log('Deleting cachedHeader...');
-            currentAccount.cachedHeader = null;
-        }
+        setHeaderMedia('');
+        setCroppedImage(null);
+        setIsDefaultHeader(true);
     };
 
     const getImageSource = () => {
+        if (isDefaultHeader) {
+            return '/default_header.jpg'; // Default image
+        }
         if (croppedImage) {
             return croppedImage;
         }

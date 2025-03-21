@@ -15,7 +15,7 @@ const EditAvatarInput = memo(
         const croppieRef = useRef(null);
         const [croppedImage, setCroppedImage] = useState(null);
         const [croppieInstance, setCroppieInstance] = useState(null);
-        const [isDefaultAvatar, setIsDefaultAvatar] = useState(false); // Track if default avatar is active
+        const [isDefaultAvatar, setIsDefaultAvatar] = useState(false);
 
         const getGoogleDriveDirectImageUrl = (url) => {
             const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -28,9 +28,9 @@ const EditAvatarInput = memo(
         };
 
         const handleFileDelete = () => {
-            setAvatarMedia(''); // Clear the avatar media
-            setCroppedImage(null); // Clear the cropped image
-            setIsDefaultAvatar(true); // Set default avatar state
+            setAvatarMedia('');
+            setCroppedImage(null);
+            setIsDefaultAvatar(true);
         };
 
         const getImageSource = () => {
