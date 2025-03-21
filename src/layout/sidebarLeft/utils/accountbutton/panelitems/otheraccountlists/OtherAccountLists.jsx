@@ -100,7 +100,7 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
                                       ? getGoogleDriveDirectImageUrl(
                                             account.avatar,
                                         )
-                                      : '/public/default_profile_200x200.png'
+                                      : '/default_profile_200x200.png'
                             }
                             alt="Avatar"
                             className="h-10 w-10 rounded-full"

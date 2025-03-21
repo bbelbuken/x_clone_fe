@@ -74,7 +74,7 @@ const EditProfileModal = () => {
                 bio,
                 location,
                 website,
-                dateOfBirth: `${day}-${month}-${year}`,
+                dateOfBirth: `${month}-${day}-${year}`,
                 avatar: avatarMedia,
                 header_photo: headerMedia,
             };

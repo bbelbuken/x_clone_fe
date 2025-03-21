@@ -38,7 +38,7 @@ const SendPost = ({ modalRef, handleClose, currentAccount, replyClicked }) => {
         ? `${currentAccount.cachedAvatar}`
         : currentAccount.avatar
           ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
-          : '/public/default_profile_200x200.png';
+          : '/default_profile_200x200.png';
 
     const handleClick = () => {
         setIsClicked(true);
