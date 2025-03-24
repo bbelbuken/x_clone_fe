@@ -7,7 +7,7 @@ import { memo } from 'react';
 import More from './utils/content/usernav/more/More';
 import ReactionNav from './utils/content/reactionnav/ReactionNav';
 import SendReply from 'pages/home/sendreply/SendReply';
-
+import GrokButton from './utils/content/usernav/groknav/GrokButton';
 const Post = memo(
     ({
         post,
@@ -170,6 +170,7 @@ const Post = memo(
                         </div>
                     </article>
                 </div>
+                <GrokButton />
                 {!replyClicked && (
                     <More
                         currentAccountReposted={currentAccountReposted}

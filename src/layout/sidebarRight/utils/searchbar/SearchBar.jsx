@@ -9,7 +9,7 @@ const SearchBar = () => {
     return (
         <div className="relative overflow-visible">
             <div
-                className={`mb-4 flex h-11 rounded-full ${isActive ? 'border border-[#b43772] bg-black' : 'border border-[#202327]'} pt-2 pb-3`}
+                className={`${location.pathname === '/bookmarks' ? 'mb-2' : 'mb-4'} flex h-11 rounded-full ${isActive ? 'border border-[#1d9bf0] bg-black' : 'border border-[#202327]'} pt-2 pb-3`}
             >
                 <form
                     className="z-20 flex items-center justify-center"
@@ -70,7 +70,7 @@ const SearchBar = () => {
                 </form>
             </div>
 
-            {isActive && (
+            {location.pathname !== '/bookmarks' && isActive && (
                 <div className="max-h-[calc(-53px + 80vh)] box-shadow-morebox absolute top-11 right-0 left-0 z-10 box-border min-h-[100px] overflow-visible rounded-lg bg-black">
                     <div className="p-3 pt-5">
                         <p className="text-center text-[15px] leading-4 tracking-wide text-[#71767b]">

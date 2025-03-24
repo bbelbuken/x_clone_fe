@@ -23,7 +23,7 @@ const GoBack = ({ currentAccount, postCount, postId }) => {
             <div className="flex h-full items-center justify-start">
                 <div className="flex min-h-8 min-w-14 items-stretch justify-start">
                     <button
-                        className="transition-colors-feed ml-[calc(-8px)] flex min-h-9 min-w-9 items-center justify-center rounded-full hover:bg-[#eff3f41a]"
+                        className="transition-colors-feed ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full hover:bg-[#eff3f41a]"
                         onClick={handleGetLocation}
                     >
                         <svg
@@ -38,16 +38,24 @@ const GoBack = ({ currentAccount, postCount, postId }) => {
                 </div>
 
                 <div
-                    className={`${postId ? 'mt-1 -mb-[3px]' : 'mb-[1px]'}relative flex h-full flex-col items-start justify-center`}
+                    className={`${location.pathname === '/bookmarks' ? 'mt-1 -mb-[3px]' : postId ? 'mt-1 -mb-[3px]' : 'mb-[1px]'}relative flex h-full flex-col items-start justify-center`}
                 >
                     <h2 className="flex max-w-full min-w-0 items-center justify-center overflow-hidden py-0.5 text-xl leading-7 font-bold tracking-[0.015em] break-words whitespace-nowrap text-[#e7e9ea]">
-                        {postId ? 'Post' : currentAccount?.fullname}
+                        {location.pathname === '/bookmarks'
+                            ? 'Bookmarks'
+                            : postId
+                              ? 'Post'
+                              : currentAccount?.fullname}
                         <div className="ml-[1px]">
                             {verified && <VerifiedSVG width={20} height={20} />}
                         </div>
                     </h2>
                     <div className="max-w-full pb-1 text-[13px] leading-3 font-normal break-words whitespace-nowrap text-[#71767b]">
-                        {postId ? '' : `${postCount} posts`}
+                        {location.pathname === '/bookmarks'
+                            ? ''
+                            : postId
+                              ? ''
+                              : `${postCount} posts`}
                     </div>
                 </div>
             </div>
