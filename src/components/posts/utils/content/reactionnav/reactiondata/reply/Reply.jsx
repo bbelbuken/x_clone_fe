@@ -33,11 +33,11 @@ const Reply = ({ postReactions, postId }) => {
             title={data.title}
         >
             <button
-                className="absolute flex min-h-5 cursor-pointer items-center text-[14px] text-[#71767b] hover:text-[#1d9bf0]"
+                className="group absolute flex min-h-5 cursor-pointer items-center text-[14px] text-[#71767b] hover:text-[#1d9bf0]"
                 onClick={openReplyPostal}
             >
                 <div
-                    className={`flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full hover:bg-[#1d9bf022]`}
+                    className={`flex h-[34.75px] w-[34.75px] items-center justify-center rounded-full group-hover:bg-[#1d9bf022]`}
                 >
                     {data.svg}
                 </div>
