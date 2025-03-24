@@ -119,6 +119,16 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 { type: 'Post', id: arg.postId },
             ],
         }),
+        bookmarkPost: builder.mutation({
+            query: ({ postId, userId }) => ({
+                url: `/posts/${postId}/bookmark`,
+                method: 'PATCH',
+                body: { userId },
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Post', id: arg.postId },
+            ],
+        }),
         replyToPost: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
@@ -180,6 +190,7 @@ export const {
     useReplyToPostMutation,
     useViewCountMutation,
     useRepostPostMutation,
+    useBookmarkPostMutation,
 } = postsApiSlice;
 
 export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
