@@ -3,7 +3,6 @@ import SearchBar from './utils/searchbar/SearchBar';
 import PremiumSection from './utils/premiumsection/PremiumSection';
 import WhatIsHappening from './utils/whatshappening/WhatIsHappening';
 import WhoToFollow from './utils/whotofollow/WhoToFollow';
-import Messages from 'pages/messages/Messages';
 import { Footer } from './utils/footer/Footer';
 import { useLocation } from 'react-router-dom';
 
@@ -45,7 +44,7 @@ const SideBarRight = ({ currentAccount, refetch }) => {
                     )}
 
                     <div
-                        className={`${isExplore ? 'mt-2' : ''} mb-4 flex h-[297px] w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]`}
+                        className={`${isExplore ? 'mt-2' : ''} mb-4 flex w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]`}
                     >
                         <WhoToFollow
                             currentAccount={currentAccount}

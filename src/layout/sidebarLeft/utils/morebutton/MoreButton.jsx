@@ -29,7 +29,7 @@ const MoreButton = () => {
                     'box-shadow-morebox absolute -bottom-1 left-0 box-border flex h-auto w-[318px] flex-col items-center justify-center overflow-hidden rounded-xl bg-black transition-colors'
                 }
             >
-                <button className="box-border flex h-full w-full items-center justify-start">
+                <button className="box-border flex h-full w-full cursor-pointer items-center justify-start">
                     <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
                         <div>
                             <svg
@@ -50,7 +50,7 @@ const MoreButton = () => {
                     </div>
                 </button>
 
-                <button className="over flex h-full w-full items-center justify-start py-0.5">
+                <button className="over flex h-full w-full cursor-pointer items-center justify-start py-0.5">
                     <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
                         <div>
                             <svg
@@ -71,7 +71,7 @@ const MoreButton = () => {
                     </div>
                 </button>
 
-                <button className="over flex h-full w-full items-center justify-start py-0.5">
+                <button className="over flex h-full w-full cursor-pointer items-center justify-start py-0.5">
                     <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
                         <div>
                             <svg
@@ -92,7 +92,7 @@ const MoreButton = () => {
                     </div>
                 </button>
 
-                <button className="over flex h-auto w-full items-center justify-start">
+                <button className="over flex h-auto w-full cursor-pointer items-center justify-start">
                     <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
                         <div>
                             <svg

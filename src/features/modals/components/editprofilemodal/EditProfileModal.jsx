@@ -87,98 +87,98 @@ const EditProfileModal = () => {
     };
 
     return (
-        <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
-                isModalClosing ? 'opacity-0' : 'opacity-100'
-            }`}
-            onClick={handleClickOutside}
-        >
-            {isLoading || (uploading && <LoadingSpinner />)}
+        <div>
+            {isLoading ||
+                (uploading && (
+                    <div className="z-50">
+                        <LoadingSpinner />
+                    </div>
+                ))}
             <div
-                ref={modalRef}
-                className="relative z-50 mx-auto mb-11 flex h-180 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
+                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
+                    isModalClosing ? 'opacity-0' : 'opacity-100'
+                }`}
+                onClick={handleClickOutside}
             >
-                <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
-                    <div className="flex min-h-8 min-w-[56px] items-center justify-start">
-                        <button
-                            type="button"
-                            onClick={handleClose}
-                            className="ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                fill="#eff3f4"
-                                width={20}
-                                height={20}
-                                className=""
+                <div
+                    ref={modalRef}
+                    className="relative z-50 mx-auto mb-11 flex h-180 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
+                >
+                    <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
+                        <div className="flex min-h-8 min-w-[56px] items-center justify-start">
+                            <button
+                                type="button"
+                                onClick={handleClose}
+                                className="ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
                             >
-                                <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
-                            </svg>
-                        </button>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="#eff3f4"
+                                    width={20}
+                                    height={20}
+                                    className=""
+                                >
+                                    <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="flex h-full flex-1 justify-center"></div>
+                        <div className="inline-flex min-h-8 min-w-14 items-center justify-center gap-3">
+                            <button
+                                className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full bg-[#eff3f4] px-4 transition-colors outline-none"
+                                onClick={handleEditCurrentAccount}
+                            >
+                                <span className="max-w-full min-w-0 text-center text-[14px] leading-4 break-words whitespace-nowrap text-black">
+                                    Save
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex h-full flex-1 justify-center"></div>
-                    <div className="inline-flex min-h-8 min-w-14 items-center justify-center gap-3">
-                        <button
-                            className="flex min-h-8 min-w-8 grow cursor-pointer items-center justify-center rounded-full bg-[#eff3f4] px-4 transition-colors outline-none"
-                            onClick={handleEditCurrentAccount}
-                        >
-                            <span className="max-w-full min-w-0 text-center text-[14px] leading-4 break-words whitespace-nowrap text-black">
-                                Save
-                            </span>
-                        </button>
+                    <EditHeaderInput
+                        headerMedia={headerMedia}
+                        setHeaderMedia={setHeaderMedia}
+                        isCroppingHeader={isCroppingHeader}
+                        setIsCroppingHeader={setIsCroppingHeader}
+                        currentAccount={currentAccount}
+                    />
+                    <EditAvatarInput
+                        avatarMedia={avatarMedia}
+                        setAvatarMedia={setAvatarMedia}
+                        isCropping={isCropping}
+                        setIsCropping={setIsCropping}
+                        currentAccount={currentAccount}
+                    />
+                    <div className="mt-20 h-14 w-full px-6">
+                        <EditNameInput
+                            fullname={fullname}
+                            setFullname={setFullname}
+                            currentAccount={currentAccount}
+                        />
+                        <EditBioInput
+                            bio={bio}
+                            setBio={setBio}
+                            currentAccount={currentAccount}
+                        />
+                        <EditLocationInput
+                            location={location}
+                            setLocation={setLocation}
+                            currentAccount={currentAccount}
+                        />
+                        <EditWebsiteInput
+                            website={website}
+                            setWebsite={setWebsite}
+                            currentAccount={currentAccount}
+                        />
+                        <EditDateInput
+                            day={day}
+                            setDay={setDay}
+                            month={month}
+                            setMonth={setMonth}
+                            year={year}
+                            setYear={setYear}
+                            currentAccount={currentAccount}
+                        />
                     </div>
-                </div>
-
-                <EditHeaderInput
-                    headerMedia={headerMedia}
-                    setHeaderMedia={setHeaderMedia}
-                    isCroppingHeader={isCroppingHeader}
-                    setIsCroppingHeader={setIsCroppingHeader}
-                    currentAccount={currentAccount}
-                />
-
-                <EditAvatarInput
-                    avatarMedia={avatarMedia}
-                    setAvatarMedia={setAvatarMedia}
-                    isCropping={isCropping}
-                    setIsCropping={setIsCropping}
-                    currentAccount={currentAccount}
-                />
-
-                <div className="mt-20 h-14 w-full px-6">
-                    <EditNameInput
-                        fullname={fullname}
-                        setFullname={setFullname}
-                        currentAccount={currentAccount}
-                    />
-
-                    <EditBioInput
-                        bio={bio}
-                        setBio={setBio}
-                        currentAccount={currentAccount}
-                    />
-
-                    <EditLocationInput
-                        location={location}
-                        setLocation={setLocation}
-                        currentAccount={currentAccount}
-                    />
-
-                    <EditWebsiteInput
-                        website={website}
-                        setWebsite={setWebsite}
-                        currentAccount={currentAccount}
-                    />
-
-                    <EditDateInput
-                        day={day}
-                        setDay={setDay}
-                        month={month}
-                        setMonth={setMonth}
-                        year={year}
-                        setYear={setYear}
-                        currentAccount={currentAccount}
-                    />
                 </div>
             </div>
         </div>

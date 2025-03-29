@@ -13,7 +13,7 @@ export const Footer = () => {
             {FooterData.map((item, index) => (
                 <Link
                     key={index}
-                    to={item.path}
+                    // to={item.path}
                     className="my-0.5 min-w-0 cursor-pointer pr-3 text-[13px] leading-4 font-normal tracking-[0.015em] break-words text-[#71767b] hover:underline"
                 >
                     {item.title}
@@ -40,7 +40,7 @@ export const Footer = () => {
                         {MoreButtonData.map((item, index) => (
                             <Link
                                 key={index}
-                                to={item.path}
+                                // to={item.path}
                                 className="z-10 flex w-full min-w-0 flex-1 cursor-pointer px-4 py-[14px] text-[15px] leading-4 font-bold tracking-[0.010em] break-words whitespace-nowrap text-[#e7e9ea] transition-all hover:bg-[#16181c]"
                             >
                                 {item.title}

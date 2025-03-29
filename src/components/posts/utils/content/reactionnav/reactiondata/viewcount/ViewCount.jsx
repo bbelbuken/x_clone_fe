@@ -1,10 +1,18 @@
 import { useEffect, useCallback } from 'react';
 import { useViewCountMutation } from 'features/posts/postsApiSlice';
+import { useLocation } from 'react-router-dom';
 
 const ViewCount = ({ postReactions, postId, currentAccount }) => {
     const [viewCount] = useViewCountMutation();
-
+    const location = useLocation();
+    const isInBookmarks = location.pathname === '/bookmarks';
     const handleViewCount = useCallback(async () => {
+        if (isInBookmarks) return;
+
+        // Check if user has already viewed this post
+        const hasViewed = postReactions.viewedBy?.includes(currentAccount._id);
+        if (hasViewed) return;
+
         try {
             await viewCount({
                 postId,
@@ -13,7 +21,13 @@ const ViewCount = ({ postReactions, postId, currentAccount }) => {
         } catch (error) {
             console.error('Failed to fetch view count', error);
         }
-    }, [postId, currentAccount?._id, viewCount]);
+    }, [
+        postId,
+        currentAccount?._id,
+        viewCount,
+        isInBookmarks,
+        postReactions.viewedBy,
+    ]);
 
     useEffect(() => {
         handleViewCount();
@@ -43,6 +57,7 @@ const ViewCount = ({ postReactions, postId, currentAccount }) => {
                 className="group absolute flex min-h-5 cursor-pointer items-center text-[14px] text-[#71767b] hover:text-[#1d9bf0]"
                 onClick={(e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                 }}
             >
                 <div

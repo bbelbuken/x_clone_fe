@@ -6,6 +6,7 @@ export const PostPanelData = ({
     post,
     currentAccount,
     currentAccountReposted,
+    closePanel,
 }) => {
     const loggedAccount = currentAccount?._id === post.userId;
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export const PostPanelData = ({
     const handleDeletePost = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        closePanel();
         dispatch(openModal({ modalType: 'delete', props: { post } }));
     };
 

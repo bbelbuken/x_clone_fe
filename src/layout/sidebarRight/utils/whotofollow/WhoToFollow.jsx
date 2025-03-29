@@ -93,6 +93,12 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
         return <div>No accounts found</div>;
     }
 
+    // Filter out currentAccount and followed accounts
+    const filteredIds = ids.filter((accountId) => {
+        const account = entities[accountId];
+        return account._id !== currentAccount?._id;
+    });
+
     return (
         <div className="block outline-none">
             <div className="flex max-w-full min-w-0 flex-col justify-between self-center px-4 py-3 text-xl leading-6 font-bold tracking-[0.015em] break-words outline-none">
@@ -100,10 +106,10 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
             </div>
 
             <ul>
-                {ids.map((accountId) => {
+                {filteredIds.map((accountId) => {
                     const account = entities[accountId];
 
-                    if (!account) return null; // Skip if account is not found
+                    if (!account) return null;
 
                     return (
                         <div className="relative" key={accountId}>
