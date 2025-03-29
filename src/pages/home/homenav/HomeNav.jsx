@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SendPost from '../sendpost/SendPost';
 import PostList from '../feed/PostList';
+import FollowingsPostList from '../feed/FollowingsPostList';
+
 const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
     const [activeTitle, setActiveTitle] = useState('For you');
     const homeNavData = [{ title: 'For you' }, { title: 'Following' }];
@@ -39,7 +41,15 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
                         accountError={accountError}
                         isLoadingAccount={isLoadingAccount}
                     />
-                    <PostList currentAccount={currentAccount} />
+                    {activeTitle === 'For you' ? (
+                        <PostList currentAccount={currentAccount} />
+                    ) : (
+                        <div>
+                            <FollowingsPostList
+                                currentAccount={currentAccount}
+                            />
+                        </div>
+                    )}
                 </>
             )}
         </div>
