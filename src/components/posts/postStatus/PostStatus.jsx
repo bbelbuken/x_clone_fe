@@ -4,6 +4,7 @@ import useCurrentAccount from 'hooks/useCurrentAccount';
 import Post from '../Post';
 import GoBack from 'pages/profile/goback/GoBack';
 import ReplyList from './replies/ReplyList';
+import { MoonLoader } from 'react-spinners';
 
 const PostStatus = ({ replyClicked, isReplyModalOpen, isModalClosing }) => {
     const { postId } = useParams();
@@ -16,7 +17,13 @@ const PostStatus = ({ replyClicked, isReplyModalOpen, isModalClosing }) => {
         error,
     } = useGetPostByIdQuery(postId);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) {
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
+    }
     if (isError) return <div>Error: {error.message}</div>;
 
     return (

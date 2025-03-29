@@ -14,6 +14,10 @@ const Layout = () => {
     } = currentAccountData;
     const grok = location.pathname === '/i/grok';
 
+    if (isLoading) {
+        return <div>Loading...</div>; // Show a loading spinner or placeholder
+    }
+
     if (error) {
         return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
     }
@@ -33,7 +37,7 @@ const Layout = () => {
                 </div>
                 <main className="mx-auto flex flex-1 gap-[30px]">
                     <div
-                        className={`${grok ? 'border-l border-l-[#2f3336]' : 'border-x border-x-[#2f3336]'} relative flex max-w-[600px] flex-1 gap-[30px]`}
+                        className={`${grok ? 'border-l border-l-[#2f3336]' : 'max-w-[600px] border-x border-x-[#2f3336]'} relative flex flex-1 gap-[30px]`}
                     >
                         <Outlet />
                     </div>

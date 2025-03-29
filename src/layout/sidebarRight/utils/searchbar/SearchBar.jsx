@@ -9,7 +9,7 @@ const SearchBar = () => {
     return (
         <div className="relative overflow-visible">
             <div
-                className={`${location.pathname === '/bookmarks' ? 'mb-2' : 'mb-4'} flex h-11 rounded-full ${isActive ? 'border border-[#1d9bf0] bg-black' : 'border border-[#202327]'} pt-2 pb-3`}
+                className={`${location.pathname === '/bookmarks' ? 'mb-4' : 'mb-4'} flex h-11 rounded-full ${isActive ? 'border border-[#1d9bf0] bg-black' : 'border border-[#202327]'} pt-2 pb-3`}
             >
                 <form
                     className="z-20 flex items-center justify-center"
