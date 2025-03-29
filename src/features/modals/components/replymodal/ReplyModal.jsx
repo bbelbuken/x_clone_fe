@@ -4,6 +4,7 @@ import useCurrentAccount from 'hooks/useCurrentAccount';
 import PostStatus from 'components/posts/postStatus/PostStatus';
 import { useParams } from 'react-router-dom';
 import SendReply from 'pages/home/sendreply/SendReply';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const ReplyModal = () => {
     const { postId } = useParams();
@@ -31,10 +32,6 @@ const ReplyModal = () => {
         }
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>; // Show a loading spinner or placeholder
-    }
-
     if (error) {
         return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
     }
@@ -50,6 +47,7 @@ const ReplyModal = () => {
             }`}
             onClick={handleClickOutside}
         >
+            {isLoading && <LoadingSpinner />}
             <div
                 ref={modalRef}
                 className="absolute top-[5%] left-[339px] z-50 mx-auto flex max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"

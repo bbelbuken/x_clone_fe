@@ -5,6 +5,7 @@ import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 import { useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import FollowingNav from './followingnav/FollowingNav';
+import { MoonLoader } from 'react-spinners';
 
 const FollowList = () => {
     const { username } = useParams();
@@ -48,6 +49,14 @@ const FollowList = () => {
             }
         }, 100);
     };
+
+    if (isLoading) {
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
+    }
 
     return (
         <div className="w-full max-w-[600px]">

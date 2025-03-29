@@ -1,7 +1,7 @@
 import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 import React, { useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 const PhotoModal = () => {
     const { username } = useParams();
 
@@ -41,10 +41,6 @@ const PhotoModal = () => {
         }
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -57,6 +53,7 @@ const PhotoModal = () => {
             className="bg-opacity-[0.93] fixed inset-0 z-50 mx-auto flex items-center justify-center bg-black"
             onClick={handleClickOutside}
         >
+            {isLoading && <LoadingSpinner />}
             <div>
                 <div className="mx-auto flex min-h-8 min-w-[56px] items-center justify-start">
                     <button

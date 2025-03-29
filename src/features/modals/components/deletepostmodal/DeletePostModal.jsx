@@ -3,6 +3,7 @@ import Button from 'components/buttons/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from 'features/modals/modalSlice';
 import { useDeletePostMutation } from 'features/posts/postsApiSlice';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const DeletePostModal = () => {
     const modalRef = useRef();
@@ -26,10 +27,6 @@ const DeletePostModal = () => {
         handleClose();
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -39,6 +36,7 @@ const DeletePostModal = () => {
             onClick={handleClickOutside}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
         >
+            {isLoading && <LoadingSpinner />}
             <div
                 ref={modalRef}
                 className="z-50 mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"

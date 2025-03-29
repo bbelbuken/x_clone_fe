@@ -5,7 +5,7 @@ import Form from '../sendpost/form/Form';
 import WhoCanReply from '../sendpost/whocanreply/WhoCanReply';
 import { useNavigate } from 'react-router-dom';
 import { useReplyToPostMutation } from 'features/posts/postsApiSlice';
-
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 const SendReply = ({
     modalRef,
     handleClose,
@@ -26,10 +26,6 @@ const SendReply = ({
         const fileId = urlParams.get('id');
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
-
-    if (isLoading) {
-        return <div>Loading...</div>; // Show a loading spinner or placeholder
-    }
 
     if (!currentAccount) {
         return <div>No account data found.</div>; // Handle case where account is undefined
@@ -98,6 +94,7 @@ const SendReply = ({
             onClick={handleClick}
             onFocus={handleClick}
         >
+            {isLoading && <LoadingSpinner />}
             <div className="absolute top-3.5 left-0 h-[1px] w-full bg-[#2f3336]"></div>
 
             <div

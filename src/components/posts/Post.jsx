@@ -8,6 +8,8 @@ import More from './utils/content/usernav/more/More';
 import ReactionNav from './utils/content/reactionnav/ReactionNav';
 import SendReply from 'pages/home/sendreply/SendReply';
 import GrokButton from './utils/content/usernav/groknav/GrokButton';
+import { MoonLoader } from 'react-spinners';
+
 const Post = memo(
     ({
         post,
@@ -25,7 +27,14 @@ const Post = memo(
             isProfile ? visitedAccount._id : post.userId,
         );
 
-        if (isLoading) return <p>Loading account...</p>;
+        if (isLoading) {
+            return (
+                <div className="flex h-full w-full items-center justify-center">
+                    <MoonLoader color="#1d9bf0" size={30} />
+                </div>
+            );
+        }
+
         if (isError) return <p>Error loading account</p>;
 
         const isARepost = post.isARepost;

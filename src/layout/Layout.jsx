@@ -3,7 +3,7 @@ import SideBarLeft from './sidebarLeft/SidebarLeft';
 import SideBarRight from './sidebarRight/SideBarRight';
 import ModalManager from 'features/modals/ModalManager';
 import useCurrentAccount from 'hooks/useCurrentAccount';
-
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 const Layout = () => {
     const currentAccountData = useCurrentAccount();
     const {
@@ -13,10 +13,6 @@ const Layout = () => {
         refetch,
     } = currentAccountData;
     const grok = location.pathname === '/i/grok';
-
-    if (isLoading) {
-        return <div>Loading...</div>; // Show a loading spinner or placeholder
-    }
 
     if (error) {
         return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
@@ -28,6 +24,7 @@ const Layout = () => {
 
     return (
         <>
+            {isLoading && <LoadingSpinner />}
             <ModalManager />
 
             <div className="mx-auto flex w-[1265px]">

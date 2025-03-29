@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
+import { MoonLoader } from 'react-spinners';
 
 const ActionBars = ({ currentAccount, username }) => {
     const navigate = useNavigate();
@@ -128,7 +129,11 @@ const ActionBars = ({ currentAccount, username }) => {
     );
 
     if (isLoadingAccount) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     }
 
     if (accountError) {

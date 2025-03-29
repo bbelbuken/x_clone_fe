@@ -1,14 +1,14 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { MyRoutes } from './routes/routes.jsx';
 import { Suspense } from 'react';
-
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 function App() {
     const location = useLocation();
     const { routes, modalRoutes, state } = MyRoutes();
     const background = state?.background;
 
     return (
-        <Suspense fallback={<div> Loading... </div>}>
+        <Suspense fallback={<LoadingSpinner />}>
             <Routes location={background || location}>
                 {routes.map((route) => (
                     <Route

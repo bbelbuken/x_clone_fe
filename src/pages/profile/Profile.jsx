@@ -11,6 +11,7 @@ import UserHighlights from './profilenavfeed/UserHighlights';
 import UserMedia from './profilenavfeed/UserMedia';
 import UserReplies from './profilenavfeed/UserReplies';
 import useCurrentAccount from 'hooks/useCurrentAccount';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const Profile = () => {
     const [activeTitle, setActiveTitle] = useState('Posts');
@@ -27,10 +28,6 @@ const Profile = () => {
         (account) => account.username === username,
     );
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -45,6 +42,7 @@ const Profile = () => {
 
     return (
         <div className="w-full max-w-[600px]">
+            {isLoading && <LoadingSpinner />}
             <GoBack
                 currentAccount={visitedAccount}
                 postCount={visitedAccount?.postCount}

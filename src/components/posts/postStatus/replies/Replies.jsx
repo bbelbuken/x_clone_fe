@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useGetAccountsByIdQuery } from 'features/accounts/accountApiSlice';
 import More from 'components/posts/utils/content/usernav/more/More';
 import ReactionNav from 'components/posts/utils/content/reactionnav/ReactionNav';
+import { MoonLoader } from 'react-spinners';
 
 const Replies = memo(
     ({ post, postId, currentAccount, replyClicked, refetch }) => {
@@ -14,8 +15,13 @@ const Replies = memo(
             isLoading,
             isError,
         } = useGetAccountsByIdQuery(post.userId);
-
-        if (isLoading) return <p>Loading account...</p>;
+        if (isLoading) {
+            return (
+                <div className="flex h-full w-full items-center justify-center">
+                    <MoonLoader color="#1d9bf0" size={30} />
+                </div>
+            );
+        }
         if (isError) return <p>Error loading account</p>;
 
         const isARepost = post.isARepost;

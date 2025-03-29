@@ -8,6 +8,7 @@ import { setCurrentAccount } from 'features/accounts/accountSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeLoggedInAccount } from 'features/accounts/accountSlice';
 import { setCredentials } from 'features/auth/authSlice';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const LogOutModal = () => {
     const modalRef = useRef();
@@ -87,10 +88,6 @@ const LogOutModal = () => {
         }
     }, [currentAccount, navigate]);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -100,6 +97,7 @@ const LogOutModal = () => {
             onClick={handleClickOutside}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#242e33]"
         >
+            {isLoading && <LoadingSpinner />}
             <div
                 ref={modalRef}
                 className="mx-auto flex min-h-[calc(192px)] w-[320px] max-w-[80vh] flex-col rounded-2xl bg-black p-8"

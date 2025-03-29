@@ -4,7 +4,7 @@ import Button from 'components/buttons/Button';
 import UsernameInput from './usernameinput/UsernameInput';
 import { useSignUpMutation } from 'features/auth/authApiSlice';
 import { useNavigate } from 'react-router-dom';
-import { MoonLoader } from 'react-spinners';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const UsernameArea = memo(
     ({
@@ -46,18 +46,12 @@ const UsernameArea = memo(
             }
         };
 
-        if (isLoading) {
-            return (
-                <div className="flex h-full w-full items-center justify-center">
-                    <MoonLoader color="#1d9bf0" size={30} />
-                </div>
-            );
-        }
         if (error) {
             return <div>Error creating account: {error.message}</div>;
         }
         return (
             <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
+                {isLoading && <LoadingSpinner />}
                 <FormHeader />
 
                 <div className="mt-[5px] flex h-full flex-1 flex-col px-20">

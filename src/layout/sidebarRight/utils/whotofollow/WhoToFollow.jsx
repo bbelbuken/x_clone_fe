@@ -8,6 +8,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
 import { useState, useEffect } from 'react';
+import { MoonLoader } from 'react-spinners';
 
 const WhoToFollow = ({ currentAccount, refetch }) => {
     const [hoverStates, setHoverStates] = useState({});
@@ -77,7 +78,11 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     }
 
     if (error) {

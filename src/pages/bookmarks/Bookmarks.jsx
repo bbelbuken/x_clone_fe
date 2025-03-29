@@ -3,7 +3,7 @@ import Post from 'components/posts/Post';
 import { useSelector } from 'react-redux';
 import GoBack from 'pages/profile/goback/GoBack';
 import SearchBar from 'layout/sidebarRight/utils/searchbar/SearchBar';
-
+import { MoonLoader } from 'react-spinners';
 const Bookmarks = () => {
     const {
         data: posts,
@@ -21,7 +21,11 @@ const Bookmarks = () => {
     let content;
 
     if (isLoading) {
-        content = <p>Loading liked posts...</p>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from 'features/modals/modalSlice';
 import { useToggleFollowMutation } from 'features/accounts/accountApiSlice';
 import { useState, useEffect } from 'react';
+import { MoonLoader } from 'react-spinners';
 
 const Following = ({ currentAccount, refetch }) => {
     const [hoverStates, setHoverStates] = useState({});
@@ -33,7 +34,11 @@ const Following = ({ currentAccount, refetch }) => {
     }
 
     if (isLoading) {
-        content = <p>Loading liked accounts...</p>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {

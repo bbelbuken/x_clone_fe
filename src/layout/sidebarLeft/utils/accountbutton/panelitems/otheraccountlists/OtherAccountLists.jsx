@@ -4,6 +4,7 @@ import { setCurrentAccount } from 'features/accounts/accountSlice';
 import { useGetAccountsQuery } from 'features/accounts/accountApiSlice';
 import { useSwitchAccountMutation } from 'features/auth/authApiSlice';
 import { setCredentials } from 'features/auth/authSlice';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     const dispatch = useDispatch();
@@ -67,10 +68,6 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
         return name;
     };
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
     }
@@ -81,6 +78,7 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
 
     return (
         <div className="relative flex flex-col items-center justify-center py-0.5">
+            {isLoading && <LoadingSpinner />}
             {mergedAccounts.map((account, key) => (
                 <button
                     className="w-full cursor-pointer px-4 hover:bg-[#c4c4c41a]"

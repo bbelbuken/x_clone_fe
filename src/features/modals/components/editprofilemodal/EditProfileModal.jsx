@@ -9,7 +9,7 @@ import EditWebsiteInput from './utils/editwebsiteinput/EditWebsiteInput';
 import EditDateInput from './utils/editdateinput/EditDateInput';
 import EditHeaderInput from './utils/editheaderinput/EditHeaderInput';
 import { useEditCurrentAccountMutation } from 'features/accounts/accountApiSlice';
-
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 const EditProfileModal = () => {
     const { userId } = useParams();
     const currentAccountData = useCurrentAccount();
@@ -54,9 +54,6 @@ const EditProfileModal = () => {
         }
     };
 
-    if (isLoading || uploading) {
-        return <div>Loading...</div>;
-    }
     if (error || uploadError) {
         return <div>Error: {error.message || 'Failed to fetch account'}</div>;
     }
@@ -96,6 +93,7 @@ const EditProfileModal = () => {
             }`}
             onClick={handleClickOutside}
         >
+            {isLoading || (uploading && <LoadingSpinner />)}
             <div
                 ref={modalRef}
                 className="relative z-50 mx-auto mb-11 flex h-180 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
