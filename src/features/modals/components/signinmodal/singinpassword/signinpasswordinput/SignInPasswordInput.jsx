@@ -1,6 +1,7 @@
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'components/buttons/Button';
+import { MoonLoader } from 'react-spinners';
 
 const SignInPasswordInput = ({
     username,
@@ -40,7 +41,11 @@ const SignInPasswordInput = ({
     };
 
     if (isLoading) {
-        <div>Loading...</div>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     }
 
     return (

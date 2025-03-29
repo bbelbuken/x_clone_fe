@@ -4,6 +4,7 @@ import Button from 'components/buttons/Button';
 import UsernameInput from './usernameinput/UsernameInput';
 import { useSignUpMutation } from 'features/auth/authApiSlice';
 import { useNavigate } from 'react-router-dom';
+import { MoonLoader } from 'react-spinners';
 
 const UsernameArea = memo(
     ({
@@ -46,7 +47,11 @@ const UsernameArea = memo(
         };
 
         if (isLoading) {
-            return <div>Loading...</div>;
+            return (
+                <div className="flex h-full w-full items-center justify-center">
+                    <MoonLoader color="#1d9bf0" size={30} />
+                </div>
+            );
         }
         if (error) {
             return <div>Error creating account: {error.message}</div>;

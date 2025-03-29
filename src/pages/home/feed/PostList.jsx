@@ -1,6 +1,6 @@
 import Post from 'components/posts/Post';
 import { useGetPostsQuery } from 'features/posts/postsApiSlice';
-
+import { MoonLoader } from 'react-spinners';
 const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
     const {
         data: posts,
@@ -12,7 +12,11 @@ const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
     let content;
 
     if (isLoading) {
-        content = <p>Loading...</p>;
+        content = (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {

@@ -5,6 +5,7 @@ import Form from './form/Form';
 import WhoCanReply from './whocanreply/WhoCanReply';
 import { useNavigate } from 'react-router-dom';
 import { useAddPostMutation } from 'features/posts/postsApiSlice';
+import { MoonLoader } from 'react-spinners';
 
 const SendPost = ({ modalRef, handleClose, currentAccount, replyClicked }) => {
     const [addPost, { isLoading: isAddingPost, error: postError }] =
@@ -21,10 +22,6 @@ const SendPost = ({ modalRef, handleClose, currentAccount, replyClicked }) => {
         const fileId = urlParams.get('id');
         return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
-
-    if (isAddingPost) {
-        return <div>Loading...</div>; // Show a loading spinner or placeholder
-    }
 
     if (postError) {
         return <div>Error: {postError.message}</div>;
@@ -96,6 +93,12 @@ const SendPost = ({ modalRef, handleClose, currentAccount, replyClicked }) => {
             onClick={handleClick}
             onFocus={handleClick}
         >
+            {isAddingPost && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300">
+                    <MoonLoader color="#1d9bf0" size={50} />
+                </div>
+            )}
+
             <div
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >

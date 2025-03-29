@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import Button from 'components/buttons/Button';
+import { MoonLoader } from 'react-spinners';
 
 const UsernameOrEmailInput = ({
     newStep,
@@ -65,7 +66,11 @@ const UsernameOrEmailInput = ({
     };
 
     if (isLoading) {
-        <div>Loading...</div>;
+        return (
+            <div className="flex h-full w-full items-center justify-center">
+                <MoonLoader color="#1d9bf0" size={30} />
+            </div>
+        );
     }
     return (
         <form
