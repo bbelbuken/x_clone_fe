@@ -129,7 +129,7 @@ const SendReply = ({
                     </div>
                 ) : null}
                 <div
-                    className={`flex min-h-10 w-full items-center justify-center ${isOnStatus ? 'mt-5' : isClicked ? 'mt-2' : 'mt-5'}`}
+                    className={`flex min-h-10 w-full items-center justify-center ${isOnStatus ? 'mt-5' : isClicked ? 'mt-5' : 'mt-5'}`}
                 >
                     <nav
                         className={`mr-1 flex h-full w-full items-center justify-center ${modalRef ? '-ml-[105px]' : '-ml-2'}`}

@@ -28,7 +28,7 @@ const SearchBar = () => {
                         </div>
 
                         <div className="flex">
-                            <div className="ml-1 w-[304px] items-center justify-center">
+                            <div className="ml-1 w-[322px] items-center justify-center">
                                 <label htmlFor="text">
                                     <input
                                         type="text"
@@ -46,7 +46,7 @@ const SearchBar = () => {
                                 {input && isActive && (
                                     <button
                                         type="button"
-                                        className="mr-3 min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#1d9bf0] transition-colors outline-none"
+                                        className="min-h-[22px] min-w-[22px] cursor-pointer rounded-full bg-[#1d9bf0] transition-colors outline-none"
                                         onMouseDown={(e) => {
                                             e.preventDefault();
                                             setInput('');

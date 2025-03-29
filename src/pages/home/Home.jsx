@@ -1,6 +1,4 @@
 import HomeNav from './homenav/HomeNav';
-import SendPost from './sendpost/SendPost';
-import PostList from './feed/PostList';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import LoadingSpinner from 'components/loading/LoadingSpinner';
 const Home = () => {
@@ -17,21 +15,15 @@ const Home = () => {
     return (
         <main className="flex w-full flex-col">
             {isLoadingAccount && <LoadingSpinner />}
-            <nav className="sticky flex snap-mandatory scroll-px-4 items-center justify-center border-b border-b-[#2f3336]">
+            <nav className="sticky flex snap-mandatory scroll-px-4 items-center justify-center">
                 <div className="flex grow">
-                    <HomeNav />
-                </div>
-            </nav>
-            {currentAccount && (
-                <>
-                    <SendPost
+                    <HomeNav
                         currentAccount={currentAccount}
                         accountError={accountError}
                         isLoadingAccount={isLoadingAccount}
                     />
-                    <PostList currentAccount={currentAccount} />
-                </>
-            )}
+                </div>
+            </nav>
         </main>
     );
 };

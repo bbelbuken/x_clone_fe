@@ -68,10 +68,14 @@ const Form = ({
                     type="text"
                     id="newPost"
                     name="newPost"
-                    placeholder={`${!replyClicked && !isOnStatus ? 'What is happening?!' : 'Post your reply'}`}
+                    placeholder={
+                        !replyClicked && !isOnStatus
+                            ? "What's happening?!"
+                            : 'Post your reply'
+                    }
                     value={tweet}
                     onChange={handleInputChange}
-                    rows={`${modalRef ? 4 : 1}`}
+                    rows={`${modalRef ? 2 : 1}`}
                     className="max-h-[720px] min-h-6 w-full resize-none overflow-hidden border-none bg-transparent bg-none px-0.5 leading-6 placeholder-[#71767B] outline-none"
                 />
             </label>
@@ -80,14 +84,18 @@ const Form = ({
                 <div
                     style={{
                         width: '100%',
-                        height: 'auto',
+                        height: media.length > 2 ? '280px' : 'auto',
                         maxWidth: mediaSize.width,
-                        maxHeight: mediaSize.height,
+                        maxHeight: '30vh',
                     }}
-                    className="transition-colors-feed mt-3 max-h-auto max-w-full overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat"
+                    className="transition-colors-feed mt-3 max-w-full overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat"
                 >
                     <div
-                        className={`${media.length > 1 ? 'grid grid-cols-2 gap-0.5' : 'block'}`}
+                        className={`${
+                            media.length > 1
+                                ? 'grid h-full grid-cols-2 gap-0.5'
+                                : 'flex items-center justify-center'
+                        } ${media.length > 2 ? 'grid-rows-2' : ''}`}
                     >
                         {media.map((file, index) => {
                             const isImage = file.type.startsWith('image');
@@ -96,7 +104,11 @@ const Form = ({
                             return (
                                 <div
                                     key={index}
-                                    className={`${media.length > 1 ? 'relative w-full overflow-hidden pt-[70%]' : ''}`}
+                                    className={`${
+                                        media.length > 1
+                                            ? 'relative h-full w-full overflow-hidden'
+                                            : 'flex h-full max-h-[30vh] w-full items-center justify-center'
+                                    }`}
                                 >
                                     {isImage ? (
                                         <img
@@ -104,15 +116,18 @@ const Form = ({
                                             alt="Selected media"
                                             style={{
                                                 maxWidth: '100%',
-                                                maxHeight: '100%',
+                                                maxHeight:
+                                                    media.length > 1
+                                                        ? '100%'
+                                                        : '20vh',
                                                 objectFit: 'cover',
                                             }}
-                                            className={`${media.length > 1 ? 'absolute top-0 left-0 h-full w-full' : 'h-full w-full object-cover'}`}
+                                            className="h-full w-full"
                                         />
                                     ) : isVideo ? (
                                         <video
                                             controls
-                                            className={`${media.length > 1 ? 'absolute top-0 left-0 h-full w-full object-cover' : 'h-full w-full object-cover'}`}
+                                            className="h-full w-full object-cover"
                                         >
                                             <source
                                                 src={URL.createObjectURL(file)}
