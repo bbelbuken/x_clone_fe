@@ -39,7 +39,7 @@ const Repost = ({
 
     return (
         <div
-            className="relative z-20 flex flex-1 -translate-x-2 items-center justify-start"
+            className="relative z-10 flex flex-1 -translate-x-2 items-center justify-start"
             title={data.title}
         >
             <Popover>

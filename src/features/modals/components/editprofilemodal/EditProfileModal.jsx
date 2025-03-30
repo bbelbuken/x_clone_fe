@@ -95,14 +95,14 @@ const EditProfileModal = () => {
                     </div>
                 ))}
             <div
-                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
+                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 max-md:h-screen ${
                     isModalClosing ? 'opacity-0' : 'opacity-100'
                 }`}
                 onClick={handleClickOutside}
             >
                 <div
                     ref={modalRef}
-                    className="relative z-50 mx-auto mb-11 flex h-180 w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black"
+                    className="relative z-50 mx-auto mb-11 flex h-180 w-[95%] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black sm:w-[90%] sm:min-w-[350px] md:w-full md:max-w-[40vw] md:min-w-[600px]"
                 >
                     <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
                         <div className="flex min-h-8 min-w-[56px] items-center justify-start">
@@ -141,13 +141,15 @@ const EditProfileModal = () => {
                         setIsCroppingHeader={setIsCroppingHeader}
                         currentAccount={currentAccount}
                     />
-                    <EditAvatarInput
-                        avatarMedia={avatarMedia}
-                        setAvatarMedia={setAvatarMedia}
-                        isCropping={isCropping}
-                        setIsCropping={setIsCropping}
-                        currentAccount={currentAccount}
-                    />
+                    <div className="relative md:static">
+                        <EditAvatarInput
+                            avatarMedia={avatarMedia}
+                            setAvatarMedia={setAvatarMedia}
+                            isCropping={isCropping}
+                            setIsCropping={setIsCropping}
+                            currentAccount={currentAccount}
+                        />
+                    </div>
                     <div className="mt-20 h-14 w-full px-6">
                         <EditNameInput
                             fullname={fullname}

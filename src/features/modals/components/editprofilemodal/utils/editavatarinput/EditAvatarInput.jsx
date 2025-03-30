@@ -114,7 +114,7 @@ const EditAvatarInput = memo(
                 onSubmit={(e) => e.preventDefault()}
             >
                 {!isCropping && (
-                    <div className="absolute -top-10 -left-50 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white">
+                    <div className="absolute -top-10 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white max-md:-left-24 md:-left-50">
                         <div className="absolute h-[116px] w-[116px] rounded-full bg-black"></div>
                         <img
                             src={imageSource}
@@ -127,7 +127,7 @@ const EditAvatarInput = memo(
 
                 {isCropping && (
                     <div
-                        className={`${isCropping ? 'absolute -top-20 -left-35' : 'absolute -top-20 left-[99999px]'}`}
+                        className={`${isCropping ? 'absolute -top-20 max-md:-left-20 md:-left-35' : 'absolute -top-20 left-[99999px]'}`}
                     >
                         <div ref={croppieRef}></div>
                         <Button

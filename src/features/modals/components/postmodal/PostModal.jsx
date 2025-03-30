@@ -43,7 +43,7 @@ const PostModal = () => {
             {isLoading && <LoadingSpinner />}
             <div
                 ref={modalRef}
-                className="absolute top-[5%] left-[339px] z-50 mx-auto flex max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-1 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black"
+                className="absolute top-[5%] right-1/2 mx-auto flex max-h-[90vh] w-[95%] max-w-[600px] translate-x-1/2 flex-col items-center justify-center overflow-hidden rounded-2xl bg-black sm:w-[90%] sm:min-w-[350px] md:w-[65%] md:min-w-[450px] lg:w-[70%] lg:min-w-[550px] xl:right-auto xl:left-[339px] xl:max-w-[40vw] xl:min-w-[600px] xl:translate-x-0"
             >
                 <div className="sticky top-0 mx-auto flex h-[53px] w-full items-center justify-center px-4">
                     <div className="flex min-h-8 min-w-[56px] items-center justify-start">

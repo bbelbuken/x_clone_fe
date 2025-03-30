@@ -30,7 +30,7 @@ const Button = memo(
                             size === 'normal',
                     },
                     {
-                        'min-h-10 min-w-10 md:min-h-[52px] md:min-w-[52px] w-full hover:bg-[#d7dbdc] md:text-[17px] leading-5 px-[32px]':
+                        'min-h-12 min-w-12 md:min-h-[52px] md:min-w-[52px] w-full hover:bg-[#d7dbdc] md:text-[17px] leading-5 px-[32px]':
                             size === 'large',
                     },
                     {

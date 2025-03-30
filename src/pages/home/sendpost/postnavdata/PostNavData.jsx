@@ -141,7 +141,7 @@ const PostNavData = ({ handleMediaSelect }) => {
             />
 
             {inputErrorMsg && (
-                <div className="absolute right-20 -bottom-250 z-50 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                <div className="fixed z-50 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out xl:right-130 xl:bottom-10">
                     <span>Please choose up to 4 photos, videos, or GIFs.</span>
                 </div>
             )}
