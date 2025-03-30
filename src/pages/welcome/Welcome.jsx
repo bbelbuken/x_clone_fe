@@ -10,24 +10,25 @@ import WelcomeFooter from './footer/WelcomeFooter';
 const Welcome = () => {
     return (
         <main className="flex min-h-screen flex-auto flex-col">
-            <div className="flex min-h-auto flex-auto">
-                <div className="flex min-h-[45vh] flex-auto items-center justify-center p-0">
-                    <TwitterSVG className="mr-1 h-1/2 max-h-[428px] max-w-full p-6" />
+            <div className="flex min-h-auto flex-auto flex-col md:flex-row">
+                <div className="flex flex-auto items-center justify-center p-0 md:min-h-[45vh]">
+                    <TwitterSVG className=":h-1/2 mr-1 block max-h-22 max-w-full p-6 md:max-h-[428px]" />
                 </div>
 
-                <div className="item center flex min-w-[45vw] items-center justify-center p-4">
-                    <div className="flex w-full max-w-[760px] min-w-[437px] flex-col p-5">
-                        <div className="my-12 flex min-w-0 text-[#e7e9ea]">
-                            <span className="font-twitter font-twitter-bold mb-3 text-[72px] leading-[66px] tracking-[0.005em] break-words">
-                                Happening now
+                <div className="mp-4 mx-auto flex w-auto items-center justify-center md:min-w-[45vw]">
+                    <div className="flex w-full flex-col items-center md:max-w-[760px] md:min-w-[437px] md:items-start md:p-5">
+                        <div className="my-8 flex min-w-0 text-[#e7e9ea] sm:my-12">
+                            <span className="font-twitter font-twitter-bold mb-3 text-4xl tracking-[0.005em] text-wrap break-words md:text-[72px] md:leading-[66px]">
+                                Happening <br />
+                                now
                             </span>
                         </div>
 
-                        <div className="mb-8 min-w-0 text-3xl font-bold tracking-wide text-[#e7e9ea]">
+                        <div className="mb-8 min-w-0 text-2xl font-bold tracking-wide text-[#e7e9ea] md:text-3xl">
                             <span className="font-bold">Join today.</span>
                         </div>
 
-                        <div className="flex flex-col">
+                        <div className="flex flex-col items-center md:items-start">
                             <GoogleSignUp />
                             <AppleSignUp />
                             <Or />

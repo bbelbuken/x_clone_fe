@@ -4,6 +4,9 @@ import SideBarRight from './sidebarRight/SideBarRight';
 import ModalManager from 'features/modals/ModalManager';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import LoadingSpinner from 'components/loading/LoadingSpinner';
+import Lottie from 'lottie-react';
+import Warning from '../assets/animations/Warning.json';
+
 const Layout = () => {
     const currentAccountData = useCurrentAccount();
     const {
@@ -19,11 +22,19 @@ const Layout = () => {
     }
 
     if (error) {
-        return <div>Error: {error.message || 'Failed to fetch account'}</div>; // Show an error message
+        return <div>Error: {error.message || 'Failed to fetch account'}</div>;
     }
 
     if (!currentAccount) {
-        return <div>No account data found.</div>; // Handle case where account is undefined
+        return (
+            <div className="flex h-screen items-center justify-center text-gray-300">
+                <Lottie autoplay loop animationData={Warning} />
+
+                <div className="text-2xl font-bold">
+                    Sorry, you need to be logged in to access this page.
+                </div>
+            </div>
+        );
     }
 
     return (

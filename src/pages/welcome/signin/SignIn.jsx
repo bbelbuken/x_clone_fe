@@ -14,7 +14,7 @@ const SignIn = () => {
 
     return (
         <div className="mt-10 flex flex-col">
-            <span className="max-w-380px mb-5 flex-auto text-[17px] leading-5 font-bold break-words text-[#e7e9ea]">
+            <span className="max-w-380px mb-5 flex-auto text-center text-[17px] leading-5 font-bold break-words text-[#e7e9ea] md:text-start">
                 Already have an account?
             </span>
             <div
