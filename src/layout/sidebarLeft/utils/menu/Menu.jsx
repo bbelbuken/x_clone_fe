@@ -223,6 +223,7 @@ export const Menu = ({ handleSaveLocation, currentAccount }) => {
                     </svg>
                 ),
             },
+            hideBelowMd: true,
         },
         {
             path: 'communities',
@@ -277,6 +278,7 @@ export const Menu = ({ handleSaveLocation, currentAccount }) => {
                     </svg>
                 ),
             },
+            hideBelowMd: true,
         },
         {
             path: 'i/organizations',
@@ -304,6 +306,7 @@ export const Menu = ({ handleSaveLocation, currentAccount }) => {
                     </svg>
                 ),
             },
+            hideBelowMd: true,
         },
         {
             path: `${currentAccount.username}`,
@@ -340,7 +343,7 @@ export const Menu = ({ handleSaveLocation, currentAccount }) => {
                 <NavLink
                     key={index}
                     to={`/${menu.path}`}
-                    className="flex w-full flex-grow items-start py-[4px]"
+                    className={`${menu.hideBelowMd ? 'hidden md:block' : ''} flex w-full flex-grow items-start py-0.5 md:py-[4px]`}
                 >
                     <div
                         className="transition-colors-custom flex h-auto max-w-full items-center justify-start rounded-full p-3 hover:bg-[#e7e9ea1a]"
@@ -354,7 +357,7 @@ export const Menu = ({ handleSaveLocation, currentAccount }) => {
                                 <div className="absolute -top-1 right-[1px] h-[7px] w-[7px] rounded-full border-0 bg-[#1d9bf0]"></div>
                             )}
                         </div>
-                        <div className="mr-4 ml-5 h-auto max-w-full min-w-0 overflow-hidden text-xl leading-tight font-thin tracking-wide break-words whitespace-nowrap text-inherit">
+                        <div className="mr-4 ml-5 h-auto max-w-full min-w-0 overflow-hidden text-[18px] leading-tight font-thin tracking-wide break-words whitespace-nowrap text-inherit md:text-xl">
                             <h2
                                 className={`break-words text-inherit ${`/${menu.path}` === location.pathname ? 'font-bold' : 'font-normal'}`}
                             >

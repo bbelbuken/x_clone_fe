@@ -17,8 +17,8 @@ const MoreButton = () => {
                         </svg>
                     </div>
 
-                    <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-xl break-words whitespace-nowrap text-inherit">
-                        <span className="text-xl break-words text-inherit">
+                    <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-[18px] break-words whitespace-nowrap text-inherit md:text-xl">
+                        <span className="text-[18px] break-words text-inherit md:text-xl">
                             More
                         </span>
                     </div>

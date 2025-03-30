@@ -79,11 +79,11 @@ export const MyRoutes = () => {
                 { path: ':username/status/:postId', element: <PostStatus /> },
                 { path: ':username', element: <Profile /> },
                 { path: ':username/followlist', element: <FollowList /> },
+                { path: 'i/premium_sign_up', element: <Premium /> },
+                { path: 'jobs', element: <Jobs /> },
+                { path: 'i/organizations', element: <Organizations /> },
             ],
         },
-        { path: 'i/premium_sign_up', element: <Premium /> },
-        { path: 'jobs', element: <Jobs /> },
-        { path: 'i/organizations', element: <Organizations /> },
     ];
 
     const modalRoutes = [
