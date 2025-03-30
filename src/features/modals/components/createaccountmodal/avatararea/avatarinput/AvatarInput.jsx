@@ -79,11 +79,11 @@ const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
 
     return (
         <div
-            className="relative mt-17.5 flex h-full flex-1 items-center justify-center px-20"
+            className="relative flex h-full flex-1 items-center justify-center px-20 sm:mt-17.5"
             onSubmit={(e) => e.preventDefault()}
         >
             {!isCropping && (
-                <div className="absolute mt-66 flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white">
+                <div className="absolute flex h-[192px] w-[192px] items-center justify-center rounded-full bg-white sm:mt-66">
                     <div className="absolute h-[188px] w-[188px] rounded-full bg-black"></div>
                     <img
                         src={croppedImage || preview} // Use croppedImage or preview as the source
@@ -95,12 +95,12 @@ const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
             )}
 
             {isCropping && (
-                <div className="absolute -top-17.5 right-25">
+                <div className="absolute flex items-center justify-center lg:-top-17.5 lg:right-25">
                     <div ref={croppieRef}></div>
                     <Button
                         size="apply"
                         onClick={handleCroppingDone}
-                        className="fixed top-85 right-92 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                        className="fixed right-30 bottom-0 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
                     >
                         Apply
                     </Button>

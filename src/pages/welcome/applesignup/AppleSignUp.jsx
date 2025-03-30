@@ -2,7 +2,7 @@ import Button from 'components/buttons/Button';
 
 const AppleSignUp = () => {
     return (
-        <div className="flex h-[38px] w-[300px] items-center justify-center rounded-[20px] bg-[#fff]">
+        <div className="flex h-[38px] w-auto items-center justify-center rounded-[20px] bg-[#fff]">
             <Button
                 size="signup"
                 title="sign up with Apple"

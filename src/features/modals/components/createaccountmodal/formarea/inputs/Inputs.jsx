@@ -27,7 +27,7 @@ const Inputs = memo(
 
         return (
             <form
-                className="flex h-full flex-1 flex-col px-20"
+                className="flex flex-col px-3 sm:px-20"
                 onSubmit={(e) => e.preventDefault()}
             >
                 <NameInput name={name} setName={setName} />
@@ -53,7 +53,7 @@ const Inputs = memo(
                 />
                 <Button
                     type="button"
-                    className={`${FormValues ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 mt-21 min-h-[52px] w-full px-20 transition-opacity duration-300 ease-in-out outline-none`}
+                    className={`${FormValues ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none sm:mt-21`}
                     onClick={FormValues ? handleNextSection : null}
                 >
                     <span className="text-lg text-black">Next</span>

@@ -2,7 +2,7 @@ import Button from 'components/buttons/Button';
 
 const GoogleSignUp = () => {
     return (
-        <div className="mb-[9px] flex h-[40px] w-[300px] items-center justify-center rounded-[20px] bg-[#fff]">
+        <div className="mb-[9px] flex h-[40px] w-auto items-center justify-center rounded-[20px] bg-[#fff]">
             <Button
                 size="signup"
                 title="sign up with Google"

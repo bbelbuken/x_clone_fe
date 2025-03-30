@@ -20,12 +20,12 @@ const FormArea = memo(
         setYear,
     }) => {
         return (
-            <div className="absolute top-[24.5%] left-[339px] z-50 mx-auto flex h-auto max-h-[90vh] w-full max-w-[40vw] min-w-[600px] flex-col rounded-2xl bg-black">
+            <div className="z-50 mx-auto flex min-h-[568px] w-full flex-col rounded-2xl bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:max-w-[20vw] sm:min-w-[600px]">
                 <FormHeader handleClose={handleClose} step={step} />
 
-                <div className="mt-[5px] flex h-full flex-1 flex-col px-20">
-                    <div className="my-4">
-                        <h1 className="min-w-0 text-[31px] leading-9 font-bold text-[#e7e9ea]">
+                <div className="mt-[5px] flex flex-col px-3 sm:px-20">
+                    <div className="my-1 sm:my-4">
+                        <h1 className="min-w-0 text-[24px] leading-9 font-bold text-[#e7e9ea] sm:text-[31px]">
                             Create your account
                         </h1>
                     </div>

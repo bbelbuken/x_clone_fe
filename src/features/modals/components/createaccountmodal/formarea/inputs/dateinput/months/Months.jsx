@@ -7,7 +7,7 @@ const Months = ({ month, setMonth }) => {
 
     return (
         <div
-            className={`relative mt-4 mr-3 mb-3 flex h-full grow-6 items-center justify-center rounded-[4px] border px-2 py-3 pt-3 pb-2 transition-colors duration-100 ease-in-out ${
+            className={`relative mt-4 mr-3 mb-3 flex h-full grow-4 items-center justify-center rounded-[4px] border px-2 py-3 pt-3 pb-2 transition-colors duration-100 ease-in-out sm:grow-6 ${
                 isFocusedMonth ? 'border-[#1d9bf0]' : 'border-[#333639]'
             }`}
         >

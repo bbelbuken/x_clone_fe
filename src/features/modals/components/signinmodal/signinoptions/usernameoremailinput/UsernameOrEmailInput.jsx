@@ -116,7 +116,7 @@ const UsernameOrEmailInput = ({
             </div>
 
             {(errorMessage || error) && (
-                <div className="absolute -bottom-40 min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[14px] leading-4 tracking-wide transition-all duration-300 ease-in-out">
+                <div className="absolute bottom-10 mx-auto min-w-0 flex-1 rounded-sm bg-[#1d9bf0] px-4 py-4 text-[13px] leading-4 tracking-wide transition-all duration-300 ease-in-out sm:-bottom-40 sm:text-[14px]">
                     <span>{errorMessage || error}.</span>
                 </div>
             )}

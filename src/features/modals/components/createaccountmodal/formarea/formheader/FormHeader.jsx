@@ -7,13 +7,13 @@ const FormHeader = memo(({ handleClose, step, newStep }) => {
     const signUpLocation = location.pathname === '/i/flow/signup';
     const loginLocation = location.pathname === '/i/flow/login';
     return (
-        <div className="sticky top-0 mx-auto flex h-auto w-full flex-col items-start justify-center px-4">
-            <div className="flex min-h-8 min-w-[56px] items-center justify-center">
+        <div className="sticky top-0 mx-auto flex h-auto w-full flex-col items-center justify-center px-4">
+            <div className="relative flex min-h-8 w-full items-center justify-center">
                 {signUpLocation && step == 1 && (
                     <button
                         type="button"
                         onClick={handleClose}
-                        className="ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
+                        className="absolute left-0 flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
                     >
                         <svg
                             viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ const FormHeader = memo(({ handleClose, step, newStep }) => {
                     <button
                         type="button"
                         onClick={handleClose}
-                        className="ml-[calc(-8px)] flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
+                        className="absolute left-0 flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors outline-none hover:bg-[#eff3f41a]"
                     >
                         <svg
                             viewBox="0 0 24 24"
@@ -44,9 +44,8 @@ const FormHeader = memo(({ handleClose, step, newStep }) => {
                         </svg>
                     </button>
                 )}
-                <TwitterSVG
-                    className={`${newStep <= 2 ? 'ml-60' : 'ml-67'} h-[53px] w-8`}
-                />
+
+                <TwitterSVG className="h-[53px] w-8" />
             </div>
         </div>
     );

@@ -51,7 +51,7 @@ const SignInPasswordInput = ({
         <form action="submit" onSubmit={handleSubmit} className="w-full">
             <label
                 htmlFor="password"
-                className={`relative mt-4 mb-0.5 flex h-full w-full flex-1 items-center justify-center rounded-[4px] border px-2 py-4 pt-4 pb-2 transition-colors ${isFocused ? 'border-[#1d9bf0]' : 'border-[#333639]'} `}
+                className={`relative mt-4 mb-0.5 flex w-full items-center justify-center rounded-[4px] border px-2 py-4 pt-4 pb-2 transition-colors lg:h-full lg:flex-1 ${isFocused ? 'border-[#1d9bf0]' : 'border-[#333639]'} `}
             >
                 {PasswordIconSVG.map((svg, index) => (
                     <div
@@ -89,7 +89,7 @@ const SignInPasswordInput = ({
                     Forgot password?
                 </span>
             </div>
-            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b]">
+            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b] sm:mt-0">
                 <Button
                     type="button"
                     className={`${password ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} mt-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none`}
