@@ -4,8 +4,8 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 const MoreButton = () => {
     return (
         <Popover className={'relative'}>
-            <PopoverButton className="mt-1 cursor-pointer">
-                <div className="flex max-w-full rounded-full p-3 outline-none hover:bg-[#e7e9ea1a]">
+            <PopoverButton className="mt-2 cursor-pointer sm:mt-1">
+                <div className="flex max-w-full rounded-full outline-none hover:bg-[#e7e9ea1a] max-sm:mr-1 sm:p-1 sm:p-3">
                     <div>
                         <svg
                             viewBox="0 0 24 24"
@@ -17,8 +17,8 @@ const MoreButton = () => {
                         </svg>
                     </div>
 
-                    <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-[18px] break-words whitespace-nowrap text-inherit md:text-xl">
-                        <span className="text-[18px] break-words text-inherit md:text-xl">
+                    <div className="mr-4 ml-5 max-w-full min-w-0 overflow-hidden text-[17px] break-words whitespace-nowrap text-inherit sm:text-[18px] md:text-xl">
+                        <span className="text-[17px] break-words text-inherit sm:text-[18px] md:text-xl">
                             More
                         </span>
                     </div>

@@ -81,13 +81,13 @@ const Layout = () => {
             <div className="mx-auto flex w-full max-w-[1265px] flex-col pt-14 md:flex-row md:pt-0">
                 {/* Left Sidebar */}
                 <div
-                    className={`fixed inset-y-0 left-0 z-10 w-64 md:relative md:translate-x-0 ${
+                    className={`fixed inset-y-0 left-0 z-40 w-64 transform transition-transform duration-300 ease-in-out max-sm:bg-black md:relative md:translate-x-0 ${
                         isLeftSidebarOpen
                             ? 'translate-x-0'
                             : '-translate-x-full'
                     }`}
                 >
-                    <div className="sticky top-0 self-start">
+                    <div className="sticky top-0 z-10 self-start">
                         <SideBarLeft currentAccount={currentAccount} />
                     </div>
                 </div>
@@ -107,7 +107,7 @@ const Layout = () => {
                     {/* Right Sidebar */}
                     {!grok && (
                         <div
-                            className={`fixed inset-y-0 right-0 w-64 ease-in-out lg:relative lg:translate-x-0 ${
+                            className={`fixed inset-y-0 right-0 w-64 lg:relative lg:translate-x-0 ${
                                 isRightSidebarOpen
                                     ? 'translate-x-0'
                                     : 'translate-x-full'
@@ -127,7 +127,7 @@ const Layout = () => {
             {/* Overlay for mobile sidebars */}
             {(isLeftSidebarOpen || isRightSidebarOpen) && (
                 <div
-                    className="bg-opacity-50 fixed inset-0 bg-black md:hidden"
+                    className="bg-opacity-50 fixed inset-0 mr-40 bg-black md:hidden"
                     onClick={() => {
                         setIsLeftSidebarOpen(false);
                         setIsRightSidebarOpen(false);
