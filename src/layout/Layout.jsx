@@ -48,7 +48,7 @@ const Layout = () => {
             <div className="fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between border-b border-[#2f3336] bg-black px-4 md:hidden">
                 <button
                     onClick={() => setIsLeftSidebarOpen(!isLeftSidebarOpen)}
-                    className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#181818]"
+                    className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-[#181818]"
                 >
                     <svg
                         className="h-6 w-6 text-white"

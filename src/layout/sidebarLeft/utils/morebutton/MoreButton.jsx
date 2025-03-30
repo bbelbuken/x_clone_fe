@@ -30,7 +30,7 @@ const MoreButton = () => {
                 }
             >
                 <button className="box-border flex h-full w-full cursor-pointer items-center justify-start">
-                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
+                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-3 outline-none hover:bg-[#e7e9ea1a] sm:p-[13px]">
                         <div>
                             <svg
                                 viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ const MoreButton = () => {
                 </button>
 
                 <button className="over flex h-full w-full cursor-pointer items-center justify-start py-0.5">
-                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
+                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-3 outline-none hover:bg-[#e7e9ea1a] sm:p-[13px]">
                         <div>
                             <svg
                                 viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ const MoreButton = () => {
                 </button>
 
                 <button className="over flex h-full w-full cursor-pointer items-center justify-start py-0.5">
-                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
+                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-3 outline-none hover:bg-[#e7e9ea1a] sm:p-[13px]">
                         <div>
                             <svg
                                 viewBox="0 0 24 24"
@@ -93,7 +93,7 @@ const MoreButton = () => {
                 </button>
 
                 <button className="over flex h-auto w-full cursor-pointer items-center justify-start">
-                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-[13px] outline-none hover:bg-[#e7e9ea1a]">
+                    <div className="flex h-full w-full items-center justify-start overflow-hidden p-3 outline-none hover:bg-[#e7e9ea1a] sm:p-[13px]">
                         <div>
                             <svg
                                 viewBox="0 0 24 24"

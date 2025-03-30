@@ -118,7 +118,7 @@ const PostNavData = ({ handleMediaSelect }) => {
         <div className="left-0 flex h-full flex-1 items-center justify-start">
             {navdata.map((item, index) => (
                 <button
-                    className="flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf01a]"
+                    className="flex min-h-8 min-w-8 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-[#1d9bf01a] sm:min-h-9 sm:min-w-9"
                     key={index}
                     title={item.title}
                     onClick={
