@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 
 const SideBarRight = ({ currentAccount, refetch }) => {
     const location = useLocation();
-    const path = location.pathname; // ! important variable
+    const path = location.pathname;
     const [isExplore, setIsExplore] = useState(false);
 
     useEffect(() => {
@@ -26,25 +26,25 @@ const SideBarRight = ({ currentAccount, refetch }) => {
     return (
         <>
             <section
-                className={`my-[5px] flex w-[350px] flex-col items-stretch overflow-visible`}
+                className={`my-[5px] flex w-full flex-col items-stretch overflow-visible lg:w-[350px]`}
             >
                 <div className="item flex h-full min-h-[1114.2px] flex-col">
                     {path !== '/explore' && <SearchBar />}
 
                     {path === '/home' && (
-                        <div className="mb-4 flex h-[146px] w-[350px] overflow-hidden rounded-2xl border-x border-y border-[#2f3336]">
+                        <div className="mb-4 flex h-[146px] w-full overflow-hidden rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
                             <PremiumSection />
                         </div>
                     )}
 
                     {path !== '/explore' && (
-                        <div className="mb-4 flex h-auto w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]">
+                        <div className="mb-4 flex h-auto w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
                             <WhatIsHappening />
                         </div>
                     )}
 
                     <div
-                        className={`${isExplore ? 'mt-2' : ''} mb-4 flex w-[350px] flex-col rounded-2xl border-x border-y border-[#2f3336]`}
+                        className={`${isExplore ? 'mt-2' : ''} mb-4 flex w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]`}
                     >
                         <WhoToFollow
                             currentAccount={currentAccount}

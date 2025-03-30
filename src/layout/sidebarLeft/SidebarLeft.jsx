@@ -22,7 +22,7 @@ const SidebarLeft = ({ currentAccount }) => {
     };
 
     return (
-        <header className="font-arial flex h-screen w-[275px] px-2">
+        <header className="font-arial flex h-screen w-full px-2 md:w-[275px]">
             <div className="flex h-full w-full flex-auto flex-col items-stretch justify-between">
                 <div className="flex flex-col">
                     <Logo />
