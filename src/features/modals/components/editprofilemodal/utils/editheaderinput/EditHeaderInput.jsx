@@ -15,6 +15,7 @@ const EditHeaderInput = ({
     const [croppedImage, setCroppedImage] = useState(null);
     const [croppieInstance, setCroppieInstance] = useState(null);
     const [isDefaultHeader, setIsDefaultHeader] = useState(false);
+    const [isXLScreen, setIsXLScreen] = useState(false);
 
     const getGoogleDriveDirectImageUrl = (url) => {
         const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -54,29 +55,45 @@ const EditHeaderInput = ({
     const headerImageSource = getImageSource();
 
     useEffect(() => {
+        const handleResize = () => {
+            setIsXLScreen(window.innerWidth >= 1280); // xl breakpoint is typically 1280px
+        };
+
+        handleResize(); // Check initial size
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
         if (headerMedia && isCroppingHeader) {
-            // Initialize Croppie only when media is selected and cropping mode is active
+            const viewportSize = isXLScreen
+                ? { width: 1200, height: 400 }
+                : { width: 600, height: 200 };
+
+            const boundarySize = isXLScreen
+                ? { width: 1200, height: 400 }
+                : { width: 600, height: 200 };
+
             const instance = new Croppie(croppieRef.current, {
-                viewport: { width: 600, height: 200, type: 'square' }, // Adjust viewport for header
-                boundary: { width: 600, height: 200 }, // Adjust boundary for header
+                viewport: { ...viewportSize, type: 'square' },
+                boundary: boundarySize,
                 showZoomer: true,
             });
 
             instance.bind({
-                url: URL.createObjectURL(headerMedia), // Bind the media URL for Croppie
+                url: URL.createObjectURL(headerMedia),
             });
 
-            setCroppieInstance(instance); // Store the Croppie instance in state
+            setCroppieInstance(instance);
 
-            // Cleanup Croppie instance when media changes or when component unmounts
             return () => {
                 if (instance) {
                     instance.destroy();
-                    setCroppieInstance(null); // Clean up the state to avoid stale references
+                    setCroppieInstance(null);
                 }
             };
         }
-    }, [headerMedia, isCroppingHeader]);
+    }, [headerMedia, isCroppingHeader, isXLScreen]);
 
     const handleCroppingDone = useCallback(() => {
         if (croppieInstance) {
@@ -130,7 +147,7 @@ const EditHeaderInput = ({
                     <Button
                         size="apply-header"
                         onClick={handleCroppingDone}
-                        className="fixed top-66.5 right-88.5 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                        className="w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-66.5 md:right-88.5"
                     >
                         Apply
                     </Button>

@@ -93,11 +93,13 @@ const SendPost = ({ modalRef, handleClose, currentAccount, replyClicked }) => {
             onClick={handleClick}
             onFocus={handleClick}
         >
-            {isAddingPost && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300">
-                    <MoonLoader color="#1d9bf0" size={50} />
-                </div>
-            )}
+            <div className="z-50">
+                {isAddingPost && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300">
+                        <MoonLoader color="#1d9bf0" size={50} />
+                    </div>
+                )}
+            </div>
 
             <div
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}

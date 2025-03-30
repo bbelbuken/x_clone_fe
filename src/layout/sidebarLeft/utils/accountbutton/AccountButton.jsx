@@ -6,12 +6,12 @@ import ButtonItems from './buttonitems/ButtonItems';
 
 const AccountButton = ({ currentAccount }) => {
     return (
-        <Popover className={'relative z-20'}>
+        <Popover className={'relative z-30'}>
             {({ open, close }) => (
                 <>
                     <Popover.Button
                         className={
-                            'relative mb-3 w-full cursor-pointer rounded-full hover:bg-[#e7e9ea1a]'
+                            'relative z-30 mb-3 w-full cursor-pointer rounded-full hover:bg-[#e7e9ea1a]'
                         }
                     >
                         <div

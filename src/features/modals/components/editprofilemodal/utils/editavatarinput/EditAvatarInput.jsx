@@ -114,13 +114,13 @@ const EditAvatarInput = memo(
                 onSubmit={(e) => e.preventDefault()}
             >
                 {!isCropping && (
-                    <div className="absolute -top-10 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white max-md:-left-24 md:-left-50">
-                        <div className="absolute h-[116px] w-[116px] rounded-full bg-black"></div>
+                    <div className="absolute -top-10 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white max-md:-left-24 md:-left-50 xl:-top-20 xl:-left-95 xl:h-[150px] xl:w-[150px]">
+                        <div className="absolute h-[116px] w-[116px] rounded-full bg-black xl:h-[146px] xl:w-[146px]"></div>
                         <img
                             src={imageSource}
                             alt="Cropped Avatar"
                             loading="eager"
-                            className="box-content block h-[116px] w-[116px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black"
+                            className="box-content block h-[116px] w-[116px] rounded-full object-cover opacity-70 outline-2 -outline-offset-2 outline-black xl:h-[146px] xl:w-[146px]"
                         />
                     </div>
                 )}
@@ -134,7 +134,7 @@ const EditAvatarInput = memo(
                             size="apply-avatar"
                             onClick={handleCroppingDone}
                             className={
-                                'fixed top-66.5 right-88.5 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]'
+                                'w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-76.5 md:right-88.5'
                             }
                         >
                             Apply

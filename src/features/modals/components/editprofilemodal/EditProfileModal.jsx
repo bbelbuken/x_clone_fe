@@ -95,14 +95,14 @@ const EditProfileModal = () => {
                     </div>
                 ))}
             <div
-                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 max-md:h-screen ${
+                className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 max-md:h-screen ${
                     isModalClosing ? 'opacity-0' : 'opacity-100'
                 }`}
                 onClick={handleClickOutside}
             >
                 <div
                     ref={modalRef}
-                    className="relative z-50 mx-auto mb-11 flex h-180 w-[95%] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black sm:w-[90%] sm:min-w-[350px] md:w-full md:max-w-[40vw] md:min-w-[600px]"
+                    className="relative z-50 mx-auto flex w-[95%] flex-1 flex-col items-center justify-start overflow-hidden rounded-2xl bg-black max-md:h-160 sm:w-[90%] sm:min-w-[350px] md:mb-11 md:w-full md:max-w-[40vw] md:min-w-[600px] lg:h-190 xl:h-220"
                 >
                     <div className="mx-auto flex h-[53px] w-full items-center justify-center px-4">
                         <div className="flex min-h-8 min-w-[56px] items-center justify-start">
