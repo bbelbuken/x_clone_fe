@@ -13,10 +13,10 @@ const Home = () => {
     }
 
     return (
-        <main className="flex w-full flex-col">
+        <main className="flex w-full max-w-[600px] flex-col">
             {isLoadingAccount && <LoadingSpinner />}
             <nav className="sticky flex snap-mandatory scroll-px-4 items-center justify-center">
-                <div className="flex grow">
+                <div className="flex w-full grow">
                     <HomeNav
                         currentAccount={currentAccount}
                         accountError={accountError}

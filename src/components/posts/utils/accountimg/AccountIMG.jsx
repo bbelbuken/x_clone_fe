@@ -21,13 +21,13 @@ const AccountIMG = ({ account, imgData }) => {
     };
 
     return (
-        <div className="mr-2 h-10 w-10 grow-0 basis-10 overflow-hidden rounded-full">
+        <div className="mr-2 h-10 w-10 flex-shrink-0 overflow-hidden rounded-full">
             <img
                 src={avatar}
                 alt="user_avatar"
                 width={40}
                 height={40}
-                className="mt-[1px] h-10 w-10 rounded-full object-cover"
+                className="h-full w-full rounded-full object-cover"
                 onClick={handleImageClick}
             />
         </div>

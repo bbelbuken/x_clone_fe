@@ -99,7 +99,7 @@ const Layout = () => {
                             grok
                                 ? 'border-l border-l-[#2f3336]'
                                 : 'max-w-[600px] border-x border-x-[#2f3336]'
-                        } relative flex flex-1 flex-col gap-[30px]`}
+                        } relative flex w-full flex-1 flex-col gap-[30px] overflow-hidden`}
                     >
                         <Outlet />
                     </div>

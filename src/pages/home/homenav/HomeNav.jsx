@@ -10,7 +10,7 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
 
     return (
         <div className="flex w-full flex-col">
-            <div className="flex flex-row border-b border-b-[#2f3336]">
+            <div className="flex w-full flex-row border-b border-b-[#2f3336]">
                 {homeNavData.map((item, index) => (
                     <Link
                         className="flex h-[53px] min-w-14 grow cursor-pointer items-center justify-center px-4 transition-colors hover:bg-[#e7e9ea1a]"
@@ -35,7 +35,7 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
                 ))}
             </div>
             {currentAccount && (
-                <>
+                <div className="w-full overflow-hidden">
                     <SendPost
                         currentAccount={currentAccount}
                         accountError={accountError}
@@ -44,13 +44,13 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
                     {activeTitle === 'For you' ? (
                         <PostList currentAccount={currentAccount} />
                     ) : (
-                        <div>
+                        <div className="w-full overflow-hidden">
                             <FollowingsPostList
                                 currentAccount={currentAccount}
                             />
                         </div>
                     )}
-                </>
+                </div>
             )}
         </div>
     );

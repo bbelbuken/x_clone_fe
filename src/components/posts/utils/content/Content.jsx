@@ -17,7 +17,7 @@ const Content = memo(
         repliedPostUsername,
     }) => {
         return (
-            <div>
+            <div className="w-full min-w-0 overflow-hidden">
                 <UserNav account={account} postDate={postDate} />
                 {isAReply && (
                     <div className="flex items-center justify-start text-[15px]">
@@ -32,13 +32,15 @@ const Content = memo(
                         </span>
                     </div>
                 )}
-                <Index postContent={postContent} />
-                <Media
-                    postIMG={postIMG}
-                    postCachedIMG={postCachedIMG}
-                    postVideo={postVideo}
-                    postCachedVideos={postCachedVideos}
-                />
+                <div className="min-w-0 overflow-hidden">
+                    <Index postContent={postContent} />
+                    <Media
+                        postIMG={postIMG}
+                        postCachedIMG={postCachedIMG}
+                        postVideo={postVideo}
+                        postCachedVideos={postCachedVideos}
+                    />
+                </div>
             </div>
         );
     },

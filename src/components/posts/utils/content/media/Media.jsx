@@ -45,7 +45,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
     }, [postIMG, postVideo]);
 
     return (
-        <div>
+        <div className="w-full">
             {postIMG.length !== 0 && postIMG.length !== 0 && (
                 <div
                     style={{
@@ -56,7 +56,7 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                     }}
                     className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
                 >
-                    <div>
+                    <div className="w-full overflow-hidden">
                         {postIMG.length !== 0 && (
                             <ImgMedia
                                 postIMG={postIMG}
@@ -92,13 +92,15 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                     }}
                     className={`${postIMG.length !== 0 || postVideo.length !== 0 ? 'transition-colors-feed mt-3 overflow-hidden rounded-2xl border border-[#2f3336] bg-cover bg-center bg-no-repeat' : 'hidden'}`}
                 >
-                    {postVideo && postIMG.length === 0 && (
-                        <VideoMedia
-                            postVideo={postVideo}
-                            postCachedVideos={postCachedVideos}
-                            style={{ maxWidth: '100%', maxHeight: '100%' }}
-                        />
-                    )}
+                    <div className="w-full overflow-hidden">
+                        {postVideo && postIMG.length === 0 && (
+                            <VideoMedia
+                                postVideo={postVideo}
+                                postCachedVideos={postCachedVideos}
+                                style={{ maxWidth: '100%', maxHeight: '100%' }}
+                            />
+                        )}
+                    </div>
                 </div>
             )}
         </div>
