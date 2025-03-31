@@ -106,7 +106,7 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
             </div>
 
             <ul>
-                {filteredIds.map((accountId) => {
+                {filteredIds.slice(0, 3).map((accountId) => {
                     const account = entities[accountId];
 
                     if (!account) return null;

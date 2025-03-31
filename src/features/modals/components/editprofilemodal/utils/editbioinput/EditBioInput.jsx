@@ -11,7 +11,7 @@ const EditBioInput = memo(({ bio, setBio, currentAccount }) => {
     }, [currentAccount, setBio]);
 
     const handleInput = (e) => {
-        const inputValue = e.target.value.slice(0, 50);
+        const inputValue = e.target.value;
         setBio(inputValue);
     };
 
