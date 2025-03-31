@@ -127,7 +127,7 @@ const Layout = () => {
             {/* Overlay for mobile sidebars */}
             {(isLeftSidebarOpen || isRightSidebarOpen) && (
                 <div
-                    className="bg-opacity-50 fixed inset-0 mr-40 bg-black md:hidden"
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
                     onClick={() => {
                         setIsLeftSidebarOpen(false);
                         setIsRightSidebarOpen(false);

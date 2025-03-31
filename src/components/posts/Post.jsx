@@ -179,7 +179,9 @@ const Post = memo(
                         </div>
                     </article>
                 </div>
-                <GrokButton />
+                <div className="max-sm:hidden">
+                    <GrokButton />
+                </div>
                 {!replyClicked && (
                     <More
                         currentAccountReposted={currentAccountReposted}
