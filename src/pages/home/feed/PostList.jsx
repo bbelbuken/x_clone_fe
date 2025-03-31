@@ -17,10 +17,11 @@ const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
                 <MoonLoader color="#1d9bf0" size={30} />
             </div>
         );
+    } else if (isError && error?.data?.message === 'No posts found') {
+        content = <p className="mx-auto mt-10 text-lg">No posts found.</p>;
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
-        // Using normalized data
         const { ids, entities } = posts;
 
         // Filter posts based on whether it's the profile page or not
@@ -45,19 +46,23 @@ const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
             return true;
         });
 
-        content = filteredIds.map((postId) => {
-            const post = entities[postId];
-            return (
-                <Post
-                    post={post}
-                    postId={postId}
-                    key={postId}
-                    currentAccount={currentAccount}
-                    visitedAccount={visitedAccount}
-                    isProfile={isProfile}
-                />
-            );
-        });
+        if (filteredIds.length === 0) {
+            content = <p className="mx-auto mt-10 text-lg">No posts found.</p>;
+        } else {
+            content = filteredIds.map((postId) => {
+                const post = entities[postId];
+                return (
+                    <Post
+                        post={post}
+                        postId={postId}
+                        key={postId}
+                        currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
+                        isProfile={isProfile}
+                    />
+                );
+            });
+        }
     }
 
     return <>{content}</>;

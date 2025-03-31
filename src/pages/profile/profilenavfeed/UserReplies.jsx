@@ -19,6 +19,10 @@ const UserReplies = ({ currentAccount, visitedAccount }) => {
                 <MoonLoader color="#1d9bf0" size={30} />
             </div>
         );
+    } else if (isError && error?.data?.message === 'No posts found') {
+        content = (
+            <p className="mx-auto mt-10 text-lg">No replied posts found.</p>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
@@ -34,26 +38,25 @@ const UserReplies = ({ currentAccount, visitedAccount }) => {
             );
         });
 
-        // Map the filtered reply posts to the Post component
-        content = repliedPostIds.map((postId) => {
-            const post = entities[postId];
-            return (
-                <Post
-                    post={post}
-                    postId={postId}
-                    key={postId}
-                    currentAccount={currentAccount}
-                    visitedAccount={visitedAccount}
-                    isProfile={true}
-                />
-            );
-        });
-
-        // Display a message if no replied posts are found
         if (repliedPostIds.length === 0) {
             content = (
                 <p className="mx-auto mt-10 text-lg">No replied posts found.</p>
             );
+        } else {
+            // Map the filtered reply posts to the Post component
+            content = repliedPostIds.map((postId) => {
+                const post = entities[postId];
+                return (
+                    <Post
+                        post={post}
+                        postId={postId}
+                        key={postId}
+                        currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
+                        isProfile={true}
+                    />
+                );
+            });
         }
     }
 

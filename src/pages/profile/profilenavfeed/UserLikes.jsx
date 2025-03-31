@@ -14,6 +14,10 @@ const UserLikes = ({ currentAccount, visitedAccount }) => {
 
     if (isLoading) {
         content = <p>Loading liked posts...</p>;
+    } else if (isError && error?.data?.message === 'No posts found') {
+        content = (
+            <p className="mx-auto mt-10 text-lg">No liked posts found.</p>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
@@ -24,22 +28,22 @@ const UserLikes = ({ currentAccount, visitedAccount }) => {
             entities[postId].reactions.likedBy.includes(visitedAccount._id),
         );
 
-        content = likedPostIds.map((postId) => {
-            const post = entities[postId];
-            return (
-                <Post
-                    post={post}
-                    postId={postId}
-                    key={postId}
-                    currentAccount={currentAccount}
-                />
-            );
-        });
-
         if (likedPostIds.length === 0) {
             content = (
-                <p className="mx-auto mt-10 text-lg">No replied posts found.</p>
+                <p className="mx-auto mt-10 text-lg">No liked posts found.</p>
             );
+        } else {
+            content = likedPostIds.map((postId) => {
+                const post = entities[postId];
+                return (
+                    <Post
+                        post={post}
+                        postId={postId}
+                        key={postId}
+                        currentAccount={currentAccount}
+                    />
+                );
+            });
         }
     }
 

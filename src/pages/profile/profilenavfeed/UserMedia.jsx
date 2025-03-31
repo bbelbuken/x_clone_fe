@@ -14,6 +14,10 @@ const UserMedia = ({ currentAccount, visitedAccount }) => {
 
     if (isLoading) {
         content = <p>Loading media posts...</p>;
+    } else if (isError && error?.data?.message === 'No posts found') {
+        content = (
+            <p className="mx-auto mt-10 text-lg">No media posts found.</p>
+        );
     } else if (isError) {
         content = <p>{error?.data?.message || 'An error occurred'}</p>;
     } else if (isSuccess) {
@@ -29,24 +33,24 @@ const UserMedia = ({ currentAccount, visitedAccount }) => {
             );
         });
 
-        content = postsWithMedia.map((postId) => {
-            const post = entities[postId];
-            return (
-                <Post
-                    post={post}
-                    postId={postId}
-                    key={postId}
-                    currentAccount={currentAccount}
-                    visitedAccount={visitedAccount}
-                    isProfile={true}
-                />
-            );
-        });
-
         if (postsWithMedia.length === 0) {
             content = (
                 <p className="mx-auto mt-10 text-lg">No media posts found.</p>
             );
+        } else {
+            content = postsWithMedia.map((postId) => {
+                const post = entities[postId];
+                return (
+                    <Post
+                        post={post}
+                        postId={postId}
+                        key={postId}
+                        currentAccount={currentAccount}
+                        visitedAccount={visitedAccount}
+                        isProfile={true}
+                    />
+                );
+            });
         }
     }
 
