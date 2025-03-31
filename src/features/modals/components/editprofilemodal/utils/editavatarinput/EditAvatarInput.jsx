@@ -58,7 +58,7 @@ const EditAvatarInput = memo(
             if (avatarMedia && isCropping) {
                 // Initialize Croppie only when media is selected and cropping mode is active
                 const instance = new Croppie(croppieRef.current, {
-                    viewport: { width: 188, height: 188, type: 'circle' },
+                    viewport: { width: 200, height: 200, type: 'circle' },
                     boundary: { width: 400, height: 400 },
                     showZoomer: true,
                 });
@@ -126,16 +126,12 @@ const EditAvatarInput = memo(
                 )}
 
                 {isCropping && (
-                    <div
-                        className={`${isCropping ? 'absolute -top-20 max-md:-left-20 md:-left-35' : 'absolute -top-20 left-[99999px]'}`}
-                    >
+                    <div className="relative flex items-center justify-center md:absolute">
                         <div ref={croppieRef}></div>
                         <Button
-                            size="apply-avatar"
+                            size="apply"
                             onClick={handleCroppingDone}
-                            className={
-                                'w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-76.5 md:right-88.5'
-                            }
+                            className="absolute bottom-0 z-10 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] max-sm:right-40 max-sm:bottom-0"
                         >
                             Apply
                         </Button>

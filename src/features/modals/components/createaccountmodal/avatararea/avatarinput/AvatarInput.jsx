@@ -95,12 +95,12 @@ const AvatarInput = memo(({ media, setMedia, isCropping, setIsCropping }) => {
             )}
 
             {isCropping && (
-                <div className="absolute flex items-center justify-center lg:-top-17.5 lg:right-25">
+                <div className="relative flex items-center justify-center md:absolute md:-top-17.5 md:right-25">
                     <div ref={croppieRef}></div>
                     <Button
                         size="apply"
                         onClick={handleCroppingDone}
-                        className="fixed right-30 bottom-0 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
+                        className="absolute bottom-0 z-10 w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] max-sm:right-40 max-sm:bottom-0"
                     >
                         Apply
                     </Button>

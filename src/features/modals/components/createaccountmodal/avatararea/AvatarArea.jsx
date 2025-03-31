@@ -6,7 +6,7 @@ import AvatarInput from './avatarinput/AvatarInput';
 const AvatarArea = memo(({ handleNextSection, media, setMedia }) => {
     const [isCropping, setIsCropping] = useState(false); // To toggle cropping mode
     return (
-        <div className="z-50 mx-auto flex min-h-[568px] w-full flex-col rounded-2xl bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:max-w-[20vw] sm:min-w-[600px]">
+        <div className="relative z-50 mx-auto flex min-h-[568px] w-full flex-col rounded-2xl bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:max-w-[20vw] sm:min-w-[600px]">
             <FormHeader />
 
             <div className="mt-[5px] flex flex-col px-3 sm:h-full sm:flex-1 sm:px-20">

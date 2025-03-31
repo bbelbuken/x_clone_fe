@@ -12,7 +12,7 @@ const HeaderPhoto = ({ currentAccount }) => {
     };
 
     return (
-        <div className="relative z-10 w-full pb-[33.3344%]">
+        <div className="relative w-full pb-[33.3344%]">
             <div
                 onClick={handleHeaderPhotoClick}
                 className="absolute top-0 right-0 bottom-0 left-0 h-full w-full cursor-pointer transition-colors"

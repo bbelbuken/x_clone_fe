@@ -147,7 +147,7 @@ const EditHeaderInput = ({
                     <Button
                         size="apply-header"
                         onClick={handleCroppingDone}
-                        className="w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-66.5 md:right-88.5"
+                        className="w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-66 md:right-88.5 2xl:top-47 2xl:right-196"
                     >
                         Apply
                     </Button>
