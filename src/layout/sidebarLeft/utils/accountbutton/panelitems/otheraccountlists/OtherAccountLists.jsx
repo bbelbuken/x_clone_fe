@@ -11,7 +11,6 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     const [switchAccount] = useSwitchAccountMutation();
 
     const { data: fetchedAccounts, isLoading, error } = useGetAccountsQuery();
-
     // entities object into an array of accounts
     const accountsArray = fetchedAccounts
         ? Object.values(fetchedAccounts.entities)
@@ -36,12 +35,14 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
 
     const handleCurrentAccount = async (account) => {
         try {
-            console.log('Switching to account:', account.username);
-            console.log('Current User ID:', currentAccount._id);
+            console.log('Account Data:', account);
+
+            console.log('Switching to account:', account?.username);
+            console.log('Current User ID:', currentAccount?._id);
 
             const payload = {
-                username: account.username,
-                userId: currentAccount._id,
+                username: account?.username,
+                userId: currentAccount?._id,
             };
             const response = await switchAccount(payload).unwrap();
 
@@ -61,9 +62,9 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
 
     const handleAccountFullname = (account) => {
         const name =
-            account.fullname.length > 20
-                ? account.fullname.slice(0, 24) + '..'
-                : account.fullname;
+            account?.fullname?.length > 20
+                ? account?.fullname?.slice(0, 24) + '..'
+                : account?.fullname;
 
         return name;
     };

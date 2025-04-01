@@ -26,7 +26,7 @@ const Post = memo(
         } = useGetAccountsByIdQuery(
             isProfile ? visitedAccount._id : post.userId,
         );
-
+        console.log('account', account);
         if (isLoading) {
             return (
                 <div className="flex h-full w-full items-center justify-center">
