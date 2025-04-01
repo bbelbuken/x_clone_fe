@@ -93,13 +93,9 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
                     >
                         <img
                             src={
-                                account.cachedAvatar
-                                    ? account.cachedAvatar
-                                    : account.avatar
-                                      ? getGoogleDriveDirectImageUrl(
-                                            account.avatar,
-                                        )
-                                      : '/default_profile_200x200.png'
+                                account?.avatar
+                                    ? account.avatar
+                                    : '/default_profile_200x200.png'
                             }
                             alt="Avatar"
                             className="h-10 w-10 rounded-full"

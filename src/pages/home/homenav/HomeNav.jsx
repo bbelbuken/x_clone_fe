@@ -35,7 +35,7 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
                 ))}
             </div>
             {currentAccount && (
-                <div className="w-full overflow-hidden">
+                <div className="w-full">
                     <SendPost
                         currentAccount={currentAccount}
                         accountError={accountError}

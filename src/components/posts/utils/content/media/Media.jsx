@@ -2,7 +2,7 @@ import ImgMedia from './imgMedia/ImgMedia';
 import VideoMedia from './videoMedia/VideoMedia';
 import { useEffect, useState } from 'react';
 
-const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
+const Media = ({ postIMG, postVideo }) => {
     const [mediaSize, setMediaSize] = useState({ width: null, height: null });
 
     useEffect(() => {
@@ -60,7 +60,6 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                         {postIMG.length !== 0 && (
                             <ImgMedia
                                 postIMG={postIMG}
-                                postCachedIMG={postCachedIMG}
                                 style={{
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -71,7 +70,6 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                         {postVideo.length !== 0 && (
                             <VideoMedia
                                 postVideo={postVideo}
-                                postCachedVideos={postCachedVideos}
                                 style={{
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -96,7 +94,6 @@ const Media = ({ postIMG, postCachedIMG, postVideo, postCachedVideos }) => {
                         {postVideo && postIMG.length === 0 && (
                             <VideoMedia
                                 postVideo={postVideo}
-                                postCachedVideos={postCachedVideos}
                                 style={{ maxWidth: '100%', maxHeight: '100%' }}
                             />
                         )}

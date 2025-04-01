@@ -26,7 +26,6 @@ const Post = memo(
         } = useGetAccountsByIdQuery(
             isProfile ? visitedAccount._id : post.userId,
         );
-        console.log('account', account);
         if (isLoading) {
             return (
                 <div className="flex h-full w-full items-center justify-center">
@@ -46,6 +45,8 @@ const Post = memo(
 
         const isOnStatus =
             location.pathname === `/${account.username}/status/${postId}`;
+
+        console.log(post);
 
         return (
             <div className="relative">
@@ -69,15 +70,12 @@ const Post = memo(
                                     {!isARepost ? (
                                         <AccountIMG
                                             account={account}
-                                            imgData={account.cachedAvatar}
+                                            imgData={account?.avatar}
                                         />
                                     ) : (
                                         <AccountIMG
                                             account={post.originalPost}
-                                            imgData={
-                                                post.originalPost
-                                                    .cachedAvatarUrl
-                                            }
+                                            imgData={post.originalPost?.avatar}
                                         />
                                     )}
                                 </div>
@@ -96,9 +94,7 @@ const Post = memo(
                                             postContent={post.content}
                                             postDate={post.createdAt}
                                             postIMG={post.media.image}
-                                            postCachedIMG={post.cachedImages}
                                             postVideo={post.media.video}
-                                            postCachedVideos={post.cachedVideos}
                                             postReactions={post.reactions}
                                             isAReply={isAReply}
                                             replyClicked={replyClicked}
@@ -121,14 +117,8 @@ const Post = memo(
                                             postIMG={
                                                 post.originalPost.media.image
                                             }
-                                            postCachedIMG={
-                                                post.originalPost.cachedImages
-                                            }
                                             postVideo={
                                                 post.originalPost.media.video
-                                            }
-                                            postCachedVideos={
-                                                post.originalPost.cachedVideos
                                             }
                                             postReactions={
                                                 post.originalPost.reactions

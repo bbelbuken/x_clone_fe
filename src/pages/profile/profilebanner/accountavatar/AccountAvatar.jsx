@@ -18,8 +18,8 @@ const AccountAvatar = ({ currentAccount }) => {
         >
             <img
                 src={
-                    currentAccount?.cachedAvatar
-                        ? currentAccount.cachedAvatar
+                    currentAccount?.avatar
+                        ? currentAccount.avatar
                         : '/default_profile_200x200.png'
                 }
                 alt="avatar"

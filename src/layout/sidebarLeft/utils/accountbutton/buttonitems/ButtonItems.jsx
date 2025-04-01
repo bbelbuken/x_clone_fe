@@ -1,18 +1,6 @@
 import VerifiedSVG from 'components/icons/VerifiedSVG';
 
 const ButtonItems = ({ gap, currentAccount }) => {
-    const getGoogleDriveDirectImageUrl = (url) => {
-        const urlParams = new URLSearchParams(url.split('?')[1]);
-        const fileId = urlParams.get('id');
-        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
-    };
-
-    const avatar = currentAccount.cachedAvatar
-        ? `${currentAccount.cachedAvatar}`
-        : currentAccount.avatar
-          ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
-          : '/default_profile_200x200.png';
-
     const handleAccountFullname = (currentAccount) => {
         const name =
             currentAccount.fullname.length > 19
@@ -35,7 +23,11 @@ const ButtonItems = ({ gap, currentAccount }) => {
             className={`items-starts flex h-auto w-full justify-start gap-${gap}`}
         >
             <img
-                src={avatar}
+                src={
+                    currentAccount?.avatar
+                        ? currentAccount.avatar
+                        : '/default_profile_200x200.png'
+                }
                 alt="Avatar"
                 className="mt-[1px] h-10 w-10 rounded-full object-cover"
             />

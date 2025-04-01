@@ -1,11 +1,6 @@
 import React from 'react';
 
 const VideoMedia = ({ postVideo }) => {
-    const getGoogleDriveEmbedUrl = (url) => {
-        const fileId = url.split('=')[1];
-        return `https://drive.google.com/file/d/${fileId}/preview`;
-    };
-
     const vidArray = Array.isArray(postVideo) ? postVideo : [postVideo];
 
     return (
@@ -18,15 +13,20 @@ const VideoMedia = ({ postVideo }) => {
                         key={index}
                         className={`${vidArray.length > 1 ? 'relative w-full overflow-hidden pt-[70%]' : 'relative pt-[50%]'}`}
                     >
-                        <iframe
+                        <video
                             key={index}
-                            title="google-drive-video"
-                            src={getGoogleDriveEmbedUrl(video)}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className={`${vidArray.length > 1 ? 'absolute top-0 left-0 h-full w-full object-cover' : 'absolute top-0 right-0 h-full w-full object-fill'}`}
+                            controls
+                            className={`${
+                                vidArray.length > 1
+                                    ? 'absolute top-0 left-0 h-full w-full object-cover'
+                                    : 'absolute top-0 right-0 h-full w-full object-center'
+                            }`}
                             loading="lazy"
-                        ></iframe>
+                            preload="metadata"
+                        >
+                            <source src={video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 ))}
             </div>

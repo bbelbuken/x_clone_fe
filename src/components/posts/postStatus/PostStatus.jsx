@@ -25,6 +25,7 @@ const PostStatus = ({ replyClicked, isReplyModalOpen, isModalClosing }) => {
         );
     }
     if (isError) return <div>Error: {error.message}</div>;
+    if (!currentAccount) return <div>Loading...</div>;
 
     return (
         <main className="flex w-full flex-col">

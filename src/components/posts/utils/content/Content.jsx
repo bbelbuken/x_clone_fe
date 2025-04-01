@@ -10,9 +10,7 @@ const Content = memo(
         postContent,
         postDate,
         postIMG,
-        postCachedIMG,
         postVideo,
-        postCachedVideos,
         isAReply,
         repliedPostUsername,
     }) => {
@@ -34,12 +32,7 @@ const Content = memo(
                 )}
                 <div className="min-w-0 overflow-hidden">
                     <Index postContent={postContent} />
-                    <Media
-                        postIMG={postIMG}
-                        postCachedIMG={postCachedIMG}
-                        postVideo={postVideo}
-                        postCachedVideos={postCachedVideos}
-                    />
+                    <Media postIMG={postIMG} postVideo={postVideo} />
                 </div>
             </div>
         );
