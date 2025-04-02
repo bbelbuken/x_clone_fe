@@ -17,12 +17,6 @@ const EditAvatarInput = memo(
         const [croppieInstance, setCroppieInstance] = useState(null);
         const [isDefaultAvatar, setIsDefaultAvatar] = useState(false);
 
-        const getGoogleDriveDirectImageUrl = (url) => {
-            const urlParams = new URLSearchParams(url.split('?')[1]);
-            const fileId = urlParams.get('id');
-            return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
-        };
-
         const handleFileUpload = () => {
             fileInputRef.current?.click();
         };
@@ -40,14 +34,11 @@ const EditAvatarInput = memo(
             if (croppedImage) {
                 return croppedImage;
             }
-            if (currentAccount?.cachedAvatar) {
-                return currentAccount.cachedAvatar;
+            if (currentAccount?.avatar) {
+                return currentAccount.avatar;
             }
             if (avatarMedia) {
                 return URL.createObjectURL(avatarMedia);
-            }
-            if (currentAccount?.avatar) {
-                return getGoogleDriveDirectImageUrl(currentAccount.avatar);
             }
             return '/default_profile_200x200.png'; // Fallback to default image
         };

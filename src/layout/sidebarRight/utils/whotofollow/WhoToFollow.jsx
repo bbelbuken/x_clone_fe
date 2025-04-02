@@ -120,8 +120,8 @@ const WhoToFollow = ({ currentAccount, refetch }) => {
                                 <li className="flex items-center justify-center px-4 py-[11px]">
                                     <img
                                         src={
-                                            account?.cachedAvatar
-                                                ? account.cachedAvatar
+                                            account?.avatar
+                                                ? account.avatar
                                                 : '/default_profile_200x200.png'
                                         }
                                         alt="user_avatar"

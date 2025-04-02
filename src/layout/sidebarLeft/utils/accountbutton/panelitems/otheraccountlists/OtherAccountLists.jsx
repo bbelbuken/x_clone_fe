@@ -26,20 +26,13 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
 
             return {
                 ...loggedInAccount,
-                cachedAvatar:
-                    matchedAccount?.cachedAvatar ||
-                    loggedInAccount.cachedAvatar,
+                avatar: matchedAccount?.avatar || loggedInAccount.avatar,
             };
         });
     }, [accountsArray, otherLoggedInAccounts]);
 
     const handleCurrentAccount = async (account) => {
         try {
-            console.log('Account Data:', account);
-
-            console.log('Switching to account:', account?.username);
-            console.log('Current User ID:', currentAccount?._id);
-
             const payload = {
                 username: account?.username,
                 userId: currentAccount?._id,
@@ -52,12 +45,6 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
         } catch (error) {
             console.error('Switch Account Error:', error);
         }
-    };
-
-    const getGoogleDriveDirectImageUrl = (url) => {
-        const urlParams = new URLSearchParams(url.split('?')[1]);
-        const fileId = urlParams.get('id');
-        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
     };
 
     const handleAccountFullname = (account) => {
@@ -76,7 +63,6 @@ const OtherAccountLists = ({ currentAccount, otherLoggedInAccounts }) => {
     if (!currentAccount) {
         return <div>No account found</div>;
     }
-
     return (
         <div className="relative flex flex-col items-center justify-center py-0.5">
             {isLoading && <LoadingSpinner />}

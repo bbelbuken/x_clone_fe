@@ -10,6 +10,7 @@ import EditDateInput from './utils/editdateinput/EditDateInput';
 import EditHeaderInput from './utils/editheaderinput/EditHeaderInput';
 import { useEditCurrentAccountMutation } from 'features/accounts/accountApiSlice';
 import LoadingSpinner from 'components/loading/LoadingSpinner';
+
 const EditProfileModal = () => {
     const { userId } = useParams();
     const currentAccountData = useCurrentAccount();
@@ -95,7 +96,7 @@ const EditProfileModal = () => {
                     </div>
                 ))}
             <div
-                className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 max-md:h-screen ${
+                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 max-md:h-screen ${
                     isModalClosing ? 'opacity-0' : 'opacity-100'
                 }`}
                 onClick={handleClickOutside}

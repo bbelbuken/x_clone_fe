@@ -94,7 +94,7 @@ const Following = ({ currentAccount, refetch }) => {
                     >
                         <li className="flex items-center justify-center px-4 py-[11px]">
                             <img
-                                src={account.cachedAvatar}
+                                src={account?.avatar}
                                 alt="user_avatar"
                                 className="mr-1 h-10 w-10 basis-[40px] rounded-full object-cover"
                             />

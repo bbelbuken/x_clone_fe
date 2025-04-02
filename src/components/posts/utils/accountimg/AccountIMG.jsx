@@ -12,7 +12,7 @@ const AccountIMG = ({ account, imgData }) => {
     return (
         <div className="mr-2 h-10 w-10 flex-shrink-0 overflow-hidden rounded-full">
             <img
-                src={imgData}
+                src={imgData || '/default_profile_200x200.png'}
                 alt="user_avatar"
                 width={40}
                 height={40}

@@ -88,12 +88,12 @@ const Followers = ({ currentAccount, refetch }) => {
             return (
                 <div className="relative" key={accountId}>
                     <Link
-                        to={`/${account.username}`}
+                        to={`/${account?.username}`}
                         className="flex items-center justify-start"
                     >
                         <li className="flex items-center justify-center px-4 py-[11px]">
                             <img
-                                src={account.cachedAvatar}
+                                src={account?.avatar}
                                 alt="user_avatar"
                                 className="mr-1 h-10 w-10 basis-[40px] rounded-full object-cover"
                             />
@@ -101,7 +101,7 @@ const Followers = ({ currentAccount, refetch }) => {
                                 <div className="ml-1 flex flex-col items-start justify-center">
                                     <div className="flex items-center justify-center gap-0.5">
                                         <p className="text-[15px] leading-5 font-bold break-words whitespace-nowrap hover:underline">
-                                            {account.fullname}
+                                            {account?.fullname}
                                         </p>
                                         {account?.verified && (
                                             <VerifiedSVG
@@ -114,12 +114,12 @@ const Followers = ({ currentAccount, refetch }) => {
                                     <div className="text-[15px] leading-[1.5em] font-light tracking-[0.025em] text-[#71767b]">
                                         <div className="flex items-center justify-center">
                                             <p className="text-[12px]">@</p>
-                                            {account.username}
+                                            {account?.username}
                                         </div>
                                     </div>
                                     <div className="text-[15px] leading-[1.5em] font-light tracking-[0.025em] text-[#eff3f4]">
                                         <div className="flex items-center justify-center">
-                                            {account.bio}
+                                            {account?.bio}
                                         </div>
                                     </div>
                                 </div>

@@ -17,12 +17,6 @@ const EditHeaderInput = ({
     const [isDefaultHeader, setIsDefaultHeader] = useState(false);
     const [isXLScreen, setIsXLScreen] = useState(false);
 
-    const getGoogleDriveDirectImageUrl = (url) => {
-        const urlParams = new URLSearchParams(url.split('?')[1]);
-        const fileId = urlParams.get('id');
-        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
-    };
-
     const handleFileUpload = () => {
         fileInputRef.current?.click();
     };
@@ -40,14 +34,11 @@ const EditHeaderInput = ({
         if (croppedImage) {
             return croppedImage;
         }
-        if (currentAccount?.cachedHeader) {
-            return currentAccount.cachedHeader;
+        if (currentAccount?.header_photo) {
+            return currentAccount.header_photo;
         }
         if (headerMedia) {
             return URL.createObjectURL(headerMedia);
-        }
-        if (currentAccount?.header_photo) {
-            return getGoogleDriveDirectImageUrl(currentAccount.header_photo);
         }
         return '/default_header.jpg';
     };

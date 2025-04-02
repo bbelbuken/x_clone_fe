@@ -74,8 +74,8 @@ const PhotoModal = () => {
                 <img
                     ref={modalRef}
                     src={
-                        currentAccount?.cachedAvatar
-                            ? currentAccount.cachedAvatar
+                        currentAccount?.avatar
+                            ? currentAccount.avatar
                             : '/default_profile_200x200.png'
                     }
                     alt="Header Fullscreen"

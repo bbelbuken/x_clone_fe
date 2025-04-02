@@ -77,8 +77,8 @@ const HeaderPhotoModal = () => {
                 <img
                     ref={modalRef}
                     src={
-                        currentAccount.cachedHeader
-                            ? currentAccount.cachedHeader
+                        currentAccount.header_photo
+                            ? currentAccount.header_photo
                             : '/default_header.jpg'
                     }
                     alt="Header Fullscreen"
