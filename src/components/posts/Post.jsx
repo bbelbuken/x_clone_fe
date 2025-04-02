@@ -46,8 +46,6 @@ const Post = memo(
         const isOnStatus =
             location.pathname === `/${account.username}/status/${postId}`;
 
-        console.log(post);
-
         return (
             <div className="relative">
                 <div
@@ -75,7 +73,10 @@ const Post = memo(
                                     ) : (
                                         <AccountIMG
                                             account={post.originalPost}
-                                            imgData={post.originalPost?.avatar}
+                                            imgData={
+                                                post.originalPost
+                                                    ?.originalUserAvatar
+                                            }
                                         />
                                     )}
                                 </div>
