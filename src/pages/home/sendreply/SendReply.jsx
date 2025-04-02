@@ -21,21 +21,9 @@ const SendReply = ({
     const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
 
-    const getGoogleDriveDirectImageUrl = (url) => {
-        const urlParams = new URLSearchParams(url.split('?')[1]);
-        const fileId = urlParams.get('id');
-        return `https://lh3.googleusercontent.com/d/${fileId}`; // Direct image URL
-    };
-
     if (!currentAccount) {
         return <div>No account data found.</div>; // Handle case where account is undefined
     }
-
-    const avatar = currentAccount.cachedAvatar
-        ? `${currentAccount.cachedAvatar}`
-        : currentAccount.avatar
-          ? getGoogleDriveDirectImageUrl(currentAccount.avatar)
-          : '/default_profile_200x200.png';
 
     const handleClick = () => {
         setIsClicked(true);
@@ -101,7 +89,7 @@ const SendReply = ({
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >
                 <img
-                    src={avatar}
+                    src={currentAccount.avatar}
                     alt="user_avatar"
                     width={40}
                     height={40}
