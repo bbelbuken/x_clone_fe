@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import DetectedUsernameInput from './detectedusernameinput/DetectedUsernameInput';
 import DetectedEmailInput from './detectedemailinput/DetectedEmailInput';
 import SignInPasswordInput from './signinpasswordinput/SignInPasswordInput';
-import LoadingSpinner from 'components/loading/LoadingSpinner';
 const SignInPassword = ({
     handleClose,
     handleNextSection2,
@@ -19,7 +18,7 @@ const SignInPassword = ({
 }) => {
     return (
         <div className="z-40 mx-auto flex h-screen w-full flex-col bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:min-h-[568px] sm:w-[90%] sm:max-w-[20vw] sm:min-w-[600px] sm:rounded-2xl">
-            <div className="z-40 mx-auto flex h-screen w-full flex-col bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:min-h-[568px] sm:w-[90%] sm:max-w-[20vw] sm:min-w-[600px] sm:rounded-2xl">
+            <div className="z-40 mx-auto flex h-screen w-full flex-col bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:min-h-[568px] sm:w-[90%] sm:max-w-[20vw] sm:min-w-[600px] sm:rounded-2xl 2xl:translate-y-[-40px]">
                 <FormHeader handleClose={handleClose} newStep={newStep} />
 
                 <div className="mx-auto mt-[5px] flex h-full w-full max-w-[600px] flex-1 flex-col items-center justify-center px-5 pb-[17px] sm:px-20">

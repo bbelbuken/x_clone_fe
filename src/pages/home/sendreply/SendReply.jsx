@@ -89,7 +89,9 @@ const SendReply = ({
                 className={`mt-3 mr-2 grow-0 basis-10 ${modalRef ? 'max-h-10' : ''}`}
             >
                 <img
-                    src={currentAccount.avatar}
+                    src={
+                        currentAccount?.avatar || '/default_profile_200x200.png'
+                    }
                     alt="user_avatar"
                     width={40}
                     height={40}
