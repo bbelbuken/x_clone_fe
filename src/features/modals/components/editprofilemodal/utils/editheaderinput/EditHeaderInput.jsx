@@ -57,13 +57,19 @@ const EditHeaderInput = ({
 
     useEffect(() => {
         if (headerMedia && isCroppingHeader) {
-            const viewportSize = isXLScreen
-                ? { width: 1200, height: 400 }
-                : { width: 600, height: 200 };
+            const viewportSize =
+                window.innerWidth >= 1920
+                    ? { width: 1024, height: 350 }
+                    : isXLScreen
+                      ? { width: 767, height: 350 }
+                      : { width: 600, height: 200 };
 
-            const boundarySize = isXLScreen
-                ? { width: 1200, height: 400 }
-                : { width: 600, height: 200 };
+            const boundarySize =
+                window.innerWidth >= 1920
+                    ? { width: 1024, height: 350 }
+                    : isXLScreen
+                      ? { width: 767, height: 350 }
+                      : { width: 600, height: 200 };
 
             const instance = new Croppie(croppieRef.current, {
                 viewport: { ...viewportSize, type: 'square' },
@@ -138,7 +144,7 @@ const EditHeaderInput = ({
                     <Button
                         size="apply-header"
                         onClick={handleCroppingDone}
-                        className="w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8] md:fixed md:top-66 md:right-88.5 2xl:top-17 2xl:right-148"
+                        className="w-12 bg-[#1d9bf0] hover:bg-[#1a8cd8]"
                     >
                         Apply
                     </Button>

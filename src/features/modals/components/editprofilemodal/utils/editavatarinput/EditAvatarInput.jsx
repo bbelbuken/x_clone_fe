@@ -105,7 +105,7 @@ const EditAvatarInput = memo(
                 onSubmit={(e) => e.preventDefault()}
             >
                 {!isCropping && (
-                    <div className="absolute -top-10 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white max-md:-left-24 md:-left-50 xl:-top-20 xl:-left-95 xl:h-[150px] xl:w-[150px] 2xl:-top-25 2xl:-left-70 2xl:h-[180px] 2xl:w-[180px]">
+                    <div className="absolute -top-10 flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white max-md:-left-24 md:-left-50 xl:-top-20 xl:-left-95 xl:h-[150px] xl:w-[150px] 2xl:-top-25 2xl:-left-100 2xl:h-[180px] 2xl:w-[180px]">
                         <div className="absolute h-[116px] w-[116px] rounded-full bg-black xl:h-[146px] xl:w-[146px] 2xl:h-[176px] 2xl:w-[176px]"></div>
                         <img
                             src={imageSource}
