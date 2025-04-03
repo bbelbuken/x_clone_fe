@@ -14,11 +14,10 @@ const SignInOptions = ({
     setUsername,
     setEmail,
     login,
-    isLoading,
     error,
 }) => {
     return (
-        <div className="z-50 mx-auto flex h-screen w-full flex-col bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:min-h-[568px] sm:w-[90%] sm:max-w-[20vw] sm:min-w-[600px] sm:rounded-2xl">
+        <div className="z-40 mx-auto flex h-screen w-full flex-col bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:min-h-[568px] sm:w-[90%] sm:max-w-[20vw] sm:min-w-[600px] sm:rounded-2xl">
             <FormHeader handleClose={handleClose} newStep={newStep} />
 
             <div className="mx-auto mt-[5px] flex h-full w-[90%] max-w-[364px] min-w-[300px] flex-1 flex-col items-center justify-center px-4 pb-8 sm:w-full sm:px-8 sm:pb-12">
@@ -41,7 +40,6 @@ const SignInOptions = ({
                         setEmail={setEmail}
                         handleNextSection2={handleNextSection2}
                         login={login}
-                        isLoading={isLoading}
                         error={error}
                     />
                 </div>

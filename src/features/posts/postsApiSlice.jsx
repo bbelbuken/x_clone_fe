@@ -97,7 +97,10 @@ export const postsApiSlice = apiSlice.injectEndpoints({
                 return responseData.post;
             },
             invalidatesTags: (result, error, arg) => [
-                { type: 'Post', id: arg.id },
+                { type: 'Post', id: 'LIST' },
+                { type: 'Post', id: result?.id },
+                { type: 'Account', id: arg.userId },
+                { type: 'Account', id: 'LIST' },
             ],
         }),
         deletePost: builder.mutation({

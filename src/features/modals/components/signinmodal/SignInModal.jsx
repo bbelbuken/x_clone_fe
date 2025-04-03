@@ -4,6 +4,7 @@ import SignInOptions from './signinoptions/SignInOptions';
 import SignInPassword from './singinpassword/SignInPassword';
 import { useLoginMutation } from 'features/auth/authApiSlice';
 import { useLoggedInAccounts } from 'hooks/useLoggedInAccounts';
+import LoadingSpinner from 'components/loading/LoadingSpinner';
 
 const SignInModal = () => {
     const [login, { isLoading, error }] = useLoginMutation();
@@ -62,39 +63,44 @@ const SignInModal = () => {
     }, [newStep, navigate, loggedInAccounts.length]);
 
     return (
-        <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c]"
-            onClick={handleClickOutside}
-        >
-            {newStep === 1 && (
-                <SignInOptions
-                    handleClose={handleClose}
-                    handleNextSection2={handleNextSection2}
-                    newStep={newStep}
-                    setUsername={setUsername}
-                    setEmail={setEmail}
-                    error={error}
-                    login={login}
-                    isLoading={isLoading}
-                />
+        <>
+            {isLoading && (
+                <div className="z-50 flex h-screen w-full items-center justify-center">
+                    <LoadingSpinner />
+                </div>
             )}
-            {newStep === 2 && (
-                <SignInPassword
-                    username={username}
-                    setUsername={setUsername}
-                    email={email}
-                    setEmail={setEmail}
-                    handleClose={handleClose}
-                    handleNextSection2={handleNextSection2}
-                    newStep={newStep}
-                    password={password}
-                    setPassword={setPassword}
-                    login={login}
-                    isLoading={isLoading}
-                    error={error}
-                />
-            )}
-        </div>
+            <div
+                className="fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c]"
+                onClick={handleClickOutside}
+            >
+                {newStep === 1 && (
+                    <SignInOptions
+                        handleClose={handleClose}
+                        handleNextSection2={handleNextSection2}
+                        newStep={newStep}
+                        setUsername={setUsername}
+                        setEmail={setEmail}
+                        error={error}
+                        login={login}
+                    />
+                )}
+                {newStep === 2 && (
+                    <SignInPassword
+                        username={username}
+                        setUsername={setUsername}
+                        email={email}
+                        setEmail={setEmail}
+                        handleClose={handleClose}
+                        handleNextSection2={handleNextSection2}
+                        newStep={newStep}
+                        password={password}
+                        setPassword={setPassword}
+                        login={login}
+                        error={error}
+                    />
+                )}
+            </div>
+        </>
     );
 };
 

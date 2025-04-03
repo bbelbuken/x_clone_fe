@@ -39,6 +39,7 @@ const Profile = () => {
     if (!currentAccount) {
         return <div>No current account found</div>;
     }
+    console.log(visitedAccount);
 
     return (
         <div className="w-full max-w-[600px]">

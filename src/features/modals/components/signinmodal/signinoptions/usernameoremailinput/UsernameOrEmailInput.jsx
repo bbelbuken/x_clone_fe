@@ -8,7 +8,6 @@ const UsernameOrEmailInput = ({
     setEmail,
     handleNextSection2,
     login,
-    isLoading,
     error,
 }) => {
     const inputRef = useRef();
@@ -65,13 +64,6 @@ const UsernameOrEmailInput = ({
         handleNextSection2();
     };
 
-    if (isLoading) {
-        return (
-            <div className="flex h-full w-full items-center justify-center">
-                <MoonLoader color="#1d9bf0" size={30} />
-            </div>
-        );
-    }
     return (
         <form
             action="submit"

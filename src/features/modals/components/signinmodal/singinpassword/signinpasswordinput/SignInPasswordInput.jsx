@@ -1,7 +1,6 @@
 import { PasswordIconSVG } from 'components/icons/PasswordShowSVG';
 import { useState, useEffect, useRef } from 'react';
 import Button from 'components/buttons/Button';
-import { MoonLoader } from 'react-spinners';
 
 const SignInPasswordInput = ({
     username,
@@ -12,7 +11,6 @@ const SignInPasswordInput = ({
     setPassword,
     handleNextSection2,
     login,
-    isLoading,
     newStep,
 }) => {
     const inputRef = useRef();
@@ -39,13 +37,6 @@ const SignInPasswordInput = ({
         setEmail('');
         handleNextSection2();
     };
-
-    if (isLoading) {
-        <div>
-            {' '}
-            <MoonLoader color="#1d9bf0" size={30} />
-        </div>;
-    }
 
     return (
         <form action="submit" onSubmit={handleSubmit} className="w-full">
@@ -89,7 +80,7 @@ const SignInPasswordInput = ({
                     Forgot password?
                 </span>
             </div>
-            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b] sm:mt-0">
+            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b] sm:mt-0 2xl:mt-[204px]">
                 <Button
                     type="button"
                     className={`${password ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} mt-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none`}
