@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PasswordArea from './passwordarea/PasswordArea';
 import AvatarArea from './avatararea/AvatarArea';
@@ -32,6 +32,29 @@ const CreateAccountModal = () => {
             handleClose();
         }
     };
+
+    const handleKeyPress = useCallback(
+        (e) => {
+            if (e.key === 'Enter') {
+                const submitButton = document.querySelector(
+                    'button[type="submit"]',
+                );
+                if (submitButton) {
+                    submitButton.click();
+                } else if (step < 4) {
+                    handleNextSection();
+                }
+            }
+        },
+        [step, handleNextSection],
+    );
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyPress);
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [handleKeyPress]);
 
     const payload = {
         username,
