@@ -80,7 +80,7 @@ const SignInPasswordInput = ({
                     Forgot password?
                 </span>
             </div>
-            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b] sm:mt-0 2xl:mt-[204px]">
+            <div className="mt-[204px] h-auto w-full min-w-0 leading-4 text-[#71767b] sm:mt-0 md:mt-[204px] 2xl:mt-[204px]">
                 <Button
                     type="button"
                     className={`${password ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} mt-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none`}

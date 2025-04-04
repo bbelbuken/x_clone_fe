@@ -41,7 +41,7 @@ const SignInModal = () => {
     }, [navigate]);
 
     const handleClickOutside = (e) => {
-        if (e.target === e.currentTarget && newStep === 1) {
+        if (e.target === e.currentTarget) {
             handleClose();
         }
     };

@@ -29,8 +29,7 @@ const UsernameArea = memo(
         const handleSignUp = async (e) => {
             e.preventDefault();
             try {
-                const response = await signup(payload).unwrap();
-                console.log(response);
+                await signup(payload).unwrap();
                 setName('');
                 setUsername('');
                 setPassword('');
