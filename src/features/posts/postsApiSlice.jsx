@@ -110,6 +110,9 @@ export const postsApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id },
+                { type: 'Post', id: 'LIST' },
+                { type: 'Account', id: arg.userId },
+                { type: 'Account', id: 'LIST' },
             ],
         }),
         likePost: builder.mutation({
