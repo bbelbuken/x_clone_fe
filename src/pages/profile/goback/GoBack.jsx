@@ -6,15 +6,21 @@ const GoBack = ({ currentAccount, postCount, postId }) => {
     const verified = currentAccount?.verified;
 
     const handleGetLocation = () => {
-        const previousRoute = location.pathname === `/status/${postId}`;
-        const newRoute = previousRoute
-            ? localStorage.getItem('previousRouteReplyModal')
-            : localStorage.getItem('previousRouteProfile');
+        const isStatusPage = location.pathname === `/status/${postId}`;
+        const isFollowListPage = location.pathname.includes('/followlist');
 
-        if (previousRoute) {
-            navigate(newRoute);
+        if (isStatusPage) {
+            const previousRoute = localStorage.getItem(
+                'previousRouteReplyModal',
+            );
+            navigate(previousRoute || '/home');
+        } else if (isFollowListPage) {
+            // Extract username from the current path
+            const username = location.pathname.split('/')[1];
+            navigate(`/${username}`);
         } else {
-            navigate('/home');
+            const previousRoute = localStorage.getItem('previousRouteProfile');
+            navigate(previousRoute || '/home');
         }
     };
 
