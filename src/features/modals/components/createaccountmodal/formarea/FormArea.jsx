@@ -20,7 +20,10 @@ const FormArea = memo(
         setYear,
     }) => {
         return (
-            <div className="z-50 mx-auto flex min-h-[568px] w-full flex-col rounded-2xl bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:max-w-[20vw] sm:min-w-[600px]">
+            <div
+                onSubmit={(e) => e.preventDefault()}
+                className="z-50 mx-auto flex min-h-[568px] w-full flex-col rounded-2xl bg-black sm:absolute sm:h-auto sm:max-h-[90vh] sm:max-w-[20vw] sm:min-w-[600px]"
+            >
                 <FormHeader handleClose={handleClose} step={step} />
 
                 <div className="mt-[5px] flex flex-col px-3 sm:px-20">

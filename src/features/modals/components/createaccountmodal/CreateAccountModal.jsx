@@ -33,29 +33,6 @@ const CreateAccountModal = () => {
         }
     };
 
-    const handleKeyPress = useCallback(
-        (e) => {
-            if (e.key === 'Enter') {
-                const submitButton = document.querySelector(
-                    'button[type="submit"]',
-                );
-                if (submitButton) {
-                    submitButton.click();
-                } else if (step < 4) {
-                    handleNextSection();
-                }
-            }
-        },
-        [step, handleNextSection],
-    );
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyPress);
-        return () => {
-            document.removeEventListener('keydown', handleKeyPress);
-        };
-    }, [handleKeyPress]);
-
     const payload = {
         username,
         fullname: name,

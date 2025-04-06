@@ -52,6 +52,7 @@ const Inputs = memo(
                     setYear={setYear}
                 />
                 <Button
+                    onSubmit={(e) => e.preventDefault()}
                     type="button"
                     className={`${FormValues ? 'bg-[#fff] opacity-100' : 'pointer-events-none bg-[#eff3f4] opacity-50'} my-6 min-h-[52px] w-full transition-opacity duration-300 ease-in-out outline-none sm:mt-21`}
                     onClick={FormValues ? handleNextSection : null}
