@@ -45,6 +45,7 @@ const Post = memo(
 
         const isOnStatus =
             location.pathname === `/${account.username}/status/${postId}`;
+        console.log(post.originalPost);
 
         return (
             <div className="relative">

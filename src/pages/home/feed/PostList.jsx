@@ -27,7 +27,6 @@ const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
         // Filter posts based on whether it's the profile page or not
         const filteredIds = ids.filter((postId) => {
             const post = entities[postId];
-
             // If it's a profile page, only show posts by the visited account
             if (isProfile) {
                 return (
@@ -45,7 +44,6 @@ const Feed = ({ currentAccount, visitedAccount, isProfile }) => {
             // Show all non-reply posts
             return true;
         });
-
         if (filteredIds.length === 0) {
             content = <p className="mx-auto mt-10 text-lg">No posts found.</p>;
         } else {
