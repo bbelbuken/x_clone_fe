@@ -41,7 +41,7 @@ const PostModal = () => {
                 </div>
             )}
             <div
-                className={`fixed inset-0 z-50 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
+                className={`fixed inset-0 z-40 flex items-center justify-center bg-[#4a5c687c] transition-opacity duration-300 ${
                     isModalClosing ? 'opacity-0' : 'opacity-100'
                 }`}
                 onClick={handleClickOutside}

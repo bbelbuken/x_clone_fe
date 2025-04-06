@@ -76,10 +76,8 @@ const EditProfileModal = () => {
                 avatar: avatarMedia,
                 header_photo: headerMedia,
             };
-            console.log(payload);
 
-            const response = await editCurrentAccount(payload).unwrap();
-            console.log('Response', response);
+            await editCurrentAccount(payload).unwrap();
             navigate(`/${currentAccount.username}`);
             await refetch();
         } catch (error) {
