@@ -2,8 +2,11 @@ import { css } from 'aphrodite';
 import { FlipAnimation } from '../../assets/animations/FlipInX'; // Correct path to the animations
 import Lottie from 'lottie-react'; // Correct component
 import ConstructionAnimation from '../../assets/animations/ConstructionAnimation.json';
+import useTitle from 'hooks/useTitle';
 
 const Communities = () => {
+    useTitle('Communities');
+
     return (
         <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[#4a5c6836] text-2xl">
             <div className={css(FlipAnimation.slideInWithOpacity)}>

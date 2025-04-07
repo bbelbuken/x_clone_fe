@@ -6,8 +6,11 @@ import Or from './or/Or';
 import LegalDisclaimer from './legaldisclaimer/LegalDisclaimer';
 import SignIn from './signin/SignIn';
 import WelcomeFooter from './footer/WelcomeFooter';
+import useTitle from 'hooks/useTitle';
 
 const Welcome = () => {
+    useTitle('Welcome');
+
     return (
         <main className="flex min-h-screen flex-auto flex-col">
             <div className="flex min-h-auto flex-auto flex-col md:flex-row">

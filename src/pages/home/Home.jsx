@@ -1,7 +1,11 @@
 import HomeNav from './homenav/HomeNav';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import LoadingSpinner from 'components/loading/LoadingSpinner';
+import useTitle from 'hooks/useTitle';
+
 const Home = () => {
+    useTitle('Home');
+
     const {
         account: currentAccount,
         error: accountError,

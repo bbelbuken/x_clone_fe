@@ -12,8 +12,11 @@ import UserMedia from './profilenavfeed/UserMedia';
 import UserReplies from './profilenavfeed/UserReplies';
 import useCurrentAccount from 'hooks/useCurrentAccount';
 import LoadingSpinner from 'components/loading/LoadingSpinner';
+import useTitle from 'hooks/useTitle';
 
 const Profile = () => {
+    useTitle('Profile');
+
     const [activeTitle, setActiveTitle] = useState('Posts');
     const { username } = useParams();
 

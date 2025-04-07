@@ -2,8 +2,11 @@ import { css } from 'aphrodite';
 import { FlipAnimation } from '../../assets/animations/FlipInX';
 import Lottie from 'lottie-react'; // Use the correct component: Lottie
 import ConstructionAnimation from '../../assets/animations/ConstructionAnimation.json';
+import useTitle from 'hooks/useTitle';
 
 const Premium = () => {
+    useTitle('Premium');
+
     return (
         <div className="mx-auto flex h-screen flex-col items-center justify-center bg-[#4a5c6836] text-2xl">
             <div className={css(FlipAnimation.slideInWithOpacity)}>

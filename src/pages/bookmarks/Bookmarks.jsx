@@ -4,7 +4,11 @@ import { useSelector } from 'react-redux';
 import GoBack from 'pages/profile/goback/GoBack';
 import SearchBar from 'layout/sidebarRight/utils/searchbar/SearchBar';
 import { MoonLoader } from 'react-spinners';
+import useTitle from 'hooks/useTitle';
+
 const Bookmarks = () => {
+    useTitle('Bookmarks');
+
     const {
         data: posts,
         isLoading,
