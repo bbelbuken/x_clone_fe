@@ -20,7 +20,9 @@ A modern social media platform built with React, Vite, and Redux Toolkit.
 
 ## 🏗️ Project Structure
 src/
+├── assets/ # Static assets (fonts, images)
 ├── components/ # Reusable UI (Buttons, Cards)
 ├── features/ # Redux slices (Posts, Auth, Modals)
 ├── pages/ # Routes (Home, Profile)
 └── App.jsx # Root component
+└── main.jsx # Vite entry point
