@@ -24,37 +24,35 @@ const SideBarRight = ({ currentAccount, refetch }) => {
     }, [path]);
 
     return (
-        <>
-            <section
-                className={`my-[5px] flex w-full flex-col items-stretch overflow-visible lg:w-[350px]`}
-            >
-                <div className="item flex h-full min-h-[1114.2px] flex-col">
-                    {path !== '/explore' && <SearchBar />}
+        <section
+            className={`my-[5px] flex w-full flex-col items-stretch overflow-visible lg:w-[350px]`}
+        >
+            <div className="item flex h-full min-h-[1114.2px] flex-col">
+                {path !== '/explore' && <SearchBar />}
 
-                    {path === '/home' && (
-                        <div className="mb-4 flex h-[146px] w-full overflow-hidden rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
-                            <PremiumSection />
-                        </div>
-                    )}
-
-                    {path !== '/explore' && (
-                        <div className="mb-4 flex h-auto w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
-                            <WhatIsHappening />
-                        </div>
-                    )}
-
-                    <div
-                        className={`${isExplore ? 'mt-2' : ''} mb-4 flex w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]`}
-                    >
-                        <WhoToFollow
-                            currentAccount={currentAccount}
-                            refetch={refetch}
-                        />
+                {path === '/home' && (
+                    <div className="mb-4 flex h-[146px] w-full overflow-hidden rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
+                        <PremiumSection />
                     </div>
-                    <Footer />
+                )}
+
+                {path !== '/explore' && (
+                    <div className="mb-4 flex h-auto w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]">
+                        <WhatIsHappening />
+                    </div>
+                )}
+
+                <div
+                    className={`${isExplore ? 'mt-2' : ''} mb-4 flex w-full flex-col rounded-2xl border-x border-y border-[#2f3336] lg:w-[350px]`}
+                >
+                    <WhoToFollow
+                        currentAccount={currentAccount}
+                        refetch={refetch}
+                    />
                 </div>
-            </section>
-        </>
+                <Footer />
+            </div>
+        </section>
     );
 };
 
