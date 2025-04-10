@@ -19,5 +19,12 @@ A modern social media platform built with React, Vite, and Redux Toolkit.
 | Deployment      | Vercel                 |
 
 ## 🏗️ Project Structure
-
-src/ ├── assets/ # Static assets (fonts, images) ├── components/ # Reusable UI (Buttons, Cards) ├── features/ # Redux slices (Posts, Auth, Modals) ├── pages/ # Routes (Home, Profile) ├── App.jsx # Root component └── main.jsx # Vite entry point
+```plaintext
+src/ 
+├── assets/ # Static assets (fonts, images) 
+├── components/ # Reusable UI (Buttons, Cards) 
+├── features/ # Redux slices (Posts, Auth, Modals) 
+├── pages/ # Routes (Home, Profile) 
+├── App.jsx # Root component 
+└── main.jsx # Vite entry point
+```
