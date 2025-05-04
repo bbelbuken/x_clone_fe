@@ -120,6 +120,5 @@ export const MyRoutes = () => {
             element: <LogOutModal />,
         },
     ];
-
     return { routes, modalRoutes, state };
 };
