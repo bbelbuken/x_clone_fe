@@ -34,6 +34,7 @@ const HomeNav = ({ currentAccount, accountError, isLoadingAccount }) => {
                     </Link>
                 ))}
             </div>
+
             {currentAccount && (
                 <div className="w-full">
                     <SendPost
