@@ -80,6 +80,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 }
             },
         }),
+
         signUp: builder.mutation({
             query: (credentials) => {
                 const formData = new FormData();
